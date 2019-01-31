@@ -1,0 +1,1 @@
+/usr/bin/c++      CMakeFiles/_node.dir/src/teensy_comm_node.cpp.o  -o /home/ubuntu/catkin_ws/devel/lib/semi_truck/_node -rdynamic -lcontroller_node 

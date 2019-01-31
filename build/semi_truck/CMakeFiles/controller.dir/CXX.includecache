@@ -1,0 +1,12 @@
+#IncludeRegexLine: ^[ 	]*#[ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+/home/ubuntu/catkin_ws/src/semi_truck/src/controller_node.cpp
+ros/ros.h
+/home/ubuntu/catkin_ws/src/semi_truck/src/ros/ros.h
+
