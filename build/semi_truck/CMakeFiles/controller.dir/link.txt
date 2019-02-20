@@ -1,1 +1,0 @@
-/usr/bin/c++      CMakeFiles/controller.dir/src/controller_node.cpp.o  -o /home/ubuntu/catkin_ws/devel/lib/semi_truck/controller -rdynamic 
