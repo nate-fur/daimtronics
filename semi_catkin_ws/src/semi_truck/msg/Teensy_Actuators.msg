@@ -1,0 +1,3 @@
+int32 motor_output
+int32 steer_output
+int32 desired_fifth_wheel
