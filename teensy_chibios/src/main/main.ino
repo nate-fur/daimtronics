@@ -7,12 +7,17 @@
 #include <Adafruit_BNO055.h>
 #include <utility/imumaths.h>
 
+#define HWSERIAL Serial1
+
 Adafruit_BNO055 bno = Adafruit_BNO055(55);
 
 // LED_BUILTIN pin on Arduino is usually pin 13.
 
 // Declare a semaphore with an inital counter value of zero.
 SEMAPHORE_DECL(sem, 0);
+
+
+
 //------------------------------------------------------------------------------
 // Thread 1, turn the LED off when signalled by thread 2.
 //
@@ -29,6 +34,8 @@ static THD_FUNCTION(Thread1, arg) {
     digitalWrite(LED_BUILTIN, LOW);
   }
 }
+
+
 
 //------------------------------------------------------------------------------
 // Thread 2, turn the LED on and signal thread 1 to turn the LED off.
@@ -53,10 +60,13 @@ static THD_FUNCTION(Thread2, arg) {
   }
 }
 
+
+
+//------------------------------------------------------------------------------
 // Thread 3, IMU
 //
 // 64 byte stack beyond task switch and interrupt needs.
-static THD_WORKING_AREA(waThread3, 64);
+static THD_WORKING_AREA(waThread3, 128);
 
 static THD_FUNCTION(Thread3, arg) {
   (void)arg;
@@ -78,27 +88,35 @@ static THD_FUNCTION(Thread3, arg) {
     }
 }
 
+
+
+//------------------------------------------------------------------------------
+// Thread 4, Read from UART
+//
+// 64 byte stack beyond task switch and interrupt needs.
 static THD_WORKING_AREA(waThread4, 64);
 
 static THD_FUNCTION(Thread4, arg) {
   (void)arg;
-  while (true){
-        /* Get a new sensor event */ 
-      sensors_event_t event; 
-      bno.getEvent(&event);
-      
-      /* Display the floating point data */
-      Serial.print("X: ");
-      Serial.print(event.orientation.x, 4);
-      Serial.print("\tY: ");
-      Serial.print(event.orientation.y, 4);
-      Serial.print("\tZ: ");
-      Serial.print(event.orientation.z, 4);
-      Serial.println("");
-      
-      chThdSleepMilliseconds(100);
+  Serial.print("starting up serial reader");
+
+  int incomingByte;
+  while (true) {
+    Serial.print("in serial reader");
+    if (HWSERIAL.available() > 0) {
+      incomingByte = HWSERIAL.read();
+      Serial.print("UART received: ");
+      Serial.println(incomingByte, DEC);
+      HWSERIAL.print("UART received:");
+      HWSERIAL.println(incomingByte, DEC);
     }
+      
+    chThdSleepMilliseconds(100);
+  }
 }
+
+
+
 //------------------------------------------------------------------------------
 // continue setup() after chBegin().
 void chSetup() {
@@ -111,11 +129,18 @@ void chSetup() {
   
   chThdCreateStatic(waThread3, sizeof(waThread3),
     NORMALPRIO + 1, Thread3, NULL);
+
+  chThdCreateStatic(waThread4, sizeof(waThread4),
+    NORMALPRIO + 1, Thread4, NULL);
 }
+
+
+
 //------------------------------------------------------------------------------
 void setup() {
   // Initialize OS and then call chSetup.
   Serial.begin(9600);
+  HWSERIAL.begin(9600);
   Serial.println("Orientation Sensor Test"); Serial.println("");
   
   /* Initialise the sensor */
@@ -134,6 +159,9 @@ void setup() {
   // chBegin() resets stacks and should never return.
   while (true) {}
 }
+
+
+
 //------------------------------------------------------------------------------
 // loop() is the main thread.  Not used in this example.
 void loop() {
