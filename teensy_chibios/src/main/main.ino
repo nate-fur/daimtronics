@@ -66,26 +66,26 @@ static THD_FUNCTION(Thread2, arg) {
 // Thread 3, IMU
 //
 // 64 byte stack beyond task switch and interrupt needs.
-static THD_WORKING_AREA(waThread3, 128);
+static THD_WORKING_AREA(waThread3, 256);
 
 static THD_FUNCTION(Thread3, arg) {
   (void)arg;
-  while (true){
-        /* Get a new sensor event */ 
-      sensors_event_t event; 
-      bno.getEvent(&event);
-      
-      /* Display the floating point data */
-      Serial.print("X: ");
-      Serial.print(event.orientation.x, 4);
-      Serial.print("\tY: ");
-      Serial.print(event.orientation.y, 4);
-      Serial.print("\tZ: ");
-      Serial.print(event.orientation.z, 4);
-      Serial.println("");
-      
-      chThdSleepMilliseconds(100);
-    }
+  while (true) {
+    /* Get a new sensor event */
+    sensors_event_t event;
+    bno.getEvent(&event);
+
+    /* Display the floating point data */
+    Serial.print("X: ");
+    Serial.print(event.orientation.x, 4);
+    Serial.print("\tY: ");
+    Serial.print(event.orientation.y, 4);
+    Serial.print("\tZ: ");
+    Serial.print(event.orientation.z, 4);
+    Serial.println("");
+
+    chThdSleepMilliseconds(100);
+  }
 }
 
 
@@ -110,7 +110,35 @@ static THD_FUNCTION(Thread4, arg) {
       HWSERIAL.print("UART received:");
       HWSERIAL.println(incomingByte, DEC);
     }
+
+    chThdSleepMilliseconds(100);
+  }
+}
+
+
+
+//------------------------------------------------------------------------------
+// Thread 5, Read from URF
+//
+/* 64 byte stack beyond task switch and interrupt needs.*/
+static THD_WORKING_AREA(waThread5, 64);
+
+static THD_FUNCTION(Thread5, arg) {
+  (void)arg;
+  Serial.print("starting up URF driver");
+
+  int URF_reading;
+  while (true) {
+      chSysLock();
+      digitalWrite(27, HIGH);
+      delayMicroseconds(10);
+      digitalWrite(27, LOW);
       
+      Serial.print("in serial reader");
+   
+      HWSERIAL.print("URF received:");
+   
+
     chThdSleepMilliseconds(100);
   }
 }
@@ -122,16 +150,16 @@ static THD_FUNCTION(Thread4, arg) {
 void chSetup() {
   // Start threads.
   chThdCreateStatic(waThread1, sizeof(waThread1),
-    NORMALPRIO + 2, Thread1, NULL);
+                    NORMALPRIO + 2, Thread1, NULL);
 
   chThdCreateStatic(waThread2, sizeof(waThread2),
-    NORMALPRIO + 1, Thread2, NULL);
-  
-  chThdCreateStatic(waThread3, sizeof(waThread3),
-    NORMALPRIO + 1, Thread3, NULL);
+                    NORMALPRIO + 1, Thread2, NULL);
 
-  chThdCreateStatic(waThread4, sizeof(waThread4),
-    NORMALPRIO + 1, Thread4, NULL);
+  chThdCreateStatic(waThread3, sizeof(waThread3),
+                    NORMALPRIO + 1, Thread3, NULL);
+
+  /*chThdCreateStatic(waThread4, sizeof(waThread4),
+                    NORMALPRIO + 1, Thread4, NULL);*/
 }
 
 
@@ -142,17 +170,17 @@ void setup() {
   Serial.begin(9600);
   HWSERIAL.begin(9600);
   Serial.println("Orientation Sensor Test"); Serial.println("");
-  
+
   /* Initialise the sensor */
-  if(!bno.begin())
+  if (!bno.begin())
   {
     /* There was a problem detecting the BNO055 ... check your connections */
     Serial.print("Ooops, no BNO055 detected ... Check your wiring or I2C ADDR!");
     //while(1);
   }
-  
+
   delay(1000);
-    
+
   bno.setExtCrystalUse(true);
 
   chBegin(chSetup);
@@ -166,3 +194,8 @@ void setup() {
 // loop() is the main thread.  Not used in this example.
 void loop() {
 }
+
+
+
+
+//ISR FUNCTION CODE
