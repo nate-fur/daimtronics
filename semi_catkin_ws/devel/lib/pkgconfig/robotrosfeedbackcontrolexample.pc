@@ -1,8 +1,0 @@
-prefix=/home/pi/daimtronics/semi_catkin_ws/devel
-
-Name: robotrosfeedbackcontrolexample
-Description: Description of robotrosfeedbackcontrolexample
-Version: 1.0.0
-Cflags: 
-Libs: -L/home/pi/daimtronics/semi_catkin_ws/devel/lib 
-Requires: geometry_msgs nav_msgs roscpp std_msgs

@@ -1,2 +1,0 @@
-robotrosfeedbackcontrolexample:ros-lidar-lite-master:rplidar_ros-master:semi_truck
--DCATKIN_DEVEL_PREFIX=/home/pi/daimtronics/semi_catkin_ws/devel -DCMAKE_INSTALL_PREFIX=/home/pi/daimtronics/semi_catkin_ws/install -G Unix Makefiles
