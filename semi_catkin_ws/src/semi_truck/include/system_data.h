@@ -4,6 +4,7 @@
 
 #ifndef DAIMTRONICS_SYSTEM_DATA_H
 #define DAIMTRONICS_SYSTEM_DATA_H
+#include <stdint.h>
 
 /**
  * @brief a data structure that holds all of the information of what state the
@@ -17,14 +18,14 @@
  * @var actual_5th actual state of the 5th wheel
  */
 struct system_data_t {
-	int32_t  motor_output;   // output sent to the motor driver
-    int32_t  steer_output;   // output sent to the steering servo
-    int32_t  wheel_speed;    // speed that the wheel speed sensor is recording
-    int32_t  imu_angle;     // euler angle read by the BNO055 IMU (degrees)
-    int32_t  right_URF;     // distance of nearest object for the right URF
-	int32_t  left_URF;      // distance of nearest object for the left URF
-    int32_t  desired_5th;    // desired state for 5th wheel (locked or unlocked)
-    int32_t  actual_5th;     // actual state of the 5th wheel
+   int16_t  wheel_speed;    // speed that the wheel speed sensor is recording
+   int16_t  imu_angle;      // euler angle read by the BNO055 IMU (degrees)
+   int16_t  right_URF;      // distance of nearest object for the right URF
+	int16_t  left_URF;       // distance of nearest object for the left URF
+	int16_t  motor_output;   // output sent to the motor driver
+   int16_t  steer_output;   // output sent to the steering servo
+   int16_t  desired_5th;    // desired state for 5th wheel (locked or unlocked)
+   int16_t  actual_5th;     // actual state of the 5th wheel
 };
 
 #endif //DAIMTRONICS_SYSTEM_DATA_H
