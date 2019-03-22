@@ -8,10 +8,17 @@ typedef struct sensor_data_t {
    short left_URF;
 } sensor_data_t;
 
+
 typedef struct actuator_data_t {
    short motor_output;
    short steer_output;
    short fifth_output;
 } actuator_data_t;
+
+
+typedef struct system_data_t {
+   sensor_data_t sensors;
+   actuator_data_t actuators;
+} system_data_t;
 
 #endif

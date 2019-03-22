@@ -22,8 +22,7 @@ short imu_loop_fn() {
    Serial.print(event.orientation.z, 4);
    Serial.println("");
 
-   //return event.orientation.z;
-   return 2;
+   return (short) (event.orientation.z * 1000);
 }
 
 
@@ -34,7 +33,7 @@ void imu_setup() {
    if (!bno.begin())
    {
       /* There was a problem detecting the BNO055 ... check your connections */
-      Serial.print("Ooops, no BNO055 detected ... Check your wiring or I2C ADDR!");
+      Serial.println("Ooops, no BNO055 detected ... Check your wiring or I2C ADDR!");
       //while(1);
    }
 

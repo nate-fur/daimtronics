@@ -14,14 +14,12 @@ void serial_loop_fn(short imu_angle) {
    short *short_ptr;
 
    // reading from PC console and outputting to PC console
-   if (Serial.available() > 0) {
-      user_input = Serial.read() - OFFSET;
+   // if (Serial.available() > 0) {
+   if (imu_angle) {
       Serial.read(); // clear the newline
-      Serial.print("Received from terminal: ");
-      Serial.println(user_input, DEC);
       Serial.print("Received from imu: ");
-      Serial.println(imu_angle);
-      set_sensor_msg(user_input, &sensor_data_out);
+      Serial.println(imu_angle, DEC);
+      set_sensor_msg(imu_angle, &sensor_data_out);
 
       if (HWSERIAL.availableForWrite()) {
          Serial.println("Sending to PI:");
