@@ -3,7 +3,7 @@
 
 typedef struct sensor_data_t {
    short wheel_speed;
-   short imu_angle;
+   float imu_angle;
    short right_URF;
    short left_URF;
 } sensor_data_t;

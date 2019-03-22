@@ -45,11 +45,12 @@ static THD_FUNCTION(heartbeat_thread, arg) {
 static THD_WORKING_AREA(imu_wa, 2048);
 
 static THD_FUNCTION(imu_thread, arg) {
-   short imu_angle;
+   float imu_angle;
 
    while (true) {
       Serial.println("*****************************************************");
       imu_angle = imu_loop_fn();
+
 
       chMtxLock(&sysMtx);
       system_data.sensors.imu_angle = imu_angle;

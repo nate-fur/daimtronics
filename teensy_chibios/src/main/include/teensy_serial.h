@@ -6,7 +6,7 @@
 #define HWSERIAL Serial1
 #define OFFSET 48
 
-void serial_loop_fn(short imu_angle);
+void serial_loop_fn(float imu_angle);
 
 void teensy_serial_setup();
 

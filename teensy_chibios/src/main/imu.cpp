@@ -8,7 +8,7 @@
 Adafruit_BNO055 bno = Adafruit_BNO055(55);
 
 
-short imu_loop_fn() {
+float imu_loop_fn() {
    /* Get a new sensor event */
    sensors_event_t event;
    bno.getEvent(&event);
@@ -22,7 +22,7 @@ short imu_loop_fn() {
    Serial.print(event.orientation.z, 4);
    Serial.println("");
 
-   return (short) (event.orientation.z * 1000);
+   return event.orientation.z;
 }
 
 

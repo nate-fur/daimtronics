@@ -6,7 +6,7 @@
 #define FLOAT 2
 
 
-void serial_loop_fn(short imu_angle) {
+void serial_loop_fn(float imu_angle) {
 
    byte user_input;
    sensor_data_t sensor_data_out;
