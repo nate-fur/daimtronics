@@ -1,3 +1,17 @@
+/**
+ * @file This file holds the main loop that that runs on the Teensy. It
+ * creates a ChibiOS thread for each task in the system and assigns
+ * priorities and stack sizes. Within the while loop for each thread, the
+ * "primary" function for a task is called. The project is organized so that
+ * the implementation of primary a function for a task is held in the task's
+ * respective .cpp file (which is also within the same "main" folder that
+ * main.ino is in). Header files for each cpp file are found within the
+ * "include" folder that is in the "main" folder, and these header files must
+ * be included here.
+ *
+ * @author Daimtronics
+ */
+
 #include "include/system_data.h"
 #include "include/teensy_serial.h"
 #include "include/imu.h"
@@ -5,21 +19,27 @@
 #include <ChRt.h>
 
 #define HWSERIAL Serial1
-#define NUM_BUFFERS 1
-#define BUFFERS_SIZE sizeof(system_data_t)
 
-// This is the data for the entire system. Synchronization will be achieved
-// through the use of mutexes
+/**
+ * @brief The data for the entire system. Synchronization will be achieved
+ * through the use of ChibiOS's mutex library.
+ *
+ * Tasks that control a sensor will call the primary function to read that
+ * sensor, obtain the mutex to for the system data, write the sensor data to
+ * the system_data, and then release the mutex on the system_data.
+ *
+ * Tasks that control actuators will read from the system_data (no mutex
+ * needed as the system_data is read-only for actuator tasks) to receive the
+ * specific data that corresponds to their task and then run their primary
+ * functions to control the actuators.
+ */
 static system_data_t system_data = {0};
-
 MUTEX_DECL(sysMtx);
 
-//------------------------------------------------------------------------------
-// Heartbeat Thread
-//
-// Blinks the LED to verify that teensy is still running
-//
-// 64 byte stack beyond task switch and interrupt needs.
+/**
+ * @brief Heartbeat Thread: blinks the LED periodically so that the user is
+ * sure that the Teensy program is still running and has not crashed.
+ */
 static THD_WORKING_AREA(heartbeat_wa, 64);
 
 static THD_FUNCTION(heartbeat_thread, arg) {
@@ -34,14 +54,13 @@ static THD_FUNCTION(heartbeat_thread, arg) {
 }
 
 
-
-//------------------------------------------------------------------------------
-// IMU Thread
-//
-// Reads euler angle from the BNO055 IMU and relays the data to the serial
-// thread for communication with the Pi
-//
-// 64 byte stack beyond task switch and interrupt needs.
+/**
+ * @brief IMU Thread: Reads euler angles from the BNO055 IMU and writes the
+ * data to the system_data after obtaining the system_data mutex.
+ *
+ * This thread calls imu_loop_fn() which is the primary function for the IMU
+ * and whose implementation is found in imu.cpp.
+ */
 static THD_WORKING_AREA(imu_wa, 2048);
 
 static THD_FUNCTION(imu_thread, arg) {
@@ -62,12 +81,13 @@ static THD_FUNCTION(imu_thread, arg) {
 
 
 
-//------------------------------------------------------------------------------
-// Teensy Serial Thread
-//
-// Communicates over the serial (UART) port on the teensy to the Raspberry Pi
-//
-// 64 byte stack beyond task switch and interrupt needs.
+/**
+ * @brief Teensy Serial Thread: Communicates over the serial (UART) port to
+ * relay system data between the Teensy and the Raspberry Pi.
+ *
+ * This thread calls serial_loop_fn() which is the primary function for the
+ * serial communication and whose implementation is found in teensy_serial.cpp.
+ */
 static THD_WORKING_AREA(teensy_serial_wa, 2048);
 
 static THD_FUNCTION(teensy_serial_thread, arg) {
@@ -84,10 +104,13 @@ static THD_FUNCTION(teensy_serial_thread, arg) {
 
 
 
-//------------------------------------------------------------------------------
-// Thread 5, Read from URF
-//
-/* 64 byte stack beyond task switch and interrupt needs.*/
+/**
+ * @brief URF Thread: Controls the HC-SR04 URF where nearby object distance
+ * is calculated and written to the system data.
+ *
+ * @todo still need to implement this task (likely going to use interrupts)
+ * and put the code in a URF.cpp file.
+ */
 static THD_WORKING_AREA(urf_wa, 64);
 
 static THD_FUNCTION(urf_thread, arg) {
@@ -112,8 +135,13 @@ static THD_FUNCTION(urf_thread, arg) {
 
 
 
-//------------------------------------------------------------------------------
-// continue setup() after chBegin().
+/**
+ * @brief Creates the threads to be run by assigning the thread function,
+ * working space, priority and any parameters that the thread needs.
+ *
+ * While the static thread definitions are written before this function, none
+ * of them are used until chThdCreateStatic(...) is called.
+ */
 void chSetup() {
 
    chThdCreateStatic(heartbeat_wa, sizeof(heartbeat_wa),
@@ -132,8 +160,16 @@ void chSetup() {
 }
 
 
-
-//------------------------------------------------------------------------------
+/**
+ * @brief Initializes the semi-truck system so that it is ready to run in an
+ * RTOS environment.
+ *
+ * The setup function is default to Arduino sketches, and holds all of the
+ * code that must be run before the main loop can be run. In this project,
+ * each task will have a setup function in it's .cpp file that is called here.
+ * Finally, ChibiOS setup is called to start initialize threads and start the
+ * thread scheduling that is built in to ChibiOS.
+ */
 void setup() {
    // Setup the serial ports -- both the hardware (UART) and console (USB)
    teensy_serial_setup();

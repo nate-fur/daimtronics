@@ -6,6 +6,11 @@
 #define FLOAT 2
 
 
+/**
+ * @brief The primary function for communicating between the Teensy and the
+ * Pi over the Serial UART port.
+ * @param imu_angle
+ */
 void serial_loop_fn(float imu_angle) {
 
    byte user_input;
