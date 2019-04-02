@@ -11,7 +11,7 @@
  * Pi over the Serial UART port.
  * @param imu_angle
  */
-void serial_loop_fn(float imu_angle) {
+void teensy_serial_loop_fn(float imu_angle) {
 
    byte user_input;
    sensor_data_t sensor_data_out;

@@ -13,8 +13,11 @@
  */
 
 #include "include/system_data.h"
-#include "include/teensy_serial.h"
+#include "include/fifth_wheel.h"
 #include "include/imu.h"
+#include "include/motor_driver.h"
+#include "include/steer_servo.h"
+#include "include/teensy_serial.h"
 
 #include <ChRt.h>
 
@@ -36,6 +39,7 @@
 static system_data_t system_data = {0};
 MUTEX_DECL(sysMtx);
 
+
 /**
  * @brief Heartbeat Thread: blinks the LED periodically so that the user is
  * sure that the Teensy program is still running and has not crashed.
@@ -52,6 +56,30 @@ static THD_FUNCTION(heartbeat_thread, arg) {
       chThdSleepMilliseconds(1500);
    }
 }
+
+
+
+/**
+ * @brief Fifth Wheel Thread: Reads desired state of the fifth wheel from the
+ * system_data and outputs a servo angle corresponding to locked or unlocked.
+ *
+ * This thread calls fifth_wheel_loop_fn() which is the primary function for the
+ * fifth wheel and whose implementation is found in fifth_wheel.cpp.
+ */
+static THD_WORKING_AREA(fifth_wheel_wa, 64);
+
+static THD_FUNCTION(fifth_wheel_thread, arg) {
+   short fifth_output;
+
+   while (true) {
+      fifth_output = system_data.actuators.fifth_output;
+
+      fifth_wheel_loop_fn(fifth_output);
+
+      chThdSleepMilliseconds(100);
+   }
+}
+
 
 
 /**
@@ -82,6 +110,80 @@ static THD_FUNCTION(imu_thread, arg) {
 
 
 /**
+ * @brief Motor Driver Thread: Reads motor output levels from the system data
+ * and controls the motor based on this value.
+ *
+ * This thread calls motor_driver_loop_fn which is the primary function for
+ * the motor and whose implementation is found in motor_driver.cpp.
+ */
+static THD_WORKING_AREA(motor_driver_wa, 64);
+
+static THD_FUNCTION(motor_driver_thread, arg) {
+   short motor_output;
+
+   while (true) {
+      motor_output = system_data.actuators.motor_output;
+
+      fifth_wheel_loop_fn(motor_output);
+
+      chThdSleepMilliseconds(100);
+   }
+}
+
+
+/**
+ * @brief Range Finder Thread: Controls the HC-SR04 URF where nearby object
+ * distance is calculated and written to the system data.
+ *
+ * @todo still need to implement this task (likely going to use interrupts)
+ * and put the code in a URF.cpp file.
+ */
+static THD_WORKING_AREA(range_finder_wa, 64);
+
+static THD_FUNCTION(range_finder_thread, arg) {
+   (void)arg;
+   Serial.print("starting up URF driver");
+
+   int URF_reading;
+   while (true) {
+      chSysLock();
+      digitalWrite(27, HIGH);
+      delayMicroseconds(10);
+      digitalWrite(27, LOW);
+
+      HWSERIAL.print("URF received:");
+
+
+      chThdSleepMilliseconds(100);
+   }
+}
+
+
+
+/**
+ * @brief Steer Servo Thread: Controls the servo that dictates the driving
+ * angle of the semi truck
+ *
+ * This thread calls steer_servo_loop_fn which is the primary function for
+ * the steering servo and whose implementation is found in steer_servo.cpp
+ */
+static THD_WORKING_AREA(steer_servo_wa, 64);
+
+static THD_FUNCTION(steer_servo_thread, arg) {
+   short steer_output;
+
+   while (true) {
+      steer_output = system_data.actuators.steer_output;
+
+      steer_servo_loop_fn(steer_output);
+
+      chThdSleepMilliseconds(100);
+   }
+}
+
+
+
+/**
  * @brief Teensy Serial Thread: Communicates over the serial (UART) port to
  * relay system data between the Teensy and the Raspberry Pi.
  *
@@ -95,39 +197,8 @@ static THD_FUNCTION(teensy_serial_thread, arg) {
    while (true) {
 
       chMtxLock(&sysMtx);
-      serial_loop_fn(system_data.sensors.imu_angle);
+      teensy_serial_loop_fn(system_data.sensors.imu_angle);
       chMtxUnlock(&sysMtx);
-
-      chThdSleepMilliseconds(100);
-   }
-}
-
-
-
-/**
- * @brief URF Thread: Controls the HC-SR04 URF where nearby object distance
- * is calculated and written to the system data.
- *
- * @todo still need to implement this task (likely going to use interrupts)
- * and put the code in a URF.cpp file.
- */
-static THD_WORKING_AREA(urf_wa, 64);
-
-static THD_FUNCTION(urf_thread, arg) {
-   (void)arg;
-   Serial.print("starting up URF driver");
-
-   int URF_reading;
-   while (true) {
-      chSysLock();
-      digitalWrite(27, HIGH);
-      delayMicroseconds(10);
-      digitalWrite(27, LOW);
-
-      Serial.print("in serial reader");
-
-      HWSERIAL.print("URF received:");
-
 
       chThdSleepMilliseconds(100);
    }
@@ -147,16 +218,23 @@ void chSetup() {
    chThdCreateStatic(heartbeat_wa, sizeof(heartbeat_wa),
    NORMALPRIO, heartbeat_thread, NULL);
 
+   chThdCreateStatic(fifth_wheel_wa, sizeof(fifth_wheel_wa),
+   NORMALPRIO, fifth_wheel_thread, NULL);
+
    chThdCreateStatic(imu_wa, sizeof(imu_wa),
    NORMALPRIO, imu_thread, NULL);
 
+   chThdCreateStatic(motor_driver_wa, sizeof(motor_driver_wa),
+   NORMALPRIO, motor_driver_thread, NULL);
+
+   chThdCreateStatic(range_finder_wa, sizeof(range_finder_wa),
+   NORMALPRIO, range_finder_thread, NULL);
+
+   chThdCreateStatic(steer_servo_wa, sizeof(steer_servo_wa),
+   NORMALPRIO, steer_servo_thread, NULL);
+
    chThdCreateStatic(teensy_serial_wa, sizeof(teensy_serial_wa),
    NORMALPRIO, teensy_serial_thread, NULL);
-
-   /*
-   chThdCreateStatic(urf_wa, sizeof(urf_wa),
-   NORMALPRIO, urf_thread, NULL);
-   */
 }
 
 
@@ -175,6 +253,19 @@ void setup() {
    teensy_serial_setup();
    // Setup the IMU to make sure it is connected and reading
    imu_setup();
+   // Setup the fifth wheel
+   fifth_wheel_setup();
+   // Setup the motor driver
+   motor_driver_setup();
+
+   // Setup the URFs
+
+   // Setup the RC receiver
+
+   // Setup the steering servo
+   steer_servo_setup();
+
+   // Setup the wheel speed sensors
 
    chBegin(chSetup);
    // chBegin() resets stacks and should never return.
@@ -183,7 +274,6 @@ void setup() {
 
 
 
-//------------------------------------------------------------------------------
 // loop() is the main thread.  Not used in this example.
 void loop() {
 }

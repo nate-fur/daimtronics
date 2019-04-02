@@ -50,7 +50,7 @@ int main(int argc, char **argv) {
          printf("bytes available: %i\n", avail);
          read_from_teensy(serial, sensor_data);
          //print_buffer(receiveBuffer);
-         //update_values(receiveBuffer);
+         //update_sensors(receiveBuffer);
          //updated_values = true;
       }
       
