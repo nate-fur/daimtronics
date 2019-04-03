@@ -1,6 +1,7 @@
 //
 // Created by nate on 4/2/19.
 //
+#include "include/range_finder.h"
 
 /**
  * This is the primary function controlling the URFs. It reads a value

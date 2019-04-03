@@ -17,6 +17,7 @@ typedef struct actuator_data_t {
 
 
 typedef struct system_data_t {
+   short drive_mode;
    sensor_data_t sensors;
    actuator_data_t actuators;
 } system_data_t;

@@ -16,8 +16,11 @@
 #include "include/fifth_wheel.h"
 #include "include/imu.h"
 #include "include/motor_driver.h"
+#include "include/range_finder.h"
+#include "include/RC_receiver.h"
 #include "include/steer_servo.h"
 #include "include/teensy_serial.h"
+#include "include/wheel_speed.h"
 
 #include <ChRt.h>
 
@@ -161,6 +164,31 @@ static THD_FUNCTION(range_finder_thread, arg) {
 
 
 /**
+ * @brief RC Receiver Thread: Reads auxiliary signals from the RC receiver
+ * for determining what drive mode the semi-truck is in.
+ *
+ * This thread calls RC_receiver_loop_fn which is the primary function for
+ * the RC receiver and whose implementation is found in RC_receiver.cpp
+ */
+static THD_WORKING_AREA(RC_receiver_wa, 64);
+
+static THD_FUNCTION(RC_receiver_thread, arg) {
+   short drive_mode;
+
+   while (true) {
+      drive_mode = RC_receiver_loop_fn();
+
+      chMtxLock(&sysMtx);
+      system_data.drive_mode = drive_mode;
+      chMtxUnlock(&sysMtx);
+
+      chThdSleepMilliseconds(100);
+   }
+}
+
+
+
+/**
  * @brief Steer Servo Thread: Controls the servo that dictates the driving
  * angle of the semi truck
  *
@@ -207,6 +235,31 @@ static THD_FUNCTION(teensy_serial_thread, arg) {
 
 
 /**
+ * @brief Wheel Speed Thread: Controls the digital IR sensor that is mounted on
+ * the front axis of the vehicle for determining wheel speed.
+ *
+ * This thread calls wheel_speed_loop_fn() which is the primary function for the
+ * wheel speed sensor and whose implementation is found in wheel_speed.cpp.
+ */
+static THD_WORKING_AREA(wheel_speed_wa, 64);
+
+static THD_FUNCTION(wheel_speed_thread, arg) {
+   short wheel_speed;
+
+   while (true) {
+      wheel_speed = wheel_speed_loop_fn();
+
+      chMtxLock(&sysMtx);
+      system_data.sensors.wheel_speed = wheel_speed;
+      chMtxUnlock(&sysMtx);
+
+      chThdSleepMilliseconds(100);
+   }
+}
+
+
+
+/**
  * @brief Creates the threads to be run by assigning the thread function,
  * working space, priority and any parameters that the thread needs.
  *
@@ -214,7 +267,6 @@ static THD_FUNCTION(teensy_serial_thread, arg) {
  * of them are used until chThdCreateStatic(...) is called.
  */
 void chSetup() {
-
    chThdCreateStatic(heartbeat_wa, sizeof(heartbeat_wa),
    NORMALPRIO, heartbeat_thread, NULL);
 
@@ -230,11 +282,17 @@ void chSetup() {
    chThdCreateStatic(range_finder_wa, sizeof(range_finder_wa),
    NORMALPRIO, range_finder_thread, NULL);
 
+   chThdCreateStatic(RC_receiver_wa, sizeof(RC_receiver_wa),
+   NORMALPRIO, RC_receiver_thread, NULL);
+
    chThdCreateStatic(steer_servo_wa, sizeof(steer_servo_wa),
    NORMALPRIO, steer_servo_thread, NULL);
 
    chThdCreateStatic(teensy_serial_wa, sizeof(teensy_serial_wa),
    NORMALPRIO, teensy_serial_thread, NULL);
+
+   chThdCreateStatic(wheel_speed_wa, sizeof(wheel_speed_wa),
+   NORMALPRIO, wheel_speed_thread, NULL);
 }
 
 
@@ -257,18 +315,17 @@ void setup() {
    fifth_wheel_setup();
    // Setup the motor driver
    motor_driver_setup();
-
    // Setup the URFs
-
+   range_finder_setup();
    // Setup the RC receiver
-
+   RC_receiver_setup();
    // Setup the steering servo
    steer_servo_setup();
-
    // Setup the wheel speed sensors
-
-   chBegin(chSetup);
+   wheel_speed_setup();
    // chBegin() resets stacks and should never return.
+   chBegin(chSetup);
+   
    while (true) {}
 }
 
