@@ -6,14 +6,16 @@
 #define HWSERIAL Serial1
 #define OFFSET 48
 
-void teensy_serial_loop_fn(float imu_angle);
+void teensy_serial_loop_fn(system_data_t *system_data);
 
 void teensy_serial_setup();
 
 void set_sensor_msg(int user_input, sensor_data_t *data_ptr);
 
-void read_from_pi(sensor_data_t *data_ptr);
+void read_from_pi(actuator_data_t *actuators_ptr);
 
-void print_sensor_msg(sensor_data_t *data_ptr);
+void print_sensor_msg(sensor_data_t *sensors_ptr);
+
+void print_actuator_msg(actuator_data_t *actuators_ptr);
 
 #endif

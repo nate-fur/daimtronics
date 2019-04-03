@@ -75,6 +75,7 @@ static THD_FUNCTION(fifth_wheel_thread, arg) {
    short fifth_output;
 
    while (true) {
+      Serial.println("fifth wheel");
       fifth_output = system_data.actuators.fifth_output;
 
       fifth_wheel_loop_fn(fifth_output);
@@ -99,6 +100,7 @@ static THD_FUNCTION(imu_thread, arg) {
 
    while (true) {
       Serial.println("*****************************************************");
+      Serial.println("imu");
       imu_angle = imu_loop_fn();
 
 
@@ -125,6 +127,7 @@ static THD_FUNCTION(motor_driver_thread, arg) {
    short motor_output;
 
    while (true) {
+      Serial.println("motor");
       motor_output = system_data.actuators.motor_output;
 
       fifth_wheel_loop_fn(motor_output);
@@ -145,10 +148,11 @@ static THD_WORKING_AREA(range_finder_wa, 64);
 
 static THD_FUNCTION(range_finder_thread, arg) {
    (void)arg;
-   Serial.print("starting up URF driver");
+   Serial.println("starting up URF driver");
 
    int URF_reading;
    while (true) {
+      Serial.println("urf");
       chSysLock();
       digitalWrite(27, HIGH);
       delayMicroseconds(10);
@@ -176,6 +180,7 @@ static THD_FUNCTION(RC_receiver_thread, arg) {
    short drive_mode;
 
    while (true) {
+      Serial.println("rc");
       drive_mode = RC_receiver_loop_fn();
 
       chMtxLock(&sysMtx);
@@ -201,6 +206,8 @@ static THD_FUNCTION(steer_servo_thread, arg) {
    short steer_output;
 
    while (true) {
+
+      Serial.println("steer");
       steer_output = system_data.actuators.steer_output;
 
       steer_servo_loop_fn(steer_output);
@@ -224,8 +231,10 @@ static THD_FUNCTION(teensy_serial_thread, arg) {
 
    while (true) {
 
+      Serial.println("serial");
+
       chMtxLock(&sysMtx);
-      teensy_serial_loop_fn(system_data.sensors.imu_angle);
+      teensy_serial_loop_fn(&system_data);
       chMtxUnlock(&sysMtx);
 
       chThdSleepMilliseconds(100);
@@ -247,6 +256,8 @@ static THD_FUNCTION(wheel_speed_thread, arg) {
    short wheel_speed;
 
    while (true) {
+
+      Serial.println("wheel");
       wheel_speed = wheel_speed_loop_fn();
 
       chMtxLock(&sysMtx);
@@ -325,7 +336,7 @@ void setup() {
    wheel_speed_setup();
    // chBegin() resets stacks and should never return.
    chBegin(chSetup);
-   
+
    while (true) {}
 }
 
