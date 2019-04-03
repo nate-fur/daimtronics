@@ -101,11 +101,12 @@ static THD_FUNCTION(imu_thread, arg) {
    while (true) {
       Serial.println("*****************************************************");
       Serial.println("imu");
-      imu_angle = imu_loop_fn();
+      imu_angle = imu_loop_fn() * 1000;
 
 
       chMtxLock(&sysMtx);
       system_data.sensors.imu_angle = imu_angle;
+      system_data.updated = true;
       chMtxUnlock(&sysMtx);
 
       chThdSleepMilliseconds(100);

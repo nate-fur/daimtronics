@@ -32,6 +32,7 @@ void teensy_serial_loop_fn(system_data_t *system_data) {
       Serial.println("Received from PI:");
       print_actuator_msg(&system_data->actuators);
    }
+   print_actuator_msg(&system_data->actuators);
 
 }
 
@@ -64,7 +65,7 @@ void read_from_pi(actuator_data_t *actuators_ptr) {
 
 void print_sensor_msg(sensor_data_t *sensors_ptr) {
    Serial.printf("\t%i", sensors_ptr->wheel_speed);
-   Serial.printf("\t%i", sensors_ptr->imu_angle);
+   Serial.print(sensors_ptr->imu_angle, 4);
    Serial.printf("\t%i", sensors_ptr->right_URF);
    Serial.printf("\t%i\n", sensors_ptr->left_URF);
 }
