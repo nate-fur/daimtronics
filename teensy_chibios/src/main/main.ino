@@ -155,9 +155,7 @@ static THD_FUNCTION(range_finder_thread, arg) {
    while (true) {
       Serial.println("urf");
       chSysLock();
-      digitalWrite(27, HIGH);
-      delayMicroseconds(10);
-      digitalWrite(27, LOW);
+
 
       HWSERIAL.print("URF received:");
 
