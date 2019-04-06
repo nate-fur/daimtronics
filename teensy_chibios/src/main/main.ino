@@ -151,20 +151,68 @@ static THD_FUNCTION(range_finder_thread, arg) {
    (void)arg;
    Serial.println("starting up URF driver");
 
-   int URF_reading;
    while (true) {
       Serial.println("urf");
       chSysLock();
 
+      digitalWrite(27, HIGH);
+      delayMicroseconds(10);
+      digitalWrite(27, LOW);
 
-      HWSERIAL.print("URF received:");
-
+      chSysUnlock();
 
       chThdSleepMilliseconds(100);
    }
 }
 
+BSEMAPHORE_DECL(isrSem, true);
 
+void urf_ISR_Fcn() {
+    CH_IRQ_PROLOGUE();
+    // IRQ handling code, preemptable if the architecture supports it.
+
+    chSysLockFromISR();
+    // Invocation of some I-Class system APIs, never preemptable.
+
+    // Signal handler task.
+    chBSemSignalI(&isrSem);
+    chSysUnlockFromISR();
+
+    // More IRQ handling code, again preemptable.
+
+    // Perform rescheduling if required.
+    CH_IRQ_EPILOGUE();
+}
+
+// Handler task for interrupt.
+static THD_WORKING_AREA(isr_wa_thd, 256);
+
+static THD_FUNCTION(handler, arg) {
+    (void)arg;
+    int val = 0;
+    uint32_t high_time = 0;
+    uint32_t distance = 0;
+    uint32_t time = 0;
+    while (true) {
+        // wait for event
+        chBSemWait(&isrSem);
+
+        val = digitalRead(26);
+
+        if(val==HIGH){
+            time = micros();
+
+        } else if(val==LOW){
+            uint32_t f_time = micros();
+            high_time = time - f_time;
+            distance = high_time/58;
+            Serial.print("Distance: ");
+
+            Serial.print(distance);
+        }
+
+    }
+}
 
 /**
  * @brief RC Receiver Thread: Reads auxiliary signals from the RC receiver
@@ -303,6 +351,9 @@ void chSetup() {
 
    chThdCreateStatic(wheel_speed_wa, sizeof(wheel_speed_wa),
    NORMALPRIO, wheel_speed_thread, NULL);
+
+   chThdCreateStatic(isr_wa_thd, sizeof(isr_wa_thd), NORMALPRIO + 1, handler, NULL);
+   attachInterrupt(digitalPinToInterrupt(23), urf_ISR_Fcn, CHANGE);
 }
 
 
