@@ -152,12 +152,10 @@ static THD_FUNCTION(range_finder_thread, arg) {
    Serial.println("starting up URF driver");
 
    while (true) {
-      Serial.println("urf");
+
       chSysLock();
 
-      digitalWrite(27, HIGH);
-      delayMicroseconds(10);
-      digitalWrite(27, LOW);
+      range_finder_ping();
 
       chSysUnlock();
 
@@ -165,7 +163,7 @@ static THD_FUNCTION(range_finder_thread, arg) {
    }
 }
 
-BSEMAPHORE_DECL(isrSem, true);
+BSEMAPHORE_DECL(urf_isrSem, true);
 
 void urf_ISR_Fcn() {
     CH_IRQ_PROLOGUE();
@@ -175,7 +173,7 @@ void urf_ISR_Fcn() {
     // Invocation of some I-Class system APIs, never preemptable.
 
     // Signal handler task.
-    chBSemSignalI(&isrSem);
+    chBSemSignalI(&urf_isrSem);
     chSysUnlockFromISR();
 
     // More IRQ handling code, again preemptable.
@@ -185,31 +183,16 @@ void urf_ISR_Fcn() {
 }
 
 // Handler task for interrupt.
-static THD_WORKING_AREA(isr_wa_thd, 256);
+static THD_WORKING_AREA(isr_wa_thd, 128);
 
 static THD_FUNCTION(handler, arg) {
     (void)arg;
-    int val = 0;
-    uint32_t high_time = 0;
-    uint32_t distance = 0;
-    uint32_t time = 0;
+    long urf_dist;
     while (true) {
         // wait for event
-        chBSemWait(&isrSem);
+        chBSemWait(&urf_isrSem);
 
-        val = digitalRead(26);
-
-        if(val==HIGH){
-            time = micros();
-
-        } else if(val==LOW){
-            uint32_t f_time = micros();
-            high_time = time - f_time;
-            distance = high_time/58;
-            Serial.print("Distance: ");
-
-            Serial.print(distance);
-        }
+        urf_dist = range_finder_loop_fn();
 
     }
 }
@@ -353,7 +336,7 @@ void chSetup() {
    NORMALPRIO, wheel_speed_thread, NULL);
 
    chThdCreateStatic(isr_wa_thd, sizeof(isr_wa_thd), NORMALPRIO + 1, handler, NULL);
-   attachInterrupt(digitalPinToInterrupt(23), urf_ISR_Fcn, CHANGE);
+   attachInterrupt(digitalPinToInterrupt(24), urf_ISR_Fcn, CHANGE);
 }
 
 
