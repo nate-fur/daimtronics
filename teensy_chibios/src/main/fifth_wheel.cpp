@@ -4,6 +4,7 @@
 
 #include "include/fifth_wheel.h"
 #include <Servo.h>
+#include <Arduino.h>
 
 #define FIFTH_WHEEL_PIN 13
 #define LOCKED_ANGLE 0
@@ -24,10 +25,12 @@ static Servo fifth_wheel_servo;
  * two values, either locked or unlocked
  */
 void fifth_wheel_loop_fn(short fifth_output) {
-   if (fifth_output == UNLOCKED && fifth_wheel_servo.read() !== UNLOCKED_ANGLE){
+   Serial.print("outputting to fifth wheel : ");
+   Serial.println(fifth_output);
+   if (fifth_output == UNLOCKED && fifth_wheel_servo.read() != UNLOCKED_ANGLE){
       fifth_wheel_servo.write(UNLOCKED_ANGLE);
    }
-   else if (fifth_output == LOCKED && fifth_wheel_servo.read() !== LOCKED_ANGLE){
+   else if (fifth_output == LOCKED && fifth_wheel_servo.read() != LOCKED_ANGLE){
       fifth_wheel_servo.write(LOCKED_ANGLE);
    }
    else {
