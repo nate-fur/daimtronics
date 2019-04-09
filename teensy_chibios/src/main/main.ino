@@ -131,7 +131,7 @@ static THD_FUNCTION(motor_driver_thread, arg) {
       Serial.println("motor");
       motor_output = system_data.actuators.motor_output;
 
-      fifth_wheel_loop_fn(motor_output);
+      motor_driver_loop_fn(motor_output);
 
       chThdSleepMilliseconds(100);
    }

@@ -3,14 +3,14 @@
 //
 
 #include "include/steer_servo.h"
-#include <Servo.h>
 #include <Arduino.h>
+#include <Servo.h>
 
 #define STEER_SERVO_PIN 13
 #define STRAIGHT 90
 
 /**
- * This is a Servo object to control the fifth wheel. It relies on code from
+ * This is a Servo object to control the steering servo. It relies on code from
  * Servo.h which is built into the Arduino IDE.
  */
 static Servo steer_servo;
@@ -26,6 +26,7 @@ void steer_servo_loop_fn(short steer_output) {
    // if output is out of the 0-180 degree range, drive straight
    Serial.print("outputting to steer servo: ");
    Serial.println(steer_output);
+
    if (steer_output > 180 || steer_output < 0) {
       steer_servo.write(STRAIGHT);
    }
