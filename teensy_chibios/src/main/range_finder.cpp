@@ -2,7 +2,7 @@
 // Created by nate on 4/2/19.
 //
 #include "include/range_finder.h"
-#include "arduino.h"
+#include "Arduino.h"
 
 int val = 0;
 long high_time = 0;
