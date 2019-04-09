@@ -1,0 +1,11 @@
+<launch>
+
+    <node pkg="semi_truck" type="teensy_comm_node" name="teensy_comm_node" />
+
+    <node pkg="lidar_lite" type="lidar_lite_node" name="lidar_lite_node" />
+
+    <node pkg="rplidar_ros" type="rplidarNode" name="rplidarNode" />
+
+    <node pkg="myroscomm" type="myroscomm_node" name="myroscomm_node" />
+
+</launch>
