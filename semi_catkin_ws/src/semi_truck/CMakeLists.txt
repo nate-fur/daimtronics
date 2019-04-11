@@ -8,6 +8,7 @@ project(semi_truck)
 ## if COMPONENTS list like find_package(catkin REQUIRED COMPONENTS xyz)
 ## is used, also find other catkin packages
 find_package(catkin REQUIRED COMPONENTS
+   genmsg
    roscpp
    std_msgs
    message_generation
@@ -136,8 +137,8 @@ include_directories(
 ## Declare a C++ executable
 ## With catkin_make all packages are built within a single CMake context
 ## The recommended prefix ensures that target names across packages don't collide
-add_executable(teensy_comm_node src/teensy_comm_node.cpp)
-add_executable(controller_node src/controller_node.cpp)
+add_executable(pi_comm_node src/pi_comm_node.cpp)
+add_executable(truck_template_node src/truck_template_node.cpp)
 
 ## Rename C++ executable without prefix
 ## The above recommended prefix causes long target names, the following renames the
@@ -147,14 +148,16 @@ add_executable(controller_node src/controller_node.cpp)
 
 ## Add cmake target dependencies of the executable
 ## same as for the library above
-add_dependencies(teensy_comm_node ${${PROJECT_NAME}_EXPORTED_TARGETS} ${catkin_EXPORTED_TARGETS})
+add_dependencies(pi_comm_node ${${PROJECT_NAME}_EXPORTED_TARGETS} ${catkin_EXPORTED_TARGETS})
+add_dependencies(pi_comm_node ${PROJECT_NAME}_generate_messages_cpp)
+add_dependencies(truck_template_node ${PROJECT_NAME}_generate_messages_cpp)
 
 ## Specify libraries to link a library or executable target against
-target_link_libraries(teensy_comm_node
+target_link_libraries(pi_comm_node
    ${catkin_LIBRARIES}
    ${WIRINGPI_LIBRARY}
 )
-target_link_libraries(controller_node
+target_link_libraries(truck_template_node
    ${catkin_LIBRARIES}
 )
 
