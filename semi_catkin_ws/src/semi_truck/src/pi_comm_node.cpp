@@ -18,10 +18,6 @@
 using namespace std;
 static int serial;
 
-void sensor_cb(const semi_truck::Teensy_Sensors &msg);
-
-void actuator_cb(const semi_truck::Teensy_Actuators &msg);
-
 
 int main(int argc, char **argv) {
    char avail;
@@ -39,8 +35,8 @@ int main(int argc, char **argv) {
    ros::Publisher publisher = nh.advertise<semi_truck::Teensy_Sensors>
     ("teensy_sensor_data", 1024);
 
-   ros::Subscriber subscriber = nh.subscribe("sensor_data_modified", 1024,
-    sensor_cb);
+   ros::Subscriber subscriber = nh.subscribe("teensy_actuator_data", 1024,
+    actuator_cb);
 
    ros::Rate loop_rate(1);
    while (ros::ok()) {
@@ -54,16 +50,17 @@ int main(int argc, char **argv) {
          //updated_values = true;
       }
       
+      publisher.publish(sensor_data);
+
+      ros::spinOnce();
 
       if (updated_values) {
-         write_to_teensy(serial, sensor_data);
+         write_to_teensy(serial, actuator_data);
          updated_values = false;
       }
 
       //print_sensors(sensor_data);
-      publisher.publish(sensor_data);
 
-      ros::spinOnce();
       loop_rate.sleep();
    }
 }
@@ -103,12 +100,11 @@ void write_sensor_msg(int serial, short sensor_val) {
 }
 
 
-void write_to_teensy(int serial, const semi_truck::Teensy_Sensors &sensors) {
+void write_to_teensy(int serial, const semi_truck::Teensy_Actuators &actuators) {
    printf("\n********SENDING MESSAGE*********\n");
-   write_sensor_msg(serial, sensors.wheel_speed);
-   write_sensor_msg(serial, sensors.imu_angle);
-   write_sensor_msg(serial, sensors.right_URF);
-   write_sensor_msg(serial, sensors.left_URF);
+   write_sensor_msg(serial, actuators.motor_output);
+   write_sensor_msg(serial, actuators.steer_output);
+   write_sensor_msg(serial, actuators.fifth_output);
 }
 
 
@@ -136,7 +132,6 @@ void sensor_cb(const semi_truck::Teensy_Sensors &msg) {
    ROS_INFO("left_URF:\t [%i]", msg.left_URF);
    ROS_INFO("rear_URF:\t [%i]", msg.rear_URF);
    print_sensors(msg);
-   write_to_teensy(serial, msg);
 }
 
 
