@@ -20,7 +20,7 @@
  */
 struct system_data_t {
    int16_t  wheel_speed;    // speed that the wheel speed sensor is recording
-   float    imu_angle;      // euler angle read by the BNO055 IMU (degrees)
+   int16_t  imu_angle;      // euler angle read by the BNO055 IMU (degrees)
    int16_t  right_URF;      // distance of nearest object for the right URF
    int16_t  left_URF;       // distance of nearest object for the left URF
    int16_t  rear_URF;       // distance of nearest object for the rear URF

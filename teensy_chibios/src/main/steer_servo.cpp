@@ -22,7 +22,7 @@ static Servo steer_servo;
  *
  * @param steer_output the output to the steering servo that controls angle
  */
-void steer_servo_loop_fn(short steer_output) {
+void steer_servo_loop_fn(int16_t steer_output) {
    // if output is out of the 0-180 degree range, drive straight
 #ifdef DEBUG
    Serial.print("outputting to steer servo: ");

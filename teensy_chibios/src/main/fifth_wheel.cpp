@@ -3,6 +3,7 @@
 //
 
 #include "include/fifth_wheel.h"
+#include "include/system_data.h"
 #include <Arduino.h>
 #include <Servo.h>
 
@@ -24,7 +25,7 @@ static Servo fifth_wheel_servo;
  * @param fifth_output the output to the fifth wheel, which will be one of
  * two values, either locked or unlocked
  */
-void fifth_wheel_loop_fn(short fifth_output) {
+void fifth_wheel_loop_fn(int16_t fifth_output) {
 
 #ifdef DEBUG
    Serial.print("outputting to fifth wheel : ");

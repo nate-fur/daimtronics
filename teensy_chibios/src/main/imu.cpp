@@ -1,7 +1,7 @@
 #include "include/imu.h"
 
 /**
- * @brief A global variable
+ * @brief A global variable, for the only bno object in the system
  */
 Adafruit_BNO055 bno = Adafruit_BNO055(55);
 
@@ -11,9 +11,9 @@ Adafruit_BNO055 bno = Adafruit_BNO055(55);
  *
  * The Adafruit_BNO055 library does most of the work here. This function
  * simply sets up a sets up an "event" variable to hold the IMU data, calls
- * @return
+ * @return a short representing the heading angle in degrees
  */
-float imu_loop_fn() {
+int16_t imu_loop_fn() {
    /* Get a new sensor event */
    sensors_event_t event;
    bno.getEvent(&event);
@@ -21,7 +21,7 @@ float imu_loop_fn() {
    /* Display the floating point data */
    print_imu_data(&event);
 
-   return event.orientation.z;
+   return (int16_t) (event.orientation.z + 0.5); // rounds to nearest integer
 }
 
 

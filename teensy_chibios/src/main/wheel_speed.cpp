@@ -1,6 +1,7 @@
 //
 // Created by nate on 4/2/19.
 //
+#include <Arduino.h>
 #include "include/wheel_speed.h"
 
 
@@ -13,7 +14,7 @@
  *
  * @return the speed that the wheel speed sensor is detecting
  */
-short wheel_speed_loop_fn() {
+int16_t wheel_speed_loop_fn() {
 
    return 10; // placeholder for compilation
 }

@@ -1,12 +1,13 @@
 #ifndef IMU_H
 #define IMU_H
 
+#include <stdint.h>
 #include <Wire.h>
 #include <Adafruit_Sensor.h>
 #include <Adafruit_BNO055.h>
 #include <utility/imumaths.h>
 
-float imu_loop_fn();
+short imu_loop_fn();
 
 void imu_setup();
 

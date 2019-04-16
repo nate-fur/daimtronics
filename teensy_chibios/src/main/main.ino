@@ -12,6 +12,7 @@
  * @author Daimtronics
  */
 
+#include <stdint.h>
 #include "include/system_data.h"
 #include "include/fifth_wheel.h"
 #include "include/imu.h"
@@ -72,7 +73,7 @@ static THD_FUNCTION(heartbeat_thread, arg) {
 static THD_WORKING_AREA(fifth_wheel_wa, 64);
 
 static THD_FUNCTION(fifth_wheel_thread, arg) {
-   short fifth_output;
+   int16_t fifth_output;
 
    while (true) {
       //Serial.println("fifth wheel");
@@ -96,7 +97,7 @@ static THD_FUNCTION(fifth_wheel_thread, arg) {
 static THD_WORKING_AREA(imu_wa, 2048);
 
 static THD_FUNCTION(imu_thread, arg) {
-   float imu_angle;
+   int16_t imu_angle;
 
    while (true) {
       Serial.println("*****************************************************");
@@ -125,7 +126,7 @@ static THD_FUNCTION(imu_thread, arg) {
 static THD_WORKING_AREA(motor_driver_wa, 64);
 
 static THD_FUNCTION(motor_driver_thread, arg) {
-   short motor_output;
+   int16_t motor_output;
 
    while (true) {
       //Serial.println("motor");
@@ -207,7 +208,7 @@ static THD_FUNCTION(handler, arg) {
 static THD_WORKING_AREA(RC_receiver_wa, 64);
 
 static THD_FUNCTION(RC_receiver_thread, arg) {
-   short drive_mode;
+   int16_t drive_mode;
 
    while (true) {
       //Serial.println("rc");
@@ -233,7 +234,7 @@ static THD_FUNCTION(RC_receiver_thread, arg) {
 static THD_WORKING_AREA(steer_servo_wa, 64);
 
 static THD_FUNCTION(steer_servo_thread, arg) {
-   short steer_output;
+   int16_t steer_output;
 
    while (true) {
 
@@ -283,7 +284,7 @@ static THD_FUNCTION(teensy_serial_thread, arg) {
 static THD_WORKING_AREA(wheel_speed_wa, 64);
 
 static THD_FUNCTION(wheel_speed_thread, arg) {
-   short wheel_speed;
+   int16_t wheel_speed;
 
    while (true) {
 

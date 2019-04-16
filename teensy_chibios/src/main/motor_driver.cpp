@@ -21,7 +21,7 @@ static Servo motor;
  *
  * @param motor_output the output to the motor
  */
-void motor_driver_loop_fn(short motor_output) {
+void motor_driver_loop_fn(int16_t motor_output) {
    // if output is out of the 0-180 range, stop the motor
 
 #ifdef DEBUG

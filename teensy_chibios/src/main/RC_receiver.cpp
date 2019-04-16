@@ -2,6 +2,7 @@
 // Created by nate on 4/2/19.
 //
 
+#include <Arduino.h>
 #include "include/RC_receiver.h"
 
 /**
@@ -12,7 +13,7 @@
  *
  * @return the driving mode of the semi-truck based on RC receiver signal
  */
-short RC_receiver_loop_fn() {
+int16_t RC_receiver_loop_fn() {
 
    return 0;
 }

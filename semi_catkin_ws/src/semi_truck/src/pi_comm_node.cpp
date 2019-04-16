@@ -12,7 +12,7 @@
 #define NUM_MSGS 4
 #define SHORT_SIZE 2
 #define FLOAT_SIZE 4
-#define SENSOR_DATA_SIZE 12
+#define SENSOR_DATA_SIZE 10
 #define BUFF_SIZE 50
 #define UART "/dev/ttyS0"
 #define BAUDRATE 9600
@@ -52,8 +52,8 @@ int main(int argc, char **argv) {
 
       for (int i = 0; i < READ_CYCLES; i++) {
          avail = serialDataAvail(serial);
-         printf("Bytes available: %i\n", avail);
-         if (avail >= SENSOR_DATA_SIZE) { // need to have a full set of sensors
+         //printf("Bytes available: %i\n", avail);
+         if (avail >= SENSOR_DATA_SIZE) { // need to have a full set of data
             //ROS_INFO("got data!");
             read_from_teensy(serial, sensor_data);
             publisher.publish(sensor_data);
@@ -89,7 +89,7 @@ void read_from_teensy(int serial, semi_truck::Teensy_Sensors &sensors) {
    short sensor_msg;
 
    #ifdef DEBUG
-   sensors.imu_angle = read_sensor_msg(serial, FLOAT_SIZE);
+   sensors.imu_angle = read_sensor_msg(serial, SHORT_SIZE);
    sensors.wheel_speed = read_sensor_msg(serial, SHORT_SIZE);
    sensors.right_URF = read_sensor_msg(serial, SHORT_SIZE);
    sensors.left_URF = read_sensor_msg(serial, SHORT_SIZE);
@@ -126,8 +126,8 @@ void update_sensors(semi_truck::Teensy_Sensors &sensors) {
 
 
 void print_sensors(const semi_truck::Teensy_Sensors &sensors) {
-   printf("imu_angle:\t %f\n", sensors.imu_angle);
-   printf("wheel_speed:\t %hu\n", sensors.wheel_speed);
+   printf("imu_angle:\t %i\n", sensors.imu_angle);
+   printf("wheel_speed:\t %i\n", sensors.wheel_speed);
    printf("right_URF:\t %hu\n", sensors.right_URF);
    printf("left_URF:\t %hu\n", sensors.left_URF);
    printf("rear_URF:\t %hu\n", sensors.rear_URF);
@@ -136,7 +136,7 @@ void print_sensors(const semi_truck::Teensy_Sensors &sensors) {
 
 void print_actuators(const semi_truck::Teensy_Actuators &actuators) {
    #ifdef DEBUG
-   printf("motor output:\t %hu\n", actuators.motor_output);
+   printf("motor output:\t %i\n", actuators.motor_output);
    printf("steer output:\t %hu\n", actuators.steer_output);
    printf("fifth output:\t %hu\n", actuators.fifth_output);
    #endif

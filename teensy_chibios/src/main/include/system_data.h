@@ -1,26 +1,27 @@
 #ifndef SYSTEM_DATA_H
 #define SYSTEM_DATA_H
-#define DEBUG
+
+#include <stdint.h>
 
 typedef struct sensor_data_t {
-   float imu_angle;
-   short wheel_speed;
-   short right_URF;
-   short left_URF;
-   short rear_URF;
+   int16_t imu_angle;
+   int16_t wheel_speed;
+   int16_t right_URF;
+   int16_t left_URF;
+   int16_t rear_URF;
 } sensor_data_t;
 
 
 typedef struct actuator_data_t {
-   short motor_output;
-   short steer_output;
-   short fifth_output;
+   int16_t motor_output;
+   int16_t steer_output;
+   int16_t fifth_output;
 } actuator_data_t;
 
 
 typedef struct system_data_t {
    bool updated;
-   short drive_mode;
+   int16_t drive_mode;
    sensor_data_t sensors;
    actuator_data_t actuators;
 } system_data_t;
