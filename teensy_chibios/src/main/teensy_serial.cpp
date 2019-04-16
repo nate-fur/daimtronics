@@ -1,9 +1,7 @@
 #include <Arduino.h>
 #include "include/teensy_serial.h"
 
-#define NUM_MSGS 4
-#define SHORT 2
-#define FLOAT 2
+#define SHORT_SIZE 2
 
 // number of times the teensy should read form serial for every time it writes
 // to it. Helps with serial buffer overflow issues
@@ -24,6 +22,9 @@ void teensy_serial_loop_fn(system_data_t *system_data) {
 
       if (HWSERIAL.availableForWrite()) {
          print_sensor_msg(&system_data->sensors);
+         Serial.printf("sending bytes: %i\n", sizeof(sensor_data_t));
+         Serial.print("float val in decimal: ");
+         Serial.println((long)system_data->sensors.imu_angle, DEC);
          HWSERIAL.write((char*)&(system_data->sensors), sizeof(sensor_data_t));
          system_data->updated = false;
       }
@@ -40,8 +41,6 @@ void teensy_serial_loop_fn(system_data_t *system_data) {
          print_actuator_msg(&system_data->actuators);
       }
    }
-
-
 }
 
 
@@ -60,13 +59,14 @@ void set_sensor_msg(int user_input, sensor_data_t *data_ptr) {
 
 
 void read_from_pi(actuator_data_t *actuators_ptr) {
-   byte data_buffer[FLOAT];
+   byte data_buffer[SHORT_SIZE];
 
-   HWSERIAL.readBytes(data_buffer, SHORT);
+   HWSERIAL.readBytes(data_buffer, SHORT_SIZE);
    actuators_ptr->motor_output = (short) *data_buffer;
-   HWSERIAL.readBytes(data_buffer, SHORT); // float data!
+   HWSERIAL.readBytes(data_buffer, SHORT_SIZE);
+   Serial.printf("direct from buffer: %i\n", *data_buffer);
    actuators_ptr->steer_output = (short) *data_buffer;
-   HWSERIAL.readBytes(data_buffer, SHORT);
+   HWSERIAL.readBytes(data_buffer, SHORT_SIZE);
    actuators_ptr->fifth_output = (short) *data_buffer;
 }
 
@@ -79,6 +79,9 @@ void print_sensor_msg(sensor_data_t *sensors_ptr) {
    Serial.printf("Right URF: %i\t", sensors_ptr->right_URF);
    Serial.printf("Left URF: %i\t", sensors_ptr->left_URF);
    Serial.printf("Rear URF: %i\n", sensors_ptr->rear_URF);
+   Serial.printf("IMU angle:");
+   Serial.print((int)sensors_ptr->imu_angle, HEX);
+   Serial.printf("\n");
 }
 
 void print_actuator_msg(actuator_data_t *actuators_ptr) {
