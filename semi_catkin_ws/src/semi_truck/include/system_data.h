@@ -23,7 +23,7 @@ struct system_data_t {
    float    imu_angle;      // euler angle read by the BNO055 IMU (degrees)
    int16_t  right_URF;      // distance of nearest object for the right URF
    int16_t  left_URF;       // distance of nearest object for the left URF
-   int16_t  read_URF;       // distance of nearest object for the rear URF
+   int16_t  rear_URF;       // distance of nearest object for the rear URF
    int16_t  motor_output;   // output sent to the motor driver
    int16_t  steer_output;   // output sent to the steering servo
    int16_t  fifth_output;     // actual state of the 5th wheel

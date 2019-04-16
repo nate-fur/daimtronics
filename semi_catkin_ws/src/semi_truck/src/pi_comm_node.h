@@ -6,17 +6,19 @@
 
 
 // Functions for serial communication over UART
-short read_sensor_msg(int serial);
+short read_sensor_msg(int serial, char num_bytes);
 
 void read_from_teensy(int serial, semi_truck::Teensy_Sensors &sensors);
 
-void write_sensor_msg(int serial, short sensor_val);
+void write_sensor_msg(int serial, short sensor_val, char num_bytes);
 
 void write_to_teensy(int serial, const semi_truck::Teensy_Actuators &actuators);
 
 void update_sensors(semi_truck::Teensy_Sensors &sensors);
 
 void print_sensors(const semi_truck::Teensy_Sensors &sensors);
+
+void print_actuators(const semi_truck::Teensy_Actuators &actuators);
 
 void sensor_cb(const semi_truck::Teensy_Sensors &msg);
 
