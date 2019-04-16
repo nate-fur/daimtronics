@@ -15,7 +15,7 @@
  */
 short wheel_speed_loop_fn() {
 
-   return 0; // placeholder for compilation
+   return 10; // placeholder for compilation
 }
 
 void wheel_speed_setup() {

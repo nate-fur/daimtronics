@@ -24,8 +24,10 @@ static Servo steer_servo;
  */
 void steer_servo_loop_fn(short steer_output) {
    // if output is out of the 0-180 degree range, drive straight
+#ifdef DEBUG
    Serial.print("outputting to steer servo: ");
    Serial.println(steer_output);
+#endif
 
    if (steer_output > 180 || steer_output < 0) {
       steer_servo.write(STRAIGHT);
