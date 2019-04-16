@@ -25,8 +25,11 @@ static Servo fifth_wheel_servo;
  * two values, either locked or unlocked
  */
 void fifth_wheel_loop_fn(short fifth_output) {
+
+#ifdef DEBUG
    Serial.print("outputting to fifth wheel : ");
    Serial.println(fifth_output);
+#endif
 
    if (fifth_output == UNLOCKED && fifth_wheel_servo.read() != UNLOCKED_ANGLE){
       fifth_wheel_servo.write(UNLOCKED_ANGLE);

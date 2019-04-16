@@ -4,7 +4,6 @@
 #include "system_data.h"
 
 #define HWSERIAL Serial1
-#define OFFSET 48
 
 void teensy_serial_loop_fn(system_data_t *system_data);
 

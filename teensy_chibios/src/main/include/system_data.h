@@ -1,11 +1,13 @@
 #ifndef SYSTEM_DATA_H
 #define SYSTEM_DATA_H
+#define DEBUG
 
 typedef struct sensor_data_t {
-   short wheel_speed;
    float imu_angle;
-   long right_URF;
-   long left_URF;
+   short wheel_speed;
+   short right_URF;
+   short left_URF;
+   short rear_URF;
 } sensor_data_t;
 
 

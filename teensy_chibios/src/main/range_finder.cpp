@@ -27,9 +27,10 @@ long range_finder_loop_fn() {
         long f_time = micros();
         high_time = f_time - time;
         distance = high_time/58;
-        Serial.print("Distance: ");
-
-        Serial.print(distance);
+#ifdef DEBUG
+        //Serial.print("Distance: ");
+        //Serial.print(distance);
+#endif
     }
     return 0; // placeholder for compilation
 }

@@ -23,8 +23,11 @@ static Servo motor;
  */
 void motor_driver_loop_fn(short motor_output) {
    // if output is out of the 0-180 range, stop the motor
+
+#ifdef DEBUG
    Serial.print("outputting to motor: ");
    Serial.println(motor_output);
+#endif
 
    if (motor_output > 180 || motor_output < 0) {
       motor.write(STOP);

@@ -5,6 +5,10 @@
 #define SHORT 2
 #define FLOAT 2
 
+// number of times the teensy should read form serial for every time it writes
+// to it. Helps with serial buffer overflow issues
+#define READ_CYCLES 2
+
 
 /**
  * @brief The primary function for communicating between the Teensy and the
@@ -19,20 +23,24 @@ void teensy_serial_loop_fn(system_data_t *system_data) {
       Serial.println(system_data->sensors.imu_angle, DEC);
 
       if (HWSERIAL.availableForWrite()) {
-         Serial.println("Sending to PI:");
          print_sensor_msg(&system_data->sensors);
          HWSERIAL.write((char*)&(system_data->sensors), sizeof(sensor_data_t));
          system_data->updated = false;
       }
    }
 
+
+   Serial.print("HW bytes: ");
+   Serial.println(HWSERIAL.available());
    // communicate with Pi and the ROS network
-   if (HWSERIAL.available() > 0) {
-      read_from_pi(&(system_data->actuators));
-      Serial.println("Received from PI:");
-      print_actuator_msg(&system_data->actuators);
+   for (int i = 0; i < READ_CYCLES; i++) {
+      if (HWSERIAL.available() > 0) {
+         read_from_pi(&(system_data->actuators));
+         Serial.println("Received from PI:");
+         print_actuator_msg(&system_data->actuators);
+      }
    }
-   print_actuator_msg(&system_data->actuators);
+
 
 }
 
@@ -64,14 +72,17 @@ void read_from_pi(actuator_data_t *actuators_ptr) {
 
 
 void print_sensor_msg(sensor_data_t *sensors_ptr) {
-   Serial.printf("\t%i", sensors_ptr->wheel_speed);
+   Serial.printf("Wheel speed: %i\t", sensors_ptr->wheel_speed);
+   Serial.printf("IMU angle:");
    Serial.print(sensors_ptr->imu_angle, 4);
-   Serial.printf("\t%i", sensors_ptr->right_URF);
-   Serial.printf("\t%i\n", sensors_ptr->left_URF);
+   Serial.printf("\t");
+   Serial.printf("Right URF: %i\t", sensors_ptr->right_URF);
+   Serial.printf("Left URF: %i\t", sensors_ptr->left_URF);
+   Serial.printf("Rear URF: %i\n", sensors_ptr->rear_URF);
 }
 
 void print_actuator_msg(actuator_data_t *actuators_ptr) {
-   Serial.printf("\t%i", actuators_ptr->motor_output);
-   Serial.printf("\t%i", actuators_ptr->steer_output);
-   Serial.printf("\t%i", actuators_ptr->fifth_output);
+   Serial.printf("Motor output: %i\t", actuators_ptr->motor_output);
+   Serial.printf("Steer output: %i\t", actuators_ptr->steer_output);
+   Serial.printf("Fifth output: %i\n", actuators_ptr->fifth_output);
 }
