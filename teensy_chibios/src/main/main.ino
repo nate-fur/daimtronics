@@ -251,7 +251,7 @@ static THD_FUNCTION(rc_handler, arg) {
         // wait for event
         chBSemWait(&rc_isrSem);
 
-        drive_mode = RC_receiver_SW1_fn(15);
+        drive_mode = RC_receiver_SW2_fn(15);
 
     }
 }
