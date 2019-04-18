@@ -5,9 +5,9 @@
 #include "Arduino.h"
 
 int val = 0;
-long high_time = 0;
+unsigned long high_time = 0;
 long distance = 0;
-long time = 0;
+unsigned long time = 0;
 
 /**
  * This is the primary function controlling the URFs. It reads a value
