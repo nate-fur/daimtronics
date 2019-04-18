@@ -22,7 +22,7 @@
 // to it. Helps with serial buffer overflow issues
 #define READ_CYCLES 2 
 // in hz; should match with controller node
-#define LOOP_FREQUENCY 50 
+#define LOOP_FREQUENCY 10 
 
 using namespace std;
 static int serial;
@@ -43,7 +43,7 @@ int main(int argc, char **argv) {
     ("teensy_sensor_data", 1024);
 
    semi_truck::Teensy_Actuators actuator_data;
-   ros::Subscriber subscriber = nh.subscribe("teensy_actuator_data", 1024,
+   ros::Subscriber subscriber = nh.subscribe("teensy_actuator_data", 1,
     actuator_cb);
 
    ros::Rate loop_rate(LOOP_FREQUENCY);
@@ -80,7 +80,7 @@ short read_sensor_msg(int serial, char num_bytes) {
       sensor_msg |= byte;
    }
 
-   printf("sensor message: %x\n", sensor_msg);
+   //printf("sensor message: %x\n", sensor_msg);
    return sensor_msg;
 }
 
@@ -110,6 +110,7 @@ void write_actuator_msg(int serial, short actuator_val, char num_bytes) {
 
 void write_to_teensy(int serial, const semi_truck::Teensy_Actuators &actuators) {
    printf("\n********SENDING MESSAGE*********\n");
+   printf("Time: %lf\n", ros::WallTime::now().toSec());
    print_actuators(actuators);
    write_actuator_msg(serial, actuators.motor_output, SHORT_SIZE);
    write_actuator_msg(serial, actuators.steer_output, SHORT_SIZE);
@@ -126,31 +127,26 @@ void update_sensors(semi_truck::Teensy_Sensors &sensors) {
 
 
 void print_sensors(const semi_truck::Teensy_Sensors &sensors) {
-   printf("imu_angle:\t %i\n", sensors.imu_angle);
-   printf("wheel_speed:\t %i\n", sensors.wheel_speed);
-   printf("right_URF:\t %hu\n", sensors.right_URF);
-   printf("left_URF:\t %hu\n", sensors.left_URF);
-   printf("rear_URF:\t %hu\n", sensors.rear_URF);
+   ROS_INFO("imu angle:\t [%i]", sensors.imu_angle);
+   ROS_INFO("wheel speed:\t [%i]", sensors.wheel_speed);
+   ROS_INFO("right_URF:\t [%i]", sensors.right_URF);
+   ROS_INFO("left_URF:\t [%i]", sensors.left_URF);
+   ROS_INFO("rear_URF:\t [%i]\n", sensors.rear_URF);
 }
 
 
 void print_actuators(const semi_truck::Teensy_Actuators &actuators) {
    #ifdef DEBUG
-   printf("motor output:\t %i\n", actuators.motor_output);
-   printf("steer output:\t %hu\n", actuators.steer_output);
-   printf("fifth output:\t %hu\n", actuators.fifth_output);
+   ROS_INFO("motor output:\t [%i]", actuators.motor_output);
+   ROS_INFO("steer output:\t [%hu]", actuators.steer_output);
+   ROS_INFO("fifth output:\t [%hu]\n", actuators.fifth_output);
    #endif
 }
 
 
 void sensor_cb(const semi_truck::Teensy_Sensors &msg) {
    #ifdef DEBUG
-   ROS_INFO("Got Message!");
-   ROS_INFO("imu angle:\t [%f]", msg.imu_angle);
-   ROS_INFO("wheel speed:\t [%i]", msg.wheel_speed);
-   ROS_INFO("right_URF:\t [%i]", msg.right_URF);
-   ROS_INFO("left_URF:\t [%i]", msg.left_URF);
-   ROS_INFO("rear_URF:\t [%i]", msg.rear_URF);
+   ROS_INFO("Got Sensor Message!");
    print_sensors(msg);
    #endif
 }
@@ -158,13 +154,8 @@ void sensor_cb(const semi_truck::Teensy_Sensors &msg) {
 
 void actuator_cb(const semi_truck::Teensy_Actuators &msg) {
    #ifdef DEBUG
-   ROS_INFO("Got Message!");
-   ROS_INFO("motor output:\t [%i]", msg.motor_output);
-   ROS_INFO("steer output:\t [%i]", msg.steer_output);
-   ROS_INFO("fifth wheel:\t [%i]", msg.fifth_output);
-   ROS_INFO("updated:\t [%i]", msg.updated);
-   if (msg.updated) {
-      write_to_teensy(serial, msg);
-   }
+   ROS_INFO("Got Actuator Message!");
+   print_actuators(msg);
    #endif
+   write_to_teensy(serial, msg);
 }
