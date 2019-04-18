@@ -184,9 +184,9 @@ void urf_ISR_Fcn() {
 }
 
 // Handler task for interrupt.
-static THD_WORKING_AREA(isr_wa_thd, 128);
+static THD_WORKING_AREA(urf_isr_wa_thd, 128);
 
-static THD_FUNCTION(handler, arg) {
+static THD_FUNCTION(urf_handler, arg) {
     (void)arg;
     long urf_dist;
     while (true) {
@@ -212,7 +212,7 @@ static THD_FUNCTION(RC_receiver_thread, arg) {
 
    while (true) {
       //Serial.println("rc");
-      drive_mode = RC_receiver_loop_fn();
+      //drive_mode = RC_receiver_loop_fn();
 
       chMtxLock(&sysMtx);
       system_data.drive_mode = drive_mode;
@@ -222,7 +222,39 @@ static THD_FUNCTION(RC_receiver_thread, arg) {
    }
 }
 
+BSEMAPHORE_DECL(rc_isrSem, true);
 
+void RC_ISR_Fcn() {
+    CH_IRQ_PROLOGUE();
+    // IRQ handling code, preemptable if the architecture supports it.
+
+    chSysLockFromISR();
+    // Invocation of some I-Class system APIs, never preemptable.
+
+    // Signal handler task.
+    chBSemSignalI(&rc_isrSem);
+    chSysUnlockFromISR();
+
+    // More IRQ handling code, again preemptable.
+
+    // Perform rescheduling if required.
+    CH_IRQ_EPILOGUE();
+}
+
+// Handler task for interrupt.
+static THD_WORKING_AREA(rc_isr_wa_thd, 128);
+
+static THD_FUNCTION(rc_handler, arg) {
+    (void)arg;
+    int16_t drive_mode;
+    while (true) {
+        // wait for event
+        chBSemWait(&rc_isrSem);
+
+        drive_mode = RC_receiver_SW2_fn(15);
+
+    }
+}
 
 /**
  * @brief Steer Servo Thread: Controls the servo that dictates the driving
@@ -336,8 +368,12 @@ void chSetup() {
    chThdCreateStatic(wheel_speed_wa, sizeof(wheel_speed_wa),
    NORMALPRIO, wheel_speed_thread, NULL);
 
-   chThdCreateStatic(isr_wa_thd, sizeof(isr_wa_thd), NORMALPRIO + 1, handler, NULL);
+   chThdCreateStatic(urf_isr_wa_thd, sizeof(urf_isr_wa_thd), NORMALPRIO + 1, urf_handler, NULL);
    attachInterrupt(digitalPinToInterrupt(24), urf_ISR_Fcn, CHANGE);
+
+   chThdCreateStatic(urf_isr_wa_thd, sizeof(rc_isr_wa_thd), NORMALPRIO + 1, rc_handler, NULL);
+   attachInterrupt(digitalPinToInterrupt(15), RC_ISR_Fcn, CHANGE);
+
 }
 
 

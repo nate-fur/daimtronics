@@ -60,11 +60,11 @@ void read_from_pi(actuator_data_t *actuators_ptr) {
    byte data_buffer[SHORT_SIZE];
 
    HWSERIAL.readBytes(data_buffer, SHORT_SIZE);
-   actuators_ptr->motor_output = (int16_t) *data_buffer;
+   actuators_ptr->motor_output = *((int16_t*)data_buffer);
    HWSERIAL.readBytes(data_buffer, SHORT_SIZE);
-   actuators_ptr->steer_output = (int16_t) *data_buffer;
+   actuators_ptr->steer_output = *((int16_t*)data_buffer);
    HWSERIAL.readBytes(data_buffer, SHORT_SIZE);
-   actuators_ptr->fifth_output = (int16_t) *data_buffer;
+   actuators_ptr->fifth_output = *((int16_t*)data_buffer);
 }
 
 

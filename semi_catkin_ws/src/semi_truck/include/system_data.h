@@ -21,12 +21,12 @@
 struct system_data_t {
    int16_t  wheel_speed;    // speed that the wheel speed sensor is recording
    int16_t  imu_angle;      // euler angle read by the BNO055 IMU (degrees)
-   int16_t  right_URF;      // distance of nearest object for the right URF
-   int16_t  left_URF;       // distance of nearest object for the left URF
-   int16_t  rear_URF;       // distance of nearest object for the rear URF
+   uint16_t  right_URF;     // distance of nearest object for the right URF
+   uint16_t  left_URF;      // distance of nearest object for the left URF
+   uint16_t  rear_URF;      // distance of nearest object for the rear URF
    int16_t  motor_output;   // output sent to the motor driver
    int16_t  steer_output;   // output sent to the steering servo
-   int16_t  fifth_output;     // actual state of the 5th wheel
+   uint16_t  fifth_output;  // actual state of the 5th wheel
 };
 
 #endif //DAIMTRONICS_SYSTEM_DATA_H
