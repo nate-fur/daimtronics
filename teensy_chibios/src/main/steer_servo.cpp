@@ -8,6 +8,7 @@
 
 #define STEER_SERVO_PIN 13
 #define STRAIGHT 90
+#define DEBUG
 
 /**
  * This is a Servo object to control the steering servo. It relies on code from

@@ -16,7 +16,7 @@
  */
 int16_t wheel_speed_loop_fn() {
 
-   return 10; // placeholder for compilation
+   return 0; // placeholder for compilation
 }
 
 void wheel_speed_setup() {

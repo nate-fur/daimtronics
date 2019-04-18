@@ -22,7 +22,7 @@ void teensy_serial_loop_fn(system_data_t *system_data) {
 
       if (HWSERIAL.availableForWrite()) {
          print_sensor_msg(&system_data->sensors);
-         Serial.printf("sending bytes: %i\n", sizeof(sensor_data_t));
+         //Serial.printf("sending bytes: %i\n", sizeof(sensor_data_t));
          HWSERIAL.write((char*)&(system_data->sensors), sizeof(sensor_data_t));
          system_data->updated = false;
       }
