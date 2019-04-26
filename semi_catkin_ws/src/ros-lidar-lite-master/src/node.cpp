@@ -59,7 +59,7 @@ run(int argc, char **argv)
     return 1;
   }
 
-  ros::Publisher publisher = nh.advertise<sensor_msgs::LaserScan>("scan", 1024);
+  ros::Publisher publisher = nh.advertise<sensor_msgs::LaserScan>("scan_lidar_lite", 1024);
 
   LidarLiteDriver driver((uint8_t)i2c_bus, i2c_address);
   driver.configure(LidarLiteDriver::OperationMode::DEFAULT);
