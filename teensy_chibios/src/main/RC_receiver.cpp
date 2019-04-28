@@ -7,6 +7,7 @@
 
 float SW1_high_time = 0;
 volatile unsigned long SW1_time = 0;
+
 /**
  * @brief This is the primary function controlling the RC receiver. It reads a
  * PWM signal that the RC receiver receives from the RC controller. Based on
@@ -41,8 +42,10 @@ int16_t RC_receiver_SW1_fn(short PWM_PIN) {
     else{
         mode = 0;
     }
-    //Serial.print("SW1 mode = ");
-    //Serial.print(mode);
+#ifdef DEBUG
+    Serial.print("SW1 mode = ");
+    Serial.print(mode);
+#endif
     return mode;
 }
 
@@ -77,8 +80,10 @@ int16_t RC_receiver_SW2_fn(short PWM_PIN) {
     else{
         mode = 0;
     }
-    //Serial.print("SW2 mode = ");
-    //Serial.print(mode);
+#ifdef DEBUG
+    Serial.print("SW2 mode = ");
+    Serial.print(mode);
+#endif
     return mode;
 }
 
@@ -117,8 +122,10 @@ int16_t RC_receiver_SW3_fn(short PWM_PIN) {
     else{
         mode = 0;
     }
-    //Serial.print("SW3 mode = ");
-    //Serial.print(mode);
+#ifdef DEBUG
+    Serial.print("SW3 mode = ");
+    Serial.print(mode);
+#endif
     return mode;
 }
 
