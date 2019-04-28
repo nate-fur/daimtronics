@@ -21,7 +21,9 @@ typedef struct actuator_data_t {
 
 typedef struct system_data_t {
    bool updated;
-   int16_t drive_mode;
+   int16_t deadman;
+   int16_t drive_mode_1;
+   int16_t drive_mode_2;
    sensor_data_t sensors;
    actuator_data_t actuators;
 } system_data_t;

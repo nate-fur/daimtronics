@@ -208,23 +208,23 @@ static THD_FUNCTION(urf_handler, arg) {
 static THD_WORKING_AREA(RC_receiver_wa, 64);
 
 static THD_FUNCTION(RC_receiver_thread, arg) {
-   int16_t drive_mode;
+   //int16_t drive_mode;
 
    while (true) {
       //Serial.println("rc");
       //drive_mode = RC_receiver_loop_fn();
 
-      chMtxLock(&sysMtx);
-      system_data.drive_mode = drive_mode;
-      chMtxUnlock(&sysMtx);
+      //chMtxLock(&sysMtx);
+      //system_data.drive_mode = drive_mode;
+      //chMtxUnlock(&sysMtx);
 
       chThdSleepMilliseconds(100);
    }
 }
 
-BSEMAPHORE_DECL(rc_isrSem, true);
+BSEMAPHORE_DECL(rc_sw1_isrSem, true);
 
-void RC_ISR_Fcn() {
+void RC_SW1_ISR_Fcn() {
     CH_IRQ_PROLOGUE();
     // IRQ handling code, preemptable if the architecture supports it.
 
@@ -232,7 +232,7 @@ void RC_ISR_Fcn() {
     // Invocation of some I-Class system APIs, never preemptable.
 
     // Signal handler task.
-    chBSemSignalI(&rc_isrSem);
+    chBSemSignalI(&rc_sw1_isrSem);
     chSysUnlockFromISR();
 
     // More IRQ handling code, again preemptable.
@@ -242,16 +242,101 @@ void RC_ISR_Fcn() {
 }
 
 // Handler task for interrupt.
-static THD_WORKING_AREA(rc_isr_wa_thd, 128);
+static THD_WORKING_AREA(rc_sw1_isr_wa_thd, 64);
 
-static THD_FUNCTION(rc_handler, arg) {
+static THD_FUNCTION(rc_sw1_handler, arg) {
+    (void)arg;
+    int16_t deadman_mode;
+    while (true) {
+        // wait for event
+        chBSemWait(&rc_sw1_isrSem);
+
+        deadman_mode = RC_receiver_SW1_fn(15);
+
+        chMtxLock(&sysMtx);
+        system_data.deadman = deadman_mode;
+        system_data.updated = true;
+        chMtxUnlock(&sysMtx);
+
+    }
+}
+
+
+BSEMAPHORE_DECL(rc_sw2_isrSem, true);
+
+void RC_SW2_ISR_Fcn() {
+    CH_IRQ_PROLOGUE();
+    // IRQ handling code, preemptable if the architecture supports it.
+
+    chSysLockFromISR();
+    // Invocation of some I-Class system APIs, never preemptable.
+
+    // Signal handler task.
+    chBSemSignalI(&rc_sw2_isrSem);
+    chSysUnlockFromISR();
+
+    // More IRQ handling code, again preemptable.
+
+    // Perform rescheduling if required.
+    CH_IRQ_EPILOGUE();
+}
+
+// Handler task for interrupt.
+static THD_WORKING_AREA(rc_sw2_isr_wa_thd, 64);
+
+static THD_FUNCTION(rc_sw2_handler, arg) {
     (void)arg;
     int16_t drive_mode;
     while (true) {
         // wait for event
-        chBSemWait(&rc_isrSem);
+        chBSemWait(&rc_sw2_isrSem);
 
-        drive_mode = RC_receiver_SW2_fn(15);
+        drive_mode = RC_receiver_SW2_fn(16);
+
+        chMtxLock(&sysMtx);
+        system_data.drive_mode_1 = drive_mode;
+        system_data.updated = true;
+        chMtxUnlock(&sysMtx);
+
+    }
+}
+
+
+BSEMAPHORE_DECL(rc_sw3_isrSem, true);
+
+void RC_SW3_ISR_Fcn() {
+    CH_IRQ_PROLOGUE();
+    // IRQ handling code, preemptable if the architecture supports it.
+
+    chSysLockFromISR();
+    // Invocation of some I-Class system APIs, never preemptable.
+
+    // Signal handler task.
+    chBSemSignalI(&rc_sw3_isrSem);
+    chSysUnlockFromISR();
+
+    // More IRQ handling code, again preemptable.
+
+    // Perform rescheduling if required.
+    CH_IRQ_EPILOGUE();
+}
+
+// Handler task for interrupt.
+static THD_WORKING_AREA(rc_sw3_isr_wa_thd, 64);
+
+static THD_FUNCTION(rc_sw3_handler, arg) {
+    (void)arg;
+    int16_t drive_mode;
+    while (true) {
+        // wait for event
+        chBSemWait(&rc_sw3_isrSem);
+
+        drive_mode = RC_receiver_SW3_fn(17);
+
+        chMtxLock(&sysMtx);
+        system_data.drive_mode_2 = drive_mode;
+        system_data.updated = true;
+        chMtxUnlock(&sysMtx);
 
     }
 }
@@ -371,8 +456,14 @@ void chSetup() {
    chThdCreateStatic(urf_isr_wa_thd, sizeof(urf_isr_wa_thd), NORMALPRIO + 1, urf_handler, NULL);
    attachInterrupt(digitalPinToInterrupt(24), urf_ISR_Fcn, CHANGE);
 
-   chThdCreateStatic(urf_isr_wa_thd, sizeof(rc_isr_wa_thd), NORMALPRIO + 1, rc_handler, NULL);
-   attachInterrupt(digitalPinToInterrupt(15), RC_ISR_Fcn, CHANGE);
+   chThdCreateStatic(rc_sw1_isr_wa_thd, sizeof(rc_sw1_isr_wa_thd), NORMALPRIO + 1, rc_sw1_handler, NULL);
+   attachInterrupt(digitalPinToInterrupt(15), RC_SW1_ISR_Fcn, CHANGE);
+
+   chThdCreateStatic(rc_sw2_isr_wa_thd, sizeof(rc_sw2_isr_wa_thd), NORMALPRIO + 1, rc_sw2_handler, NULL);
+   attachInterrupt(digitalPinToInterrupt(16), RC_SW2_ISR_Fcn, CHANGE);
+
+   chThdCreateStatic(rc_sw3_isr_wa_thd, sizeof(rc_sw3_isr_wa_thd), NORMALPRIO + 1, rc_sw3_handler, NULL);
+   attachInterrupt(digitalPinToInterrupt(17), RC_SW3_ISR_Fcn, CHANGE);
 
 }
 
