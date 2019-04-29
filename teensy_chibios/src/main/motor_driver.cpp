@@ -2,17 +2,26 @@
 // Created by nate on 4/2/19.
 //
 
-#include "include/range_finder.h"
+#include "include/motor_driver.h"
 #include <Arduino.h>
 #include <Servo.h>
 
 #define MOTOR_PIN 13
-#define STOP 0
+#define WHEEL_SPEED_STOP 0 // wheel speed of 0 is no velocity
+#define MOTOR_STOP 90 // motor output of 90 is no torque
+#define KP 1
+#define KI 0.05f
+#define SAT_ERROR 1000 // max error sum that can accumulate for integral control
+#define MAX_TIME_STEP 500 // in millis
+#define WHEEL_SPEED_RANGE 1000 // max error from wheel speed
+#define MOTOR_RANGE 180 // max error from wheel speed
+
 /**
  * This is a Servo object to control the steering servo. It relies on code from
  * Servo.h which is built into the Arduino IDE.
  */
 static Servo motor;
+static int16_t error_sum = 0;
 
 /**
  * This is the primary function controlling the motor. It reads the
@@ -30,7 +39,7 @@ void motor_driver_loop_fn(int16_t motor_output) {
 #endif
 
    if (motor_output > 180 || motor_output < 0) {
-      motor.write(STOP);
+      motor.write(MOTOR_STOP);
    }
    else if (motor_output != motor.read()) {
       motor.write(motor_output);
@@ -40,6 +49,31 @@ void motor_driver_loop_fn(int16_t motor_output) {
 void motor_driver_setup() {
    motor.attach(MOTOR_PIN);
    // delay(15);
-   motor.write(STOP);
+   motor.write(MOTOR_STOP);
+}
+
+/**
+ * Runs a control loop to stop the motor based on the reported wheel speed,
+ * and returns a value to be output to the motor
+ *
+ * @param wheel_speed speed of the truck read by the wheel speed sensor
+ * @param time_step number of millis since the last time this task ran; used
+ * in integral control
+ * @return the output to the motor
+ */
+int16_t stop_motor(int16_t wheel_speed, int16_t time_step) {
+   int16_t motor_output;
+   int16_t error_range = (KI * SAT_ERROR) + (KP * WHEEL_SPEED_RANGE);
+   int16_t error = WHEEL_SPEED_STOP - wheel_speed;
+
+   if (error_sum < SAT_ERROR && (time_step > 0 && time_step < MAX_TIME_STEP)) {
+      error_sum += time_step * error;
+      error_sum = error_sum > SAT_ERROR ? SAT_ERROR : error_sum;
+   }
+
+   motor_output = (((KP * error) + (KI * error_sum)) * (MOTOR_RANGE /
+    error_range)) + MOTOR_STOP;
+
+   return motor_output;
 }
 

@@ -127,13 +127,28 @@ static THD_WORKING_AREA(motor_driver_wa, 64);
 
 static THD_FUNCTION(motor_driver_thread, arg) {
    int16_t motor_output;
+   int16_t wheel_speed;
+   int16_t time_step;
+   int16_t last_time = ST2MS(chVTGetSystemTime());
+   int16_t current_time = last_time;
 
    while (true) {
       //Serial.println("motor");
       motor_output = system_data.actuators.motor_output;
+      wheel_speed = system_data.sensors.wheel_speed;
+      
+      current_time = ST2MS(chVTGetSystemTime());
+      time_step = current_time - last_time;
 
-      motor_driver_loop_fn(motor_output);
-
+      if (system_data.dead_man_triggered) {
+         motor_driver_loop_fn(motor_output);
+      }
+      else {
+         motor_output = stop_motor(wheel_speed, time_step);
+         motor_driver_loop_fn(motor_output);
+      }
+       
+      last_time = current_time;
       chThdSleepMilliseconds(100);
    }
 }
