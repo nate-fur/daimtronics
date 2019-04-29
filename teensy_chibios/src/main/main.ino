@@ -140,7 +140,7 @@ static THD_FUNCTION(motor_driver_thread, arg) {
       current_time = ST2MS(chVTGetSystemTime());
       time_step = current_time - last_time;
 
-      if (system_data.dead_man_triggered) {
+      if (system_data.deadman) {
          motor_driver_loop_fn(motor_output);
       }
       else {
