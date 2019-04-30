@@ -406,6 +406,25 @@ static THD_FUNCTION(teensy_serial_thread, arg) {
 
 
 
+BSEMAPHORE_DECL(speed_isrSem, true);
+
+void speed_ISR_Fcn() {
+    CH_IRQ_PROLOGUE();
+    // IRQ handling code, preemptable if the architecture supports it.
+
+    chSysLockFromISR();
+    // Invocation of some I-Class system APIs, never preemptable.
+
+    // Signal handler task.
+    chBSemSignalI(&speed_isrSem);
+    chSysUnlockFromISR();
+
+    // More IRQ handling code, again preemptable.
+
+    // Perform rescheduling if required.
+    CH_IRQ_EPILOGUE();
+}
+
 /**
  * @brief Wheel Speed Thread: Controls the digital IR sensor that is mounted on
  * the front axis of the vehicle for determining wheel speed.
@@ -420,17 +439,16 @@ static THD_FUNCTION(wheel_speed_thread, arg) {
 
    while (true) {
 
+      chBSemWait(&speed_isrSem);
       //Serial.println("wheel");
-      wheel_speed = wheel_speed_loop_fn();
+      wheel_speed = wheel_speed_loop_fn(8);
 
       chMtxLock(&sysMtx);
       system_data.sensors.wheel_speed = wheel_speed;
       chMtxUnlock(&sysMtx);
 
-      chThdSleepMilliseconds(100);
    }
 }
-
 
 
 /**
@@ -467,17 +485,22 @@ void chSetup() {
 
    chThdCreateStatic(wheel_speed_wa, sizeof(wheel_speed_wa),
    NORMALPRIO, wheel_speed_thread, NULL);
+   attachInterrupt(digitalPinToInterrupt(11), speed_ISR_Fcn, RISING);
 
-   chThdCreateStatic(urf_isr_wa_thd, sizeof(urf_isr_wa_thd), NORMALPRIO + 1, urf_handler, NULL);
+   chThdCreateStatic(urf_isr_wa_thd, sizeof(urf_isr_wa_thd),
+   NORMALPRIO + 1, urf_handler, NULL);
    attachInterrupt(digitalPinToInterrupt(24), urf_ISR_Fcn, CHANGE);
 
-   chThdCreateStatic(rc_sw1_isr_wa_thd, sizeof(rc_sw1_isr_wa_thd), NORMALPRIO + 1, rc_sw1_handler, NULL);
+   chThdCreateStatic(rc_sw1_isr_wa_thd, sizeof(rc_sw1_isr_wa_thd),
+   NORMALPRIO + 1, rc_sw1_handler, NULL);
    attachInterrupt(digitalPinToInterrupt(15), RC_SW1_ISR_Fcn, CHANGE);
 
-   chThdCreateStatic(rc_sw2_isr_wa_thd, sizeof(rc_sw2_isr_wa_thd), NORMALPRIO + 1, rc_sw2_handler, NULL);
+   chThdCreateStatic(rc_sw2_isr_wa_thd, sizeof(rc_sw2_isr_wa_thd),
+   NORMALPRIO + 1, rc_sw2_handler, NULL);
    attachInterrupt(digitalPinToInterrupt(16), RC_SW2_ISR_Fcn, CHANGE);
 
-   chThdCreateStatic(rc_sw3_isr_wa_thd, sizeof(rc_sw3_isr_wa_thd), NORMALPRIO + 1, rc_sw3_handler, NULL);
+   chThdCreateStatic(rc_sw3_isr_wa_thd, sizeof(rc_sw3_isr_wa_thd),
+   NORMALPRIO + 1, rc_sw3_handler, NULL);
    attachInterrupt(digitalPinToInterrupt(17), RC_SW3_ISR_Fcn, CHANGE);
 
 }
