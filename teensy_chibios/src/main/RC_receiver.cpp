@@ -9,12 +9,12 @@ float SW1_high_time = 0;
 volatile unsigned long SW1_time = 0;
 
 /**
- * @brief This is the primary function controlling the RC receiver. It reads a
- * PWM signal that the RC receiver receives from the RC controller. Based on
- * the specific timing of the PWM, a drive mode (either manual or one of the
- * autonomous algorithms on the Pi) is selected to control the vehicle.
+ * @brief This is the primary function reading Switch 1 on the receiver. It reads a
+ * PWM signal that the RC receiver receives from the RC controller. Based on the
+ * specific timing of the PWM, a deadman mode (either deadman switch pressed or
+ * not pressed) is selected to send to the rest of the platform.
  *
- * @return the driving mode of the semi-truck based on RC receiver signal
+ * @return the deadman mode of the semi-truck based on RC receiver signal
  */
 int16_t RC_receiver_SW1_fn(short PWM_PIN) {
 

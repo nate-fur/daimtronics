@@ -25,15 +25,15 @@ int16_t wheel_speed_loop_fn(short PhaseB_pin) {
        //Going Forward
        volatile unsigned long t_time = time - prev_time;
        speed = (1/(t_time*0.000001));
-       Serial.println("Wheel_Speed = ");
-       Serial.print(speed);
+       //Serial.println("Wheel_Speed = ");
+       //Serial.print(speed);
 
    } else if(phaseB_val==LOW){
        //Going Backward
        volatile unsigned long t_time = time - prev_time;
        speed = -(1/(t_time*0.000001));
-       Serial.println("Wheel_Speed_neg = ");
-       Serial.print(speed);
+       //Serial.println("Wheel_Speed_neg = ");
+       //Serial.print(speed);
    }
 
    prev_time = time;

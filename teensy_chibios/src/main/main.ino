@@ -158,8 +158,7 @@ static THD_FUNCTION(motor_driver_thread, arg) {
  * @brief Range Finder Thread: Controls the HC-SR04 URF where nearby object
  * distance is calculated and written to the system data.
  *
- * @todo still need to implement this task (likely going to use interrupts)
- * and put the code in a URF.cpp file.
+ * @todo need to test this task with the Maxbotix URF
  */
 static THD_WORKING_AREA(range_finder_wa, 64);
 
@@ -256,7 +255,13 @@ void RC_SW1_ISR_Fcn() {
     CH_IRQ_EPILOGUE();
 }
 
-// Handler task for interrupt.
+/**
+ * @brief RC Receiver Swicth 1 Thread: Reads auxiliary signals from the RC receiver switch 1
+ * for determining if the deadman switch is pressed
+ *
+ * This thread calls RC_receiver_SW1_fn which is the primary function for
+ * the RC receiver switch 1 and whose implementation is found in RC_receiver.cpp
+ */
 static THD_WORKING_AREA(rc_sw1_isr_wa_thd, 64);
 
 static THD_FUNCTION(rc_sw1_handler, arg) {
@@ -296,7 +301,13 @@ void RC_SW2_ISR_Fcn() {
     CH_IRQ_EPILOGUE();
 }
 
-// Handler task for interrupt.
+/**
+ * @brief RC Receiver Swicth 2 Thread: Reads auxiliary signals from the RC receiver switch 2
+ * for determining what drive mode the semi-truck is in.
+ *
+ * This thread calls RC_receiver_SW2_fn which is the primary function for
+ * the RC receiver switch 2 and whose implementation is found in RC_receiver.cpp
+ */
 static THD_WORKING_AREA(rc_sw2_isr_wa_thd, 64);
 
 static THD_FUNCTION(rc_sw2_handler, arg) {
@@ -336,7 +347,13 @@ void RC_SW3_ISR_Fcn() {
     CH_IRQ_EPILOGUE();
 }
 
-// Handler task for interrupt.
+/**
+ * @brief RC Receiver Swicth 3 Thread: Reads auxiliary signals from the RC receiver switch 3
+ * for determining what drive mode the semi-truck is in.
+ *
+ * This thread calls RC_receiver_SW3_fn which is the primary function for
+ * the RC receiver switch 3 and whose implementation is found in RC_receiver.cpp
+ */
 static THD_WORKING_AREA(rc_sw3_isr_wa_thd, 64);
 
 static THD_FUNCTION(rc_sw3_handler, arg) {
@@ -426,11 +443,11 @@ void speed_ISR_Fcn() {
 }
 
 /**
- * @brief Wheel Speed Thread: Controls the digital IR sensor that is mounted on
- * the front axis of the vehicle for determining wheel speed.
+ * @brief Wheel Speed Thread: Controls the Hall sensor that is outputted from
+ * the main motor of the vehicle for determining wheel speed.
  *
  * This thread calls wheel_speed_loop_fn() which is the primary function for the
- * wheel speed sensor and whose implementation is found in wheel_speed.cpp.
+ * Hall sensor and whose implementation is found in wheel_speed.cpp.
  */
 static THD_WORKING_AREA(wheel_speed_wa, 64);
 
@@ -441,7 +458,7 @@ static THD_FUNCTION(wheel_speed_thread, arg) {
 
       chBSemWait(&speed_isrSem);
       //Serial.println("wheel");
-      wheel_speed = wheel_speed_loop_fn(8);
+      wheel_speed = wheel_speed_loop_fn(7);
 
       chMtxLock(&sysMtx);
       system_data.sensors.wheel_speed = wheel_speed;
