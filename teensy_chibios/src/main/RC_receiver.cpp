@@ -42,10 +42,10 @@ int16_t RC_receiver_SW1_fn(short PWM_PIN) {
     else{
         mode = 0;
     }
-#ifdef DEBUG
+//#ifdef DEBUG
     Serial.print("SW1 mode = ");
-    Serial.print(mode);
-#endif
+    Serial.println(mode);
+//#endif
     return mode;
 }
 
@@ -82,7 +82,7 @@ int16_t RC_receiver_SW2_fn(short PWM_PIN) {
     }
 #ifdef DEBUG
     Serial.print("SW2 mode = ");
-    Serial.print(mode);
+    Serial.println(mode);
 #endif
     return mode;
 }
@@ -124,7 +124,7 @@ int16_t RC_receiver_SW3_fn(short PWM_PIN) {
     }
 #ifdef DEBUG
     Serial.print("SW3 mode = ");
-    Serial.print(mode);
+    Serial.println(mode);
 #endif
     return mode;
 }

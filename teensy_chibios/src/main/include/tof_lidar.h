@@ -1,8 +1,10 @@
-//
-// Created by Fernando Mondragon-Cardenas on 2019-04-28.
-//
+#ifndef TOF_LIDAR_H
+#define TOF_LIDAR_H
 
-#ifndef TEENSY_CHIBIOS_TOF_LIDAR_H
-#define TEENSY_CHIBIOS_TOF_LIDAR_H
+#include <Adafruit_VL53L0X.h>
 
-#endif //TEENSY_CHIBIOS_TOF_LIDAR_H
+int16_t tof_loop_fn();
+
+void tof_lidar_setup();
+
+#endif //TOF_LIDAR_H

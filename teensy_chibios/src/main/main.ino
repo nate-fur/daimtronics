@@ -22,6 +22,7 @@
 #include "include/steer_servo.h"
 #include "include/teensy_serial.h"
 #include "include/wheel_speed.h"
+#include "include/tof_lidar.h"
 
 #include <ChRt.h>
 
@@ -151,6 +152,26 @@ static THD_FUNCTION(motor_driver_thread, arg) {
       last_time = current_time;
       chThdSleepMilliseconds(100);
    }
+}
+
+/**
+ * @brief Time of Flight Lidar Thread: Reads motor output levels from the system data
+ * and controls the motor based on this value.
+ *
+ * This thread calls tof_loop_fn which is the primary function for
+ * the motor and whose implementation is found in tof_lidar.cpp.
+ */
+static THD_WORKING_AREA(tof_lidar_wa, 512);
+
+static THD_FUNCTION(tof_lidar_thread, arg) {
+    int16_t dist_mm;
+    while (true) {
+
+        //Serial.println("ToF_start");
+        dist_mm = tof_loop_fn();
+        //Serial.println("tof_Done");
+        chThdSleepMilliseconds(100);
+    }
 }
 
 
@@ -488,6 +509,9 @@ void chSetup() {
    chThdCreateStatic(motor_driver_wa, sizeof(motor_driver_wa),
    NORMALPRIO, motor_driver_thread, NULL);
 
+   chThdCreateStatic(tof_lidar_wa, sizeof(tof_lidar_wa),
+   NORMALPRIO, tof_lidar_thread, NULL);
+
    chThdCreateStatic(range_finder_wa, sizeof(range_finder_wa),
    NORMALPRIO, range_finder_thread, NULL);
 
@@ -546,6 +570,8 @@ void setup() {
    range_finder_setup();
    // Setup the RC receiver
    RC_receiver_setup();
+   // Setup the ToF Lidar Sensor to make sure it is connected and reading
+   tof_lidar_setup();
    // Setup the steering servo
    steer_servo_setup();
    // Setup the wheel speed sensors
