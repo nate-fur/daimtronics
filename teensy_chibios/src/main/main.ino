@@ -28,6 +28,22 @@
 
 #define HWSERIAL Serial1
 
+// Definition of pins
+#define FIFTH_WHEEL_PIN 2
+#define MOTOR_PIN 4
+#define STEER_SERVO_PIN 6
+#define IMU_SDA_PIN 18
+#define IMU_SCL_PIN 19
+#define TOF_LIDAR_SDA_PIN 18
+#define TOF_LIDAR_SCL_PIN 19
+#define URF_TRIG_PIN 24
+#define URF_ECHO_PIN 25
+#define RC_SW1_PIN 26
+#define RC_SW2_PIN 27
+#define RC_SW3_PIN 28
+#define HALL_PHASE_A_PIN 20
+#define HALL_PHASE_B_PIN 21
+
 /**
  * @brief The data for the entire system. Synchronization will be achieved
  * through the use of ChibiOS's mutex library.
@@ -191,7 +207,7 @@ static THD_FUNCTION(range_finder_thread, arg) {
 
       chSysLock();
 
-      range_finder_ping();
+      range_finder_ping(URF_TRIG_PIN);
 
       chSysUnlock();
 
@@ -228,7 +244,7 @@ static THD_FUNCTION(urf_handler, arg) {
         // wait for event
         chBSemWait(&urf_isrSem);
 
-        urf_dist = range_finder_loop_fn();
+        urf_dist = range_finder_loop_fn(URF_ECHO_PIN);
 
     }
 }
@@ -277,7 +293,7 @@ void RC_SW1_ISR_Fcn() {
 }
 
 /**
- * @brief RC Receiver Swicth 1 Thread: Reads auxiliary signals from the RC receiver switch 1
+ * @brief RC Receiver Switch 1 Thread: Reads auxiliary signals from the RC receiver switch 1
  * for determining if the deadman switch is pressed
  *
  * This thread calls RC_receiver_SW1_fn which is the primary function for
@@ -292,7 +308,7 @@ static THD_FUNCTION(rc_sw1_handler, arg) {
         // wait for event
         chBSemWait(&rc_sw1_isrSem);
 
-        deadman_mode = RC_receiver_SW1_fn(15);
+        deadman_mode = RC_receiver_SW1_fn(RC_SW1_PIN);
 
         chMtxLock(&sysMtx);
         system_data.deadman = deadman_mode;
@@ -323,7 +339,7 @@ void RC_SW2_ISR_Fcn() {
 }
 
 /**
- * @brief RC Receiver Swicth 2 Thread: Reads auxiliary signals from the RC receiver switch 2
+ * @brief RC Receiver Switch 2 Thread: Reads auxiliary signals from the RC receiver switch 2
  * for determining what drive mode the semi-truck is in.
  *
  * This thread calls RC_receiver_SW2_fn which is the primary function for
@@ -338,7 +354,7 @@ static THD_FUNCTION(rc_sw2_handler, arg) {
         // wait for event
         chBSemWait(&rc_sw2_isrSem);
 
-        drive_mode = RC_receiver_SW2_fn(16);
+        drive_mode = RC_receiver_SW2_fn(RC_SW2_PIN);
 
         chMtxLock(&sysMtx);
         system_data.drive_mode_1 = drive_mode;
@@ -384,7 +400,7 @@ static THD_FUNCTION(rc_sw3_handler, arg) {
         // wait for event
         chBSemWait(&rc_sw3_isrSem);
 
-        drive_mode = RC_receiver_SW3_fn(17);
+        drive_mode = RC_receiver_SW3_fn(RC_SW3_PIN);
 
         chMtxLock(&sysMtx);
         system_data.drive_mode_2 = drive_mode;
@@ -526,23 +542,23 @@ void chSetup() {
 
    chThdCreateStatic(wheel_speed_wa, sizeof(wheel_speed_wa),
    NORMALPRIO, wheel_speed_thread, NULL);
-   attachInterrupt(digitalPinToInterrupt(11), speed_ISR_Fcn, RISING);
+   attachInterrupt(digitalPinToInterrupt(HALL_PHASE_A_PIN), speed_ISR_Fcn, RISING);
 
    chThdCreateStatic(urf_isr_wa_thd, sizeof(urf_isr_wa_thd),
    NORMALPRIO + 1, urf_handler, NULL);
-   attachInterrupt(digitalPinToInterrupt(24), urf_ISR_Fcn, CHANGE);
+   attachInterrupt(digitalPinToInterrupt(URF_ECHO_PIN), urf_ISR_Fcn, CHANGE);
 
    chThdCreateStatic(rc_sw1_isr_wa_thd, sizeof(rc_sw1_isr_wa_thd),
    NORMALPRIO + 1, rc_sw1_handler, NULL);
-   attachInterrupt(digitalPinToInterrupt(15), RC_SW1_ISR_Fcn, CHANGE);
+   attachInterrupt(digitalPinToInterrupt(RC_SW1_PIN), RC_SW1_ISR_Fcn, CHANGE);
 
    chThdCreateStatic(rc_sw2_isr_wa_thd, sizeof(rc_sw2_isr_wa_thd),
    NORMALPRIO + 1, rc_sw2_handler, NULL);
-   attachInterrupt(digitalPinToInterrupt(16), RC_SW2_ISR_Fcn, CHANGE);
+   attachInterrupt(digitalPinToInterrupt(RC_SW2_PIN), RC_SW2_ISR_Fcn, CHANGE);
 
    chThdCreateStatic(rc_sw3_isr_wa_thd, sizeof(rc_sw3_isr_wa_thd),
    NORMALPRIO + 1, rc_sw3_handler, NULL);
-   attachInterrupt(digitalPinToInterrupt(17), RC_SW3_ISR_Fcn, CHANGE);
+   attachInterrupt(digitalPinToInterrupt(RC_SW3_PIN), RC_SW3_ISR_Fcn, CHANGE);
 
 }
 
@@ -563,17 +579,17 @@ void setup() {
    // Setup the IMU to make sure it is connected and reading
    imu_setup();
    // Setup the fifth wheel
-   fifth_wheel_setup();
+   fifth_wheel_setup(FIFTH_WHEEL_PIN);
    // Setup the motor driver
-   motor_driver_setup();
+   motor_driver_setup(MOTOR_PIN);
    // Setup the URFs
-   range_finder_setup();
+   range_finder_setup(URF_TRIG_PIN);
    // Setup the RC receiver
    RC_receiver_setup();
    // Setup the ToF Lidar Sensor to make sure it is connected and reading
    tof_lidar_setup();
    // Setup the steering servo
-   steer_servo_setup();
+   steer_servo_setup(STEER_SERVO_PIN);
    // Setup the wheel speed sensors
    wheel_speed_setup();
    // chBegin() resets stacks and should never return.

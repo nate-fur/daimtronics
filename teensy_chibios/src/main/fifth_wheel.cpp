@@ -7,7 +7,6 @@
 #include <Arduino.h>
 #include <Servo.h>
 
-#define FIFTH_WHEEL_PIN 13
 #define LOCKED_ANGLE 0
 #define UNLOCKED_ANGLE 180
 
@@ -43,8 +42,8 @@ void fifth_wheel_loop_fn(int16_t fifth_output) {
    }
 }
 
-void fifth_wheel_setup() {
-   fifth_wheel_servo.attach(FIFTH_WHEEL_PIN);
+void fifth_wheel_setup(short fifth_wheel_pin) {
+   fifth_wheel_servo.attach(fifth_wheel_pin);
    //delay(15);
    fifth_wheel_servo.write(LOCKED_ANGLE);
 }

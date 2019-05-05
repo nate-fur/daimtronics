@@ -6,7 +6,6 @@
 #include <Arduino.h>
 #include <Servo.h>
 
-#define STEER_SERVO_PIN 13
 #define STRAIGHT 90
 #define DEBUG
 
@@ -38,8 +37,8 @@ void steer_servo_loop_fn(int16_t steer_output) {
    }
 }
 
-void steer_servo_setup() {
-   steer_servo.attach(STEER_SERVO_PIN);
+void steer_servo_setup(short servo_pin) {
+   steer_servo.attach(servo_pin);
    // delay(15);
    steer_servo.write(STRAIGHT);
 

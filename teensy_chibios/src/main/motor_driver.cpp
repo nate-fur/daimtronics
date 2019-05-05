@@ -6,7 +6,6 @@
 #include <Arduino.h>
 #include <Servo.h>
 
-#define MOTOR_PIN 13
 #define WHEEL_SPEED_STOP 0 // wheel speed of 0 is no velocity
 #define MOTOR_STOP 90 // motor output of 90 is no torque
 #define KP 1
@@ -46,8 +45,8 @@ void motor_driver_loop_fn(int16_t motor_output) {
    }
 }
 
-void motor_driver_setup() {
-   motor.attach(MOTOR_PIN);
+void motor_driver_setup(short motor_pin) {
+   motor.attach(motor_pin);
    // delay(15);
    motor.write(MOTOR_STOP);
 }
