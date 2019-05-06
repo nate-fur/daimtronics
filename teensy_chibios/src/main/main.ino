@@ -186,6 +186,10 @@ static THD_FUNCTION(tof_lidar_thread, arg) {
         //Serial.println("ToF_start");
         dist_mm = tof_loop_fn();
         //Serial.println("tof_Done");
+        chMtxLock(&sysMtx);
+        system_data.sensors.tof_dist = dist_mm;
+        system_data.updated = true;
+        chMtxUnlock(&sysMtx);
         chThdSleepMilliseconds(100);
     }
 }
@@ -245,6 +249,10 @@ static THD_FUNCTION(urf_handler, arg) {
         chBSemWait(&urf_isrSem);
 
         urf_dist = range_finder_loop_fn(URF_ECHO_PIN);
+        chMtxLock(&sysMtx);
+        system_data.sensors.right_URF = urf_dist;
+        system_data.updated = true;
+        chMtxUnlock(&sysMtx);
 
     }
 }
@@ -486,7 +494,7 @@ void speed_ISR_Fcn() {
  * This thread calls wheel_speed_loop_fn() which is the primary function for the
  * Hall sensor and whose implementation is found in wheel_speed.cpp.
  */
-static THD_WORKING_AREA(wheel_speed_wa, 64);
+static THD_WORKING_AREA(wheel_speed_wa, 512);
 
 static THD_FUNCTION(wheel_speed_thread, arg) {
    int16_t wheel_speed;
@@ -495,8 +503,9 @@ static THD_FUNCTION(wheel_speed_thread, arg) {
 
       chBSemWait(&speed_isrSem);
       //Serial.println("wheel");
-      wheel_speed = wheel_speed_loop_fn(7);
-
+      wheel_speed = wheel_speed_loop_fn(HALL_PHASE_B_PIN);
+      //Serial.print("Wheel Speed = ");
+      //Serial.println(wheel_speed);
       chMtxLock(&sysMtx);
       system_data.sensors.wheel_speed = wheel_speed;
       chMtxUnlock(&sysMtx);
@@ -591,7 +600,7 @@ void setup() {
    // Setup the steering servo
    steer_servo_setup(STEER_SERVO_PIN);
    // Setup the wheel speed sensors
-   wheel_speed_setup();
+   wheel_speed_setup(HALL_PHASE_A_PIN, HALL_PHASE_B_PIN);
    // chBegin() resets stacks and should never return.
    chBegin(chSetup);
 

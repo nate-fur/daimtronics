@@ -4,6 +4,6 @@
 #include <stdint.h>
 int16_t wheel_speed_loop_fn(short PhaseB_pin);
 
-void wheel_speed_setup();
+void wheel_speed_setup(short PhaseA_pin, short PhaseB_pin);
 
 #endif

@@ -131,6 +131,5 @@ int16_t RC_receiver_SW3_fn(short PWM_PIN) {
 
 void RC_receiver_setup() {
 
-
 }
 
