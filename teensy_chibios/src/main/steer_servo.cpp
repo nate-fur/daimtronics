@@ -8,6 +8,8 @@
 
 #define STRAIGHT 90
 #define DEBUG
+#define MIN_ANGLE 1400
+#define MAX_ANGLE 1800
 
 /**
  * This is a Servo object to control the steering servo. It relies on code from
@@ -38,7 +40,7 @@ void steer_servo_loop_fn(int16_t steer_output) {
 }
 
 void steer_servo_setup(short servo_pin) {
-   steer_servo.attach(servo_pin);
+   steer_servo.attach(servo_pin, MIN_ANGLE, MAX_ANGLE);
    // delay(15);
    steer_servo.write(STRAIGHT);
 
