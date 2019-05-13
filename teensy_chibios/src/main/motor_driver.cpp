@@ -14,6 +14,9 @@
 #define MAX_TIME_STEP 500 // in millis
 #define WHEEL_SPEED_RANGE 1000 // max error from wheel speed
 #define MOTOR_RANGE 180 // max error from wheel speed
+#define FULL_REVERSE 1200 // Time in microseconds of pulse width corresponding to full reverse
+#define FULL_FORWARD 1660 // Time in microseconds of pulse width corresponding to full forward
+//#define DEBUG
 
 /**
  * This is a Servo object to control the steering servo. It relies on code from
@@ -46,7 +49,7 @@ void motor_driver_loop_fn(int16_t motor_output) {
 }
 
 void motor_driver_setup(short motor_pin) {
-   motor.attach(motor_pin);
+   motor.attach(motor_pin, FULL_REVERSE, FULL_FORWARD);
    // delay(15);
    motor.write(MOTOR_STOP);
 }

@@ -7,9 +7,9 @@
 #include <Servo.h>
 
 #define STRAIGHT 90
-#define DEBUG
-#define MIN_ANGLE 1400
-#define MAX_ANGLE 1800
+//#define DEBUG
+#define MIN_ANGLE 1400 // Time in microseconds of pulse width corresponding to minimum angle
+#define MAX_ANGLE 1800 // Time in microseconds of pulse width corresponding to maximum angle
 
 /**
  * This is a Servo object to control the steering servo. It relies on code from
