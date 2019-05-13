@@ -1,5 +1,5 @@
 /**
- * @file This file holds the main loop that that runs on the Teensy. It
+ * @file This file holds the main loop that runs on the Teensy. It
  * creates a ChibiOS thread for each task in the system and assigns
  * priorities and stack sizes. Within the while loop for each thread, the
  * "primary" function for a task is called. The project is organized so that
@@ -43,6 +43,7 @@
 #define RC_SW3_PIN 28
 #define HALL_PHASE_A_PIN 20
 #define HALL_PHASE_B_PIN 21
+#define HALL_PHASE_C_PIN 22
 
 /**
  * @brief The data for the entire system. Synchronization will be achieved
@@ -68,7 +69,7 @@ MUTEX_DECL(sysMtx);
 static THD_WORKING_AREA(heartbeat_wa, 64);
 
 static THD_FUNCTION(heartbeat_thread, arg) {
-   (void)arg;
+
    pinMode(LED_BUILTIN, OUTPUT);
    while (true) {
       digitalWrite(LED_BUILTIN, HIGH);
@@ -257,52 +258,27 @@ static THD_FUNCTION(urf_handler, arg) {
     }
 }
 
+
 /**
- * @brief RC Receiver Thread: Reads auxiliary signals from the RC receiver
- * for determining what drive mode the semi-truck is in.
- *
- * This thread calls RC_receiver_loop_fn which is the primary function for
- * the RC receiver and whose implementation is found in RC_receiver.cpp
+ * @brief RC Receiver Switch 1 Interrupt Handler: Runs preemptive Chibios Interrupt
+ * code and awakens the RC receiver Switch 1 thread.
  */
-static THD_WORKING_AREA(RC_receiver_wa, 64);
+static thread_reference_t rc_sw1_isr_trp = NULL;
 
-static THD_FUNCTION(RC_receiver_thread, arg) {
-   //int16_t drive_mode;
-
-   while (true) {
-      //Serial.println("rc");
-      //drive_mode = RC_receiver_loop_fn();
-
-      //chMtxLock(&sysMtx);
-      //system_data.drive_mode = drive_mode;
-      //chMtxUnlock(&sysMtx);
-
-      chThdSleepMilliseconds(100);
-   }
-}
-
-BSEMAPHORE_DECL(rc_sw1_isrSem, true);
-
-void RC_SW1_ISR_Fcn() {
+CH_IRQ_HANDLER(RC_SW1_ISR_Fcn){
     CH_IRQ_PROLOGUE();
-    // IRQ handling code, preemptable if the architecture supports it.
 
+    /* Wakes up the thread.*/
     chSysLockFromISR();
-    // Invocation of some I-Class system APIs, never preemptable.
-
-    // Signal handler task.
-    chBSemSignalI(&rc_sw1_isrSem);
+    chThdResumeI(&rc_sw1_isr_trp, (msg_t)0x1337);  /* Resuming the thread */
     chSysUnlockFromISR();
 
-    // More IRQ handling code, again preemptable.
-
-    // Perform rescheduling if required.
     CH_IRQ_EPILOGUE();
 }
 
 /**
  * @brief RC Receiver Switch 1 Thread: Reads auxiliary signals from the RC receiver switch 1
- * for determining if the deadman switch is pressed
+ * for determining if the deadman switch is pressed.
  *
  * This thread calls RC_receiver_SW1_fn which is the primary function for
  * the RC receiver switch 1 and whose implementation is found in RC_receiver.cpp
@@ -310,11 +286,13 @@ void RC_SW1_ISR_Fcn() {
 static THD_WORKING_AREA(rc_sw1_isr_wa_thd, 64);
 
 static THD_FUNCTION(rc_sw1_handler, arg) {
-    (void)arg;
+
     int16_t deadman_mode;
     while (true) {
-        // wait for event
-        chBSemWait(&rc_sw1_isrSem);
+
+        chSysLock();
+        chThdSuspendS(&rc_sw1_isr_trp); // wait for resume thread message
+        chSysUnlock();
 
         deadman_mode = RC_receiver_SW1_fn(RC_SW1_PIN);
 
@@ -327,24 +305,23 @@ static THD_FUNCTION(rc_sw1_handler, arg) {
 }
 
 
-BSEMAPHORE_DECL(rc_sw2_isrSem, true);
+/**
+ * @brief RC Receiver Switch 2 Interrupt Handler: Runs preemptive Chibios Interrupt
+ * code and awakens the RC receiver Switch 2 thread.
+ */
+static thread_reference_t rc_sw2_isr_trp = NULL;
 
-void RC_SW2_ISR_Fcn() {
+CH_IRQ_HANDLER(RC_SW2_ISR_Fcn){
     CH_IRQ_PROLOGUE();
-    // IRQ handling code, preemptable if the architecture supports it.
 
+    /* Wakes up the thread.*/
     chSysLockFromISR();
-    // Invocation of some I-Class system APIs, never preemptable.
-
-    // Signal handler task.
-    chBSemSignalI(&rc_sw2_isrSem);
+    chThdResumeI(&rc_sw2_isr_trp, (msg_t)0x1337);  /* Resuming the thread */
     chSysUnlockFromISR();
 
-    // More IRQ handling code, again preemptable.
-
-    // Perform rescheduling if required.
     CH_IRQ_EPILOGUE();
 }
+
 
 /**
  * @brief RC Receiver Switch 2 Thread: Reads auxiliary signals from the RC receiver switch 2
@@ -356,11 +333,13 @@ void RC_SW2_ISR_Fcn() {
 static THD_WORKING_AREA(rc_sw2_isr_wa_thd, 64);
 
 static THD_FUNCTION(rc_sw2_handler, arg) {
-    (void)arg;
+
     int16_t drive_mode;
     while (true) {
-        // wait for event
-        chBSemWait(&rc_sw2_isrSem);
+
+        chSysLock();
+        chThdSuspendS(&rc_sw2_isr_trp); // wait for resume thread message
+        chSysUnlock();
 
         drive_mode = RC_receiver_SW2_fn(RC_SW2_PIN);
 
@@ -373,24 +352,23 @@ static THD_FUNCTION(rc_sw2_handler, arg) {
 }
 
 
-BSEMAPHORE_DECL(rc_sw3_isrSem, true);
+/**
+ * @brief RC Receiver Switch 3 Interrupt Handler: Runs preemptive Chibios Interrupt
+ * code and awakens the RC receiver Switch 3 thread.
+ */
+static thread_reference_t rc_sw3_isr_trp = NULL;
 
-void RC_SW3_ISR_Fcn() {
+CH_IRQ_HANDLER(RC_SW3_ISR_Fcn){
     CH_IRQ_PROLOGUE();
-    // IRQ handling code, preemptable if the architecture supports it.
 
+    /* Wakes up the thread.*/
     chSysLockFromISR();
-    // Invocation of some I-Class system APIs, never preemptable.
-
-    // Signal handler task.
-    chBSemSignalI(&rc_sw3_isrSem);
+    chThdResumeI(&rc_sw3_isr_trp, (msg_t)0x1337);  /* Resuming the thread */
     chSysUnlockFromISR();
 
-    // More IRQ handling code, again preemptable.
-
-    // Perform rescheduling if required.
     CH_IRQ_EPILOGUE();
 }
+
 
 /**
  * @brief RC Receiver Swicth 3 Thread: Reads auxiliary signals from the RC receiver switch 3
@@ -402,11 +380,13 @@ void RC_SW3_ISR_Fcn() {
 static THD_WORKING_AREA(rc_sw3_isr_wa_thd, 64);
 
 static THD_FUNCTION(rc_sw3_handler, arg) {
-    (void)arg;
+
     int16_t drive_mode;
     while (true) {
-        // wait for event
-        chBSemWait(&rc_sw3_isrSem);
+
+        chSysLock();
+        chThdSuspendS(&rc_sw3_isr_trp); // wait for resume thread message
+        chSysUnlock();
 
         drive_mode = RC_receiver_SW3_fn(RC_SW3_PIN);
 
@@ -494,7 +474,7 @@ void speed_ISR_Fcn() {
  * This thread calls wheel_speed_loop_fn() which is the primary function for the
  * Hall sensor and whose implementation is found in wheel_speed.cpp.
  */
-static THD_WORKING_AREA(wheel_speed_wa, 512);
+static THD_WORKING_AREA(wheel_speed_wa, 5120);
 
 static THD_FUNCTION(wheel_speed_thread, arg) {
    int16_t wheel_speed;
@@ -503,7 +483,7 @@ static THD_FUNCTION(wheel_speed_thread, arg) {
 
       chBSemWait(&speed_isrSem);
       //Serial.println("wheel");
-      wheel_speed = wheel_speed_loop_fn(HALL_PHASE_B_PIN);
+      wheel_speed = wheel_speed_loop_fn(HALL_PHASE_B_PIN, HALL_PHASE_C_PIN);
       //Serial.print("Wheel Speed = ");
       //Serial.println(wheel_speed);
       chMtxLock(&sysMtx);
@@ -539,9 +519,6 @@ void chSetup() {
 
    chThdCreateStatic(range_finder_wa, sizeof(range_finder_wa),
    NORMALPRIO, range_finder_thread, NULL);
-
-   chThdCreateStatic(RC_receiver_wa, sizeof(RC_receiver_wa),
-   NORMALPRIO, RC_receiver_thread, NULL);
 
    chThdCreateStatic(steer_servo_wa, sizeof(steer_servo_wa),
    NORMALPRIO, steer_servo_thread, NULL);
@@ -600,7 +577,7 @@ void setup() {
    // Setup the steering servo
    steer_servo_setup(STEER_SERVO_PIN);
    // Setup the wheel speed sensors
-   wheel_speed_setup(HALL_PHASE_A_PIN, HALL_PHASE_B_PIN);
+   wheel_speed_setup(HALL_PHASE_A_PIN, HALL_PHASE_B_PIN, HALL_PHASE_C_PIN);
    // chBegin() resets stacks and should never return.
    chBegin(chSetup);
 
@@ -612,7 +589,3 @@ void setup() {
 // loop() is the main thread.  Not used in this example.
 void loop() {
 }
-
-
-
-//ISR FUNCTION CODE

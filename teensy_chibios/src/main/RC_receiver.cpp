@@ -5,9 +5,11 @@
 #include <Arduino.h>
 #include "include/RC_receiver.h"
 
+#define DEBUG
+
 float SW1_high_time = 0;
 volatile unsigned long SW1_time = 0;
-
+short SW1_mode = 0;
 /**
  * @brief This is the primary function reading Switch 1 on the receiver. It reads a
  * PWM signal that the RC receiver receives from the RC controller. Based on the
@@ -18,39 +20,33 @@ volatile unsigned long SW1_time = 0;
  */
 int16_t RC_receiver_SW1_fn(short PWM_PIN) {
 
-    short mode;
     short val = digitalRead(PWM_PIN);
 
     if(val==HIGH){
         SW1_time = micros();
-        //Serial.print("SW1_time =");
-        //Serial.print(SW1_time);
     } else if(val==LOW){
         volatile unsigned long f_time = micros();
-        //Serial.print(" SW1_f_time = ");
-        //Serial.print(f_time);
         SW1_high_time = (float)(f_time - SW1_time)/1000;
-        //Serial.print(" SW1_high_time = ");
-        //Serial.print(SW1_high_time);
     }
     if (SW1_high_time >= 1.35 && SW1_high_time <= 1.45){
-        mode = 1;
+        SW1_mode = 1;
     }
     else if(SW1_high_time >= 1.05 && SW1_high_time <= 1.15){
-        mode = 2;
+        SW1_mode = 2;
     }
     else{
-        mode = 0;
+        //mode remains unchanged if high time does not fall in region
     }
-//#ifdef DEBUG
+#ifdef DEBUG
     Serial.print("SW1 mode = ");
-    Serial.println(mode);
-//#endif
-    return mode;
+    Serial.println(SW1_mode);
+#endif
+    return SW1_mode;
 }
 
 float SW2_high_time = 0;
 volatile unsigned long SW2_time = 0;
+short SW2_mode = 0;
 /**
  * @brief This is the primary function controlling the RC receiver. It reads a
  * PWM signal that the RC receiver receives from the RC controller. Based on
@@ -61,7 +57,6 @@ volatile unsigned long SW2_time = 0;
  */
 int16_t RC_receiver_SW2_fn(short PWM_PIN) {
 
-    short mode;
     short val = digitalRead(PWM_PIN);
 
     if(val==HIGH){
@@ -72,24 +67,25 @@ int16_t RC_receiver_SW2_fn(short PWM_PIN) {
         SW2_high_time = (float)(f_time - SW2_time)/1000;
     }
     if (SW2_high_time >= 1.45 && SW2_high_time <= 1.55){
-        mode = 1;
+        SW2_mode = 1;
     }
     else if(SW2_high_time >= 1.05 && SW2_high_time <= 1.15){
-        mode = 2;
+        SW2_mode = 2;
     }
     else{
-        mode = 0;
+        //mode remains unchanged if high time does not fall in region
     }
 #ifdef DEBUG
     Serial.print("SW2 mode = ");
-    Serial.println(mode);
+    Serial.println(SW2_mode);
 #endif
-    return mode;
+    return SW2_mode;
 }
 
 
 float SW3_high_time = 0;
 volatile unsigned long SW3_time = 0;
+short SW3_mode = 0;
 /**
  * @brief This is the primary function controlling the RC receiver. It reads a
  * PWM signal that the RC receiver receives from the RC controller. Based on
@@ -100,7 +96,6 @@ volatile unsigned long SW3_time = 0;
  */
 int16_t RC_receiver_SW3_fn(short PWM_PIN) {
 
-    short mode;
     short val = digitalRead(PWM_PIN);
 
     if(val==HIGH){
@@ -111,22 +106,23 @@ int16_t RC_receiver_SW3_fn(short PWM_PIN) {
         SW3_high_time = (float)(f_time - SW3_time)/1000;
     }
     if (SW3_high_time >= 1.45 && SW3_high_time <= 1.55){
-        mode = 1;
+        SW3_mode = 1;
     }
     else if(SW3_high_time >= 1.85 && SW3_high_time <= 1.95){
-        mode = 2;
+        SW3_mode = 2;
     }
     else if(SW3_high_time >= 1.05 && SW3_high_time <= 1.15){
-        mode = 3;
+        SW3_mode = 3;
     }
     else{
-        mode = 0;
+        //mode remains unchanged if high time does not fall in region
     }
 #ifdef DEBUG
     Serial.print("SW3 mode = ");
-    Serial.println(mode);
+    Serial.println(SW3_mode);
 #endif
-    return mode;
+
+    return SW3_mode;
 }
 
 void RC_receiver_setup() {
