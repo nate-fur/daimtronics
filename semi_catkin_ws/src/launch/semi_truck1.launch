@@ -2,6 +2,6 @@
 
     <node pkg="semi_truck" type="pi_comm_node" name="pi_comm_node" output="screen"/>
 
-    <node pkg="myroscomm" type="myroscomm_node" name="myroscomm_node" output="screen"/>
+    <node pkg="myroscomm6_11" type="myroscomm6_11_node" name="myroscomm1_node" output="screen"/>
 
 </launch>

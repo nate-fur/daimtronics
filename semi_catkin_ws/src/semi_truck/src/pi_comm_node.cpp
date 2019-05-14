@@ -46,7 +46,7 @@ int main(int argc, char **argv) {
    ros::Subscriber subscriber = nh.subscribe("teensy_actuator_data", 1,
     actuator_cb);
 
-   ros::Rate loop_rate(LOOP_FREQUENCY);
+   ros::WallRate loop_rate(LOOP_FREQUENCY);
    while (ros::ok()) {
       //ROS_INFO("new loop!");
 
@@ -94,7 +94,7 @@ void read_from_teensy(int serial, semi_truck::Teensy_Sensors &sensors) {
    sensors.right_URF = read_sensor_msg(serial, SHORT_SIZE);
    sensors.left_URF = read_sensor_msg(serial, SHORT_SIZE);
    sensors.rear_URF = read_sensor_msg(serial, SHORT_SIZE);
-   print_sensors(sensors);
+   //print_sensors(sensors);
    #endif
 }
 

@@ -9,7 +9,7 @@ typedef struct sensor_data_t {
    int32_t wheel_speed;
    int16_t right_URF;
    int16_t left_URF;
-   int16_t rear_URF;
+   int16_t tof_dist;
 } sensor_data_t;
 
 
