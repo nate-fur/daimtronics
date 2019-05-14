@@ -11,7 +11,7 @@ Adafruit_BNO055 bno = Adafruit_BNO055(55);
  *
  * The Adafruit_BNO055 library does most of the work here. This function
  * simply sets up a sets up an "event" variable to hold the IMU data, calls
- * @return a short representing the heading angle in degrees
+ * @return an integer representing the heading angle in degrees
  */
 int16_t imu_loop_fn() {
    /* Get a new sensor event */

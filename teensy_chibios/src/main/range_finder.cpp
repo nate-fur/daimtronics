@@ -16,9 +16,9 @@ unsigned long time = 0;
  *
  * @return distance to object
  */
-long range_finder_loop_fn() {
+long range_finder_loop_fn(short urf_echo_pin) {
 
-    val = digitalRead(24);
+    val = digitalRead(urf_echo_pin);
 
     if(val==HIGH){
         time = micros();
@@ -35,16 +35,16 @@ long range_finder_loop_fn() {
     return 0; // placeholder for compilation
 }
 
-void range_finder_ping(){
+void range_finder_ping(short urf_trig_pin){
 
-    digitalWrite(27, HIGH);
+    digitalWrite(urf_trig_pin, HIGH);
     delayMicroseconds(10);
-    digitalWrite(27, LOW);
+    digitalWrite(urf_trig_pin, LOW);
 
 }
 
-void range_finder_setup() {
-    pinMode(27, OUTPUT);
-    digitalWrite(27,LOW);
+void range_finder_setup(short urf_trig_pin) {
+    pinMode(urf_trig_pin, OUTPUT);
+    digitalWrite(urf_trig_pin,LOW);
 
 }

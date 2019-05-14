@@ -12,6 +12,6 @@
 
 void fifth_wheel_loop_fn(int16_t fifth_output);
 
-void fifth_wheel_setup();
+void fifth_wheel_setup(short fifth_wheel_pin);
 
 #endif //FIFTH_WHEEL_H

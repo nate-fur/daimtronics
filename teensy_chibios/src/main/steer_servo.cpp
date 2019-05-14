@@ -6,9 +6,10 @@
 #include <Arduino.h>
 #include <Servo.h>
 
-#define STEER_SERVO_PIN 13
 #define STRAIGHT 90
-#define DEBUG
+//#define DEBUG
+#define MIN_ANGLE 1400 // Time in microseconds of pulse width corresponding to minimum angle
+#define MAX_ANGLE 1800 // Time in microseconds of pulse width corresponding to maximum angle
 
 /**
  * This is a Servo object to control the steering servo. It relies on code from
@@ -38,8 +39,8 @@ void steer_servo_loop_fn(int16_t steer_output) {
    }
 }
 
-void steer_servo_setup() {
-   steer_servo.attach(STEER_SERVO_PIN);
+void steer_servo_setup(short servo_pin) {
+   steer_servo.attach(servo_pin, MIN_ANGLE, MAX_ANGLE);
    // delay(15);
    steer_servo.write(STRAIGHT);
 
