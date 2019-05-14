@@ -483,7 +483,7 @@ static THD_FUNCTION(wheel_speed_thread, arg) {
 
       chBSemWait(&speed_isrSem);
       //Serial.println("wheel");
-      wheel_speed = wheel_speed_loop_fn(HALL_PHASE_B_PIN, HALL_PHASE_C_PIN);
+      wheel_speed = wheel_speed_loop_fn(HALL_PHASE_B_PIN);
       //Serial.print("Wheel Speed = ");
       //Serial.println(wheel_speed);
       chMtxLock(&sysMtx);
@@ -577,7 +577,7 @@ void setup() {
    // Setup the steering servo
    steer_servo_setup(STEER_SERVO_PIN);
    // Setup the wheel speed sensors
-   wheel_speed_setup(HALL_PHASE_A_PIN, HALL_PHASE_B_PIN, HALL_PHASE_C_PIN);
+   wheel_speed_setup(HALL_PHASE_A_PIN, HALL_PHASE_B_PIN);
    // chBegin() resets stacks and should never return.
    chBegin(chSetup);
 

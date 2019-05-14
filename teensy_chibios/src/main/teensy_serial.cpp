@@ -73,7 +73,7 @@ void print_sensor_msg(sensor_data_t *sensors_ptr) {
    Serial.printf("Wheel speed: %i\t", sensors_ptr->wheel_speed);
    Serial.printf("Right URF: %i\t", sensors_ptr->right_URF);
    Serial.printf("Left URF: %i\t", sensors_ptr->left_URF);
-   Serial.printf("Rear URF: %i\n", sensors_ptr->rear_URF);
+   Serial.printf("Rear URF: %i\n", sensors_ptr->tof_dist);
 }
 
 

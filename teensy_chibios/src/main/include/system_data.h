@@ -5,11 +5,10 @@
 
 typedef struct sensor_data_t {
    int16_t imu_angle;
-   int16_t tof_dist;
    int16_t wheel_speed;
    int16_t right_URF;
    int16_t left_URF;
-   int16_t rear_URF;
+   int16_t tof_dist;
 } sensor_data_t;
 
 
