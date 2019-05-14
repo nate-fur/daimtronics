@@ -25,7 +25,7 @@ int16_t tof_loop_fn(){
         dist = measure.RangeMilliMeter;
         //Serial.print("Distance (mm): "); Serial.println(dist);
     } else {
-        dist = 0;
+        dist = dist;
         //Serial.println(" out of range ");
     }
     return dist;

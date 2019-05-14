@@ -283,7 +283,7 @@ CH_IRQ_HANDLER(RC_SW1_ISR_Fcn){
  * This thread calls RC_receiver_SW1_fn which is the primary function for
  * the RC receiver switch 1 and whose implementation is found in RC_receiver.cpp
  */
-static THD_WORKING_AREA(rc_sw1_isr_wa_thd, 64);
+static THD_WORKING_AREA(rc_sw1_isr_wa_thd, 128);
 
 static THD_FUNCTION(rc_sw1_handler, arg) {
 
@@ -330,7 +330,7 @@ CH_IRQ_HANDLER(RC_SW2_ISR_Fcn){
  * This thread calls RC_receiver_SW2_fn which is the primary function for
  * the RC receiver switch 2 and whose implementation is found in RC_receiver.cpp
  */
-static THD_WORKING_AREA(rc_sw2_isr_wa_thd, 64);
+static THD_WORKING_AREA(rc_sw2_isr_wa_thd, 128);
 
 static THD_FUNCTION(rc_sw2_handler, arg) {
 
@@ -377,7 +377,7 @@ CH_IRQ_HANDLER(RC_SW3_ISR_Fcn){
  * This thread calls RC_receiver_SW3_fn which is the primary function for
  * the RC receiver switch 3 and whose implementation is found in RC_receiver.cpp
  */
-static THD_WORKING_AREA(rc_sw3_isr_wa_thd, 64);
+static THD_WORKING_AREA(rc_sw3_isr_wa_thd, 128);
 
 static THD_FUNCTION(rc_sw3_handler, arg) {
 
