@@ -94,7 +94,8 @@ void read_from_teensy(int serial, semi_truck::Teensy_Sensors &sensors) {
    sensors.right_URF = read_sensor_msg(serial, SHORT_SIZE);
    sensors.left_URF = read_sensor_msg(serial, SHORT_SIZE);
    sensors.rear_URF = read_sensor_msg(serial, SHORT_SIZE);
-   //print_sensors(sensors);
+   //sensors.drive_mode_1 = read_sensor_msg(serial,SHORT_SIZE);
+   //sensors.drive_mode_2 = read_sensor_msg(serial,SHORT_SIZE);
    #endif
 }
 
@@ -132,6 +133,8 @@ void print_sensors(const semi_truck::Teensy_Sensors &sensors) {
    ROS_INFO("right_URF:\t [%i]", sensors.right_URF);
    ROS_INFO("left_URF:\t [%i]", sensors.left_URF);
    ROS_INFO("rear_URF:\t [%i]\n", sensors.rear_URF);
+   //ROS_INFO("drive_mode_1:\t [%i]\n", sensors.drive_mode_1);
+   //ROS_INFO("drive_mode_2:\t [%i]\n", sensors.drive_mode_2);
 }
 
 
