@@ -30,15 +30,15 @@
 
 // Definition of pins
 #define FIFTH_WHEEL_PIN 2
-#define MOTOR_PIN 4
-#define STEER_SERVO_PIN 6
+#define MOTOR_PIN 35
+#define STEER_SERVO_PIN 23
 #define IMU_SDA_PIN 18
 #define IMU_SCL_PIN 19
 #define TOF_LIDAR_SDA_PIN 18
 #define TOF_LIDAR_SCL_PIN 19
 #define URF_TRIG_PIN 24
 #define URF_ECHO_PIN 25
-#define RC_SW1_PIN 26
+#define RC_SW1_PIN 36
 #define RC_SW2_PIN 27
 #define RC_SW3_PIN 28
 #define HALL_PHASE_A_PIN 20
@@ -150,6 +150,7 @@ static THD_FUNCTION(motor_driver_thread, arg) {
    int16_t last_time = ST2MS(chVTGetSystemTime());
    int16_t current_time = last_time;
 
+   // TODO: fix how we switch between dead man and not deadman
    while (true) {
       //Serial.println("motor");
       motor_output = system_data.actuators.motor_output;
@@ -159,11 +160,12 @@ static THD_FUNCTION(motor_driver_thread, arg) {
       time_step = current_time - last_time;
 
       if (system_data.deadman) {
-         motor_driver_loop_fn(motor_output);
+         Serial.println("deadman pressed");
+         motor_driver_loop_fn(120);
       }
       else {
          motor_output = stop_motor(wheel_speed, time_step);
-         motor_driver_loop_fn(motor_output);
+         motor_driver_loop_fn(62);
       }
        
       last_time = current_time;
@@ -408,7 +410,8 @@ static THD_FUNCTION(rc_sw3_handler, arg) {
 static THD_WORKING_AREA(steer_servo_wa, 64);
 
 static THD_FUNCTION(steer_servo_thread, arg) {
-   int16_t steer_output;
+   int16_t steer_output = 180;
+   steer_servo_loop_fn(steer_output);
 
    while (true) {
 

@@ -4,6 +4,7 @@
  * @brief A global variable that sets up the sensor to be used here
  */
 Adafruit_VL53L0X lox = Adafruit_VL53L0X();
+static bool initialized = false;
 
 
 /**
@@ -19,16 +20,22 @@ int16_t tof_loop_fn(){
     VL53L0X_RangingMeasurementData_t measure;
     int16_t dist;
 
-    //Serial.print("Reading a measurement... ");
-    lox.rangingTest(&measure, false); // pass in 'true' to get debug data printout!
-    if (measure.RangeStatus != 4) {  // phase failures have incorrect data
-        dist = measure.RangeMilliMeter;
-        //Serial.print("Distance (mm): "); Serial.println(dist);
-    } else {
-        dist = dist;
-        //Serial.println(" out of range ");
+    if (initialized) {
+        //Serial.print("Reading a measurement... ");
+        lox.rangingTest(&measure,
+                        false); // pass in 'true' to get debug data printout!
+        if (measure.RangeStatus != 4) {  // phase failures have incorrect data
+            dist = measure.RangeMilliMeter;
+            //Serial.print("Distance (mm): "); Serial.println(dist);
+        } else {
+            dist = dist;
+            //Serial.println(" out of range ");
+        }
+        return dist;
     }
-    return dist;
+    else {
+        return 0;
+    }
 }
 
 
@@ -42,5 +49,8 @@ void tof_lidar_setup() {
     if (!lox.begin()) {
         Serial.println(F("Failed to boot VL53L0X"));
         //while(1);
+    }
+    else {
+        initialized = true;
     }
 }
