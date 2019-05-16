@@ -16,7 +16,7 @@ int32_t speed;
  *
  * @return the speed that the wheel speed sensor is detecting
  */
-int32_t wheel_speed_loop_fn(short PhaseB_pin, short PhaseC_pin) {
+int16_t wheel_speed_loop_fn(short PhaseB_pin, short PhaseC_pin) {
    unsigned long time = micros();
    uint32_t t_time = time-prev_time;
    //Serial.println("Times = ");

@@ -8,6 +8,8 @@
 
 #define WHEEL_SPEED_STOP 0 // wheel speed of 0 is no velocity
 #define MOTOR_STOP 90 // motor output of 90 is no torque
+#define FORWARDS 120 // motor output of 90 is no torque
+#define INIT_VALUE 68// this output is the same as the receiver outputs idly
 #define KP 1
 #define KI 0.05f
 #define SAT_ERROR 1000 // max error sum that can accumulate for integral control
@@ -39,19 +41,30 @@ void motor_driver_loop_fn(int16_t motor_output) {
    Serial.print("outputting to motor: ");
    Serial.println(motor_output);
 #endif
-
+   Serial.print("motor output: ");
+   Serial.println(INIT_VALUE);
    if (motor_output > 180 || motor_output < 0) {
-      motor.write(MOTOR_STOP);
-   }
-   else if (motor_output != motor.read()) {
+      Serial.print("outputting to motor: ");
+      Serial.println(motor_output);
       motor.write(motor_output);
    }
+   else /*if (motor_output != motor.read()) */ {
+      Serial.print("outputting to motor: ");
+      Serial.println(motor_output);
+      //motor.write(motor_output);
+      motor.write(motor_output);
+   }
+   /*
+   else {
+      Serial.print("what ");
+   }
+    */
 }
 
 void motor_driver_setup(short motor_pin) {
    motor.attach(motor_pin, FULL_REVERSE, FULL_FORWARD);
    // delay(15);
-   motor.write(MOTOR_STOP);
+   motor.write(INIT_VALUE);
 }
 
 /**
@@ -76,6 +89,7 @@ int16_t stop_motor(int16_t wheel_speed, int16_t time_step) {
    motor_output = (((KP * error) + (KI * error_sum)) * (MOTOR_RANGE /
     error_range)) + MOTOR_STOP;
 
-   return motor_output;
+   //return motor_output;
+   return INIT_VALUE;
 }
 
