@@ -160,8 +160,9 @@ static THD_FUNCTION(motor_driver_thread, arg) {
       time_step = current_time - last_time;
 
       if (system_data.deadman) {
-         Serial.println("deadman pressed");
-         motor_driver_loop_fn(120);
+         Serial.print("outputting to motor:   ");
+         Serial.println(motor_output);
+         motor_driver_loop_fn(motor_output);
       }
       else {
          motor_output = stop_motor(wheel_speed, time_step);
@@ -445,7 +446,7 @@ static THD_FUNCTION(teensy_serial_thread, arg) {
       teensy_serial_loop_fn(&system_data);
       chMtxUnlock(&sysMtx);
 
-      chThdSleepMilliseconds(20);
+      chThdSleepMilliseconds(100);
    }
 }
 
