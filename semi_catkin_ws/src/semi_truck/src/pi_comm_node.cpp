@@ -88,14 +88,13 @@ short read_sensor_msg(int serial, char num_bytes) {
 void read_from_teensy(int serial, semi_truck::Teensy_Sensors &sensors) {
    short sensor_msg;
 
-   #ifdef DEBUG
    sensors.imu_angle = read_sensor_msg(serial, SHORT_SIZE);
    sensors.wheel_speed = read_sensor_msg(serial, SHORT_SIZE);
-   sensors.right_URF = read_sensor_msg(serial, SHORT_SIZE);
-   sensors.left_URF = read_sensor_msg(serial, SHORT_SIZE);
-   sensors.rear_URF = read_sensor_msg(serial, SHORT_SIZE);
-   //print_sensors(sensors);
-   #endif
+   sensors.right_TOF = read_sensor_msg(serial, SHORT_SIZE);
+   sensors.left_TOF = read_sensor_msg(serial, SHORT_SIZE);
+   sensors.rear_TOF = read_sensor_msg(serial, SHORT_SIZE);
+   sensors.drive_mode_1 = read_sensor_msg(serial,SHORT_SIZE);
+   sensors.drive_mode_2 = read_sensor_msg(serial,SHORT_SIZE);
 }
 
 
@@ -121,17 +120,19 @@ void write_to_teensy(int serial, const semi_truck::Teensy_Actuators &actuators) 
 void update_sensors(semi_truck::Teensy_Sensors &sensors) {
    sensors.wheel_speed += 48;
    sensors.imu_angle += 48;
-   sensors.right_URF += 48;
-   sensors.left_URF += 48;
+   sensors.right_TOF += 48;
+   sensors.left_TOF += 48;
 }
 
 
 void print_sensors(const semi_truck::Teensy_Sensors &sensors) {
    ROS_INFO("imu angle:\t [%i]", sensors.imu_angle);
    ROS_INFO("wheel speed:\t [%i]", sensors.wheel_speed);
-   ROS_INFO("right_URF:\t [%i]", sensors.right_URF);
-   ROS_INFO("left_URF:\t [%i]", sensors.left_URF);
-   ROS_INFO("rear_URF:\t [%i]\n", sensors.rear_URF);
+   ROS_INFO("right_TOF:\t [%i]", sensors.right_TOF);
+   ROS_INFO("left_TOF:\t [%i]", sensors.left_TOF);
+   ROS_INFO("rear_TOF:\t [%i]\n", sensors.rear_TOF);
+   ROS_INFO("drive_mode_1:\t [%i]\n", sensors.drive_mode_1);
+   ROS_INFO("drive_mode_2:\t [%i]\n", sensors.drive_mode_2);
 }
 
 

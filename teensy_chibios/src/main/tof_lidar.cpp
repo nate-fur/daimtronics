@@ -2,9 +2,12 @@
 
 #define TCAADDR 0x70
 
+static bool initialized = false;
+
 /**
  * @brief A global variable that sets up the sensors to be used here
  */
+
 Adafruit_VL53L0X sensor1 = Adafruit_VL53L0X();
 Adafruit_VL53L0X sensor2 = Adafruit_VL53L0X();
 Adafruit_VL53L0X sensor3 = Adafruit_VL53L0X();
@@ -29,7 +32,6 @@ int16_t tof_loop_fn(){
 
     VL53L0X_RangingMeasurementData_t measure;
     int16_t dist;
-    tcaselect(0);   //Select the First Sensor from the multiplexer
     //Serial.print("Reading a measurement... ");
     sensor1.rangingTest(&measure, false); // pass in 'true' to get debug data printout!
     if (measure.RangeStatus != 4) {  // phase failures have incorrect data
@@ -39,7 +41,24 @@ int16_t tof_loop_fn(){
         dist = dist;
         //Serial.println(" out of range ");
     }
-    return dist;
+
+    if (initialized) {
+        //Serial.print("Reading a measurement... ");
+        sensor1.rangingTest(&measure,
+                        false); // pass in 'true' to get debug data printout!
+        if (measure.RangeStatus != 4) {  // phase failures have incorrect data
+            dist = measure.RangeMilliMeter;
+            //Serial.print("Distance (mm): "); Serial.println(dist);
+        } else {
+            dist = dist;
+            //Serial.println(" out of range ");
+        }
+        return dist;
+    }
+    else {
+        return 0;
+
+    }
 }
 
 /**
@@ -48,7 +67,7 @@ int16_t tof_loop_fn(){
  */
 void tof_lidar_setup() {
     Serial.println("Adafruit VL53L0X 1 test");
-    Wire3.begin();
+    Wire.begin();
     tcaselect(0);
 
     if (!sensor1.begin()) {
@@ -64,5 +83,8 @@ void tof_lidar_setup() {
     if (!sensor3.begin()) {
         Serial.println(F("Failed to boot VL53L0X"));
         //while(1);
+    }
+    else {
+        initialized = true;
     }
 }

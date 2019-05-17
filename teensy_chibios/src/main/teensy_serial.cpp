@@ -24,6 +24,8 @@ void teensy_serial_loop_fn(system_data_t *system_data) {
          print_sensor_msg(&system_data->sensors);
          //Serial.printf("sending bytes: %i\n", sizeof(sensor_data_t));
          HWSERIAL.write((char*)&(system_data->sensors), sizeof(sensor_data_t));
+         HWSERIAL.write((char*)&(system_data->drive_mode_1), sizeof(int16_t));
+         HWSERIAL.write((char*)&(system_data->drive_mode_2), sizeof(int16_t));
          system_data->updated = false;
       }
    }
@@ -48,14 +50,6 @@ void teensy_serial_setup(){
 }
 
 
-void set_sensor_msg(int user_input, sensor_data_t *data_ptr) {
-   data_ptr->wheel_speed = user_input;
-   data_ptr->imu_angle= user_input+1;
-   data_ptr->right_URF = user_input+2;
-   data_ptr->left_URF = user_input+3;
-}
-
-
 void read_from_pi(actuator_data_t *actuators_ptr) {
    byte data_buffer[SHORT_SIZE];
 
@@ -65,15 +59,17 @@ void read_from_pi(actuator_data_t *actuators_ptr) {
    actuators_ptr->steer_output = *((int16_t*)data_buffer);
    HWSERIAL.readBytes(data_buffer, SHORT_SIZE);
    actuators_ptr->fifth_output = *((int16_t*)data_buffer);
+
+   print_actuator_msg(actuators_ptr);
 }
 
 
 void print_sensor_msg(sensor_data_t *sensors_ptr) {
    Serial.printf("IMU angle: %i\t", sensors_ptr->imu_angle);
    Serial.printf("Wheel speed: %i\t", sensors_ptr->wheel_speed);
-   Serial.printf("Right URF: %i\t", sensors_ptr->right_URF);
-   Serial.printf("Left URF: %i\t", sensors_ptr->left_URF);
-   Serial.printf("Rear URF: %i\n", sensors_ptr->tof_dist);
+   Serial.printf("Right TOF: %i\t", sensors_ptr->right_TOF);
+   Serial.printf("Left TOF: %i\t", sensors_ptr->left_TOF);
+   Serial.printf("Rear TOF: %i\n", sensors_ptr->rear_TOF);
 }
 
 

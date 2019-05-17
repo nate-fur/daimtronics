@@ -31,15 +31,15 @@
 
 // Definition of pins
 #define FIFTH_WHEEL_PIN 2
-#define MOTOR_PIN 4
-#define STEER_SERVO_PIN 6
+#define MOTOR_PIN 35
+#define STEER_SERVO_PIN 23
 #define IMU_SDA_PIN 18
 #define IMU_SCL_PIN 19
 #define TOF_LIDAR_SDA_PIN 18
 #define TOF_LIDAR_SCL_PIN 19
 #define URF_TRIG_PIN 24
 #define URF_ECHO_PIN 25
-#define RC_SW1_PIN 26
+#define RC_SW1_PIN 36
 #define RC_SW2_PIN 27
 #define RC_SW3_PIN 28
 #define HALL_PHASE_A_PIN 20
@@ -130,7 +130,7 @@ static THD_FUNCTION(imu_thread, arg) {
       system_data.updated = true;
       chMtxUnlock(&sysMtx);
 
-      chThdSleepMilliseconds(500);
+      chThdSleepMilliseconds(100);
    }
 }
 
@@ -152,6 +152,7 @@ static THD_FUNCTION(motor_driver_thread, arg) {
    int16_t last_time = ST2MS(chVTGetSystemTime());
    int16_t current_time = last_time;
 
+   // TODO: fix how we switch between dead man and not deadman
    while (true) {
       //Serial.println("motor");
       motor_output = system_data.actuators.motor_output;
@@ -161,11 +162,13 @@ static THD_FUNCTION(motor_driver_thread, arg) {
       time_step = current_time - last_time;
 
       if (system_data.deadman) {
+         Serial.print("outputting to motor:   ");
+         Serial.println(motor_output);
          motor_driver_loop_fn(motor_output);
       }
       else {
          motor_output = stop_motor(wheel_speed, time_step);
-         motor_driver_loop_fn(motor_output);
+         motor_driver_loop_fn(62);
       }
        
       last_time = current_time;
@@ -190,7 +193,7 @@ static THD_FUNCTION(tof_lidar_thread, arg) {
         dist_mm = tof_loop_fn();
         //Serial.println("tof_Done");
         chMtxLock(&sysMtx);
-        system_data.sensors.tof_dist = dist_mm;
+        system_data.sensors.rear_TOF = dist_mm;
         system_data.updated = true;
         chMtxUnlock(&sysMtx);
         chThdSleepMilliseconds(100);
@@ -253,7 +256,7 @@ static THD_FUNCTION(urf_handler, arg) {
 
         urf_dist = range_finder_loop_fn(URF_ECHO_PIN);
         chMtxLock(&sysMtx);
-        system_data.sensors.right_URF = urf_dist;
+        system_data.sensors.right_TOF = urf_dist;
         system_data.updated = true;
         chMtxUnlock(&sysMtx);
 
@@ -410,7 +413,8 @@ static THD_FUNCTION(rc_sw3_handler, arg) {
 static THD_WORKING_AREA(steer_servo_wa, 64);
 
 static THD_FUNCTION(steer_servo_thread, arg) {
-   int16_t steer_output;
+   int16_t steer_output = 180;
+   steer_servo_loop_fn(steer_output);
 
    while (true) {
 
@@ -444,7 +448,7 @@ static THD_FUNCTION(teensy_serial_thread, arg) {
       teensy_serial_loop_fn(&system_data);
       chMtxUnlock(&sysMtx);
 
-      chThdSleepMilliseconds(20);
+      chThdSleepMilliseconds(100);
    }
 }
 
