@@ -94,7 +94,7 @@ void read_from_teensy(int serial, semi_truck::Teensy_Sensors &sensors) {
    sensors.right_URF = read_sensor_msg(serial, SHORT_SIZE);
    sensors.left_URF = read_sensor_msg(serial, SHORT_SIZE);
    sensors.rear_URF = read_sensor_msg(serial, SHORT_SIZE);
-   //print_sensors(sensors);
+   print_sensors(sensors);
    #endif
 }
 
