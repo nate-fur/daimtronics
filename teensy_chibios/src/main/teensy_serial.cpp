@@ -70,8 +70,6 @@ void print_sensor_msg(sensor_data_t *sensors_ptr) {
    Serial.printf("Right TOF: %i\t", sensors_ptr->right_TOF);
    Serial.printf("Left TOF: %i\t", sensors_ptr->left_TOF);
    Serial.printf("Rear TOF: %i\n", sensors_ptr->rear_TOF);
-   Serial.printf("Drive mode 1: %i\n", sensors_ptr->drive_mode_1);
-   Serial.printf("Drive mode 2: %i\n", sensors_ptr->drive_mode_2);
 }
 
 
