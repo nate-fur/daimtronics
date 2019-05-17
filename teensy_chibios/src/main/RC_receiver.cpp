@@ -5,7 +5,7 @@
 #include <Arduino.h>
 #include "include/RC_receiver.h"
 
-#define DEBUG
+//#define DEBUG
 
 float SW1_high_time = 0;
 volatile unsigned long SW1_time = 0;
@@ -29,10 +29,10 @@ int16_t RC_receiver_SW1_fn(short PWM_PIN) {
         SW1_high_time = (float)(f_time - SW1_time)/1000;
     }
     if (SW1_high_time >= 1.35 && SW1_high_time <= 1.45){
-        SW1_mode = 1;
+        SW1_mode = 0;
     }
     else if(SW1_high_time >= 1.05 && SW1_high_time <= 1.15){
-        SW1_mode = 2;
+        SW1_mode = 1;
     }
     else{
         //mode remains unchanged if high time does not fall in region

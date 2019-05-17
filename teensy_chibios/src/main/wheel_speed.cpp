@@ -4,8 +4,8 @@
 #include <Arduino.h>
 #include "include/wheel_speed.h"
 
-volatile unsigned long prev_time = 0;
-float speed;
+unsigned long prev_time = 0;
+int32_t speed;
 
 /**
  * This is the primary function controlling the wheel speed sensor. It reads an
@@ -16,32 +16,44 @@ float speed;
  *
  * @return the speed that the wheel speed sensor is detecting
  */
-int16_t wheel_speed_loop_fn(short PhaseB_pin) {
-
-   short phaseB_val = digitalRead(PhaseB_pin);
-   //Serial.print("VAL = ");
-   //Serial.println(phaseB_val);
+int16_t wheel_speed_loop_fn(short PhaseB_pin, short PhaseC_pin) {
    unsigned long time = micros();
-   if(phaseB_val==HIGH){
-       //Going Forward
-       volatile unsigned long t_time = time - prev_time;
-       speed = (1/(t_time*0.000001));
-       Serial.print("Wheel_Speed = ");
-       Serial.println(speed);
+   uint32_t t_time = time-prev_time;
+   //Serial.println("Times = ");
+   //Serial.println(prev_time);
+   //Serial.println(t_time);
+   //Serial.println(time);
+   bool phaseB_val = digitalRead(PhaseB_pin);
+   bool phaseC_val = digitalRead(PhaseC_pin);
+   Serial.print("phaseB_val = ");
+   Serial.println(phaseB_val);
+   Serial.print("phaseC_val = ");
+   Serial.println(phaseC_val);
 
-   } else if(phaseB_val==LOW){
+    if(phaseB_val){
+       //Going Forward
+       speed = t_time;//5000/t_time;
+       //Serial.print("Wheel_Speed = ");
+       //Serial.println(speed);
+
+   } else if(not(phaseB_val)){
        //Going Backward
-       volatile unsigned long t_time = time - prev_time;
-       speed = -(1/(t_time*0.000001));
-       Serial.print("Wheel_Speed_neg = ");
-       Serial.println(speed);
+       speed = -t_time;//-(5000/t_time);
+       //Serial.print("Wheel_Speed_neg = ");
+       //Serial.println(speed);
    }
-   //Serial.print(speed);
+   else {
+       speed = 0;
+   }
+   //Serial.print("Speed = ");
+   //Serial.println(speed);
+   prev_time = time;
    return speed; // placeholder for compilation
 }
 
-void wheel_speed_setup(short PhaseA_pin, short PhaseB_pin) {
+void wheel_speed_setup(short PhaseA_pin, short PhaseB_pin, short PhaseC_pin) {
     pinMode(PhaseA_pin, INPUT_PULLUP);
     pinMode(PhaseB_pin, INPUT_PULLUP);
-    delayMicroseconds(10);
+    pinMode(PhaseC_pin, INPUT_PULLUP);
+    delay(10);
 }
