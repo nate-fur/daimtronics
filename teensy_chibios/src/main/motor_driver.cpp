@@ -44,13 +44,9 @@ void motor_driver_loop_fn(int16_t motor_output) {
    Serial.print("motor output: ");
    Serial.println(INIT_VALUE);
    if (motor_output > 180 || motor_output < 0) {
-      Serial.print("outputting to motor: ");
-      Serial.println(motor_output);
       motor.write(motor_output);
    }
    else /*if (motor_output != motor.read()) */ {
-      Serial.print("outputting to motor: ");
-      Serial.println(motor_output);
       //motor.write(motor_output);
       motor.write(motor_output);
    }
