@@ -29,17 +29,15 @@
 #define HWSERIAL Serial1
 
 // Definition of pins
-#define FIFTH_WHEEL_PIN 2
-#define MOTOR_PIN 35
-#define STEER_SERVO_PIN 23
+#define FIFTH_WHEEL_PIN 6
+#define MOTOR_PIN 5
+#define STEER_SERVO_PIN 2
 #define IMU_SDA_PIN 18
 #define IMU_SCL_PIN 19
 #define TOF_LIDAR_SDA_PIN 18
 #define TOF_LIDAR_SCL_PIN 19
-#define URF_TRIG_PIN 24
-#define URF_ECHO_PIN 25
 #define RC_SW1_PIN 36
-#define RC_SW2_PIN 27
+#define RC_SW2_PIN 25
 #define RC_SW3_PIN 28
 #define HALL_PHASE_A_PIN 20
 #define HALL_PHASE_B_PIN 21
@@ -73,8 +71,6 @@ static THD_FUNCTION(heartbeat_thread, arg) {
    pinMode(LED_BUILTIN, OUTPUT);
    while (true) {
       digitalWrite(LED_BUILTIN, HIGH);
-      chThdSleepMilliseconds(100);
-      digitalWrite(LED_BUILTIN, LOW);
       chThdSleepMilliseconds(1500);
    }
 }
@@ -150,12 +146,10 @@ static THD_FUNCTION(motor_driver_thread, arg) {
    int16_t last_time = ST2MS(chVTGetSystemTime());
    int16_t current_time = last_time;
 
-   // TODO: fix how we switch between dead man and not deadman
    while (true) {
-      //Serial.println("motor");
       motor_output = system_data.actuators.motor_output;
       wheel_speed = system_data.sensors.wheel_speed;
-      
+
       current_time = ST2MS(chVTGetSystemTime());
       time_step = current_time - last_time;
 
@@ -166,24 +160,26 @@ static THD_FUNCTION(motor_driver_thread, arg) {
       }
       else {
          motor_output = stop_motor(wheel_speed, time_step);
-         motor_driver_loop_fn(62);
+         motor_driver_loop_fn(0);
       }
-       
+
       last_time = current_time;
       chThdSleepMilliseconds(100);
    }
 }
 
+
+
 /**
- * @brief Time of Flight Lidar Thread: Reads motor output levels from the system data
- * and controls the motor based on this value.
+ * @brief Left Time of Flight Lidar Thread: Reads motor output levels from the
+ * system data and controls the motor based on this value.
  *
  * This thread calls tof_loop_fn which is the primary function for
  * the motor and whose implementation is found in tof_lidar.cpp.
  */
-static THD_WORKING_AREA(tof_lidar_wa, 512);
+static THD_WORKING_AREA(left_tof_wa, 512);
 
-static THD_FUNCTION(tof_lidar_thread, arg) {
+static THD_FUNCTION(left_tof_thread, arg) {
     int16_t dist_mm;
     while (true) {
 
@@ -199,65 +195,28 @@ static THD_FUNCTION(tof_lidar_thread, arg) {
 }
 
 
+
 /**
- * @brief Range Finder Thread: Controls the HC-SR04 URF where nearby object
- * distance is calculated and written to the system data.
+ * @brief Right Time of Flight Lidar Thread: Reads motor output levels from the
+ * system data and controls the motor based on this value.
  *
- * @todo need to test this task with the Maxbotix URF
+ * This thread calls tof_loop_fn which is the primary function for
+ * the motor and whose implementation is found in tof_lidar.cpp.
  */
-static THD_WORKING_AREA(range_finder_wa, 64);
+static THD_WORKING_AREA(right_tof_wa, 512);
 
-static THD_FUNCTION(range_finder_thread, arg) {
-   (void)arg;
-   //Serial.println("starting up URF driver");
-
-   while (true) {
-
-      chSysLock();
-
-      range_finder_ping(URF_TRIG_PIN);
-
-      chSysUnlock();
-
-      chThdSleepMilliseconds(100);
-   }
-}
-
-BSEMAPHORE_DECL(urf_isrSem, true);
-
-void urf_ISR_Fcn() {
-    CH_IRQ_PROLOGUE();
-    // IRQ handling code, preemptable if the architecture supports it.
-
-    chSysLockFromISR();
-    // Invocation of some I-Class system APIs, never preemptable.
-
-    // Signal handler task.
-    chBSemSignalI(&urf_isrSem);
-    chSysUnlockFromISR();
-
-    // More IRQ handling code, again preemptable.
-
-    // Perform rescheduling if required.
-    CH_IRQ_EPILOGUE();
-}
-
-// Handler task for interrupt.
-static THD_WORKING_AREA(urf_isr_wa_thd, 128);
-
-static THD_FUNCTION(urf_handler, arg) {
-    (void)arg;
-    long urf_dist;
+static THD_FUNCTION(right_tof_thread, arg) {
+    int16_t dist_mm;
     while (true) {
-        // wait for event
-        chBSemWait(&urf_isrSem);
 
-        urf_dist = range_finder_loop_fn(URF_ECHO_PIN);
+        //Serial.println("ToF_start");
+        dist_mm = tof_loop_fn();
+        //Serial.println("tof_Done");
         chMtxLock(&sysMtx);
-        system_data.sensors.right_TOF = urf_dist;
+        system_data.sensors.rear_TOF = dist_mm;
         system_data.updated = true;
         chMtxUnlock(&sysMtx);
-
+        chThdSleepMilliseconds(100);
     }
 }
 
@@ -518,11 +477,11 @@ void chSetup() {
    chThdCreateStatic(motor_driver_wa, sizeof(motor_driver_wa),
    NORMALPRIO, motor_driver_thread, NULL);
 
-   chThdCreateStatic(tof_lidar_wa, sizeof(tof_lidar_wa),
-   NORMALPRIO, tof_lidar_thread, NULL);
+   chThdCreateStatic(left_tof_wa, sizeof(left_tof_wa),
+   NORMALPRIO, left_tof_thread, NULL);
 
-   chThdCreateStatic(range_finder_wa, sizeof(range_finder_wa),
-   NORMALPRIO, range_finder_thread, NULL);
+   chThdCreateStatic(right_tof_wa, sizeof(right_tof_wa),
+   NORMALPRIO, right_tof_thread, NULL);
 
    chThdCreateStatic(steer_servo_wa, sizeof(steer_servo_wa),
    NORMALPRIO, steer_servo_thread, NULL);
@@ -533,10 +492,6 @@ void chSetup() {
    chThdCreateStatic(wheel_speed_wa, sizeof(wheel_speed_wa),
    NORMALPRIO, wheel_speed_thread, NULL);
    attachInterrupt(digitalPinToInterrupt(HALL_PHASE_A_PIN), speed_ISR_Fcn, RISING);
-
-   chThdCreateStatic(urf_isr_wa_thd, sizeof(urf_isr_wa_thd),
-   NORMALPRIO + 1, urf_handler, NULL);
-   attachInterrupt(digitalPinToInterrupt(URF_ECHO_PIN), urf_ISR_Fcn, CHANGE);
 
    chThdCreateStatic(rc_sw1_isr_wa_thd, sizeof(rc_sw1_isr_wa_thd),
    NORMALPRIO + 1, rc_sw1_handler, NULL);
@@ -572,8 +527,6 @@ void setup() {
    fifth_wheel_setup(FIFTH_WHEEL_PIN);
    // Setup the motor driver
    motor_driver_setup(MOTOR_PIN);
-   // Setup the URFs
-   range_finder_setup(URF_TRIG_PIN);
    // Setup the RC receiver
    RC_receiver_setup();
    // Setup the ToF Lidar Sensor to make sure it is connected and reading

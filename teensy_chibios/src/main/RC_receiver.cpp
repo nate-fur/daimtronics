@@ -67,10 +67,10 @@ int16_t RC_receiver_SW2_fn(short PWM_PIN) {
         SW2_high_time = (float)(f_time - SW2_time)/1000;
     }
     if (SW2_high_time >= 1.45 && SW2_high_time <= 1.55){
-        SW2_mode = 1;
+        SW2_mode = 0;
     }
     else if(SW2_high_time >= 1.05 && SW2_high_time <= 1.15){
-        SW2_mode = 2;
+        SW2_mode = 1;
     }
     else{
         //mode remains unchanged if high time does not fall in region
