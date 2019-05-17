@@ -128,7 +128,7 @@ static THD_FUNCTION(imu_thread, arg) {
       system_data.updated = true;
       chMtxUnlock(&sysMtx);
 
-      chThdSleepMilliseconds(500);
+      chThdSleepMilliseconds(100);
    }
 }
 
@@ -191,7 +191,7 @@ static THD_FUNCTION(tof_lidar_thread, arg) {
         dist_mm = tof_loop_fn();
         //Serial.println("tof_Done");
         chMtxLock(&sysMtx);
-        system_data.sensors.tof_dist = dist_mm;
+        system_data.sensors.rear_TOF = dist_mm;
         system_data.updated = true;
         chMtxUnlock(&sysMtx);
         chThdSleepMilliseconds(100);
@@ -254,7 +254,7 @@ static THD_FUNCTION(urf_handler, arg) {
 
         urf_dist = range_finder_loop_fn(URF_ECHO_PIN);
         chMtxLock(&sysMtx);
-        system_data.sensors.right_URF = urf_dist;
+        system_data.sensors.right_TOF = urf_dist;
         system_data.updated = true;
         chMtxUnlock(&sysMtx);
 
