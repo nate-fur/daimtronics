@@ -23,6 +23,7 @@
 #include "include/teensy_serial.h"
 #include "include/wheel_speed.h"
 #include "include/tof_lidar.h"
+#include "include/tca_selector.h"
 
 #include <ChRt.h>
 
@@ -116,6 +117,7 @@ static THD_FUNCTION(imu_thread, arg) {
    while (true) {
       Serial.println("*****************************************************");
       //Serial.println("imu");
+      //tcaselect(3);
       imu_angle = imu_loop_fn();
 
 
