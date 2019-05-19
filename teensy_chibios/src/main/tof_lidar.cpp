@@ -29,35 +29,22 @@ void tcaselect(uint8_t i) {
  * @return an integer representing distance the sensor detected in millimeters
  */
 int16_t tof_loop_fn(){
-
     VL53L0X_RangingMeasurementData_t measure;
     int16_t dist;
-    //Serial.print("Reading a measurement... ");
-    sensor1.rangingTest(&measure, false); // pass in 'true' to get debug data printout!
-    if (measure.RangeStatus != 4) {  // phase failures have incorrect data
-        dist = measure.RangeMilliMeter;
-        //Serial.print("Distance (mm): "); Serial.println(dist);
-    } else {
-        dist = dist;
-        //Serial.println(" out of range ");
-    }
 
     if (initialized) {
         //Serial.print("Reading a measurement... ");
-        sensor1.rangingTest(&measure,
-                        false); // pass in 'true' to get debug data printout!
+        sensor1.rangingTest(&measure, false); // pass in 'true' to get debug data
         if (measure.RangeStatus != 4) {  // phase failures have incorrect data
             dist = measure.RangeMilliMeter;
             //Serial.print("Distance (mm): "); Serial.println(dist);
         } else {
-            dist = dist;
             //Serial.println(" out of range ");
         }
         return dist;
     }
     else {
         return 0;
-
     }
 }
 
