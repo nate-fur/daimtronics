@@ -4,8 +4,7 @@
  */
 
 #include "system_data.h"
-#include "semi_truck/Teensy_Sensors.h"
-#include "semi_truck/Teensy_Actuators.h"
+#include "semi_truck_api.h"
 
 #include <stdio.h>
 #include <unistd.h>
@@ -24,6 +23,8 @@ void teensy_sensors_cb(const semi_truck::Teensy_Sensors &msg);
 int main(int argc, char **argv) {
    ros::init(argc, argv, "truck_template_node");
    ros::NodeHandle nh("~");
+   semi_truck::Teensy_Sensors sensor_data;
+   semi_truck::Teensy_Actuators actuator_data;
 
    ros::Subscriber rplidar_subscriber = nh.subscribe("rplidar_scane", 1024,
                                                      rplidar_cb);
@@ -40,7 +41,7 @@ int main(int argc, char **argv) {
 
    while (ros::ok()) {
 
-      /* AUTONOMOUS ALGORITHMS SHOULD BE WRITTEN HERE */
+      /* ALGORITHMS TO CONTROL VEHICLE SHOULD BE WRITTEN HERE */
 
       /* spinOnce() will force all of the subscriber callbacks to process their data */
       ros::spinOnce();
