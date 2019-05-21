@@ -6,12 +6,12 @@
 
 #include "include/wheel_speed.h"
 
+#define SCALE 1
+#define MAX_CHANGE 32768
+
 int16_t speed;
 int16_t prev_ticks=0;
-int16_t scale = 1;
-int16_t Current_tick;
-int16_t current_time = chVTGetSystemTime();
-int16_t prev_time;
+uint16_t prev_time = chVTGetSystemTime();
 /**
  * This is the primary function controlling the wheel speed sensor. It reads an
  * IR sensor mounted so that the sensor reads an alternating black and white
@@ -22,10 +22,20 @@ int16_t prev_time;
  * @return the speed that the wheel speed sensor is detecting
  */
 int16_t wheel_speed_loop_fn(int16_t ticks) {
-    current_time = chVTGetSystemTime();
-    Current_tick = ticks;
-    speed = scale*(Current_tick - prev_ticks);
-
+    uint16_t current_time = chVTGetSystemTime();
+    int16_t Current_tick = ticks;
+    int16_t delta_t = current_time - prev_time;
+    int16_t delta_ticks = Current_tick-prev_ticks;
+    if (delta_t < 0){
+        delta_t +=65535;
+    }
+    if ((delta_ticks)> MAX_CHANGE) {
+        speed = SCALE * ((delta_ticks) + 65534);//delta_t;
+    }else if ((delta_ticks)< -MAX_CHANGE){
+        speed = SCALE * ((delta_ticks)-65536);//delta_t;
+    }else{
+        speed = SCALE*(delta_ticks);//delta_t;
+    }
     prev_ticks = Current_tick;
     prev_time = current_time;
 
