@@ -19,7 +19,7 @@
 #define BUFF_SIZE 50
 #define UART "/dev/ttyS0"
 #define BAUDRATE 9600
-#define DEBUG 
+//#define DEBUG 
 
 // number of times the pi should read from serial for every time it writes 
 // to it. Helps with serial buffer overflow issues
@@ -55,16 +55,10 @@ int main(int argc, char **argv) {
    while (ros::ok()) {
 
       for (int i = 0; i < READ_CYCLES; i++) {
-
-         if (synchronized = pi_sync()) { // avoids data becoming mismatched
-            avail = serialDataAvail(serial);
-            if (avail >= SENSOR_DATA_SIZE) { // need to have a full set of data
-               read_from_teensy(serial, sensor_data);
-               print_sensors(sensor_data);
-               publisher.publish(sensor_data);
-            }
-         }
-
+         pi_sync();  // prevents data becoming mismatched
+         read_from_teensy(serial, sensor_data);
+         //print_sensors(sensor_data);
+         publisher.publish(sensor_data);
       }
 
       //printf("writing to pin: %i\n", sensor_data.drive_mode_2);
@@ -72,23 +66,22 @@ int main(int argc, char **argv) {
       
       ros::spinOnce();
 
-
       //print_sensors(sensor_data);
 
       loop_rate.sleep();
    }
 }
 
-bool pi_sync() {
+void pi_sync() {
    short data;
+   short avail;
 
-   for (int i; i < 100; i++) {
-      if ((data = read_sensor_msg(serial, 2)) == SYNC_VALUE) {
-         return true;
-      }
+   while ((avail = serialDataAvail(serial)) < 14){
+      //printf("waiting %i\n", avail);
    }
-
-   return false;
+   while ((data = read_sensor_msg(serial, 2)) != SYNC_VALUE){ 
+      //printf("reading\n");
+   }
 }
 
 

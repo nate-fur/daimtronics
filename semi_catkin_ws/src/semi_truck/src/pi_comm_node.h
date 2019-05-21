@@ -16,7 +16,7 @@ void write_to_teensy(int serial, const semi_truck::Teensy_Actuators &actuators);
 
 void update_sensors(semi_truck::Teensy_Sensors &sensors);
 
-bool pi_sync();
+void pi_sync();
 
 void print_sensors(const semi_truck::Teensy_Sensors &sensors);
 
