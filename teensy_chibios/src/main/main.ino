@@ -164,7 +164,7 @@ static THD_FUNCTION(motor_driver_thread, arg) {
       }
       else {
          motor_output = stop_motor(wheel_speed, time_step);
-         motor_driver_loop_fn(0);
+         motor_driver_loop_fn(68);
       }
 
       last_time = current_time;
@@ -379,8 +379,9 @@ static THD_FUNCTION(steer_servo_thread, arg) {
 
    while (true) {
 
-      //Serial.println("steer");
       steer_output = system_data.actuators.steer_output;
+      Serial.print("steer output: ");
+      Serial.println(steer_output);
 
       steer_servo_loop_fn(steer_output);
 
@@ -409,7 +410,7 @@ static THD_FUNCTION(teensy_serial_thread, arg) {
       teensy_serial_loop_fn(&system_data);
       chMtxUnlock(&sysMtx);
 
-      chThdSleepMilliseconds(100);
+      chThdSleepMilliseconds(50);
    }
 }
 

@@ -19,7 +19,7 @@ int16_t imu_loop_fn() {
    bno.getEvent(&event);
 
    /* Display the floating point data */
-   print_imu_data(&event);
+   //print_imu_data(&event);
 
    return (int16_t) (event.orientation.x + 0.5); // rounds to nearest integer
 }
