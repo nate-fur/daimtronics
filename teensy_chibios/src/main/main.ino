@@ -407,7 +407,7 @@ static THD_FUNCTION(teensy_serial_thread, arg) {
       teensy_serial_loop_fn(&system_data);
       chMtxUnlock(&sysMtx);
 
-      chThdSleepMilliseconds(100);
+      chThdSleepMilliseconds(1000);
    }
 }
 
