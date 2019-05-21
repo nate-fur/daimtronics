@@ -4,11 +4,13 @@
 #include "semi_truck/Teensy_Actuators.h"
 
 #include <wiringSerial.h>
+#include <wiringPi.h>
 #include <stdio.h>
 #include <unistd.h>
 #include <ros/ros.h>
 #include <sensor_msgs/LaserScan.h>
 
+#define RELAY_PIN 7
 #define NUM_MSGS 4
 #define SHORT_SIZE 2
 #define FLOAT_SIZE 4
@@ -37,7 +39,6 @@ int main(int argc, char **argv) {
 
    ros::init(argc, argv, "pi_comm_node");
    ros::NodeHandle nh("~");
-
    semi_truck::Teensy_Sensors sensor_data;
    ros::Publisher publisher = nh.advertise<semi_truck::Teensy_Sensors>
     ("teensy_sensor_data", 1024);
@@ -57,8 +58,12 @@ int main(int argc, char **argv) {
             //ROS_INFO("got data!");
             read_from_teensy(serial, sensor_data);
             publisher.publish(sensor_data);
+            ROS_INFO("publishing data!");
+
          }
       }
+
+      digitalWrite(RELAY_PIN, sensor_data.drive_mode_2);
       
       ros::spinOnce();
 
@@ -108,7 +113,7 @@ void write_actuator_msg(int serial, short actuator_val, char num_bytes) {
 
 
 void write_to_teensy(int serial, const semi_truck::Teensy_Actuators &actuators) {
-   printf("\n********SENDING MESSAGE*********\n");
+  printf("\n********SENDING MESSAGE*********\n");
    printf("Time: %lf\n", ros::WallTime::now().toSec());
    print_actuators(actuators);
    write_actuator_msg(serial, actuators.motor_output, SHORT_SIZE);

@@ -19,7 +19,7 @@
  * @param value the value to update the actuators with. This value should
  * range from 0 for full reverse power to 180 for full forwards power.
  */
-void set_motor_output(TeensyActuators &actuators, int16_t value);
+void set_motor_output(semi_truck::Teensy_Actuators &actuators, int16_t value);
 
 /**
  * @brief sets the steer output of the actuators object to the passed in value
@@ -27,7 +27,7 @@ void set_motor_output(TeensyActuators &actuators, int16_t value);
  * @param value the value to update the actuators with. This value should
  * range from 0 for a 20 degree angle left to 180 for a 20 degree angle right.
  */
-void set_steer_output(TeensyActuators &actuators, int16_t value);
+void set_steer_output(semi_truck::Teensy_Actuators &actuators, int16_t value);
 
 /**
  * @brief sets the fifth wheel of the actuators object to the passed in value
@@ -35,37 +35,37 @@ void set_steer_output(TeensyActuators &actuators, int16_t value);
  * @param value the value to update the actuators with. 0 for locked and 1
  * for unlocked.
  */
-void set_fifth_output(TeensyActuators &actuators, uint16_t value);
+void set_fifth_output(semi_truck::Teensy_Actuators &actuators, uint16_t value);
 
 /**
  * @brief reads the wheel speed of a TeensySensors object
  * @param sensors a reference to a TeensySensors object to read from.
  */
-int16_t get_wheel_speed(TeensySensors &sensors);
+int16_t get_wheel_speed(semi_truck::Teensy_Sensors &sensors);
 
 /**
  * @brief reads the imu angle (degrees) of a TeensySensors object
  * @param sensors a reference to a TeensySensors object to read from.
  */
-int16_t get_imu_angle(TeensySensors &sensors);
+int16_t get_imu_angle(semi_truck::Teensy_Sensors &sensors);
 
 /**
  * @brief reads the right TOF distance (cm) of a TeensySensors object
  * @param sensors a reference to a TeensySensors object to read from.
  */
-int16_t get_right_TOF(TeensySensors &sensors);
+int16_t get_right_TOF(semi_truck::Teensy_Sensors &sensors);
 
 /**
  * @brief reads the left TOF distance (cm) of a TeensySensors object
  * @param sensors a reference to a TeensySensors object to read from.
  */
-int16_t get_left_TOF(TeensySensors &sensors);
+int16_t get_left_TOF(semi_truck::Teensy_Sensors &sensors);
 
 /**
  * @brief reads the rear TOF distance (cm) of a TeensySensors object
  * @param sensors a reference to a TeensySensors object to read from.
  */
-int16_t get_rear_TOF(TeensySensors &sensors);
+int16_t get_rear_TOF(semi_truck::Teensy_Sensors &sensors);
 
 
 #endif //DAIMTRONICS_SEMI_TRUCK_API_H
