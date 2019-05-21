@@ -2,8 +2,8 @@
 #define WHEEL_SPEED_H
 
 #include <stdint.h>
-int16_t wheel_speed_loop_fn(short PhaseB_pin, short PhaseC_pin);
+int16_t wheel_speed_loop_fn(int16_t ticks);
 
-void wheel_speed_setup(short PhaseA_pin, short PhaseB_pin, short PhaseC_pin);
+void wheel_speed_setup();
 
 #endif

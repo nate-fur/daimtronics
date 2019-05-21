@@ -24,6 +24,7 @@
 #include "include/wheel_speed.h"
 #include "include/tof_lidar.h"
 #include "include/tca_selector.h"
+#include "include/hall_sensor.h"
 
 #include <ChRt.h>
 
@@ -40,9 +41,9 @@
 #define RC_SW1_PIN 36
 #define RC_SW2_PIN 25
 #define RC_SW3_PIN 28
-#define HALL_PHASE_A_PIN 20
-#define HALL_PHASE_B_PIN 21
-#define HALL_PHASE_C_PIN 22
+#define HALL_PHASE_A_PIN 21
+#define HALL_PHASE_B_PIN 20
+#define HALL_PHASE_C_PIN 17
 
 /**
  * @brief The data for the entire system. Synchronization will be achieved
@@ -60,6 +61,7 @@
 static system_data_t system_data = {0};
 MUTEX_DECL(sysMtx);
 
+static int16_t Encoder_ticks;
 
 /**
  * @brief Heartbeat Thread: blinks the LED periodically so that the user is
@@ -411,51 +413,65 @@ static THD_FUNCTION(teensy_serial_thread, arg) {
    }
 }
 
+/**
+ * @brief Hall Sensor Interrupt Handler: Runs preemptive Chibios Interrupt
+ * code and awakens the main Hall Sensor thread.
+ */
+static thread_reference_t hall_isr_trp = NULL;
 
-
-BSEMAPHORE_DECL(speed_isrSem, true);
-
-void speed_ISR_Fcn() {
+CH_IRQ_HANDLER(HALL_ISR_Fcn){
     CH_IRQ_PROLOGUE();
-    // IRQ handling code, preemptable if the architecture supports it.
 
+    /* Wakes up the thread.*/
     chSysLockFromISR();
-    // Invocation of some I-Class system APIs, never preemptable.
-
-    // Signal handler task.
-    chBSemSignalI(&speed_isrSem);
+    chThdResumeI(&hall_isr_trp, (msg_t)0x1337);  /* Resuming the thread */
     chSysUnlockFromISR();
 
-    // More IRQ handling code, again preemptable.
-
-    // Perform rescheduling if required.
     CH_IRQ_EPILOGUE();
 }
 
-/**
- * @brief Wheel Speed Thread: Controls the Hall sensor that is outputted from
- * the main motor of the vehicle for determining wheel speed.
- *
- * This thread calls wheel_speed_loop_fn() which is the primary function for the
- * Hall sensor and whose implementation is found in wheel_speed.cpp.
- */
-static THD_WORKING_AREA(wheel_speed_wa, 5120);
 
-static THD_FUNCTION(wheel_speed_thread, arg) {
-   int16_t wheel_speed;
+/**
+ * @brief Hall Sensor Thread: Controls the Hall sensor that is outputted from
+ * the main motor of the vehicle for determining Encoder Ticks.
+ *
+ * This thread calls hall_sensor_loop_fn() which is the primary function for the
+ * Hall sensor and whose implementation is found in hall_sensor.cpp.
+ */
+static THD_WORKING_AREA(hall_sensor_wa, 5120);
+
+static THD_FUNCTION(hall_sensor_thread, arg) {
 
    while (true) {
+      chSysLock();
+      chThdSuspendS(&hall_isr_trp); // wait for resume thread message
+      chSysUnlock();
 
-      chBSemWait(&speed_isrSem);
-      //Serial.println("wheel");
-      wheel_speed = wheel_speed_loop_fn(HALL_PHASE_B_PIN, HALL_PHASE_C_PIN);
-      //Serial.print("Wheel Speed = ");
-      //Serial.println(wheel_speed);
-      chMtxLock(&sysMtx);
-      system_data.sensors.wheel_speed = wheel_speed;
-      chMtxUnlock(&sysMtx);
+      Encoder_ticks = hall_sensor_loop_fn(HALL_PHASE_B_PIN, HALL_PHASE_C_PIN);
 
    }
+}
+
+/**
+ * @brief Speed Thread: Controls the Hall sensor that is outputted from
+ * the main motor of the vehicle for determining Encoder Ticks.
+ *
+ * This thread calls hall_sensor_loop_fn() which is the primary function for the
+ * Hall sensor and whose implementation is found in hall_sensor.cpp.
+ */
+static THD_WORKING_AREA(speed_wa, 5120);
+
+static THD_FUNCTION(speed_thread, arg) {
+
+    while (true) {
+
+        chMtxLock(&sysMtx);
+        system_data.sensors.wheel_speed = wheel_speed_loop_fn(Encoder_ticks);
+        chMtxUnlock(&sysMtx);
+
+        chThdSleepMilliseconds(100);
+
+    }
 }
 
 
@@ -491,9 +507,12 @@ void chSetup() {
    chThdCreateStatic(teensy_serial_wa, sizeof(teensy_serial_wa),
    NORMALPRIO, teensy_serial_thread, NULL);
 
-   chThdCreateStatic(wheel_speed_wa, sizeof(wheel_speed_wa),
-   NORMALPRIO, wheel_speed_thread, NULL);
-   attachInterrupt(digitalPinToInterrupt(HALL_PHASE_A_PIN), speed_ISR_Fcn, RISING);
+   chThdCreateStatic(hall_sensor_wa, sizeof(hall_sensor_wa),
+   NORMALPRIO, hall_sensor_thread, NULL);
+   attachInterrupt(digitalPinToInterrupt(HALL_PHASE_A_PIN), HALL_ISR_Fcn, RISING);
+
+   chThdCreateStatic(speed_wa, sizeof(speed_wa),
+   NORMALPRIO, speed_thread, NULL);
 
    chThdCreateStatic(rc_sw1_isr_wa_thd, sizeof(rc_sw1_isr_wa_thd),
    NORMALPRIO + 1, rc_sw1_handler, NULL);
@@ -536,7 +555,7 @@ void setup() {
    // Setup the steering servo
    steer_servo_setup(STEER_SERVO_PIN);
    // Setup the wheel speed sensors
-   wheel_speed_setup(HALL_PHASE_A_PIN, HALL_PHASE_B_PIN, HALL_PHASE_C_PIN);
+   hall_sensor_setup(HALL_PHASE_A_PIN, HALL_PHASE_B_PIN, HALL_PHASE_C_PIN);
    // chBegin() resets stacks and should never return.
    chBegin(chSetup);
 
