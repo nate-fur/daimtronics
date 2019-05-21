@@ -2,11 +2,16 @@
 // Created by nate on 4/2/19.
 //
 #include <Arduino.h>
+#include <ChRt.h>
+
 #include "include/wheel_speed.h"
 
-unsigned long prev_time = 0;
-int32_t speed;
-
+int16_t speed;
+int16_t prev_ticks=0;
+int16_t scale = 1;
+int16_t Current_tick;
+int16_t current_time = chVTGetSystemTime();
+int16_t prev_time;
 /**
  * This is the primary function controlling the wheel speed sensor. It reads an
  * IR sensor mounted so that the sensor reads an alternating black and white
@@ -16,44 +21,18 @@ int32_t speed;
  *
  * @return the speed that the wheel speed sensor is detecting
  */
-int16_t wheel_speed_loop_fn(short PhaseB_pin, short PhaseC_pin) {
-   unsigned long time = micros();
-   uint32_t t_time = time-prev_time;
-   //Serial.println("Times = ");
-   //Serial.println(prev_time);
-   //Serial.println(t_time);
-   //Serial.println(time);
-   bool phaseB_val = digitalRead(PhaseB_pin);
-   bool phaseC_val = digitalRead(PhaseC_pin);
-   Serial.print("phaseB_val = ");
-   Serial.println(phaseB_val);
-   Serial.print("phaseC_val = ");
-   Serial.println(phaseC_val);
+int16_t wheel_speed_loop_fn(int16_t ticks) {
+    current_time = chVTGetSystemTime();
+    Current_tick = ticks;
+    speed = scale*(Current_tick - prev_ticks);
 
-    if(phaseB_val){
-       //Going Forward
-       speed = t_time;//5000/t_time;
-       //Serial.print("Wheel_Speed = ");
-       //Serial.println(speed);
+    prev_ticks = Current_tick;
+    prev_time = current_time;
 
-   } else if(not(phaseB_val)){
-       //Going Backward
-       speed = -t_time;//-(5000/t_time);
-       //Serial.print("Wheel_Speed_neg = ");
-       //Serial.println(speed);
-   }
-   else {
-       speed = 0;
-   }
-   //Serial.print("Speed = ");
-   //Serial.println(speed);
-   prev_time = time;
-   return speed; // placeholder for compilation
+    return speed;
 }
 
-void wheel_speed_setup(short PhaseA_pin, short PhaseB_pin, short PhaseC_pin) {
-    pinMode(PhaseA_pin, INPUT_PULLUP);
-    pinMode(PhaseB_pin, INPUT_PULLUP);
-    pinMode(PhaseC_pin, INPUT_PULLUP);
-    delay(10);
+
+void wheel_speed_setup() {
+
 }
