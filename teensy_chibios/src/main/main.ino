@@ -39,7 +39,7 @@
 #define TOF_LIDAR_SCL_PIN 19
 #define RC_SW1_PIN 36
 #define RC_SW2_PIN 25
-#define RC_SW3_PIN 28
+#define RC_SW3_PIN 24
 #define HALL_PHASE_A_PIN 20
 #define HALL_PHASE_B_PIN 21
 #define HALL_PHASE_C_PIN 22
@@ -162,7 +162,7 @@ static THD_FUNCTION(motor_driver_thread, arg) {
       }
       else {
          motor_output = stop_motor(wheel_speed, time_step);
-         motor_driver_loop_fn(0);
+         motor_driver_loop_fn(68);
       }
 
       last_time = current_time;
@@ -377,8 +377,9 @@ static THD_FUNCTION(steer_servo_thread, arg) {
 
    while (true) {
 
-      //Serial.println("steer");
       steer_output = system_data.actuators.steer_output;
+      Serial.print("steer output: ");
+      Serial.println(steer_output);
 
       steer_servo_loop_fn(steer_output);
 
@@ -407,7 +408,7 @@ static THD_FUNCTION(teensy_serial_thread, arg) {
       teensy_serial_loop_fn(&system_data);
       chMtxUnlock(&sysMtx);
 
-      chThdSleepMilliseconds(1000);
+      chThdSleepMilliseconds(50);
    }
 }
 

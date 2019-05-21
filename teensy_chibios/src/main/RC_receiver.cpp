@@ -106,13 +106,13 @@ int16_t RC_receiver_SW3_fn(short PWM_PIN) {
         SW3_high_time = (float)(f_time - SW3_time)/1000;
     }
     if (SW3_high_time >= 1.45 && SW3_high_time <= 1.55){
-        SW3_mode = 1;
+        SW3_mode = 0;
     }
     else if(SW3_high_time >= 1.85 && SW3_high_time <= 1.95){
-        SW3_mode = 2;
+        SW3_mode = 1;
     }
     else if(SW3_high_time >= 1.05 && SW3_high_time <= 1.15){
-        SW3_mode = 3;
+        SW3_mode = 2;
     }
     else{
         //mode remains unchanged if high time does not fall in region
