@@ -1,5 +1,5 @@
 <launch>
-
+   
     <node pkg="rosbag" type="record" name="semi_truck_bag"
           args="record -o /home/pi/daimtronics/semi_catkin_ws/rosbags/truck /scan_rplidar /scan_lidar_lite 
           /pi_comm_node/teensy_actuator_data /pi_comm_node/teensy_sensor_data"/>
@@ -8,8 +8,8 @@
 
     <!--node pkg="lidar_lite" type="lidar_lite_node" name="lidar_lite_node" -->
 
-    <!--node pkg="rplidar_ros" type="rplidarNode" name="rplidarNode" -->
+    <node pkg="rplidar_ros" type="rplidarNode" name="rplidarNode"/>
 
-    <node pkg="myroscomm" type="myroscomm_node" name="myroscomm_node" />
+    <node pkg="myroscomm_working_sub" type="myroscomm_working_sub_node" name="myroscomm_node" />
 
 </launch>
