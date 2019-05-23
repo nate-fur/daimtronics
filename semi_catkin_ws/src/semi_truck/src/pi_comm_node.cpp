@@ -15,7 +15,8 @@
 #define NUM_MSGS 4
 #define SHORT_SIZE 2
 #define FLOAT_SIZE 4
-#define SENSOR_DATA_SIZE 10
+#define SENSOR_DATA_SIZE_W_SYNC 16
+#define SENSOR_DATA_SIZE 14
 #define BUFF_SIZE 50
 #define UART "/dev/ttyS0"
 #define BAUDRATE 9600
@@ -32,7 +33,7 @@ static int serial;
 
 
 int main(int argc, char **argv) {
-   char avail;
+   short waiting_bytes;
    short synchronized = false;
    bool updated_values = false;
    short receiveBuffer[BUFF_SIZE] = {0};
@@ -40,26 +41,35 @@ int main(int argc, char **argv) {
    printf("Starting serial communication...\n");
 
    wiringPiSetup();
+   setPadDrive(0,5);
    pinMode(RELAY_PIN, OUTPUT);
    ros::init(argc, argv, "pi_comm_node");
    ros::NodeHandle nh("~");
    semi_truck::Teensy_Sensors sensor_data;
    ros::Publisher publisher = nh.advertise<semi_truck::Teensy_Sensors>
-    ("teensy_sensor_data", 1024);
+    ("teensy_sensor_data", 10);
 
    semi_truck::Teensy_Actuators actuator_data;
    ros::Subscriber subscriber = nh.subscribe("teensy_actuator_data", 1,
     actuator_cb);
 
    ros::WallRate loop_rate(LOOP_FREQUENCY);
+
    while (ros::ok()) {
 
-      for (int i = 0; i < READ_CYCLES; i++) {
+      waiting_bytes = serialDataAvail(serial);
+
+      for (int i = 0; i < waiting_bytes/SENSOR_DATA_SIZE_W_SYNC; i++) {
          pi_sync();  // prevents data becoming mismatched
-         read_from_teensy(serial, sensor_data);
-         //print_sensors(sensor_data);
-         publisher.publish(sensor_data);
+         waiting_bytes = serialDataAvail(serial);
+
+         if (waiting_bytes >= SENSOR_DATA_SIZE) { 
+            read_from_teensy(serial, sensor_data);
+         }
+
+         print_sensors(sensor_data);
       }
+	   publisher.publish(sensor_data);
 
       //printf("writing to pin: %i\n", sensor_data.drive_mode_2);
       digitalWrite(RELAY_PIN, sensor_data.drive_mode_2);
@@ -76,12 +86,15 @@ void pi_sync() {
    short data;
    short avail;
 
+/*
    while ((avail = serialDataAvail(serial)) < 14){
-      //printf("waiting %i\n", avail);
+      printf("waiting %i\n", avail);
    }
+*/
    while ((data = read_sensor_msg(serial, 2)) != SYNC_VALUE){ 
-      //printf("reading\n");
+      printf("error\n");
    }
+   printf("data: %i\n", data);
 }
 
 
@@ -95,13 +108,14 @@ short read_sensor_msg(int serial, char num_bytes) {
       sensor_msg |= byte;
    }
 
-   //printf("sensor message: %x\n", sensor_msg);
+   //printf("sensor message: %i\n", sensor_msg);
    return sensor_msg;
 }
 
 
 void read_from_teensy(int serial, semi_truck::Teensy_Sensors &sensors) {
-   short sensor_msg;
+   short avail = serialDataAvail(serial);
+   printf("available bytes: %i\n", avail);
 
    sensors.imu_angle = read_sensor_msg(serial, SHORT_SIZE);
    sensors.wheel_speed = read_sensor_msg(serial, SHORT_SIZE);
