@@ -40,10 +40,10 @@
 #define TOF_LIDAR_SCL_PIN 19
 #define RC_SW1_PIN 36
 #define RC_SW2_PIN 25
-#define RC_SW3_PIN 28
-#define HALL_PHASE_A_PIN 21
-#define HALL_PHASE_B_PIN 20
-#define HALL_PHASE_C_PIN 17
+#define RC_SW3_PIN 24
+#define HALL_PHASE_A_PIN 20
+#define HALL_PHASE_B_PIN 21
+#define HALL_PHASE_C_PIN 22
 
 /**
  * @brief The data for the entire system. Synchronization will be achieved
@@ -62,7 +62,6 @@ static system_data_t system_data = {0};
 MUTEX_DECL(sysMtx);
 
 static int16_t Encoder_ticks;
-
 /**
  * @brief Heartbeat Thread: blinks the LED periodically so that the user is
  * sure that the Teensy program is still running and has not crashed.
@@ -379,9 +378,8 @@ static THD_FUNCTION(steer_servo_thread, arg) {
 
    while (true) {
 
+      //Serial.println("steer");
       steer_output = system_data.actuators.steer_output;
-      Serial.print("steer output: ");
-      Serial.println(steer_output);
 
       steer_servo_loop_fn(steer_output);
 
@@ -410,9 +408,11 @@ static THD_FUNCTION(teensy_serial_thread, arg) {
       teensy_serial_loop_fn(&system_data);
       chMtxUnlock(&sysMtx);
 
-      chThdSleepMilliseconds(50);
+      chThdSleepMilliseconds(100);
    }
 }
+
+
 
 /**
  * @brief Hall Sensor Interrupt Handler: Runs preemptive Chibios Interrupt
@@ -421,14 +421,14 @@ static THD_FUNCTION(teensy_serial_thread, arg) {
 static thread_reference_t hall_isr_trp = NULL;
 
 CH_IRQ_HANDLER(HALL_ISR_Fcn){
-    CH_IRQ_PROLOGUE();
+ CH_IRQ_PROLOGUE();
 
-    /* Wakes up the thread.*/
-    chSysLockFromISR();
-    chThdResumeI(&hall_isr_trp, (msg_t)0x1337);  /* Resuming the thread */
-    chSysUnlockFromISR();
+ /* Wakes up the thread.*/
+ chSysLockFromISR();
+ chThdResumeI(&hall_isr_trp, (msg_t)0x1337);  /* Resuming the thread */
+ chSysUnlockFromISR();
 
-    CH_IRQ_EPILOGUE();
+ CH_IRQ_EPILOGUE();
 }
 
 
@@ -443,14 +443,14 @@ static THD_WORKING_AREA(hall_sensor_wa, 5120);
 
 static THD_FUNCTION(hall_sensor_thread, arg) {
 
-   while (true) {
-      chSysLock();
-      chThdSuspendS(&hall_isr_trp); // wait for resume thread message
-      chSysUnlock();
+while (true) {
+chSysLock();
+chThdSuspendS(&hall_isr_trp); // wait for resume thread message
+chSysUnlock();
 
-      Encoder_ticks = hall_sensor_loop_fn(HALL_PHASE_B_PIN, HALL_PHASE_C_PIN);
+Encoder_ticks = hall_sensor_loop_fn(HALL_PHASE_B_PIN, HALL_PHASE_C_PIN);
 
-   }
+}
 }
 
 /**
@@ -464,15 +464,15 @@ static THD_WORKING_AREA(speed_wa, 5120);
 
 static THD_FUNCTION(speed_thread, arg) {
 
-    while (true) {
+while (true) {
 
-        chMtxLock(&sysMtx);
-        system_data.sensors.wheel_speed = wheel_speed_loop_fn(Encoder_ticks);
-        chMtxUnlock(&sysMtx);
+chMtxLock(&sysMtx);
+system_data.sensors.wheel_speed = wheel_speed_loop_fn(Encoder_ticks);
+chMtxUnlock(&sysMtx);
 
-        chThdSleepMilliseconds(100);
+chThdSleepMilliseconds(100);
 
-    }
+}
 }
 
 
@@ -509,11 +509,12 @@ void chSetup() {
    NORMALPRIO, teensy_serial_thread, NULL);
 
    chThdCreateStatic(hall_sensor_wa, sizeof(hall_sensor_wa),
-   NORMALPRIO, hall_sensor_thread, NULL);
+                     NORMALPRIO, hall_sensor_thread, NULL);
+
    attachInterrupt(digitalPinToInterrupt(HALL_PHASE_A_PIN), HALL_ISR_Fcn, RISING);
 
    chThdCreateStatic(speed_wa, sizeof(speed_wa),
-   NORMALPRIO, speed_thread, NULL);
+                     NORMALPRIO, speed_thread, NULL);
 
    chThdCreateStatic(rc_sw1_isr_wa_thd, sizeof(rc_sw1_isr_wa_thd),
    NORMALPRIO + 1, rc_sw1_handler, NULL);

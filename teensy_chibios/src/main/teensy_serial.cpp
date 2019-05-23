@@ -24,7 +24,8 @@ void teensy_serial_loop_fn(system_data_t *system_data) {
 
       if (HWSERIAL.availableForWrite()) {
          print_sensor_msg(&system_data->sensors);
-         //Serial.printf("sending bytes: %i\n", sizeof(sensor_data_t));
+         Serial.printf("sending sync data: %i\n", sync_value);
+
          HWSERIAL.write((char*)&sync_value, sizeof(short));
          HWSERIAL.write((char*)&(system_data->sensors), sizeof(sensor_data_t));
          HWSERIAL.write((char*)&(system_data->drive_mode_1), sizeof(int16_t));
@@ -33,9 +34,6 @@ void teensy_serial_loop_fn(system_data_t *system_data) {
       }
    }
 
-
-   //Serial.print("HW bytes: ");
-   //Serial.println(HWSERIAL.available());
    // communicate with Pi and the ROS network
    for (int i = 0; i < READ_CYCLES; i++) {
       if (HWSERIAL.available() > 0) {
@@ -72,7 +70,6 @@ void print_sensor_msg(sensor_data_t *sensors_ptr) {
    Serial.printf("Wheel speed: %i\t", sensors_ptr->wheel_speed);
    Serial.printf("Right TOF: %i\t", sensors_ptr->right_TOF);
    Serial.printf("Left TOF: %i\t", sensors_ptr->left_TOF);
-   Serial.printf("Rear TOF: %i\n", sensors_ptr->rear_TOF);
 }
 
 
