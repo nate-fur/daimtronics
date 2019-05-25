@@ -271,53 +271,6 @@ static THD_FUNCTION(rc_sw1_handler, arg) {
 
 
 /**
- * @brief RC Receiver Switch 2 Interrupt Handler: Runs preemptive Chibios Interrupt
- * code and awakens the RC receiver Switch 2 thread.
- */
-static thread_reference_t rc_sw2_isr_trp = NULL;
-
-CH_IRQ_HANDLER(RC_SW2_ISR_Fcn){
-    CH_IRQ_PROLOGUE();
-
-    /* Wakes up the thread.*/
-    chSysLockFromISR();
-    chThdResumeI(&rc_sw2_isr_trp, (msg_t)0x1337);  /* Resuming the thread */
-    chSysUnlockFromISR();
-
-    CH_IRQ_EPILOGUE();
-}
-
-
-/**
- * @brief RC Receiver Switch 2 Thread: Reads auxiliary signals from the RC receiver switch 2
- * for determining what drive mode the semi-truck is in.
- *
- * This thread calls RC_receiver_SW2_fn which is the primary function for
- * the RC receiver switch 2 and whose implementation is found in RC_receiver.cpp
- */
-static THD_WORKING_AREA(rc_sw2_isr_wa_thd, 128);
-
-static THD_FUNCTION(rc_sw2_handler, arg) {
-
-    int16_t drive_mode;
-    while (true) {
-
-        chSysLock();
-        chThdSuspendS(&rc_sw2_isr_trp); // wait for resume thread message
-        chSysUnlock();
-
-        drive_mode = RC_receiver_SW2_fn(RC_SW2_PIN);
-
-        chMtxLock(&sysMtx);
-        system_data.drive_mode_1 = drive_mode;
-        system_data.updated = true;
-        chMtxUnlock(&sysMtx);
-
-    }
-}
-
-
-/**
  * @brief RC Receiver Switch 3 Interrupt Handler: Runs preemptive Chibios Interrupt
  * code and awakens the RC receiver Switch 3 thread.
  */
@@ -336,7 +289,7 @@ CH_IRQ_HANDLER(RC_SW3_ISR_Fcn){
 
 
 /**
- * @brief RC Receiver Swicth 3 Thread: Reads auxiliary signals from the RC receiver switch 3
+ * @brief RC Receiver Switch 3 Thread: Reads auxiliary signals from the RC receiver switch 3
  * for determining what drive mode the semi-truck is in.
  *
  * This thread calls RC_receiver_SW3_fn which is the primary function for
@@ -356,7 +309,7 @@ static THD_FUNCTION(rc_sw3_handler, arg) {
         drive_mode = RC_receiver_SW3_fn(RC_SW3_PIN);
 
         chMtxLock(&sysMtx);
-        system_data.drive_mode_2 = drive_mode;
+        system_data.drive_mode = drive_mode;
         system_data.updated = true;
         chMtxUnlock(&sysMtx);
 
@@ -519,10 +472,6 @@ void chSetup() {
    chThdCreateStatic(rc_sw1_isr_wa_thd, sizeof(rc_sw1_isr_wa_thd),
    NORMALPRIO + 1, rc_sw1_handler, NULL);
    attachInterrupt(digitalPinToInterrupt(RC_SW1_PIN), RC_SW1_ISR_Fcn, CHANGE);
-
-   chThdCreateStatic(rc_sw2_isr_wa_thd, sizeof(rc_sw2_isr_wa_thd),
-   NORMALPRIO + 1, rc_sw2_handler, NULL);
-   attachInterrupt(digitalPinToInterrupt(RC_SW2_PIN), RC_SW2_ISR_Fcn, CHANGE);
 
    chThdCreateStatic(rc_sw3_isr_wa_thd, sizeof(rc_sw3_isr_wa_thd),
    NORMALPRIO + 1, rc_sw3_handler, NULL);

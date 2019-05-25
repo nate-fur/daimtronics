@@ -44,48 +44,10 @@ int16_t RC_receiver_SW1_fn(short PWM_PIN) {
     return SW1_mode;
 }
 
-float SW2_high_time = 0;
-volatile unsigned long SW2_time = 0;
-short SW2_mode = 0;
-/**
- * @brief This is the primary function controlling the RC receiver. It reads a
- * PWM signal that the RC receiver receives from the RC controller. Based on
- * the specific timing of the PWM, a drive mode (either manual or one of the
- * autonomous algorithms on the Pi) is selected to control the vehicle.
- *
- * @return the driving mode of the semi-truck based on RC receiver signal
- */
-int16_t RC_receiver_SW2_fn(short PWM_PIN) {
-
-    short val = digitalRead(PWM_PIN);
-
-    if(val==HIGH){
-        SW2_time = micros();
-
-    } else{
-        unsigned long f_time = micros();
-        SW2_high_time = (float)(f_time - SW2_time)/1000;
-    }
-    if (SW2_high_time >= 1.45 && SW2_high_time <= 1.55){
-        SW2_mode = 0;
-    }
-    else if(SW2_high_time >= 1.05 && SW2_high_time <= 1.15){
-        SW2_mode = 1;
-    }
-    else{
-        //mode remains unchanged if high time does not fall in region
-    }
-#ifdef DEBUG
-    Serial.print("SW2 mode = ");
-    Serial.println(SW2_mode);
-#endif
-    return SW2_mode;
-}
-
-
 float SW3_high_time = 0;
 volatile unsigned long SW3_time = 0;
 short SW3_mode = 0;
+
 /**
  * @brief This is the primary function controlling the RC receiver. It reads a
  * PWM signal that the RC receiver receives from the RC controller. Based on
@@ -95,16 +57,15 @@ short SW3_mode = 0;
  * @return the driving mode of the semi-truck based on RC receiver signal
  */
 int16_t RC_receiver_SW3_fn(short PWM_PIN) {
-
     short val = digitalRead(PWM_PIN);
 
     if(val==HIGH){
         SW3_time = micros();
-
     } else{
         unsigned long f_time = micros();
         SW3_high_time = (float)(f_time - SW3_time)/1000;
     }
+
     if (SW3_high_time >= 1.45 && SW3_high_time <= 1.55){
         SW3_mode = 0;
     }
@@ -121,7 +82,6 @@ int16_t RC_receiver_SW3_fn(short PWM_PIN) {
     Serial.print("SW3 mode = ");
     Serial.println(SW3_mode);
 #endif
-
     return SW3_mode;
 }
 
