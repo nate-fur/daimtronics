@@ -28,8 +28,7 @@ void teensy_serial_loop_fn(system_data_t *system_data) {
 
          HWSERIAL.write((char*)&sync_value, sizeof(short));
          HWSERIAL.write((char*)&(system_data->sensors), sizeof(sensor_data_t));
-         HWSERIAL.write((char*)&(system_data->drive_mode_1), sizeof(int16_t));
-         HWSERIAL.write((char*)&(system_data->drive_mode_2), sizeof(int16_t));
+         HWSERIAL.write((char*)&(system_data->drive_mode), sizeof(int16_t));
          system_data->updated = false;
       }
    }
