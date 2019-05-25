@@ -1,6 +1,3 @@
-//
-// Created by nate on 4/2/19.
-//
 #include <Arduino.h>
 #include <ChRt.h>
 

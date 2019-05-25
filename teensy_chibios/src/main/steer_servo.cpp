@@ -1,7 +1,3 @@
-//
-// Created by nate on 4/2/19.
-//
-
 #include "include/steer_servo.h"
 #include <Arduino.h>
 #include <Servo.h>

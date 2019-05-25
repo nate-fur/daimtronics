@@ -1,7 +1,3 @@
-//
-// Created by nate on 3/22/19.
-//
-
 #ifndef STEER_SERVO_H
 #define STEER_SERVO_H
 
