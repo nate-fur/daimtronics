@@ -1,6 +1,3 @@
-//
-// Created by nate on 4/2/19.
-//
 #include "include/range_finder.h"
 #include "Arduino.h"
 

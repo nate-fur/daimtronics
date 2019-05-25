@@ -70,11 +70,11 @@ static THD_WORKING_AREA(heartbeat_wa, 64);
 
 static THD_FUNCTION(heartbeat_thread, arg) {
 
-   pinMode(LED_BUILTIN, OUTPUT);
-   while (true) {
-      digitalWrite(LED_BUILTIN, HIGH);
-      chThdSleepMilliseconds(1500);
-   }
+    pinMode(LED_BUILTIN, OUTPUT);
+    while (true) {
+        digitalWrite(LED_BUILTIN, HIGH);
+        chThdSleepMilliseconds(1500);
+    }
 }
 
 
@@ -89,16 +89,16 @@ static THD_FUNCTION(heartbeat_thread, arg) {
 static THD_WORKING_AREA(fifth_wheel_wa, 64);
 
 static THD_FUNCTION(fifth_wheel_thread, arg) {
-   int16_t fifth_output;
+    int16_t fifth_output;
 
-   while (true) {
-      //Serial.println("fifth wheel");
-      fifth_output = system_data.actuators.fifth_output;
+    while (true) {
+        //Serial.println("fifth wheel");
+        fifth_output = system_data.actuators.fifth_output;
 
-      fifth_wheel_loop_fn(fifth_output);
+        fifth_wheel_loop_fn(fifth_output);
 
-      chThdSleepMilliseconds(100);
-   }
+        chThdSleepMilliseconds(100);
+    }
 }
 
 
@@ -113,22 +113,22 @@ static THD_FUNCTION(fifth_wheel_thread, arg) {
 static THD_WORKING_AREA(imu_wa, 2048);
 
 static THD_FUNCTION(imu_thread, arg) {
-   int16_t imu_angle;
+    int16_t imu_angle;
 
-   while (true) {
-      Serial.println("*****************************************************");
-      //Serial.println("imu");
-      //tcaselect(3);
-      imu_angle = imu_loop_fn();
+    while (true) {
+        Serial.println("*****************************************************");
+        //Serial.println("imu");
+        //tcaselect(3);
+        imu_angle = imu_loop_fn();
 
 
-      chMtxLock(&sysMtx);
-      system_data.sensors.imu_angle = imu_angle;
-      system_data.updated = true;
-      chMtxUnlock(&sysMtx);
+        chMtxLock(&sysMtx);
+        system_data.sensors.imu_angle = imu_angle;
+        system_data.updated = true;
+        chMtxUnlock(&sysMtx);
 
-      chThdSleepMilliseconds(100);
-   }
+        chThdSleepMilliseconds(100);
+    }
 }
 
 
@@ -143,32 +143,32 @@ static THD_FUNCTION(imu_thread, arg) {
 static THD_WORKING_AREA(motor_driver_wa, 64);
 
 static THD_FUNCTION(motor_driver_thread, arg) {
-   int16_t motor_output;
-   int16_t wheel_speed;
-   int16_t time_step;
-   int16_t last_time = ST2MS(chVTGetSystemTime());
-   int16_t current_time = last_time;
+    int16_t motor_output;
+    int16_t wheel_speed;
+    int16_t time_step;
+    int16_t last_time = ST2MS(chVTGetSystemTime());
+    int16_t current_time = last_time;
 
-   while (true) {
-      motor_output = system_data.actuators.motor_output;
-      wheel_speed = system_data.sensors.wheel_speed;
+    while (true) {
+        motor_output = system_data.actuators.motor_output;
+        wheel_speed = system_data.sensors.wheel_speed;
 
-      current_time = ST2MS(chVTGetSystemTime());
-      time_step = current_time - last_time;
+        current_time = ST2MS(chVTGetSystemTime());
+        time_step = current_time - last_time;
 
-      if (system_data.deadman) {
-         Serial.print("outputting to motor:   ");
-         Serial.println(motor_output);
-         motor_driver_loop_fn(motor_output);
-      }
-      else {
-         motor_output = stop_motor(wheel_speed, time_step);
-         motor_driver_loop_fn(68);
-      }
+        if (system_data.deadman) {
+            Serial.print("outputting to motor:   ");
+            Serial.println(motor_output);
+            motor_driver_loop_fn(motor_output);
+        }
+        else {
+            motor_output = stop_motor(wheel_speed, time_step);
+            motor_driver_loop_fn(68);
+        }
 
-      last_time = current_time;
-      chThdSleepMilliseconds(100);
-   }
+        last_time = current_time;
+        chThdSleepMilliseconds(100);
+    }
 }
 
 
@@ -326,18 +326,18 @@ static THD_FUNCTION(rc_sw3_handler, arg) {
 static THD_WORKING_AREA(steer_servo_wa, 64);
 
 static THD_FUNCTION(steer_servo_thread, arg) {
-   int16_t steer_output = 180;
-   steer_servo_loop_fn(steer_output);
+    int16_t steer_output = 180;
+    steer_servo_loop_fn(steer_output);
 
-   while (true) {
+    while (true) {
 
-      //Serial.println("steer");
-      steer_output = system_data.actuators.steer_output;
+        //Serial.println("steer");
+        steer_output = system_data.actuators.steer_output;
 
-      steer_servo_loop_fn(steer_output);
+        steer_servo_loop_fn(steer_output);
 
-      chThdSleepMilliseconds(100);
-   }
+        chThdSleepMilliseconds(100);
+    }
 }
 
 
@@ -353,16 +353,16 @@ static THD_WORKING_AREA(teensy_serial_wa, 2048);
 
 static THD_FUNCTION(teensy_serial_thread, arg) {
 
-   while (true) {
+    while (true) {
 
-      //Serial.println("serial");
+        //Serial.println("serial");
 
-      chMtxLock(&sysMtx);
-      teensy_serial_loop_fn(&system_data);
-      chMtxUnlock(&sysMtx);
+        chMtxLock(&sysMtx);
+        teensy_serial_loop_fn(&system_data);
+        chMtxUnlock(&sysMtx);
 
-      chThdSleepMilliseconds(100);
-   }
+        chThdSleepMilliseconds(100);
+    }
 }
 
 
@@ -374,14 +374,14 @@ static THD_FUNCTION(teensy_serial_thread, arg) {
 static thread_reference_t hall_isr_trp = NULL;
 
 CH_IRQ_HANDLER(HALL_ISR_Fcn){
- CH_IRQ_PROLOGUE();
+    CH_IRQ_PROLOGUE();
 
- /* Wakes up the thread.*/
- chSysLockFromISR();
- chThdResumeI(&hall_isr_trp, (msg_t)0x1337);  /* Resuming the thread */
- chSysUnlockFromISR();
+    /* Wakes up the thread.*/
+    chSysLockFromISR();
+    chThdResumeI(&hall_isr_trp, (msg_t)0x1337);  /* Resuming the thread */
+    chSysUnlockFromISR();
 
- CH_IRQ_EPILOGUE();
+    CH_IRQ_EPILOGUE();
 }
 
 
@@ -396,14 +396,14 @@ static THD_WORKING_AREA(hall_sensor_wa, 5120);
 
 static THD_FUNCTION(hall_sensor_thread, arg) {
 
-while (true) {
-chSysLock();
-chThdSuspendS(&hall_isr_trp); // wait for resume thread message
-chSysUnlock();
+    while (true) {
+        chSysLock();
+        chThdSuspendS(&hall_isr_trp); // wait for resume thread message
+        chSysUnlock();
 
-Encoder_ticks = hall_sensor_loop_fn(HALL_PHASE_B_PIN, HALL_PHASE_C_PIN);
+        Encoder_ticks = hall_sensor_loop_fn(HALL_PHASE_B_PIN, HALL_PHASE_C_PIN);
 
-}
+    }
 }
 
 /**
@@ -417,15 +417,15 @@ static THD_WORKING_AREA(speed_wa, 5120);
 
 static THD_FUNCTION(speed_thread, arg) {
 
-while (true) {
+    while (true) {
 
-chMtxLock(&sysMtx);
-system_data.sensors.wheel_speed = wheel_speed_loop_fn(Encoder_ticks);
-chMtxUnlock(&sysMtx);
+        chMtxLock(&sysMtx);
+        system_data.sensors.wheel_speed = wheel_speed_loop_fn(Encoder_ticks);
+        chMtxUnlock(&sysMtx);
 
-chThdSleepMilliseconds(100);
+        chThdSleepMilliseconds(100);
 
-}
+    }
 }
 
 
@@ -437,45 +437,44 @@ chThdSleepMilliseconds(100);
  * of them are used until chThdCreateStatic(...) is called.
  */
 void chSetup() {
-   chThdCreateStatic(heartbeat_wa, sizeof(heartbeat_wa),
-   NORMALPRIO, heartbeat_thread, NULL);
+    chThdCreateStatic(heartbeat_wa, sizeof(heartbeat_wa),
+                     NORMALPRIO, heartbeat_thread, NULL);
 
-   chThdCreateStatic(fifth_wheel_wa, sizeof(fifth_wheel_wa),
-   NORMALPRIO, fifth_wheel_thread, NULL);
+    chThdCreateStatic(fifth_wheel_wa, sizeof(fifth_wheel_wa),
+                     NORMALPRIO, fifth_wheel_thread, NULL);
 
-   chThdCreateStatic(imu_wa, sizeof(imu_wa),
-   NORMALPRIO, imu_thread, NULL);
+    chThdCreateStatic(imu_wa, sizeof(imu_wa),
+                     NORMALPRIO, imu_thread, NULL);
 
-   chThdCreateStatic(motor_driver_wa, sizeof(motor_driver_wa),
-   NORMALPRIO, motor_driver_thread, NULL);
+    chThdCreateStatic(motor_driver_wa, sizeof(motor_driver_wa),
+                     NORMALPRIO, motor_driver_thread, NULL);
 
-   chThdCreateStatic(left_tof_wa, sizeof(left_tof_wa),
-   NORMALPRIO, left_tof_thread, NULL);
+    chThdCreateStatic(left_tof_wa, sizeof(left_tof_wa),
+                     NORMALPRIO, left_tof_thread, NULL);
 
-   chThdCreateStatic(right_tof_wa, sizeof(right_tof_wa),
-   NORMALPRIO, right_tof_thread, NULL);
+    chThdCreateStatic(right_tof_wa, sizeof(right_tof_wa),
+                     NORMALPRIO, right_tof_thread, NULL);
 
-   chThdCreateStatic(steer_servo_wa, sizeof(steer_servo_wa),
-   NORMALPRIO, steer_servo_thread, NULL);
+    chThdCreateStatic(steer_servo_wa, sizeof(steer_servo_wa),
+                     NORMALPRIO, steer_servo_thread, NULL);
 
-   chThdCreateStatic(teensy_serial_wa, sizeof(teensy_serial_wa),
-   NORMALPRIO, teensy_serial_thread, NULL);
+    chThdCreateStatic(teensy_serial_wa, sizeof(teensy_serial_wa),
+                     NORMALPRIO, teensy_serial_thread, NULL);
 
-   chThdCreateStatic(hall_sensor_wa, sizeof(hall_sensor_wa),
+    chThdCreateStatic(hall_sensor_wa, sizeof(hall_sensor_wa),
                      NORMALPRIO, hall_sensor_thread, NULL);
+    attachInterrupt(digitalPinToInterrupt(HALL_PHASE_A_PIN), HALL_ISR_Fcn, RISING);
 
-   attachInterrupt(digitalPinToInterrupt(HALL_PHASE_A_PIN), HALL_ISR_Fcn, RISING);
-
-   chThdCreateStatic(speed_wa, sizeof(speed_wa),
+    chThdCreateStatic(speed_wa, sizeof(speed_wa),
                      NORMALPRIO, speed_thread, NULL);
 
-   chThdCreateStatic(rc_sw1_isr_wa_thd, sizeof(rc_sw1_isr_wa_thd),
-   NORMALPRIO + 1, rc_sw1_handler, NULL);
-   attachInterrupt(digitalPinToInterrupt(RC_SW1_PIN), RC_SW1_ISR_Fcn, CHANGE);
+    chThdCreateStatic(rc_sw1_isr_wa_thd, sizeof(rc_sw1_isr_wa_thd),
+                     NORMALPRIO + 1, rc_sw1_handler, NULL);
+    attachInterrupt(digitalPinToInterrupt(RC_SW1_PIN), RC_SW1_ISR_Fcn, CHANGE);
 
-   chThdCreateStatic(rc_sw3_isr_wa_thd, sizeof(rc_sw3_isr_wa_thd),
-   NORMALPRIO + 1, rc_sw3_handler, NULL);
-   attachInterrupt(digitalPinToInterrupt(RC_SW3_PIN), RC_SW3_ISR_Fcn, CHANGE);
+    chThdCreateStatic(rc_sw3_isr_wa_thd, sizeof(rc_sw3_isr_wa_thd),
+                     NORMALPRIO + 1, rc_sw3_handler, NULL);
+    attachInterrupt(digitalPinToInterrupt(RC_SW3_PIN), RC_SW3_ISR_Fcn, CHANGE);
 
 }
 
@@ -491,30 +490,30 @@ void chSetup() {
  * thread scheduling that is built in to ChibiOS.
  */
 void setup() {
-   // Setup the serial ports -- both the hardware (UART) and console (USB)
-   teensy_serial_setup();
-   // Setup the IMU to make sure it is connected and reading
-   imu_setup();
-   // Setup the fifth wheel
-   fifth_wheel_setup(FIFTH_WHEEL_PIN);
-   // Setup the motor driver
-   motor_driver_setup(MOTOR_PIN);
-   // Setup the RC receiver
-   RC_receiver_setup();
-   // Setup the ToF Lidar Sensor to make sure it is connected and reading
-   tof_lidar_setup();
-   // Setup the steering servo
-   steer_servo_setup(STEER_SERVO_PIN);
-   // Setup the wheel speed sensors
-   hall_sensor_setup(HALL_PHASE_A_PIN, HALL_PHASE_B_PIN, HALL_PHASE_C_PIN);
-   // chBegin() resets stacks and should never return.
-   chBegin(chSetup);
+    // Setup the serial ports -- both the hardware (UART) and console (USB)
+    teensy_serial_setup();
+    // Setup the IMU to make sure it is connected and reading
+    imu_setup();
+    // Setup the fifth wheel
+    fifth_wheel_setup(FIFTH_WHEEL_PIN);
+    // Setup the motor driver
+    motor_driver_setup(MOTOR_PIN);
+    // Setup the RC receiver
+    RC_receiver_setup();
+    // Setup the ToF Lidar Sensor to make sure it is connected and reading
+    tof_lidar_setup();
+    // Setup the steering servo
+    steer_servo_setup(STEER_SERVO_PIN);
+    // Setup the wheel speed sensors
+    hall_sensor_setup(HALL_PHASE_A_PIN, HALL_PHASE_B_PIN, HALL_PHASE_C_PIN);
+    // chBegin() resets stacks and should never return.
+    chBegin(chSetup);
 
-   while (true) {}
+    while (true) {}
 }
 
 
 
-// loop() is the main thread.  Not used in this example.
+// loop() is the main thread for Arduino. It is not used in this environment.
 void loop() {
 }
