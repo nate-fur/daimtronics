@@ -13,7 +13,6 @@
 #define RELAY_PIN_1 7
 #define RELAY_PIN_2 0
 #define SYNC_VALUE -32000
-#define NUM_MSGS 4
 #define SHORT_SIZE 2
 #define FLOAT_SIZE 4
 #define SENSOR_DATA_SIZE_W_SYNC 14
@@ -23,10 +22,7 @@
 #define BAUDRATE 9600
 //#define DEBUG 
 
-// number of times the pi should read from serial for every time it writes 
-// to it. Helps with serial buffer overflow issues
-#define READ_CYCLES 2 
-// in hz; should match with controller node
+// in hz; should match with simulation rate control block of simulink model
 #define LOOP_FREQUENCY 20
 
 using namespace std;
@@ -74,12 +70,10 @@ int main(int argc, char **argv) {
       }
 	   publisher.publish(sensor_data);
 
-      digitalWrite(RELAY_PIN_1, sensor_data.drive_mode_1);
-      digitalWrite(RELAY_PIN_2, !sensor_data.drive_mode_1);
+      digitalWrite(RELAY_PIN_1, sensor_data.drive_mode);
+      digitalWrite(RELAY_PIN_2, !sensor_data.drive_mode);
       
       ros::spinOnce();
-
-      //print_sensors(sensor_data);
 
       loop_rate.sleep();
    }
@@ -89,12 +83,7 @@ void pi_sync() {
    int16_t data;
    int16_t avail;
 
-/*
-   while ((avail = serialDataAvail(serial)) < 14){
-      printf("waiting %i\n", avail);
-   }
-*/
-   while ((data = read_sensor_msg(serial, 2)) != SYNC_VALUE){ 
+   while ((data = read_sensor_msg(serial, 2)) != SYNC_VALUE){
       printf("error\n");
    }
    printf("data: %i\n", data);
@@ -125,7 +114,7 @@ void read_from_teensy(int serial, semi_truck::Teensy_Sensors &sensors) {
    sensors.right_TOF = read_sensor_msg(serial, SHORT_SIZE);
    sensors.left_TOF = read_sensor_msg(serial, SHORT_SIZE);
    sensors.rear_TOF = read_sensor_msg(serial, SHORT_SIZE);
-   sensors.drive_mode_1 = read_sensor_msg(serial,SHORT_SIZE);
+   sensors.drive_mode = read_sensor_msg(serial,SHORT_SIZE);
 }
 
 
@@ -160,8 +149,7 @@ void print_sensors(const semi_truck::Teensy_Sensors &sensors) {
    ROS_INFO("right_TOF:\t [%i]", sensors.right_TOF);
    ROS_INFO("left_TOF:\t [%i]", sensors.left_TOF);
    ROS_INFO("rear_TOF:\t [%i]", sensors.rear_TOF);
-   ROS_INFO("drive_mode_1:\t [%i]", sensors.drive_mode_1);
-   ROS_INFO("drive_mode_2:\t [%i]\n", sensors.drive_mode_2);
+   ROS_INFO("drive_mode:\t [%i]", sensors.drive_mode);
 }
 
 
