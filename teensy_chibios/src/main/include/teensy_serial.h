@@ -11,6 +11,10 @@ void teensy_serial_setup();
 
 void set_sensor_msg(int user_input, sensor_data_t *data_ptr);
 
+void teensy_sync();
+
+void clear_buffer();
+
 void read_from_pi(actuator_data_t *actuators_ptr);
 
 void print_sensor_msg(sensor_data_t *sensors_ptr);

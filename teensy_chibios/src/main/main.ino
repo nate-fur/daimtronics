@@ -45,6 +45,7 @@
 #define HALL_PHASE_B_PIN 21
 #define HALL_PHASE_C_PIN 22
 
+
 /**
  * @brief The data for the entire system. Synchronization will be achieved
  * through the use of ChibiOS's mutex library.
@@ -97,7 +98,7 @@ static THD_FUNCTION(fifth_wheel_thread, arg) {
 
       fifth_wheel_loop_fn(fifth_output);
 
-      chThdSleepMilliseconds(100);
+      chThdSleepMilliseconds(300);
    }
 }
 
@@ -127,7 +128,7 @@ static THD_FUNCTION(imu_thread, arg) {
       system_data.updated = true;
       chMtxUnlock(&sysMtx);
 
-      chThdSleepMilliseconds(100);
+      chThdSleepMilliseconds(50);
    }
 }
 
@@ -271,53 +272,6 @@ static THD_FUNCTION(rc_sw1_handler, arg) {
 
 
 /**
- * @brief RC Receiver Switch 2 Interrupt Handler: Runs preemptive Chibios Interrupt
- * code and awakens the RC receiver Switch 2 thread.
- */
-static thread_reference_t rc_sw2_isr_trp = NULL;
-
-CH_IRQ_HANDLER(RC_SW2_ISR_Fcn){
-    CH_IRQ_PROLOGUE();
-
-    /* Wakes up the thread.*/
-    chSysLockFromISR();
-    chThdResumeI(&rc_sw2_isr_trp, (msg_t)0x1337);  /* Resuming the thread */
-    chSysUnlockFromISR();
-
-    CH_IRQ_EPILOGUE();
-}
-
-
-/**
- * @brief RC Receiver Switch 2 Thread: Reads auxiliary signals from the RC receiver switch 2
- * for determining what drive mode the semi-truck is in.
- *
- * This thread calls RC_receiver_SW2_fn which is the primary function for
- * the RC receiver switch 2 and whose implementation is found in RC_receiver.cpp
- */
-static THD_WORKING_AREA(rc_sw2_isr_wa_thd, 128);
-
-static THD_FUNCTION(rc_sw2_handler, arg) {
-
-    int16_t drive_mode;
-    while (true) {
-
-        chSysLock();
-        chThdSuspendS(&rc_sw2_isr_trp); // wait for resume thread message
-        chSysUnlock();
-
-        drive_mode = RC_receiver_SW2_fn(RC_SW2_PIN);
-
-        chMtxLock(&sysMtx);
-        system_data.drive_mode_1 = drive_mode;
-        system_data.updated = true;
-        chMtxUnlock(&sysMtx);
-
-    }
-}
-
-
-/**
  * @brief RC Receiver Switch 3 Interrupt Handler: Runs preemptive Chibios Interrupt
  * code and awakens the RC receiver Switch 3 thread.
  */
@@ -336,7 +290,7 @@ CH_IRQ_HANDLER(RC_SW3_ISR_Fcn){
 
 
 /**
- * @brief RC Receiver Swicth 3 Thread: Reads auxiliary signals from the RC receiver switch 3
+ * @brief RC Receiver Switch 3 Thread: Reads auxiliary signals from the RC receiver switch 3
  * for determining what drive mode the semi-truck is in.
  *
  * This thread calls RC_receiver_SW3_fn which is the primary function for
@@ -356,7 +310,7 @@ static THD_FUNCTION(rc_sw3_handler, arg) {
         drive_mode = RC_receiver_SW3_fn(RC_SW3_PIN);
 
         chMtxLock(&sysMtx);
-        system_data.drive_mode_2 = drive_mode;
+        system_data.drive_mode = drive_mode;
         system_data.updated = true;
         chMtxUnlock(&sysMtx);
 
@@ -400,6 +354,7 @@ static THD_WORKING_AREA(teensy_serial_wa, 2048);
 
 static THD_FUNCTION(teensy_serial_thread, arg) {
 
+   clear_buffer();
    while (true) {
 
       //Serial.println("serial");
@@ -408,7 +363,7 @@ static THD_FUNCTION(teensy_serial_thread, arg) {
       teensy_serial_loop_fn(&system_data);
       chMtxUnlock(&sysMtx);
 
-      chThdSleepMilliseconds(100);
+      chThdSleepMilliseconds(50);
    }
 }
 
@@ -421,14 +376,14 @@ static THD_FUNCTION(teensy_serial_thread, arg) {
 static thread_reference_t hall_isr_trp = NULL;
 
 CH_IRQ_HANDLER(HALL_ISR_Fcn){
- CH_IRQ_PROLOGUE();
+    CH_IRQ_PROLOGUE();
 
- /* Wakes up the thread.*/
- chSysLockFromISR();
- chThdResumeI(&hall_isr_trp, (msg_t)0x1337);  /* Resuming the thread */
- chSysUnlockFromISR();
+    /* Wakes up the thread.*/
+    chSysLockFromISR();
+    chThdResumeI(&hall_isr_trp, (msg_t)0x1337);  /* Resuming the thread */
+    chSysUnlockFromISR();
 
- CH_IRQ_EPILOGUE();
+    CH_IRQ_EPILOGUE();
 }
 
 
@@ -443,14 +398,14 @@ static THD_WORKING_AREA(hall_sensor_wa, 5120);
 
 static THD_FUNCTION(hall_sensor_thread, arg) {
 
-while (true) {
-chSysLock();
-chThdSuspendS(&hall_isr_trp); // wait for resume thread message
-chSysUnlock();
+    while (true) {
+        chSysLock();
+        chThdSuspendS(&hall_isr_trp); // wait for resume thread message
+        chSysUnlock();
 
-Encoder_ticks = hall_sensor_loop_fn(HALL_PHASE_B_PIN, HALL_PHASE_C_PIN);
+        Encoder_ticks = hall_sensor_loop_fn(HALL_PHASE_B_PIN, HALL_PHASE_C_PIN);
 
-}
+    }
 }
 
 /**
@@ -464,15 +419,15 @@ static THD_WORKING_AREA(speed_wa, 5120);
 
 static THD_FUNCTION(speed_thread, arg) {
 
-while (true) {
+    while (true) {
 
-chMtxLock(&sysMtx);
-system_data.sensors.wheel_speed = wheel_speed_loop_fn(Encoder_ticks);
-chMtxUnlock(&sysMtx);
+        chMtxLock(&sysMtx);
+        system_data.sensors.wheel_speed = wheel_speed_loop_fn(Encoder_ticks);
+        chMtxUnlock(&sysMtx);
 
-chThdSleepMilliseconds(100);
+        chThdSleepMilliseconds(100);
 
-}
+    }
 }
 
 
@@ -484,49 +439,45 @@ chThdSleepMilliseconds(100);
  * of them are used until chThdCreateStatic(...) is called.
  */
 void chSetup() {
-   chThdCreateStatic(heartbeat_wa, sizeof(heartbeat_wa),
+   /*chThdCreateStatic(heartbeat_wa, sizeof(heartbeat_wa),
    NORMALPRIO, heartbeat_thread, NULL);
+   */
 
-   chThdCreateStatic(fifth_wheel_wa, sizeof(fifth_wheel_wa),
-   NORMALPRIO, fifth_wheel_thread, NULL);
+    chThdCreateStatic(fifth_wheel_wa, sizeof(fifth_wheel_wa),
+                     NORMALPRIO, fifth_wheel_thread, NULL);
 
-   chThdCreateStatic(imu_wa, sizeof(imu_wa),
-   NORMALPRIO, imu_thread, NULL);
+    chThdCreateStatic(imu_wa, sizeof(imu_wa),
+                     NORMALPRIO, imu_thread, NULL);
 
-   chThdCreateStatic(motor_driver_wa, sizeof(motor_driver_wa),
-   NORMALPRIO, motor_driver_thread, NULL);
+    chThdCreateStatic(motor_driver_wa, sizeof(motor_driver_wa),
+                     NORMALPRIO, motor_driver_thread, NULL);
 
-   chThdCreateStatic(left_tof_wa, sizeof(left_tof_wa),
-   NORMALPRIO, left_tof_thread, NULL);
+    chThdCreateStatic(left_tof_wa, sizeof(left_tof_wa),
+                     NORMALPRIO, left_tof_thread, NULL);
 
-   chThdCreateStatic(right_tof_wa, sizeof(right_tof_wa),
-   NORMALPRIO, right_tof_thread, NULL);
+    chThdCreateStatic(right_tof_wa, sizeof(right_tof_wa),
+                     NORMALPRIO, right_tof_thread, NULL);
 
-   chThdCreateStatic(steer_servo_wa, sizeof(steer_servo_wa),
-   NORMALPRIO, steer_servo_thread, NULL);
+    chThdCreateStatic(steer_servo_wa, sizeof(steer_servo_wa),
+                     NORMALPRIO, steer_servo_thread, NULL);
 
-   chThdCreateStatic(teensy_serial_wa, sizeof(teensy_serial_wa),
-   NORMALPRIO, teensy_serial_thread, NULL);
+    chThdCreateStatic(teensy_serial_wa, sizeof(teensy_serial_wa),
+                     NORMALPRIO, teensy_serial_thread, NULL);
 
-   chThdCreateStatic(hall_sensor_wa, sizeof(hall_sensor_wa),
+    chThdCreateStatic(hall_sensor_wa, sizeof(hall_sensor_wa),
                      NORMALPRIO, hall_sensor_thread, NULL);
+    attachInterrupt(digitalPinToInterrupt(HALL_PHASE_A_PIN), HALL_ISR_Fcn, RISING);
 
-   attachInterrupt(digitalPinToInterrupt(HALL_PHASE_A_PIN), HALL_ISR_Fcn, RISING);
-
-   chThdCreateStatic(speed_wa, sizeof(speed_wa),
+    chThdCreateStatic(speed_wa, sizeof(speed_wa),
                      NORMALPRIO, speed_thread, NULL);
 
-   chThdCreateStatic(rc_sw1_isr_wa_thd, sizeof(rc_sw1_isr_wa_thd),
-   NORMALPRIO + 1, rc_sw1_handler, NULL);
-   attachInterrupt(digitalPinToInterrupt(RC_SW1_PIN), RC_SW1_ISR_Fcn, CHANGE);
+    chThdCreateStatic(rc_sw1_isr_wa_thd, sizeof(rc_sw1_isr_wa_thd),
+                     NORMALPRIO + 1, rc_sw1_handler, NULL);
+    attachInterrupt(digitalPinToInterrupt(RC_SW1_PIN), RC_SW1_ISR_Fcn, CHANGE);
 
-   chThdCreateStatic(rc_sw2_isr_wa_thd, sizeof(rc_sw2_isr_wa_thd),
-   NORMALPRIO + 1, rc_sw2_handler, NULL);
-   attachInterrupt(digitalPinToInterrupt(RC_SW2_PIN), RC_SW2_ISR_Fcn, CHANGE);
-
-   chThdCreateStatic(rc_sw3_isr_wa_thd, sizeof(rc_sw3_isr_wa_thd),
-   NORMALPRIO + 1, rc_sw3_handler, NULL);
-   attachInterrupt(digitalPinToInterrupt(RC_SW3_PIN), RC_SW3_ISR_Fcn, CHANGE);
+    chThdCreateStatic(rc_sw3_isr_wa_thd, sizeof(rc_sw3_isr_wa_thd),
+                     NORMALPRIO + 1, rc_sw3_handler, NULL);
+    attachInterrupt(digitalPinToInterrupt(RC_SW3_PIN), RC_SW3_ISR_Fcn, CHANGE);
 
 }
 
@@ -542,30 +493,30 @@ void chSetup() {
  * thread scheduling that is built in to ChibiOS.
  */
 void setup() {
-   // Setup the serial ports -- both the hardware (UART) and console (USB)
-   teensy_serial_setup();
-   // Setup the IMU to make sure it is connected and reading
-   imu_setup();
-   // Setup the fifth wheel
-   fifth_wheel_setup(FIFTH_WHEEL_PIN);
-   // Setup the motor driver
-   motor_driver_setup(MOTOR_PIN);
-   // Setup the RC receiver
-   RC_receiver_setup();
-   // Setup the ToF Lidar Sensor to make sure it is connected and reading
-   tof_lidar_setup();
-   // Setup the steering servo
-   steer_servo_setup(STEER_SERVO_PIN);
-   // Setup the wheel speed sensors
-   hall_sensor_setup(HALL_PHASE_A_PIN, HALL_PHASE_B_PIN, HALL_PHASE_C_PIN);
-   // chBegin() resets stacks and should never return.
-   chBegin(chSetup);
+    // Setup the serial ports -- both the hardware (UART) and console (USB)
+    teensy_serial_setup();
+    // Setup the IMU to make sure it is connected and reading
+    imu_setup();
+    // Setup the fifth wheel
+    fifth_wheel_setup(FIFTH_WHEEL_PIN);
+    // Setup the motor driver
+    motor_driver_setup(MOTOR_PIN);
+    // Setup the RC receiver
+    RC_receiver_setup();
+    // Setup the ToF Lidar Sensor to make sure it is connected and reading
+    tof_lidar_setup();
+    // Setup the steering servo
+    steer_servo_setup(STEER_SERVO_PIN);
+    // Setup the wheel speed sensors
+    hall_sensor_setup(HALL_PHASE_A_PIN, HALL_PHASE_B_PIN, HALL_PHASE_C_PIN);
+    // chBegin() resets stacks and should never return.
+    chBegin(chSetup);
 
-   while (true) {}
+    while (true) {}
 }
 
 
 
-// loop() is the main thread.  Not used in this example.
+// loop() is the main thread for Arduino. It is not used in this environment.
 void loop() {
 }
