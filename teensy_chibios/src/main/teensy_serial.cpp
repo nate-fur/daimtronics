@@ -28,20 +28,11 @@ void teensy_serial_loop_fn(system_data_t *system_data) {
 
          HWSERIAL.write((char*)&sync_value, sizeof(short));
          HWSERIAL.write((char*)&(system_data->sensors), sizeof(sensor_data_t));
-         HWSERIAL.write((char*)&(system_data->drive_mode_1), sizeof(int16_t));
+         HWSERIAL.write((char*)&(system_data->drive_mode), sizeof(int16_t));
          system_data->updated = false;
       }
    }
 
-   /*
-   // communicate with Pi and the ROS network
-   for (int i = 0; i < READ_CYCLES; i++) {
-      if (HWSERIAL.available() > ACT_DATA_SIZE) {
-         read_from_pi(&(system_data->actuators));
-         print_actuator_msg(&system_data->actuators);
-      }
-   }
-    */
    waiting_bytes = HWSERIAL.available();
    Serial.printf("waiting bytes: %i\n", waiting_bytes);
    // communicate with Pi and the ROS network

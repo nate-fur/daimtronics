@@ -1,7 +1,3 @@
-//
-// Created by Fernando Mondragon-Cardenas on 2019-05-20.
-//
-
 #include "include/hall_sensor.h"
 #include <Arduino.h>
 #include <ChRt.h>

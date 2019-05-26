@@ -1,7 +1,3 @@
-//
-// Created by nate on 4/2/19.
-//
-
 #include "include/motor_driver.h"
 #include <Arduino.h>
 #include <Servo.h>

@@ -1,7 +1,3 @@
-//
-// Created by Fernando Mondragon-Cardenas on 2019-05-20.
-//
-
 #ifndef HALL_SENSOR_H
 #define HALL_SENSOR_H
 
