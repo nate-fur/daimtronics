@@ -3,8 +3,8 @@
 
 #define SHORT_SIZE 2
 
-// number of times the teensy should read form serial for every time it writes
-// to it. Helps with serial buffer overflow issues
+#define ACT_DATA_SIZE_W_SYNC 8
+#define ACT_DATA_SIZE 6
 #define READ_CYCLES 2
 #define SYNC_VALUE -32000
 
@@ -16,8 +16,8 @@
  */
 void teensy_serial_loop_fn(system_data_t *system_data) {
    short sync_value = SYNC_VALUE;
+   short waiting_bytes;
 
-   // reading from PC console and outputting to PC console
    if (system_data->updated) {
       Serial.print("Received from imu: ");
       Serial.println(system_data->sensors.imu_angle, DEC);
@@ -29,14 +29,28 @@ void teensy_serial_loop_fn(system_data_t *system_data) {
          HWSERIAL.write((char*)&sync_value, sizeof(short));
          HWSERIAL.write((char*)&(system_data->sensors), sizeof(sensor_data_t));
          HWSERIAL.write((char*)&(system_data->drive_mode_1), sizeof(int16_t));
-         HWSERIAL.write((char*)&(system_data->drive_mode_2), sizeof(int16_t));
          system_data->updated = false;
       }
    }
 
+   /*
    // communicate with Pi and the ROS network
    for (int i = 0; i < READ_CYCLES; i++) {
-      if (HWSERIAL.available() > 0) {
+      if (HWSERIAL.available() > ACT_DATA_SIZE) {
+         read_from_pi(&(system_data->actuators));
+         print_actuator_msg(&system_data->actuators);
+      }
+   }
+    */
+   waiting_bytes = HWSERIAL.available();
+   Serial.printf("waiting bytes: %i\n", waiting_bytes);
+   // communicate with Pi and the ROS network
+   for (int i = 0; i < waiting_bytes/ACT_DATA_SIZE_W_SYNC; i++) {
+
+      teensy_sync();
+      waiting_bytes = HWSERIAL.available();
+      Serial.printf("waiting bytes: %i\n", waiting_bytes);
+      if (waiting_bytes >= ACT_DATA_SIZE) {
          read_from_pi(&(system_data->actuators));
          print_actuator_msg(&system_data->actuators);
       }
@@ -49,6 +63,25 @@ void teensy_serial_setup(){
    HWSERIAL.begin(9600);
 }
 
+
+void clear_buffer() {
+   byte data_buffer[64];
+   short avail = HWSERIAL.available();
+   HWSERIAL.readBytes(data_buffer, avail);
+}
+
+
+void teensy_sync() {
+   int16_t data;
+   byte data_buffer[2];
+
+   do {
+      HWSERIAL.readBytes(data_buffer, 2);
+      data = *((int16_t*)data_buffer);
+      Serial.printf("sync data: %i\n", data);
+   } while (data != SYNC_VALUE);
+
+}
 
 void read_from_pi(actuator_data_t *actuators_ptr) {
    byte data_buffer[SHORT_SIZE];

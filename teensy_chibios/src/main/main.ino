@@ -45,6 +45,7 @@
 #define HALL_PHASE_B_PIN 21
 #define HALL_PHASE_C_PIN 22
 
+
 /**
  * @brief The data for the entire system. Synchronization will be achieved
  * through the use of ChibiOS's mutex library.
@@ -97,7 +98,7 @@ static THD_FUNCTION(fifth_wheel_thread, arg) {
 
       fifth_wheel_loop_fn(fifth_output);
 
-      chThdSleepMilliseconds(100);
+      chThdSleepMilliseconds(300);
    }
 }
 
@@ -127,7 +128,7 @@ static THD_FUNCTION(imu_thread, arg) {
       system_data.updated = true;
       chMtxUnlock(&sysMtx);
 
-      chThdSleepMilliseconds(100);
+      chThdSleepMilliseconds(50);
    }
 }
 
@@ -400,6 +401,7 @@ static THD_WORKING_AREA(teensy_serial_wa, 2048);
 
 static THD_FUNCTION(teensy_serial_thread, arg) {
 
+   clear_buffer();
    while (true) {
 
       //Serial.println("serial");
@@ -408,7 +410,7 @@ static THD_FUNCTION(teensy_serial_thread, arg) {
       teensy_serial_loop_fn(&system_data);
       chMtxUnlock(&sysMtx);
 
-      chThdSleepMilliseconds(100);
+      chThdSleepMilliseconds(50);
    }
 }
 
@@ -421,14 +423,14 @@ static THD_FUNCTION(teensy_serial_thread, arg) {
 static thread_reference_t hall_isr_trp = NULL;
 
 CH_IRQ_HANDLER(HALL_ISR_Fcn){
- CH_IRQ_PROLOGUE();
+   CH_IRQ_PROLOGUE();
 
- /* Wakes up the thread.*/
- chSysLockFromISR();
- chThdResumeI(&hall_isr_trp, (msg_t)0x1337);  /* Resuming the thread */
- chSysUnlockFromISR();
+   /* Wakes up the thread.*/
+   chSysLockFromISR();
+   chThdResumeI(&hall_isr_trp, (msg_t)0x1337);  /* Resuming the thread */
+   chSysUnlockFromISR();
 
- CH_IRQ_EPILOGUE();
+   CH_IRQ_EPILOGUE();
 }
 
 
@@ -443,14 +445,14 @@ static THD_WORKING_AREA(hall_sensor_wa, 5120);
 
 static THD_FUNCTION(hall_sensor_thread, arg) {
 
-while (true) {
-chSysLock();
-chThdSuspendS(&hall_isr_trp); // wait for resume thread message
-chSysUnlock();
+   while (true) {
+      chSysLock();
+      chThdSuspendS(&hall_isr_trp); // wait for resume thread message
+      chSysUnlock();
 
-Encoder_ticks = hall_sensor_loop_fn(HALL_PHASE_B_PIN, HALL_PHASE_C_PIN);
+      Encoder_ticks = hall_sensor_loop_fn(HALL_PHASE_B_PIN, HALL_PHASE_C_PIN);
 
-}
+   }
 }
 
 /**
@@ -464,15 +466,15 @@ static THD_WORKING_AREA(speed_wa, 5120);
 
 static THD_FUNCTION(speed_thread, arg) {
 
-while (true) {
+   while (true) {
 
-chMtxLock(&sysMtx);
-system_data.sensors.wheel_speed = wheel_speed_loop_fn(Encoder_ticks);
-chMtxUnlock(&sysMtx);
+      chMtxLock(&sysMtx);
+      system_data.sensors.wheel_speed = wheel_speed_loop_fn(Encoder_ticks);
+      chMtxUnlock(&sysMtx);
 
-chThdSleepMilliseconds(100);
+      chThdSleepMilliseconds(50);
 
-}
+   }
 }
 
 
@@ -484,8 +486,9 @@ chThdSleepMilliseconds(100);
  * of them are used until chThdCreateStatic(...) is called.
  */
 void chSetup() {
-   chThdCreateStatic(heartbeat_wa, sizeof(heartbeat_wa),
+   /*chThdCreateStatic(heartbeat_wa, sizeof(heartbeat_wa),
    NORMALPRIO, heartbeat_thread, NULL);
+   */
 
    chThdCreateStatic(fifth_wheel_wa, sizeof(fifth_wheel_wa),
    NORMALPRIO, fifth_wheel_thread, NULL);
@@ -560,6 +563,7 @@ void setup() {
    hall_sensor_setup(HALL_PHASE_A_PIN, HALL_PHASE_B_PIN, HALL_PHASE_C_PIN);
    // chBegin() resets stacks and should never return.
    chBegin(chSetup);
+
 
    while (true) {}
 }
