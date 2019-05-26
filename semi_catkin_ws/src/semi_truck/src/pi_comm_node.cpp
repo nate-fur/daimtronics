@@ -10,13 +10,14 @@
 #include <ros/ros.h>
 #include <sensor_msgs/LaserScan.h>
 
-#define RELAY_PIN 7
+#define RELAY_PIN_1 7
+#define RELAY_PIN_2 0
 #define SYNC_VALUE -32000
 #define NUM_MSGS 4
 #define SHORT_SIZE 2
 #define FLOAT_SIZE 4
-#define SENSOR_DATA_SIZE_W_SYNC 16
-#define SENSOR_DATA_SIZE 14
+#define SENSOR_DATA_SIZE_W_SYNC 14
+#define SENSOR_DATA_SIZE 12
 #define BUFF_SIZE 50
 #define UART "/dev/ttyS0"
 #define BAUDRATE 9600
@@ -26,7 +27,7 @@
 // to it. Helps with serial buffer overflow issues
 #define READ_CYCLES 2 
 // in hz; should match with controller node
-#define LOOP_FREQUENCY 10
+#define LOOP_FREQUENCY 20
 
 using namespace std;
 static int serial;
@@ -41,8 +42,9 @@ int main(int argc, char **argv) {
    printf("Starting serial communication...\n");
 
    wiringPiSetup();
-   setPadDrive(0,5);
-   pinMode(RELAY_PIN, OUTPUT);
+   //setPadDrive(0,5);
+   pinMode(RELAY_PIN_1, OUTPUT);
+   pinMode(RELAY_PIN_2, OUTPUT);
    ros::init(argc, argv, "pi_comm_node");
    ros::NodeHandle nh("~");
    semi_truck::Teensy_Sensors sensor_data;
@@ -59,6 +61,7 @@ int main(int argc, char **argv) {
 
       waiting_bytes = serialDataAvail(serial);
 
+      printf("waiting %i\n", waiting_bytes);
       for (int i = 0; i < waiting_bytes/SENSOR_DATA_SIZE_W_SYNC; i++) {
          pi_sync();  // prevents data becoming mismatched
          waiting_bytes = serialDataAvail(serial);
@@ -71,8 +74,8 @@ int main(int argc, char **argv) {
       }
 	   publisher.publish(sensor_data);
 
-      //printf("writing to pin: %i\n", sensor_data.drive_mode_2);
-      digitalWrite(RELAY_PIN, sensor_data.drive_mode_2);
+      digitalWrite(RELAY_PIN_1, sensor_data.drive_mode_1);
+      digitalWrite(RELAY_PIN_2, !sensor_data.drive_mode_1);
       
       ros::spinOnce();
 
@@ -83,8 +86,8 @@ int main(int argc, char **argv) {
 }
 
 void pi_sync() {
-   short data;
-   short avail;
+   int16_t data;
+   int16_t avail;
 
 /*
    while ((avail = serialDataAvail(serial)) < 14){
@@ -123,7 +126,6 @@ void read_from_teensy(int serial, semi_truck::Teensy_Sensors &sensors) {
    sensors.left_TOF = read_sensor_msg(serial, SHORT_SIZE);
    sensors.rear_TOF = read_sensor_msg(serial, SHORT_SIZE);
    sensors.drive_mode_1 = read_sensor_msg(serial,SHORT_SIZE);
-   sensors.drive_mode_2 = read_sensor_msg(serial,SHORT_SIZE);
 }
 
 
@@ -137,6 +139,7 @@ void write_actuator_msg(int serial, short actuator_val, char num_bytes) {
 
 
 void write_to_teensy(int serial, const semi_truck::Teensy_Actuators &actuators) {
+   write_actuator_msg(serial, SYNC_VALUE, SHORT_SIZE);
    write_actuator_msg(serial, actuators.motor_output, SHORT_SIZE);
    write_actuator_msg(serial, actuators.steer_output, SHORT_SIZE);
    write_actuator_msg(serial, actuators.fifth_output, SHORT_SIZE);
