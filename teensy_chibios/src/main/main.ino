@@ -46,39 +46,35 @@
 #define HALL_PHASE_C_PIN 22
 
 
+/***************************** STATIC VARIABLES ******************************/
+
 /**
- * @brief The data for the entire system. Synchronization will be achieved
- * through the use of ChibiOS's mutex library.
+ * @brief The data for the entire system. Synchronization to access this
+ * resource is achieved through the use of ChibiOS's mutex library.
  *
  * Tasks that control a sensor will call the primary function to read that
  * sensor, obtain the mutex to for the system data, write the sensor data to
  * the system_data, and then release the mutex on the system_data.
  *
  * Tasks that control actuators will read from the system_data (no mutex
- * needed as the system_data is read-only for actuator tasks) to receive the
- * specific data that corresponds to their task and then run their primary
- * functions to control the actuators.
+ * needed as the system_data is effectively read-only for actuator tasks) to
+ * receive the specific data that corresponds to their task and then run their
+ * primary functions to control the actuators.
  */
 static system_data_t system_data = {0};
 MUTEX_DECL(sysMtx);
 
-static int16_t Encoder_ticks;
 /**
- * @brief Heartbeat Thread: blinks the LED periodically so that the user is
- * sure that the Teensy program is still running and has not crashed.
+ * @brief The number of ticks that have read based on the rotation of the
+ * three-phase motor. The ticks are determined from the Hall Sensor that is
+ * on the motor, and passed into the wheel_speed task to determine physical
+ * speed of the system.
  */
-static THD_WORKING_AREA(heartbeat_wa, 64);
-
-static THD_FUNCTION(heartbeat_thread, arg) {
-
-   pinMode(LED_BUILTIN, OUTPUT);
-   while (true) {
-      digitalWrite(LED_BUILTIN, HIGH);
-      chThdSleepMilliseconds(1500);
-   }
-}
+static int16_t Encoder_ticks;
 
 
+
+/*************************** THREAD DECLARATION ******************************/
 
 /**
  * @brief Fifth Wheel Thread: Reads desired state of the fifth wheel from the
@@ -119,7 +115,6 @@ static THD_FUNCTION(imu_thread, arg) {
    while (true) {
       Serial.println("*****************************************************");
       //Serial.println("imu");
-      //tcaselect(3);
       imu_angle = imu_loop_fn();
 
 
@@ -164,7 +159,7 @@ static THD_FUNCTION(motor_driver_thread, arg) {
       }
       else {
          motor_output = stop_motor(wheel_speed, time_step);
-         motor_driver_loop_fn(68);
+         motor_driver_loop_fn(motor_output);
       }
 
       last_time = current_time;
@@ -175,8 +170,8 @@ static THD_FUNCTION(motor_driver_thread, arg) {
 
 
 /**
- * @brief Left Time of Flight Lidar Thread: Reads motor output levels from the
- * system data and controls the motor based on this value.
+ * @brief Left Time of Flight Lidar Thread: Reads the distance in millimeters
+ * to the nearest object for the left Time of Flight sensor.
  *
  * This thread calls tof_loop_fn which is the primary function for
  * the motor and whose implementation is found in tof_lidar.cpp.
@@ -185,15 +180,15 @@ static THD_WORKING_AREA(left_tof_wa, 512);
 
 static THD_FUNCTION(left_tof_thread, arg) {
     int16_t dist_mm;
-    while (true) {
 
-        //Serial.println("ToF_start");
+    while (true) {
         dist_mm = tof_loop_fn();
-        //Serial.println("tof_Done");
+
         chMtxLock(&sysMtx);
         system_data.sensors.rear_TOF = dist_mm;
         system_data.updated = true;
         chMtxUnlock(&sysMtx);
+
         chThdSleepMilliseconds(100);
     }
 }
@@ -201,8 +196,8 @@ static THD_FUNCTION(left_tof_thread, arg) {
 
 
 /**
- * @brief Right Time of Flight Lidar Thread: Reads motor output levels from the
- * system data and controls the motor based on this value.
+ * @brief Right Time of Flight Lidar Thread: Reads the distance in millimeters
+ * to the nearest object for the right Time of Flight sensor.
  *
  * This thread calls tof_loop_fn which is the primary function for
  * the motor and whose implementation is found in tof_lidar.cpp.
@@ -211,15 +206,15 @@ static THD_WORKING_AREA(right_tof_wa, 512);
 
 static THD_FUNCTION(right_tof_thread, arg) {
     int16_t dist_mm;
-    while (true) {
 
-        //Serial.println("ToF_start");
+    while (true) {
         dist_mm = tof_loop_fn();
-        //Serial.println("tof_Done");
+
         chMtxLock(&sysMtx);
         system_data.sensors.rear_TOF = dist_mm;
         system_data.updated = true;
         chMtxUnlock(&sysMtx);
+
         chThdSleepMilliseconds(100);
     }
 }
@@ -266,7 +261,6 @@ static THD_FUNCTION(rc_sw1_handler, arg) {
         system_data.deadman = deadman_mode;
         system_data.updated = true;
         chMtxUnlock(&sysMtx);
-
     }
 }
 
@@ -299,10 +293,9 @@ CH_IRQ_HANDLER(RC_SW3_ISR_Fcn){
 static THD_WORKING_AREA(rc_sw3_isr_wa_thd, 128);
 
 static THD_FUNCTION(rc_sw3_handler, arg) {
-
     int16_t drive_mode;
-    while (true) {
 
+    while (true) {
         chSysLock();
         chThdSuspendS(&rc_sw3_isr_trp); // wait for resume thread message
         chSysUnlock();
@@ -331,7 +324,6 @@ static THD_FUNCTION(steer_servo_thread, arg) {
    steer_servo_loop_fn(steer_output);
 
    while (true) {
-
       //Serial.println("steer");
       steer_output = system_data.actuators.steer_output;
 
@@ -353,10 +345,9 @@ static THD_FUNCTION(steer_servo_thread, arg) {
 static THD_WORKING_AREA(teensy_serial_wa, 2048);
 
 static THD_FUNCTION(teensy_serial_thread, arg) {
-
    clear_buffer();
-   while (true) {
 
+   while (true) {
       //Serial.println("serial");
 
       chMtxLock(&sysMtx);
@@ -404,7 +395,6 @@ static THD_FUNCTION(hall_sensor_thread, arg) {
         chSysUnlock();
 
         Encoder_ticks = hall_sensor_loop_fn(HALL_PHASE_B_PIN, HALL_PHASE_C_PIN);
-
     }
 }
 
@@ -420,16 +410,17 @@ static THD_WORKING_AREA(speed_wa, 5120);
 static THD_FUNCTION(speed_thread, arg) {
 
     while (true) {
-
         chMtxLock(&sysMtx);
         system_data.sensors.wheel_speed = wheel_speed_loop_fn(Encoder_ticks);
         chMtxUnlock(&sysMtx);
 
         chThdSleepMilliseconds(100);
-
     }
 }
 
+
+
+/************************** THREAD INITIALIZATION ****************************/
 
 /**
  * @brief Creates the threads to be run by assigning the thread function,
@@ -439,9 +430,6 @@ static THD_FUNCTION(speed_thread, arg) {
  * of them are used until chThdCreateStatic(...) is called.
  */
 void chSetup() {
-   /*chThdCreateStatic(heartbeat_wa, sizeof(heartbeat_wa),
-   NORMALPRIO, heartbeat_thread, NULL);
-   */
 
     chThdCreateStatic(fifth_wheel_wa, sizeof(fifth_wheel_wa),
                      NORMALPRIO, fifth_wheel_thread, NULL);
@@ -481,7 +469,6 @@ void chSetup() {
 
 }
 
-
 /**
  * @brief Initializes the semi-truck system so that it is ready to run in an
  * RTOS environment.
@@ -495,26 +482,33 @@ void chSetup() {
 void setup() {
     // Setup the serial ports -- both the hardware (UART) and console (USB)
     teensy_serial_setup();
+
     // Setup the IMU to make sure it is connected and reading
     imu_setup();
+
     // Setup the fifth wheel
     fifth_wheel_setup(FIFTH_WHEEL_PIN);
+
     // Setup the motor driver
     motor_driver_setup(MOTOR_PIN);
+
     // Setup the RC receiver
     RC_receiver_setup();
+
     // Setup the ToF Lidar Sensor to make sure it is connected and reading
     tof_lidar_setup();
+
     // Setup the steering servo
     steer_servo_setup(STEER_SERVO_PIN);
+
     // Setup the wheel speed sensors
     hall_sensor_setup(HALL_PHASE_A_PIN, HALL_PHASE_B_PIN, HALL_PHASE_C_PIN);
+
     // chBegin() resets stacks and should never return.
     chBegin(chSetup);
 
     while (true) {}
 }
-
 
 
 // loop() is the main thread for Arduino. It is not used in this environment.

@@ -35,6 +35,12 @@ void steer_servo_loop_fn(int16_t steer_output) {
    }
 }
 
+/**
+ * @brief Set up the steer servo task to write to the pin attached to
+ * the servo controlling angle of the trucks's front axis.
+ *
+ * @param servo_pin The pin that signals a PWM to the steering servo.
+ */
 void steer_servo_setup(short servo_pin) {
    steer_servo.attach(servo_pin, MIN_ANGLE, MAX_ANGLE);
    // delay(15);

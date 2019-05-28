@@ -5,13 +5,14 @@
 
 int16_t ticks = 0;
 /**
- * This is the primary function controlling the wheel speed sensor. It reads an
- * IR sensor mounted so that the sensor reads an alternating black and white
- * strip of tape on the inside of the wheel rims. The frequency that the IR
- * sensor detects a change in reflection of the tape determines the speed of
- * the vehicle.
- *
- * @return the speed that the wheel speed sensor is detecting
+ * @brief This is the primary function controlling the wheel speed sensor. It
+ * reads a Hall sensor that is built into the Tekin R8 Motor. This is a three
+ * phased motor (PhaseA, PhaseB, PhaseC). Each phase is offset 120 degrees
+ * from each other. Ticks will be incremented if the motor rotates forwards
+ * one full revolution, and decremented if it rotates backwards one
+ * revolution.
+*
+ * @return the current number of ticks that the sensor reads.
  */
 int16_t hall_sensor_loop_fn(short PhaseB_pin, short PhaseC_pin) {
     //int time = chVTGetSystemTime();
@@ -54,6 +55,18 @@ int16_t hall_sensor_loop_fn(short PhaseB_pin, short PhaseC_pin) {
     return ticks;
 }
 
+
+/**
+ * @brief Set up the wheel speed task to read high or low values from the three
+ * pins attached to the Hall sensor (one for each phase).
+ *
+ * @param PhaseA_pin An interrupt is triggered every time the Teensy read a
+ * leading edge for this phase.
+ * @param PhaseB_pin If this pin is high when the interrupt is triggered, the
+ * truck is going in reverse.
+ * @param PhaseC_pin If this pin is high when the interrupt is triggered, the
+ * truck is going forwards.
+ */
 
 void hall_sensor_setup(short PhaseA_pin, short PhaseB_pin, short PhaseC_pin) {
     pinMode(PhaseA_pin, INPUT);

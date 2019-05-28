@@ -12,7 +12,9 @@
 /**
  * @brief The primary function for communicating between the Teensy and the
  * Pi over the Serial UART port.
- * @param imu_angle
+ *
+ * @param system_data a pointer to the system data that is declared
+ * statically in main.ino.
  */
 void teensy_serial_loop_fn(system_data_t *system_data) {
    short sync_value = SYNC_VALUE;
@@ -49,12 +51,21 @@ void teensy_serial_loop_fn(system_data_t *system_data) {
 }
 
 
+/**
+ * @brief Sets up the serial communication for the teensy to output data to
+ * both the Pi (through UART) and a PC console (through USB).
+ */
 void teensy_serial_setup(){
    Serial.begin(9600);
    HWSERIAL.begin(9600);
 }
 
 
+/**
+ * @brief Clears the serial buffer from all of its data. This is used
+ * primarily when the Teensy is restarted, and the Pi has been sending data
+ * that the Teensy does not need to process.
+ */
 void clear_buffer() {
    byte data_buffer[64];
    short avail = HWSERIAL.available();
@@ -62,6 +73,10 @@ void clear_buffer() {
 }
 
 
+/**
+ * @brief Ensures that the data being read from the Pi is synced. It clears
+ * the serial buffer up until it reads the designated SYNC_VALUE.
+ */
 void teensy_sync() {
    int16_t data;
    byte data_buffer[2];
@@ -71,7 +86,6 @@ void teensy_sync() {
       data = *((int16_t*)data_buffer);
       Serial.printf("sync data: %i\n", data);
    } while (data != SYNC_VALUE);
-
 }
 
 void read_from_pi(actuator_data_t *actuators_ptr) {

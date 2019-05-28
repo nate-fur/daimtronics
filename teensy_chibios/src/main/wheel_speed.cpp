@@ -10,13 +10,12 @@ int16_t speed;
 int16_t prev_ticks=0;
 uint16_t prev_time = chVTGetSystemTime();
 /**
- * This is the primary function controlling the wheel speed sensor. It reads an
- * IR sensor mounted so that the sensor reads an alternating black and white
- * strip of tape on the inside of the wheel rims. The frequency that the IR
- * sensor detects a change in reflection of the tape determines the speed of
- * the vehicle.
+ * @brief This function reads the motor ticks that have been determined by
+ * the hall sensor and converts this value into a speed for the truck
  *
- * @return the speed that the wheel speed sensor is detecting
+ * @param ticks The number of ticks that is kept track of  by the hall_sensor
+ * task.
+ * @return the speed of the truck
  */
 int16_t wheel_speed_loop_fn(int16_t ticks) {
     uint16_t current_time = chVTGetSystemTime();

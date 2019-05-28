@@ -1,16 +1,16 @@
 #include "include/imu.h"
 
 /**
- * @brief A global variable, for the only bno object in the system
+ * @brief A global variable, for the only Adafruit_BNO055 object in the system.
  */
 Adafruit_BNO055 bno = Adafruit_BNO055(55);
 
 /**
  * @brief The primary function for the IMU that reads and returns heading
- * data of the BNO055.
+ * data of the BNO055.The Adafruit_BNO055 library does most of the work here.
+ * This function simply sets up a sets up an "event" variable to hold the IMU
+ * data
  *
- * The Adafruit_BNO055 library does most of the work here. This function
- * simply sets up a sets up an "event" variable to hold the IMU data, calls
  * @return an integer representing the heading angle in degrees
  */
 int16_t imu_loop_fn() {

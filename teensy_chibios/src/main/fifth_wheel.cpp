@@ -7,8 +7,8 @@
 #define UNLOCKED_ANGLE 180
 
 /**
- * This is a Servo object to control the fifth wheel. It relies on code from
- * Servo.h which is built into the Arduino IDE.
+ * @brief This is a Servo object to control the fifth wheel. It relies on code
+ * from Servo.h which is a prebuilt library for the Arduino IDE.
  */
 static Servo fifth_wheel_servo;
 
@@ -22,11 +22,6 @@ static Servo fifth_wheel_servo;
  */
 void fifth_wheel_loop_fn(int16_t fifth_output) {
 
-#ifdef DEBUG
-   Serial.print("outputting to fifth wheel : ");
-   Serial.println(fifth_output);
-#endif
-
    if (fifth_output == UNLOCKED && fifth_wheel_servo.read() != UNLOCKED_ANGLE){
       fifth_wheel_servo.write(UNLOCKED_ANGLE);
    }
@@ -38,6 +33,12 @@ void fifth_wheel_loop_fn(int16_t fifth_output) {
    }
 }
 
+/**
+ * @brief Set up the fifth wheel task to write to the pin attached to
+ * the fifth wheel, and to be in the locked position.
+ *
+ * @param fifth_wheel_pin The pin that signals a PWM to the fifth wheel servo.
+ */
 void fifth_wheel_setup(short fifth_wheel_pin) {
    fifth_wheel_servo.attach(fifth_wheel_pin);
    //delay(15);

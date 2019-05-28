@@ -5,7 +5,7 @@
 #define WHEEL_SPEED_STOP 0 // wheel speed of 0 is no velocity
 #define MOTOR_STOP 90 // motor output of 90 is no torque
 #define FORWARDS 120 // motor output of 90 is no torque
-#define INIT_VALUE 68// this output is the same as the receiver outputs idly
+#define INIT_VALUE 68// this output is the same as the receiver outputs in idle
 #define KP 1
 #define KI 0.05f
 #define SAT_ERROR 1000 // max error sum that can accumulate for integral control
@@ -17,26 +17,28 @@
 //#define DEBUG
 
 /**
- * This is a Servo object to control the steering servo. It relies on code from
- * Servo.h which is built into the Arduino IDE.
+ * @brief This is a Servo object to control the motor. It relies on code from
+ * Servo.h which is built into the Arduino IDE, and is able to control motors
+ * as well as servos.
  */
 static Servo motor;
+
+/**
+ * @brief The accumulated error for integral control of the control loop
+ * that stops the motor when the dead man's switch is not pressed.
+ */
 static int16_t error_sum = 0;
 
 /**
- * This is the primary function controlling the motor. It reads the
+ * @brief This is the primary function controlling the motor. It reads the
  * motor output value from the system data and controls the motor with this
  * value.
  *
  * @param motor_output the output to the motor
  */
 void motor_driver_loop_fn(int16_t motor_output) {
-   // if output is out of the 0-180 range, stop the motor
 
-#ifdef DEBUG
-   Serial.print("motor output: ");
-   Serial.println(motor_output);
-#endif
+   // if output is out of the 0-180 range, stop the motor
    if (motor_output > 180 || motor_output < 0) {
       motor.write(motor_output);
    }
@@ -44,13 +46,16 @@ void motor_driver_loop_fn(int16_t motor_output) {
       //motor.write(motor_output);
       motor.write(motor_output);
    }
-   /*
-   else {
-      Serial.print("what ");
-   }
-    */
+
 }
 
+/**
+ * @brief Set up the motor driver task to write to the pin attached to
+ * the motor, and to be in the locked position. It also outputs a value
+ * corresponding to zero torque.
+ *
+ * @param motor_pin The pin sends a PWM signal to the motor.
+ */
 void motor_driver_setup(short motor_pin) {
    motor.attach(motor_pin, FULL_REVERSE, FULL_FORWARD);
    // delay(15);
@@ -58,8 +63,8 @@ void motor_driver_setup(short motor_pin) {
 }
 
 /**
- * Runs a control loop to stop the motor based on the reported wheel speed,
- * and returns a value to be output to the motor
+ * @brief Runs a control loop to stop the motor based on the reported wheel
+ * speed, and returns a value to be output to the motor
  *
  * @param wheel_speed speed of the truck read by the wheel speed sensor
  * @param time_step number of millis since the last time this task ran; used
@@ -79,7 +84,6 @@ int16_t stop_motor(int16_t wheel_speed, int16_t time_step) {
    motor_output = (((KP * error) + (KI * error_sum)) * (MOTOR_RANGE /
     error_range)) + MOTOR_STOP;
 
-   //return motor_output;
-   return INIT_VALUE;
+   return motor_output;
 }
 
