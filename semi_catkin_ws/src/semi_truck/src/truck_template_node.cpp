@@ -1,4 +1,5 @@
-/* This is a template file for writing autonomous algorithms in
+/**
+ * @file This is a template file for writing autonomous algorithms in
  * ROS. There are messages throughout this file that suggest how
  * to add additional code.
  */

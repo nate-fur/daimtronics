@@ -10,8 +10,8 @@
 #ifndef DAIMTRONICS_SEMI_TRUCK_API_H
 #define DAIMTRONICS_SEMI_TRUCK_API_H
 
-#include "Teensy_Actuators.h"
-#include "Teensy_Sensors.h"
+#include "../include/Teensy_Actuators.h"
+#include "../include/Teensy_Sensors.h"
 
 /**
  * @brief sets the motor output of the actuators object to the passed in value

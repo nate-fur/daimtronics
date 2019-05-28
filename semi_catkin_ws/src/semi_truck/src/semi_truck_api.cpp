@@ -1,4 +1,4 @@
-#include "../include/semi_truck_api.h"
+#include "semi_truck_api.h"
 
 void set_motor_output(semi_truck::Teensy_Actuators &actuators, int16_t motor_output){
    actuators.motor_output = motor_output;
