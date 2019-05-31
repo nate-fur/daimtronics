@@ -10,8 +10,6 @@ fi
 mkdir $newDir
 
 for topic in `rostopic list -b ${filename}`;
-   #do echo ${newDir}/${topic}
-   #do echo ${topic//\//_}.csv
    do rostopic echo -p -b ${filename} $topic >${newDir}//${topic//\//_}.csv;
    done
 

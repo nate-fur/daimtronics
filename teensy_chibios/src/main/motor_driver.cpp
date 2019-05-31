@@ -12,7 +12,8 @@
 #define MAX_TIME_STEP 500 // in millis
 #define WHEEL_SPEED_RANGE 1000 // max error from wheel speed
 #define MOTOR_RANGE 180 // max error from wheel speed
-#define FULL_REVERSE 1200 // Time in microseconds of pulse width corresponding to full reverse
+#define FULL_REVERSE 1087 // Time in microseconds of pulse width corresponding
+// to full reverse
 #define FULL_FORWARD 1660 // Time in microseconds of pulse width corresponding to full forward
 //#define DEBUG
 
@@ -37,16 +38,31 @@ static int16_t error_sum = 0;
  * @param motor_output the output to the motor
  */
 void motor_driver_loop_fn(int16_t motor_output) {
+   Serial.print("before scale :   ");
+   Serial.println(motor_output);
+   motor_output = scale_output(motor_output);
+   Serial.print("after scale:   ");
+   Serial.println(motor_output);
+   motor.write(motor_output);
+}
 
-   // if output is out of the 0-180 range, stop the motor
-   if (motor_output > 180 || motor_output < 0) {
-      motor.write(motor_output);
-   }
-   else /*if (motor_output != motor.read()) */ {
-      //motor.write(motor_output);
-      motor.write(motor_output);
-   }
+/**
+ * @brief Scales a value coming from the pi between -100 and 100 to between 0
+ * and 180 for what the Servo library requires.
+ *
+ * @param motor_output An input value, ideally between -100 and 100 (although
+ * it will be limited to -100 or 100 if outside this range
+ * @return a value to output to the motor between 0 and 180
+ */
+int16_t scale_output(int16_t motor_output) {
+   motor_output = (motor_output > 100) ? 100 : motor_output;
+   motor_output = (motor_output < -100) ? -100 : motor_output;
 
+   motor_output = 0.9 * motor_output + 90;
+
+   motor_output = (motor_output < 35) ? 35 : motor_output;
+
+   return motor_output;
 }
 
 /**

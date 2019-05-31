@@ -38,12 +38,11 @@
 #define IMU_SCL_PIN 19
 #define TOF_LIDAR_SDA_PIN 18
 #define TOF_LIDAR_SCL_PIN 19
-#define RC_SW1_PIN 36
-#define RC_SW2_PIN 25
+#define RC_SW1_PIN 25
 #define RC_SW3_PIN 24
-#define HALL_PHASE_A_PIN 20
-#define HALL_PHASE_B_PIN 21
-#define HALL_PHASE_C_PIN 22
+#define HALL_PHASE_A_PIN 40
+#define HALL_PHASE_B_PIN 41
+#define HALL_PHASE_C_PIN 42
 
 
 /***************************** STATIC VARIABLES ******************************/
@@ -153,13 +152,12 @@ static THD_FUNCTION(motor_driver_thread, arg) {
       time_step = current_time - last_time;
 
       if (system_data.deadman) {
-         Serial.print("outputting to motor:   ");
-         Serial.println(motor_output);
+
          motor_driver_loop_fn(motor_output);
       }
       else {
          motor_output = stop_motor(wheel_speed, time_step);
-         motor_driver_loop_fn(motor_output);
+         motor_driver_loop_fn(0);
       }
 
       last_time = current_time;
@@ -410,6 +408,9 @@ static THD_WORKING_AREA(speed_wa, 5120);
 static THD_FUNCTION(speed_thread, arg) {
 
     while (true) {
+
+         Serial.print("encoder ticks: ");
+         Serial.println(Encoder_ticks);
         chMtxLock(&sysMtx);
         system_data.sensors.wheel_speed = wheel_speed_loop_fn(Encoder_ticks);
         chMtxUnlock(&sysMtx);
@@ -480,6 +481,9 @@ void chSetup() {
  * thread scheduling that is built in to ChibiOS.
  */
 void setup() {
+    pinMode(13, OUTPUT);
+    digitalWrite(13, HIGH);
+
     // Setup the serial ports -- both the hardware (UART) and console (USB)
     teensy_serial_setup();
 
