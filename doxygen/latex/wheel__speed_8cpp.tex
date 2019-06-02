@@ -1,0 +1,86 @@
+\hypertarget{wheel__speed_8cpp}{}\section{daimtronics/teensy\+\_\+chibios/src/main/wheel\+\_\+speed.cpp File Reference}
+\label{wheel__speed_8cpp}\index{daimtronics/teensy\+\_\+chibios/src/main/wheel\+\_\+speed.\+cpp@{daimtronics/teensy\+\_\+chibios/src/main/wheel\+\_\+speed.\+cpp}}
+{\ttfamily \#include $<$Arduino.\+h$>$}\\*
+{\ttfamily \#include $<$Ch\+Rt.\+h$>$}\\*
+{\ttfamily \#include \char`\"{}include/wheel\+\_\+speed.\+h\char`\"{}}\\*
+Include dependency graph for wheel\+\_\+speed.\+cpp\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=338pt]{wheel__speed_8cpp__incl}
+\end{center}
+\end{figure}
+\subsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define \hyperlink{wheel__speed_8cpp_a0cbea62f1ce2043dd08108e65ed8de1d}{S\+C\+A\+LE}~1
+\item 
+\#define \hyperlink{wheel__speed_8cpp_a58a9c1a7ff5f19164ba9811c9fd80770}{M\+A\+X\+\_\+\+C\+H\+A\+N\+GE}~32768
+\end{DoxyCompactItemize}
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+int16\+\_\+t \hyperlink{wheel__speed_8cpp_aaf904a24c79c820f20d1d8630716de27}{wheel\+\_\+speed\+\_\+loop\+\_\+fn} (int16\+\_\+t \hyperlink{hall__sensor_8cpp_a4f9943e6ab43adfb6975aeb73911151b}{ticks})
+\begin{DoxyCompactList}\small\item\em This function reads the motor ticks that have been determined by the hall sensor and converts this value into a speed for the truck. \end{DoxyCompactList}\item 
+void \hyperlink{wheel__speed_8cpp_a775811fa62067b4ae0f44234b4c68548}{wheel\+\_\+speed\+\_\+setup} ()
+\end{DoxyCompactItemize}
+\subsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+int16\+\_\+t \hyperlink{wheel__speed_8cpp_a91db7b3c48de4dc536c624804d6df03f}{speed}
+\item 
+int16\+\_\+t \hyperlink{wheel__speed_8cpp_a4703b6212ac84d40a5b10c811da482c5}{prev\+\_\+ticks} =0
+\item 
+uint16\+\_\+t \hyperlink{wheel__speed_8cpp_a84854f285c5eb73d18ed7bda3992fb11}{prev\+\_\+time} = ch\+V\+T\+Get\+System\+Time()
+\end{DoxyCompactItemize}
+
+
+\subsection{Macro Definition Documentation}
+\index{wheel\+\_\+speed.\+cpp@{wheel\+\_\+speed.\+cpp}!M\+A\+X\+\_\+\+C\+H\+A\+N\+GE@{M\+A\+X\+\_\+\+C\+H\+A\+N\+GE}}
+\index{M\+A\+X\+\_\+\+C\+H\+A\+N\+GE@{M\+A\+X\+\_\+\+C\+H\+A\+N\+GE}!wheel\+\_\+speed.\+cpp@{wheel\+\_\+speed.\+cpp}}
+\subsubsection[{\texorpdfstring{M\+A\+X\+\_\+\+C\+H\+A\+N\+GE}{MAX_CHANGE}}]{\setlength{\rightskip}{0pt plus 5cm}\#define M\+A\+X\+\_\+\+C\+H\+A\+N\+GE~32768}\hypertarget{wheel__speed_8cpp_a58a9c1a7ff5f19164ba9811c9fd80770}{}\label{wheel__speed_8cpp_a58a9c1a7ff5f19164ba9811c9fd80770}
+\index{wheel\+\_\+speed.\+cpp@{wheel\+\_\+speed.\+cpp}!S\+C\+A\+LE@{S\+C\+A\+LE}}
+\index{S\+C\+A\+LE@{S\+C\+A\+LE}!wheel\+\_\+speed.\+cpp@{wheel\+\_\+speed.\+cpp}}
+\subsubsection[{\texorpdfstring{S\+C\+A\+LE}{SCALE}}]{\setlength{\rightskip}{0pt plus 5cm}\#define S\+C\+A\+LE~1}\hypertarget{wheel__speed_8cpp_a0cbea62f1ce2043dd08108e65ed8de1d}{}\label{wheel__speed_8cpp_a0cbea62f1ce2043dd08108e65ed8de1d}
+
+
+\subsection{Function Documentation}
+\index{wheel\+\_\+speed.\+cpp@{wheel\+\_\+speed.\+cpp}!wheel\+\_\+speed\+\_\+loop\+\_\+fn@{wheel\+\_\+speed\+\_\+loop\+\_\+fn}}
+\index{wheel\+\_\+speed\+\_\+loop\+\_\+fn@{wheel\+\_\+speed\+\_\+loop\+\_\+fn}!wheel\+\_\+speed.\+cpp@{wheel\+\_\+speed.\+cpp}}
+\subsubsection[{\texorpdfstring{wheel\+\_\+speed\+\_\+loop\+\_\+fn(int16\+\_\+t ticks)}{wheel_speed_loop_fn(int16_t ticks)}}]{\setlength{\rightskip}{0pt plus 5cm}int16\+\_\+t wheel\+\_\+speed\+\_\+loop\+\_\+fn (
+\begin{DoxyParamCaption}
+\item[{int16\+\_\+t}]{ticks}
+\end{DoxyParamCaption}
+)}\hypertarget{wheel__speed_8cpp_aaf904a24c79c820f20d1d8630716de27}{}\label{wheel__speed_8cpp_aaf904a24c79c820f20d1d8630716de27}
+
+
+This function reads the motor ticks that have been determined by the hall sensor and converts this value into a speed for the truck. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em ticks} & The number of ticks that is kept track of by the hall\+\_\+sensor task. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+the speed of the truck 
+\end{DoxyReturn}
+\index{wheel\+\_\+speed.\+cpp@{wheel\+\_\+speed.\+cpp}!wheel\+\_\+speed\+\_\+setup@{wheel\+\_\+speed\+\_\+setup}}
+\index{wheel\+\_\+speed\+\_\+setup@{wheel\+\_\+speed\+\_\+setup}!wheel\+\_\+speed.\+cpp@{wheel\+\_\+speed.\+cpp}}
+\subsubsection[{\texorpdfstring{wheel\+\_\+speed\+\_\+setup()}{wheel_speed_setup()}}]{\setlength{\rightskip}{0pt plus 5cm}void wheel\+\_\+speed\+\_\+setup (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}\hypertarget{wheel__speed_8cpp_a775811fa62067b4ae0f44234b4c68548}{}\label{wheel__speed_8cpp_a775811fa62067b4ae0f44234b4c68548}
+
+
+\subsection{Variable Documentation}
+\index{wheel\+\_\+speed.\+cpp@{wheel\+\_\+speed.\+cpp}!prev\+\_\+ticks@{prev\+\_\+ticks}}
+\index{prev\+\_\+ticks@{prev\+\_\+ticks}!wheel\+\_\+speed.\+cpp@{wheel\+\_\+speed.\+cpp}}
+\subsubsection[{\texorpdfstring{prev\+\_\+ticks}{prev_ticks}}]{\setlength{\rightskip}{0pt plus 5cm}int16\+\_\+t prev\+\_\+ticks =0}\hypertarget{wheel__speed_8cpp_a4703b6212ac84d40a5b10c811da482c5}{}\label{wheel__speed_8cpp_a4703b6212ac84d40a5b10c811da482c5}
+\index{wheel\+\_\+speed.\+cpp@{wheel\+\_\+speed.\+cpp}!prev\+\_\+time@{prev\+\_\+time}}
+\index{prev\+\_\+time@{prev\+\_\+time}!wheel\+\_\+speed.\+cpp@{wheel\+\_\+speed.\+cpp}}
+\subsubsection[{\texorpdfstring{prev\+\_\+time}{prev_time}}]{\setlength{\rightskip}{0pt plus 5cm}uint16\+\_\+t prev\+\_\+time = ch\+V\+T\+Get\+System\+Time()}\hypertarget{wheel__speed_8cpp_a84854f285c5eb73d18ed7bda3992fb11}{}\label{wheel__speed_8cpp_a84854f285c5eb73d18ed7bda3992fb11}
+\index{wheel\+\_\+speed.\+cpp@{wheel\+\_\+speed.\+cpp}!speed@{speed}}
+\index{speed@{speed}!wheel\+\_\+speed.\+cpp@{wheel\+\_\+speed.\+cpp}}
+\subsubsection[{\texorpdfstring{speed}{speed}}]{\setlength{\rightskip}{0pt plus 5cm}int16\+\_\+t speed}\hypertarget{wheel__speed_8cpp_a91db7b3c48de4dc536c624804d6df03f}{}\label{wheel__speed_8cpp_a91db7b3c48de4dc536c624804d6df03f}

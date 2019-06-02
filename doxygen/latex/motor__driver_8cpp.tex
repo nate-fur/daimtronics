@@ -1,0 +1,166 @@
+\hypertarget{motor__driver_8cpp}{}\section{daimtronics/teensy\+\_\+chibios/src/main/motor\+\_\+driver.cpp File Reference}
+\label{motor__driver_8cpp}\index{daimtronics/teensy\+\_\+chibios/src/main/motor\+\_\+driver.\+cpp@{daimtronics/teensy\+\_\+chibios/src/main/motor\+\_\+driver.\+cpp}}
+{\ttfamily \#include \char`\"{}include/motor\+\_\+driver.\+h\char`\"{}}\\*
+{\ttfamily \#include $<$Arduino.\+h$>$}\\*
+{\ttfamily \#include $<$Servo.\+h$>$}\\*
+Include dependency graph for motor\+\_\+driver.\+cpp\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=338pt]{motor__driver_8cpp__incl}
+\end{center}
+\end{figure}
+\subsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define \hyperlink{motor__driver_8cpp_affff818dc58368124507f2e8626d7b86}{W\+H\+E\+E\+L\+\_\+\+S\+P\+E\+E\+D\+\_\+\+S\+T\+OP}~0
+\item 
+\#define \hyperlink{motor__driver_8cpp_aa61a6c32d7187d20f8ea4171b8bf8dd7}{M\+O\+T\+O\+R\+\_\+\+S\+T\+OP}~90
+\item 
+\#define \hyperlink{motor__driver_8cpp_af8bd8217f4676f967cd1d9712042baf6}{F\+O\+R\+W\+A\+R\+DS}~120
+\item 
+\#define \hyperlink{motor__driver_8cpp_a1cec278569efadde1ea6834da3dfbc70}{I\+N\+I\+T\+\_\+\+V\+A\+L\+UE}~68
+\item 
+\#define \hyperlink{motor__driver_8cpp_aa4729260b732666338dee7d841aa12f3}{KP}~1
+\item 
+\#define \hyperlink{motor__driver_8cpp_ade82752ae1652fdf0df9df7a16ffda29}{KI}~0.\+05f
+\item 
+\#define \hyperlink{motor__driver_8cpp_a07c9bffa5fb927908b3c82fde9a3136f}{S\+A\+T\+\_\+\+E\+R\+R\+OR}~1000
+\item 
+\#define \hyperlink{motor__driver_8cpp_a2d73ff09399ed5d348c09ae4cbd00f82}{M\+A\+X\+\_\+\+T\+I\+M\+E\+\_\+\+S\+T\+EP}~500
+\item 
+\#define \hyperlink{motor__driver_8cpp_ad78616d24218071f4c3336cb86032d18}{W\+H\+E\+E\+L\+\_\+\+S\+P\+E\+E\+D\+\_\+\+R\+A\+N\+GE}~1000
+\item 
+\#define \hyperlink{motor__driver_8cpp_a07a9df65758fbd82825cd58ee29658f6}{M\+O\+T\+O\+R\+\_\+\+R\+A\+N\+GE}~180
+\item 
+\#define \hyperlink{motor__driver_8cpp_ad18eb491dcb26cdc7520add4176a4d66}{F\+U\+L\+L\+\_\+\+R\+E\+V\+E\+R\+SE}~1087
+\item 
+\#define \hyperlink{motor__driver_8cpp_a2166c276884f73913f316f97137209cc}{F\+U\+L\+L\+\_\+\+F\+O\+R\+W\+A\+RD}~1660
+\end{DoxyCompactItemize}
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \hyperlink{motor__driver_8cpp_a47f1b6dfc5a8fd9aac0efb348be5fb21}{motor\+\_\+driver\+\_\+loop\+\_\+fn} (int16\+\_\+t motor\+\_\+output)
+\begin{DoxyCompactList}\small\item\em This is the primary function controlling the motor. It reads the motor output value from the system data and controls the motor with this value. \end{DoxyCompactList}\item 
+int16\+\_\+t \hyperlink{motor__driver_8cpp_af8b67084d01c0aae1b2a7ef168956555}{scale\+\_\+output} (int16\+\_\+t motor\+\_\+output)
+\begin{DoxyCompactList}\small\item\em Scales a value coming from the pi between -\/100 and 100 to between 0 and 180 for what the Servo library requires. \end{DoxyCompactList}\item 
+void \hyperlink{motor__driver_8cpp_a736a79afc1c9cc88f7cc3de60f676b3e}{motor\+\_\+driver\+\_\+setup} (short motor\+\_\+pin)
+\begin{DoxyCompactList}\small\item\em Set up the motor driver task to write to the pin attached to the motor, and to be in the locked position. It also outputs a value corresponding to zero torque. \end{DoxyCompactList}\item 
+int16\+\_\+t \hyperlink{motor__driver_8cpp_ada070d71dced9dccaf66288fb47b1ac0}{stop\+\_\+motor} (int16\+\_\+t wheel\+\_\+speed, int16\+\_\+t time\+\_\+step)
+\begin{DoxyCompactList}\small\item\em Runs a control loop to stop the motor based on the reported wheel speed, and returns a value to be output to the motor. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Macro Definition Documentation}
+\index{motor\+\_\+driver.\+cpp@{motor\+\_\+driver.\+cpp}!F\+O\+R\+W\+A\+R\+DS@{F\+O\+R\+W\+A\+R\+DS}}
+\index{F\+O\+R\+W\+A\+R\+DS@{F\+O\+R\+W\+A\+R\+DS}!motor\+\_\+driver.\+cpp@{motor\+\_\+driver.\+cpp}}
+\subsubsection[{\texorpdfstring{F\+O\+R\+W\+A\+R\+DS}{FORWARDS}}]{\setlength{\rightskip}{0pt plus 5cm}\#define F\+O\+R\+W\+A\+R\+DS~120}\hypertarget{motor__driver_8cpp_af8bd8217f4676f967cd1d9712042baf6}{}\label{motor__driver_8cpp_af8bd8217f4676f967cd1d9712042baf6}
+\index{motor\+\_\+driver.\+cpp@{motor\+\_\+driver.\+cpp}!F\+U\+L\+L\+\_\+\+F\+O\+R\+W\+A\+RD@{F\+U\+L\+L\+\_\+\+F\+O\+R\+W\+A\+RD}}
+\index{F\+U\+L\+L\+\_\+\+F\+O\+R\+W\+A\+RD@{F\+U\+L\+L\+\_\+\+F\+O\+R\+W\+A\+RD}!motor\+\_\+driver.\+cpp@{motor\+\_\+driver.\+cpp}}
+\subsubsection[{\texorpdfstring{F\+U\+L\+L\+\_\+\+F\+O\+R\+W\+A\+RD}{FULL_FORWARD}}]{\setlength{\rightskip}{0pt plus 5cm}\#define F\+U\+L\+L\+\_\+\+F\+O\+R\+W\+A\+RD~1660}\hypertarget{motor__driver_8cpp_a2166c276884f73913f316f97137209cc}{}\label{motor__driver_8cpp_a2166c276884f73913f316f97137209cc}
+\index{motor\+\_\+driver.\+cpp@{motor\+\_\+driver.\+cpp}!F\+U\+L\+L\+\_\+\+R\+E\+V\+E\+R\+SE@{F\+U\+L\+L\+\_\+\+R\+E\+V\+E\+R\+SE}}
+\index{F\+U\+L\+L\+\_\+\+R\+E\+V\+E\+R\+SE@{F\+U\+L\+L\+\_\+\+R\+E\+V\+E\+R\+SE}!motor\+\_\+driver.\+cpp@{motor\+\_\+driver.\+cpp}}
+\subsubsection[{\texorpdfstring{F\+U\+L\+L\+\_\+\+R\+E\+V\+E\+R\+SE}{FULL_REVERSE}}]{\setlength{\rightskip}{0pt plus 5cm}\#define F\+U\+L\+L\+\_\+\+R\+E\+V\+E\+R\+SE~1087}\hypertarget{motor__driver_8cpp_ad18eb491dcb26cdc7520add4176a4d66}{}\label{motor__driver_8cpp_ad18eb491dcb26cdc7520add4176a4d66}
+\index{motor\+\_\+driver.\+cpp@{motor\+\_\+driver.\+cpp}!I\+N\+I\+T\+\_\+\+V\+A\+L\+UE@{I\+N\+I\+T\+\_\+\+V\+A\+L\+UE}}
+\index{I\+N\+I\+T\+\_\+\+V\+A\+L\+UE@{I\+N\+I\+T\+\_\+\+V\+A\+L\+UE}!motor\+\_\+driver.\+cpp@{motor\+\_\+driver.\+cpp}}
+\subsubsection[{\texorpdfstring{I\+N\+I\+T\+\_\+\+V\+A\+L\+UE}{INIT_VALUE}}]{\setlength{\rightskip}{0pt plus 5cm}\#define I\+N\+I\+T\+\_\+\+V\+A\+L\+UE~68}\hypertarget{motor__driver_8cpp_a1cec278569efadde1ea6834da3dfbc70}{}\label{motor__driver_8cpp_a1cec278569efadde1ea6834da3dfbc70}
+\index{motor\+\_\+driver.\+cpp@{motor\+\_\+driver.\+cpp}!KI@{KI}}
+\index{KI@{KI}!motor\+\_\+driver.\+cpp@{motor\+\_\+driver.\+cpp}}
+\subsubsection[{\texorpdfstring{KI}{KI}}]{\setlength{\rightskip}{0pt plus 5cm}\#define KI~0.\+05f}\hypertarget{motor__driver_8cpp_ade82752ae1652fdf0df9df7a16ffda29}{}\label{motor__driver_8cpp_ade82752ae1652fdf0df9df7a16ffda29}
+\index{motor\+\_\+driver.\+cpp@{motor\+\_\+driver.\+cpp}!KP@{KP}}
+\index{KP@{KP}!motor\+\_\+driver.\+cpp@{motor\+\_\+driver.\+cpp}}
+\subsubsection[{\texorpdfstring{KP}{KP}}]{\setlength{\rightskip}{0pt plus 5cm}\#define KP~1}\hypertarget{motor__driver_8cpp_aa4729260b732666338dee7d841aa12f3}{}\label{motor__driver_8cpp_aa4729260b732666338dee7d841aa12f3}
+\index{motor\+\_\+driver.\+cpp@{motor\+\_\+driver.\+cpp}!M\+A\+X\+\_\+\+T\+I\+M\+E\+\_\+\+S\+T\+EP@{M\+A\+X\+\_\+\+T\+I\+M\+E\+\_\+\+S\+T\+EP}}
+\index{M\+A\+X\+\_\+\+T\+I\+M\+E\+\_\+\+S\+T\+EP@{M\+A\+X\+\_\+\+T\+I\+M\+E\+\_\+\+S\+T\+EP}!motor\+\_\+driver.\+cpp@{motor\+\_\+driver.\+cpp}}
+\subsubsection[{\texorpdfstring{M\+A\+X\+\_\+\+T\+I\+M\+E\+\_\+\+S\+T\+EP}{MAX_TIME_STEP}}]{\setlength{\rightskip}{0pt plus 5cm}\#define M\+A\+X\+\_\+\+T\+I\+M\+E\+\_\+\+S\+T\+EP~500}\hypertarget{motor__driver_8cpp_a2d73ff09399ed5d348c09ae4cbd00f82}{}\label{motor__driver_8cpp_a2d73ff09399ed5d348c09ae4cbd00f82}
+\index{motor\+\_\+driver.\+cpp@{motor\+\_\+driver.\+cpp}!M\+O\+T\+O\+R\+\_\+\+R\+A\+N\+GE@{M\+O\+T\+O\+R\+\_\+\+R\+A\+N\+GE}}
+\index{M\+O\+T\+O\+R\+\_\+\+R\+A\+N\+GE@{M\+O\+T\+O\+R\+\_\+\+R\+A\+N\+GE}!motor\+\_\+driver.\+cpp@{motor\+\_\+driver.\+cpp}}
+\subsubsection[{\texorpdfstring{M\+O\+T\+O\+R\+\_\+\+R\+A\+N\+GE}{MOTOR_RANGE}}]{\setlength{\rightskip}{0pt plus 5cm}\#define M\+O\+T\+O\+R\+\_\+\+R\+A\+N\+GE~180}\hypertarget{motor__driver_8cpp_a07a9df65758fbd82825cd58ee29658f6}{}\label{motor__driver_8cpp_a07a9df65758fbd82825cd58ee29658f6}
+\index{motor\+\_\+driver.\+cpp@{motor\+\_\+driver.\+cpp}!M\+O\+T\+O\+R\+\_\+\+S\+T\+OP@{M\+O\+T\+O\+R\+\_\+\+S\+T\+OP}}
+\index{M\+O\+T\+O\+R\+\_\+\+S\+T\+OP@{M\+O\+T\+O\+R\+\_\+\+S\+T\+OP}!motor\+\_\+driver.\+cpp@{motor\+\_\+driver.\+cpp}}
+\subsubsection[{\texorpdfstring{M\+O\+T\+O\+R\+\_\+\+S\+T\+OP}{MOTOR_STOP}}]{\setlength{\rightskip}{0pt plus 5cm}\#define M\+O\+T\+O\+R\+\_\+\+S\+T\+OP~90}\hypertarget{motor__driver_8cpp_aa61a6c32d7187d20f8ea4171b8bf8dd7}{}\label{motor__driver_8cpp_aa61a6c32d7187d20f8ea4171b8bf8dd7}
+\index{motor\+\_\+driver.\+cpp@{motor\+\_\+driver.\+cpp}!S\+A\+T\+\_\+\+E\+R\+R\+OR@{S\+A\+T\+\_\+\+E\+R\+R\+OR}}
+\index{S\+A\+T\+\_\+\+E\+R\+R\+OR@{S\+A\+T\+\_\+\+E\+R\+R\+OR}!motor\+\_\+driver.\+cpp@{motor\+\_\+driver.\+cpp}}
+\subsubsection[{\texorpdfstring{S\+A\+T\+\_\+\+E\+R\+R\+OR}{SAT_ERROR}}]{\setlength{\rightskip}{0pt plus 5cm}\#define S\+A\+T\+\_\+\+E\+R\+R\+OR~1000}\hypertarget{motor__driver_8cpp_a07c9bffa5fb927908b3c82fde9a3136f}{}\label{motor__driver_8cpp_a07c9bffa5fb927908b3c82fde9a3136f}
+\index{motor\+\_\+driver.\+cpp@{motor\+\_\+driver.\+cpp}!W\+H\+E\+E\+L\+\_\+\+S\+P\+E\+E\+D\+\_\+\+R\+A\+N\+GE@{W\+H\+E\+E\+L\+\_\+\+S\+P\+E\+E\+D\+\_\+\+R\+A\+N\+GE}}
+\index{W\+H\+E\+E\+L\+\_\+\+S\+P\+E\+E\+D\+\_\+\+R\+A\+N\+GE@{W\+H\+E\+E\+L\+\_\+\+S\+P\+E\+E\+D\+\_\+\+R\+A\+N\+GE}!motor\+\_\+driver.\+cpp@{motor\+\_\+driver.\+cpp}}
+\subsubsection[{\texorpdfstring{W\+H\+E\+E\+L\+\_\+\+S\+P\+E\+E\+D\+\_\+\+R\+A\+N\+GE}{WHEEL_SPEED_RANGE}}]{\setlength{\rightskip}{0pt plus 5cm}\#define W\+H\+E\+E\+L\+\_\+\+S\+P\+E\+E\+D\+\_\+\+R\+A\+N\+GE~1000}\hypertarget{motor__driver_8cpp_ad78616d24218071f4c3336cb86032d18}{}\label{motor__driver_8cpp_ad78616d24218071f4c3336cb86032d18}
+\index{motor\+\_\+driver.\+cpp@{motor\+\_\+driver.\+cpp}!W\+H\+E\+E\+L\+\_\+\+S\+P\+E\+E\+D\+\_\+\+S\+T\+OP@{W\+H\+E\+E\+L\+\_\+\+S\+P\+E\+E\+D\+\_\+\+S\+T\+OP}}
+\index{W\+H\+E\+E\+L\+\_\+\+S\+P\+E\+E\+D\+\_\+\+S\+T\+OP@{W\+H\+E\+E\+L\+\_\+\+S\+P\+E\+E\+D\+\_\+\+S\+T\+OP}!motor\+\_\+driver.\+cpp@{motor\+\_\+driver.\+cpp}}
+\subsubsection[{\texorpdfstring{W\+H\+E\+E\+L\+\_\+\+S\+P\+E\+E\+D\+\_\+\+S\+T\+OP}{WHEEL_SPEED_STOP}}]{\setlength{\rightskip}{0pt plus 5cm}\#define W\+H\+E\+E\+L\+\_\+\+S\+P\+E\+E\+D\+\_\+\+S\+T\+OP~0}\hypertarget{motor__driver_8cpp_affff818dc58368124507f2e8626d7b86}{}\label{motor__driver_8cpp_affff818dc58368124507f2e8626d7b86}
+
+
+\subsection{Function Documentation}
+\index{motor\+\_\+driver.\+cpp@{motor\+\_\+driver.\+cpp}!motor\+\_\+driver\+\_\+loop\+\_\+fn@{motor\+\_\+driver\+\_\+loop\+\_\+fn}}
+\index{motor\+\_\+driver\+\_\+loop\+\_\+fn@{motor\+\_\+driver\+\_\+loop\+\_\+fn}!motor\+\_\+driver.\+cpp@{motor\+\_\+driver.\+cpp}}
+\subsubsection[{\texorpdfstring{motor\+\_\+driver\+\_\+loop\+\_\+fn(int16\+\_\+t motor\+\_\+output)}{motor_driver_loop_fn(int16_t motor_output)}}]{\setlength{\rightskip}{0pt plus 5cm}void motor\+\_\+driver\+\_\+loop\+\_\+fn (
+\begin{DoxyParamCaption}
+\item[{int16\+\_\+t}]{motor\+\_\+output}
+\end{DoxyParamCaption}
+)}\hypertarget{motor__driver_8cpp_a47f1b6dfc5a8fd9aac0efb348be5fb21}{}\label{motor__driver_8cpp_a47f1b6dfc5a8fd9aac0efb348be5fb21}
+
+
+This is the primary function controlling the motor. It reads the motor output value from the system data and controls the motor with this value. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em motor\+\_\+output} & the output to the motor \\
+\hline
+\end{DoxyParams}
+\index{motor\+\_\+driver.\+cpp@{motor\+\_\+driver.\+cpp}!motor\+\_\+driver\+\_\+setup@{motor\+\_\+driver\+\_\+setup}}
+\index{motor\+\_\+driver\+\_\+setup@{motor\+\_\+driver\+\_\+setup}!motor\+\_\+driver.\+cpp@{motor\+\_\+driver.\+cpp}}
+\subsubsection[{\texorpdfstring{motor\+\_\+driver\+\_\+setup(short motor\+\_\+pin)}{motor_driver_setup(short motor_pin)}}]{\setlength{\rightskip}{0pt plus 5cm}void motor\+\_\+driver\+\_\+setup (
+\begin{DoxyParamCaption}
+\item[{short}]{motor\+\_\+pin}
+\end{DoxyParamCaption}
+)}\hypertarget{motor__driver_8cpp_a736a79afc1c9cc88f7cc3de60f676b3e}{}\label{motor__driver_8cpp_a736a79afc1c9cc88f7cc3de60f676b3e}
+
+
+Set up the motor driver task to write to the pin attached to the motor, and to be in the locked position. It also outputs a value corresponding to zero torque. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em motor\+\_\+pin} & The pin sends a P\+WM signal to the motor. \\
+\hline
+\end{DoxyParams}
+\index{motor\+\_\+driver.\+cpp@{motor\+\_\+driver.\+cpp}!scale\+\_\+output@{scale\+\_\+output}}
+\index{scale\+\_\+output@{scale\+\_\+output}!motor\+\_\+driver.\+cpp@{motor\+\_\+driver.\+cpp}}
+\subsubsection[{\texorpdfstring{scale\+\_\+output(int16\+\_\+t motor\+\_\+output)}{scale_output(int16_t motor_output)}}]{\setlength{\rightskip}{0pt plus 5cm}int16\+\_\+t scale\+\_\+output (
+\begin{DoxyParamCaption}
+\item[{int16\+\_\+t}]{motor\+\_\+output}
+\end{DoxyParamCaption}
+)}\hypertarget{motor__driver_8cpp_af8b67084d01c0aae1b2a7ef168956555}{}\label{motor__driver_8cpp_af8b67084d01c0aae1b2a7ef168956555}
+
+
+Scales a value coming from the pi between -\/100 and 100 to between 0 and 180 for what the Servo library requires. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em motor\+\_\+output} & An input value, ideally between -\/100 and 100 (although it will be limited to -\/100 or 100 if outside this range \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+a value to output to the motor between 0 and 180 
+\end{DoxyReturn}
+\index{motor\+\_\+driver.\+cpp@{motor\+\_\+driver.\+cpp}!stop\+\_\+motor@{stop\+\_\+motor}}
+\index{stop\+\_\+motor@{stop\+\_\+motor}!motor\+\_\+driver.\+cpp@{motor\+\_\+driver.\+cpp}}
+\subsubsection[{\texorpdfstring{stop\+\_\+motor(int16\+\_\+t wheel\+\_\+speed, int16\+\_\+t time\+\_\+step)}{stop_motor(int16_t wheel_speed, int16_t time_step)}}]{\setlength{\rightskip}{0pt plus 5cm}int16\+\_\+t stop\+\_\+motor (
+\begin{DoxyParamCaption}
+\item[{int16\+\_\+t}]{wheel\+\_\+speed, }
+\item[{int16\+\_\+t}]{time\+\_\+step}
+\end{DoxyParamCaption}
+)}\hypertarget{motor__driver_8cpp_ada070d71dced9dccaf66288fb47b1ac0}{}\label{motor__driver_8cpp_ada070d71dced9dccaf66288fb47b1ac0}
+
+
+Runs a control loop to stop the motor based on the reported wheel speed, and returns a value to be output to the motor. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em wheel\+\_\+speed} & speed of the truck read by the wheel speed sensor \\
+\hline
+{\em time\+\_\+step} & number of millis since the last time this task ran; used in integral control \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+the output to the motor 
+\end{DoxyReturn}

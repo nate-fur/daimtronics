@@ -1,0 +1,76 @@
+\hypertarget{range__finder_8cpp}{}\section{daimtronics/teensy\+\_\+chibios/src/main/range\+\_\+finder.cpp File Reference}
+\label{range__finder_8cpp}\index{daimtronics/teensy\+\_\+chibios/src/main/range\+\_\+finder.\+cpp@{daimtronics/teensy\+\_\+chibios/src/main/range\+\_\+finder.\+cpp}}
+{\ttfamily \#include \char`\"{}include/range\+\_\+finder.\+h\char`\"{}}\\*
+{\ttfamily \#include \char`\"{}Arduino.\+h\char`\"{}}\\*
+Include dependency graph for range\+\_\+finder.\+cpp\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=268pt]{range__finder_8cpp__incl}
+\end{center}
+\end{figure}
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+long \hyperlink{range__finder_8cpp_a0d1a577ed4abf6a70b901350c16a2d23}{range\+\_\+finder\+\_\+loop\+\_\+fn} (short urf\+\_\+echo\+\_\+pin)
+\item 
+void \hyperlink{range__finder_8cpp_a521545ba36c9e983d134c77012323425}{range\+\_\+finder\+\_\+ping} (short urf\+\_\+trig\+\_\+pin)
+\item 
+void \hyperlink{range__finder_8cpp_afcf7c8f62f64d24ae76873d3a9471094}{range\+\_\+finder\+\_\+setup} (short urf\+\_\+trig\+\_\+pin)
+\end{DoxyCompactItemize}
+\subsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+int \hyperlink{range__finder_8cpp_aa0ccb5ee6d882ee3605ff47745c6467b}{val} = 0
+\item 
+unsigned long \hyperlink{range__finder_8cpp_a75009b90186537a6cf2ce59cf1d7b3c4}{high\+\_\+time} = 0
+\item 
+long \hyperlink{range__finder_8cpp_a5e96f48d7c36b483ee790c13e9b8137e}{distance} = 0
+\item 
+unsigned long \hyperlink{range__finder_8cpp_a43dc68c257e4ad93dcd26ccf96129b45}{time} = 0
+\end{DoxyCompactItemize}
+
+
+\subsection{Function Documentation}
+\index{range\+\_\+finder.\+cpp@{range\+\_\+finder.\+cpp}!range\+\_\+finder\+\_\+loop\+\_\+fn@{range\+\_\+finder\+\_\+loop\+\_\+fn}}
+\index{range\+\_\+finder\+\_\+loop\+\_\+fn@{range\+\_\+finder\+\_\+loop\+\_\+fn}!range\+\_\+finder.\+cpp@{range\+\_\+finder.\+cpp}}
+\subsubsection[{\texorpdfstring{range\+\_\+finder\+\_\+loop\+\_\+fn(short urf\+\_\+echo\+\_\+pin)}{range_finder_loop_fn(short urf_echo_pin)}}]{\setlength{\rightskip}{0pt plus 5cm}long range\+\_\+finder\+\_\+loop\+\_\+fn (
+\begin{DoxyParamCaption}
+\item[{short}]{urf\+\_\+echo\+\_\+pin}
+\end{DoxyParamCaption}
+)}\hypertarget{range__finder_8cpp_a0d1a577ed4abf6a70b901350c16a2d23}{}\label{range__finder_8cpp_a0d1a577ed4abf6a70b901350c16a2d23}
+This is the primary function controlling the U\+R\+Fs. It reads a value representing a distance to an object from the U\+RF sensor and returns that value
+
+\begin{DoxyReturn}{Returns}
+distance to object 
+\end{DoxyReturn}
+\index{range\+\_\+finder.\+cpp@{range\+\_\+finder.\+cpp}!range\+\_\+finder\+\_\+ping@{range\+\_\+finder\+\_\+ping}}
+\index{range\+\_\+finder\+\_\+ping@{range\+\_\+finder\+\_\+ping}!range\+\_\+finder.\+cpp@{range\+\_\+finder.\+cpp}}
+\subsubsection[{\texorpdfstring{range\+\_\+finder\+\_\+ping(short urf\+\_\+trig\+\_\+pin)}{range_finder_ping(short urf_trig_pin)}}]{\setlength{\rightskip}{0pt plus 5cm}void range\+\_\+finder\+\_\+ping (
+\begin{DoxyParamCaption}
+\item[{short}]{urf\+\_\+trig\+\_\+pin}
+\end{DoxyParamCaption}
+)}\hypertarget{range__finder_8cpp_a521545ba36c9e983d134c77012323425}{}\label{range__finder_8cpp_a521545ba36c9e983d134c77012323425}
+\index{range\+\_\+finder.\+cpp@{range\+\_\+finder.\+cpp}!range\+\_\+finder\+\_\+setup@{range\+\_\+finder\+\_\+setup}}
+\index{range\+\_\+finder\+\_\+setup@{range\+\_\+finder\+\_\+setup}!range\+\_\+finder.\+cpp@{range\+\_\+finder.\+cpp}}
+\subsubsection[{\texorpdfstring{range\+\_\+finder\+\_\+setup(short urf\+\_\+trig\+\_\+pin)}{range_finder_setup(short urf_trig_pin)}}]{\setlength{\rightskip}{0pt plus 5cm}void range\+\_\+finder\+\_\+setup (
+\begin{DoxyParamCaption}
+\item[{short}]{urf\+\_\+trig\+\_\+pin}
+\end{DoxyParamCaption}
+)}\hypertarget{range__finder_8cpp_afcf7c8f62f64d24ae76873d3a9471094}{}\label{range__finder_8cpp_afcf7c8f62f64d24ae76873d3a9471094}
+
+
+\subsection{Variable Documentation}
+\index{range\+\_\+finder.\+cpp@{range\+\_\+finder.\+cpp}!distance@{distance}}
+\index{distance@{distance}!range\+\_\+finder.\+cpp@{range\+\_\+finder.\+cpp}}
+\subsubsection[{\texorpdfstring{distance}{distance}}]{\setlength{\rightskip}{0pt plus 5cm}long distance = 0}\hypertarget{range__finder_8cpp_a5e96f48d7c36b483ee790c13e9b8137e}{}\label{range__finder_8cpp_a5e96f48d7c36b483ee790c13e9b8137e}
+\index{range\+\_\+finder.\+cpp@{range\+\_\+finder.\+cpp}!high\+\_\+time@{high\+\_\+time}}
+\index{high\+\_\+time@{high\+\_\+time}!range\+\_\+finder.\+cpp@{range\+\_\+finder.\+cpp}}
+\subsubsection[{\texorpdfstring{high\+\_\+time}{high_time}}]{\setlength{\rightskip}{0pt plus 5cm}unsigned long high\+\_\+time = 0}\hypertarget{range__finder_8cpp_a75009b90186537a6cf2ce59cf1d7b3c4}{}\label{range__finder_8cpp_a75009b90186537a6cf2ce59cf1d7b3c4}
+\index{range\+\_\+finder.\+cpp@{range\+\_\+finder.\+cpp}!time@{time}}
+\index{time@{time}!range\+\_\+finder.\+cpp@{range\+\_\+finder.\+cpp}}
+\subsubsection[{\texorpdfstring{time}{time}}]{\setlength{\rightskip}{0pt plus 5cm}unsigned long time = 0}\hypertarget{range__finder_8cpp_a43dc68c257e4ad93dcd26ccf96129b45}{}\label{range__finder_8cpp_a43dc68c257e4ad93dcd26ccf96129b45}
+\index{range\+\_\+finder.\+cpp@{range\+\_\+finder.\+cpp}!val@{val}}
+\index{val@{val}!range\+\_\+finder.\+cpp@{range\+\_\+finder.\+cpp}}
+\subsubsection[{\texorpdfstring{val}{val}}]{\setlength{\rightskip}{0pt plus 5cm}int val = 0}\hypertarget{range__finder_8cpp_aa0ccb5ee6d882ee3605ff47745c6467b}{}\label{range__finder_8cpp_aa0ccb5ee6d882ee3605ff47745c6467b}

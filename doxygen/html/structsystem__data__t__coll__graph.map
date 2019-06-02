@@ -1,0 +1,4 @@
+<map id="system_data_t" name="system_data_t">
+<area shape="rect" id="node2" href="$structsensor__data__t.html" title="sensor_data_t" alt="" coords="5,5,109,32"/>
+<area shape="rect" id="node3" href="$structactuator__data__t.html" title="actuator_data_t" alt="" coords="133,5,245,32"/>
+</map>

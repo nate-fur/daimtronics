@@ -1,0 +1,170 @@
+\hypertarget{semi__truck__api_8cpp}{}\section{daimtronics/semi\+\_\+catkin\+\_\+ws/src/semi\+\_\+truck/src/semi\+\_\+truck\+\_\+api.cpp File Reference}
+\label{semi__truck__api_8cpp}\index{daimtronics/semi\+\_\+catkin\+\_\+ws/src/semi\+\_\+truck/src/semi\+\_\+truck\+\_\+api.\+cpp@{daimtronics/semi\+\_\+catkin\+\_\+ws/src/semi\+\_\+truck/src/semi\+\_\+truck\+\_\+api.\+cpp}}
+{\ttfamily \#include \char`\"{}semi\+\_\+truck\+\_\+api.\+h\char`\"{}}\\*
+Include dependency graph for semi\+\_\+truck\+\_\+api.\+cpp\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{semi__truck__api_8cpp__incl}
+\end{center}
+\end{figure}
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \hyperlink{semi__truck__api_8cpp_a7a87c514f6941b049d0682587bf79a19}{set\+\_\+motor\+\_\+output} (\hyperlink{namespacesemi__truck_ab8254dd176d8fef1f1381fb4e7e5e869}{semi\+\_\+truck\+::\+Teensy\+\_\+\+Actuators} \&actuators, int16\+\_\+t motor\+\_\+output)
+\begin{DoxyCompactList}\small\item\em sets the motor output of the actuators object to the passed in value \end{DoxyCompactList}\item 
+void \hyperlink{semi__truck__api_8cpp_a4ae9e9386bbc2f69a7e5aad0ade8ce3a}{set\+\_\+steer\+\_\+output} (\hyperlink{namespacesemi__truck_ab8254dd176d8fef1f1381fb4e7e5e869}{semi\+\_\+truck\+::\+Teensy\+\_\+\+Actuators} \&actuators, int16\+\_\+t steer\+\_\+output)
+\begin{DoxyCompactList}\small\item\em sets the steer output of the actuators object to the passed in value \end{DoxyCompactList}\item 
+void \hyperlink{semi__truck__api_8cpp_aca24955ade43b742a379835b9e085bfd}{set\+\_\+fifth\+\_\+output} (\hyperlink{namespacesemi__truck_ab8254dd176d8fef1f1381fb4e7e5e869}{semi\+\_\+truck\+::\+Teensy\+\_\+\+Actuators} \&actuators, uint16\+\_\+t fifth\+\_\+output)
+\begin{DoxyCompactList}\small\item\em sets the fifth wheel of the actuators object to the passed in value \end{DoxyCompactList}\item 
+int16\+\_\+t \hyperlink{semi__truck__api_8cpp_a9102242c618a806b37b29e8cf755635a}{get\+\_\+wheel\+\_\+speed} (\hyperlink{namespacesemi__truck_a8ffe15bf9a1e739c2242ac6d6feaa67f}{semi\+\_\+truck\+::\+Teensy\+\_\+\+Sensors} \&sensors)
+\begin{DoxyCompactList}\small\item\em reads the wheel speed of a Teensy\+Sensors object \end{DoxyCompactList}\item 
+int16\+\_\+t \hyperlink{semi__truck__api_8cpp_ad2a88a4acb04875ce8af7529b8c134aa}{get\+\_\+imu\+\_\+angle} (\hyperlink{namespacesemi__truck_a8ffe15bf9a1e739c2242ac6d6feaa67f}{semi\+\_\+truck\+::\+Teensy\+\_\+\+Sensors} \&sensors)
+\begin{DoxyCompactList}\small\item\em reads the imu angle (degrees) of a Teensy\+Sensors object \end{DoxyCompactList}\item 
+int16\+\_\+t \hyperlink{semi__truck__api_8cpp_a49c1affdb96da8177f02ede6de778ac1}{get\+\_\+right\+\_\+\+T\+OF} (\hyperlink{namespacesemi__truck_a8ffe15bf9a1e739c2242ac6d6feaa67f}{semi\+\_\+truck\+::\+Teensy\+\_\+\+Sensors} \&sensors)
+\begin{DoxyCompactList}\small\item\em reads the right T\+OF distance (cm) of a Teensy\+Sensors object \end{DoxyCompactList}\item 
+int16\+\_\+t \hyperlink{semi__truck__api_8cpp_ae911633732f68cbf43db9ffcf06a0a41}{get\+\_\+left\+\_\+\+T\+OF} (\hyperlink{namespacesemi__truck_a8ffe15bf9a1e739c2242ac6d6feaa67f}{semi\+\_\+truck\+::\+Teensy\+\_\+\+Sensors} \&sensors)
+\begin{DoxyCompactList}\small\item\em reads the left T\+OF distance (cm) of a Teensy\+Sensors object \end{DoxyCompactList}\item 
+int16\+\_\+t \hyperlink{semi__truck__api_8cpp_a484706f88567e5def2555a03f69982ee}{get\+\_\+rear\+\_\+\+T\+OF} (\hyperlink{namespacesemi__truck_a8ffe15bf9a1e739c2242ac6d6feaa67f}{semi\+\_\+truck\+::\+Teensy\+\_\+\+Sensors} \&sensors)
+\begin{DoxyCompactList}\small\item\em reads the rear T\+OF distance (cm) of a Teensy\+Sensors object \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Function Documentation}
+\index{semi\+\_\+truck\+\_\+api.\+cpp@{semi\+\_\+truck\+\_\+api.\+cpp}!get\+\_\+imu\+\_\+angle@{get\+\_\+imu\+\_\+angle}}
+\index{get\+\_\+imu\+\_\+angle@{get\+\_\+imu\+\_\+angle}!semi\+\_\+truck\+\_\+api.\+cpp@{semi\+\_\+truck\+\_\+api.\+cpp}}
+\subsubsection[{\texorpdfstring{get\+\_\+imu\+\_\+angle(semi\+\_\+truck\+::\+Teensy\+\_\+\+Sensors \&sensors)}{get_imu_angle(semi_truck::Teensy_Sensors &sensors)}}]{\setlength{\rightskip}{0pt plus 5cm}int16\+\_\+t get\+\_\+imu\+\_\+angle (
+\begin{DoxyParamCaption}
+\item[{{\bf semi\+\_\+truck\+::\+Teensy\+\_\+\+Sensors} \&}]{sensors}
+\end{DoxyParamCaption}
+)}\hypertarget{semi__truck__api_8cpp_ad2a88a4acb04875ce8af7529b8c134aa}{}\label{semi__truck__api_8cpp_ad2a88a4acb04875ce8af7529b8c134aa}
+
+
+reads the imu angle (degrees) of a Teensy\+Sensors object 
+
+
+\begin{DoxyParams}{Parameters}
+{\em sensors} & a reference to a Teensy\+Sensors object to read from. \\
+\hline
+\end{DoxyParams}
+\index{semi\+\_\+truck\+\_\+api.\+cpp@{semi\+\_\+truck\+\_\+api.\+cpp}!get\+\_\+left\+\_\+\+T\+OF@{get\+\_\+left\+\_\+\+T\+OF}}
+\index{get\+\_\+left\+\_\+\+T\+OF@{get\+\_\+left\+\_\+\+T\+OF}!semi\+\_\+truck\+\_\+api.\+cpp@{semi\+\_\+truck\+\_\+api.\+cpp}}
+\subsubsection[{\texorpdfstring{get\+\_\+left\+\_\+\+T\+O\+F(semi\+\_\+truck\+::\+Teensy\+\_\+\+Sensors \&sensors)}{get_left_TOF(semi_truck::Teensy_Sensors &sensors)}}]{\setlength{\rightskip}{0pt plus 5cm}int16\+\_\+t get\+\_\+left\+\_\+\+T\+OF (
+\begin{DoxyParamCaption}
+\item[{{\bf semi\+\_\+truck\+::\+Teensy\+\_\+\+Sensors} \&}]{sensors}
+\end{DoxyParamCaption}
+)}\hypertarget{semi__truck__api_8cpp_ae911633732f68cbf43db9ffcf06a0a41}{}\label{semi__truck__api_8cpp_ae911633732f68cbf43db9ffcf06a0a41}
+
+
+reads the left T\+OF distance (cm) of a Teensy\+Sensors object 
+
+
+\begin{DoxyParams}{Parameters}
+{\em sensors} & a reference to a Teensy\+Sensors object to read from. \\
+\hline
+\end{DoxyParams}
+\index{semi\+\_\+truck\+\_\+api.\+cpp@{semi\+\_\+truck\+\_\+api.\+cpp}!get\+\_\+rear\+\_\+\+T\+OF@{get\+\_\+rear\+\_\+\+T\+OF}}
+\index{get\+\_\+rear\+\_\+\+T\+OF@{get\+\_\+rear\+\_\+\+T\+OF}!semi\+\_\+truck\+\_\+api.\+cpp@{semi\+\_\+truck\+\_\+api.\+cpp}}
+\subsubsection[{\texorpdfstring{get\+\_\+rear\+\_\+\+T\+O\+F(semi\+\_\+truck\+::\+Teensy\+\_\+\+Sensors \&sensors)}{get_rear_TOF(semi_truck::Teensy_Sensors &sensors)}}]{\setlength{\rightskip}{0pt plus 5cm}int16\+\_\+t get\+\_\+rear\+\_\+\+T\+OF (
+\begin{DoxyParamCaption}
+\item[{{\bf semi\+\_\+truck\+::\+Teensy\+\_\+\+Sensors} \&}]{sensors}
+\end{DoxyParamCaption}
+)}\hypertarget{semi__truck__api_8cpp_a484706f88567e5def2555a03f69982ee}{}\label{semi__truck__api_8cpp_a484706f88567e5def2555a03f69982ee}
+
+
+reads the rear T\+OF distance (cm) of a Teensy\+Sensors object 
+
+
+\begin{DoxyParams}{Parameters}
+{\em sensors} & a reference to a Teensy\+Sensors object to read from. \\
+\hline
+\end{DoxyParams}
+\index{semi\+\_\+truck\+\_\+api.\+cpp@{semi\+\_\+truck\+\_\+api.\+cpp}!get\+\_\+right\+\_\+\+T\+OF@{get\+\_\+right\+\_\+\+T\+OF}}
+\index{get\+\_\+right\+\_\+\+T\+OF@{get\+\_\+right\+\_\+\+T\+OF}!semi\+\_\+truck\+\_\+api.\+cpp@{semi\+\_\+truck\+\_\+api.\+cpp}}
+\subsubsection[{\texorpdfstring{get\+\_\+right\+\_\+\+T\+O\+F(semi\+\_\+truck\+::\+Teensy\+\_\+\+Sensors \&sensors)}{get_right_TOF(semi_truck::Teensy_Sensors &sensors)}}]{\setlength{\rightskip}{0pt plus 5cm}int16\+\_\+t get\+\_\+right\+\_\+\+T\+OF (
+\begin{DoxyParamCaption}
+\item[{{\bf semi\+\_\+truck\+::\+Teensy\+\_\+\+Sensors} \&}]{sensors}
+\end{DoxyParamCaption}
+)}\hypertarget{semi__truck__api_8cpp_a49c1affdb96da8177f02ede6de778ac1}{}\label{semi__truck__api_8cpp_a49c1affdb96da8177f02ede6de778ac1}
+
+
+reads the right T\+OF distance (cm) of a Teensy\+Sensors object 
+
+
+\begin{DoxyParams}{Parameters}
+{\em sensors} & a reference to a Teensy\+Sensors object to read from. \\
+\hline
+\end{DoxyParams}
+\index{semi\+\_\+truck\+\_\+api.\+cpp@{semi\+\_\+truck\+\_\+api.\+cpp}!get\+\_\+wheel\+\_\+speed@{get\+\_\+wheel\+\_\+speed}}
+\index{get\+\_\+wheel\+\_\+speed@{get\+\_\+wheel\+\_\+speed}!semi\+\_\+truck\+\_\+api.\+cpp@{semi\+\_\+truck\+\_\+api.\+cpp}}
+\subsubsection[{\texorpdfstring{get\+\_\+wheel\+\_\+speed(semi\+\_\+truck\+::\+Teensy\+\_\+\+Sensors \&sensors)}{get_wheel_speed(semi_truck::Teensy_Sensors &sensors)}}]{\setlength{\rightskip}{0pt plus 5cm}int16\+\_\+t get\+\_\+wheel\+\_\+speed (
+\begin{DoxyParamCaption}
+\item[{{\bf semi\+\_\+truck\+::\+Teensy\+\_\+\+Sensors} \&}]{sensors}
+\end{DoxyParamCaption}
+)}\hypertarget{semi__truck__api_8cpp_a9102242c618a806b37b29e8cf755635a}{}\label{semi__truck__api_8cpp_a9102242c618a806b37b29e8cf755635a}
+
+
+reads the wheel speed of a Teensy\+Sensors object 
+
+
+\begin{DoxyParams}{Parameters}
+{\em sensors} & a reference to a Teensy\+Sensors object to read from. \\
+\hline
+\end{DoxyParams}
+\index{semi\+\_\+truck\+\_\+api.\+cpp@{semi\+\_\+truck\+\_\+api.\+cpp}!set\+\_\+fifth\+\_\+output@{set\+\_\+fifth\+\_\+output}}
+\index{set\+\_\+fifth\+\_\+output@{set\+\_\+fifth\+\_\+output}!semi\+\_\+truck\+\_\+api.\+cpp@{semi\+\_\+truck\+\_\+api.\+cpp}}
+\subsubsection[{\texorpdfstring{set\+\_\+fifth\+\_\+output(semi\+\_\+truck\+::\+Teensy\+\_\+\+Actuators \&actuators, uint16\+\_\+t fifth\+\_\+output)}{set_fifth_output(semi_truck::Teensy_Actuators &actuators, uint16_t fifth_output)}}]{\setlength{\rightskip}{0pt plus 5cm}void set\+\_\+fifth\+\_\+output (
+\begin{DoxyParamCaption}
+\item[{{\bf semi\+\_\+truck\+::\+Teensy\+\_\+\+Actuators} \&}]{actuators, }
+\item[{uint16\+\_\+t}]{value}
+\end{DoxyParamCaption}
+)}\hypertarget{semi__truck__api_8cpp_aca24955ade43b742a379835b9e085bfd}{}\label{semi__truck__api_8cpp_aca24955ade43b742a379835b9e085bfd}
+
+
+sets the fifth wheel of the actuators object to the passed in value 
+
+
+\begin{DoxyParams}{Parameters}
+{\em actuators} & a reference to a Teensy\+Actuators object to alter \\
+\hline
+{\em value} & the value to update the actuators with. 0 for locked and 1 for unlocked. \\
+\hline
+\end{DoxyParams}
+\index{semi\+\_\+truck\+\_\+api.\+cpp@{semi\+\_\+truck\+\_\+api.\+cpp}!set\+\_\+motor\+\_\+output@{set\+\_\+motor\+\_\+output}}
+\index{set\+\_\+motor\+\_\+output@{set\+\_\+motor\+\_\+output}!semi\+\_\+truck\+\_\+api.\+cpp@{semi\+\_\+truck\+\_\+api.\+cpp}}
+\subsubsection[{\texorpdfstring{set\+\_\+motor\+\_\+output(semi\+\_\+truck\+::\+Teensy\+\_\+\+Actuators \&actuators, int16\+\_\+t motor\+\_\+output)}{set_motor_output(semi_truck::Teensy_Actuators &actuators, int16_t motor_output)}}]{\setlength{\rightskip}{0pt plus 5cm}void set\+\_\+motor\+\_\+output (
+\begin{DoxyParamCaption}
+\item[{{\bf semi\+\_\+truck\+::\+Teensy\+\_\+\+Actuators} \&}]{actuators, }
+\item[{int16\+\_\+t}]{value}
+\end{DoxyParamCaption}
+)}\hypertarget{semi__truck__api_8cpp_a7a87c514f6941b049d0682587bf79a19}{}\label{semi__truck__api_8cpp_a7a87c514f6941b049d0682587bf79a19}
+
+
+sets the motor output of the actuators object to the passed in value 
+
+
+\begin{DoxyParams}{Parameters}
+{\em actuators} & a reference to a Teensy\+Actuators object to alter \\
+\hline
+{\em value} & the value to update the actuators with. This value should range from 0 for full reverse power to 180 for full forwards power. \\
+\hline
+\end{DoxyParams}
+\index{semi\+\_\+truck\+\_\+api.\+cpp@{semi\+\_\+truck\+\_\+api.\+cpp}!set\+\_\+steer\+\_\+output@{set\+\_\+steer\+\_\+output}}
+\index{set\+\_\+steer\+\_\+output@{set\+\_\+steer\+\_\+output}!semi\+\_\+truck\+\_\+api.\+cpp@{semi\+\_\+truck\+\_\+api.\+cpp}}
+\subsubsection[{\texorpdfstring{set\+\_\+steer\+\_\+output(semi\+\_\+truck\+::\+Teensy\+\_\+\+Actuators \&actuators, int16\+\_\+t steer\+\_\+output)}{set_steer_output(semi_truck::Teensy_Actuators &actuators, int16_t steer_output)}}]{\setlength{\rightskip}{0pt plus 5cm}void set\+\_\+steer\+\_\+output (
+\begin{DoxyParamCaption}
+\item[{{\bf semi\+\_\+truck\+::\+Teensy\+\_\+\+Actuators} \&}]{actuators, }
+\item[{int16\+\_\+t}]{value}
+\end{DoxyParamCaption}
+)}\hypertarget{semi__truck__api_8cpp_a4ae9e9386bbc2f69a7e5aad0ade8ce3a}{}\label{semi__truck__api_8cpp_a4ae9e9386bbc2f69a7e5aad0ade8ce3a}
+
+
+sets the steer output of the actuators object to the passed in value 
+
+
+\begin{DoxyParams}{Parameters}
+{\em actuators} & a reference to a Teensy\+Actuators object to alter \\
+\hline
+{\em value} & the value to update the actuators with. This value should range from 0 for a 20 degree angle left to 180 for a 20 degree angle right. \\
+\hline
+\end{DoxyParams}

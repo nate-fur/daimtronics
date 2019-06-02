@@ -1,0 +1,95 @@
+\hypertarget{_r_c__receiver_8cpp}{}\section{daimtronics/teensy\+\_\+chibios/src/main/\+R\+C\+\_\+receiver.cpp File Reference}
+\label{_r_c__receiver_8cpp}\index{daimtronics/teensy\+\_\+chibios/src/main/\+R\+C\+\_\+receiver.\+cpp@{daimtronics/teensy\+\_\+chibios/src/main/\+R\+C\+\_\+receiver.\+cpp}}
+{\ttfamily \#include $<$Arduino.\+h$>$}\\*
+{\ttfamily \#include \char`\"{}include/\+R\+C\+\_\+receiver.\+h\char`\"{}}\\*
+Include dependency graph for R\+C\+\_\+receiver.\+cpp\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=270pt]{_r_c__receiver_8cpp__incl}
+\end{center}
+\end{figure}
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+int16\+\_\+t \hyperlink{_r_c__receiver_8cpp_a23c4334055a956a8aebf098e4b221b8e}{R\+C\+\_\+receiver\+\_\+\+S\+W1\+\_\+fn} (short P\+W\+M\+\_\+\+P\+IN)
+\begin{DoxyCompactList}\small\item\em This is the primary function reading Switch 1 on the receiver. It reads a P\+WM signal that the RC receiver receives from the RC controller. Based on the specific timing of the P\+WM, a deadman mode (either deadman switch pressed or not pressed) is selected to send to the rest of the platform. \end{DoxyCompactList}\item 
+int16\+\_\+t \hyperlink{_r_c__receiver_8cpp_a268ff21fe35dba113741705a7b281ec0}{R\+C\+\_\+receiver\+\_\+\+S\+W3\+\_\+fn} (short P\+W\+M\+\_\+\+P\+IN)
+\begin{DoxyCompactList}\small\item\em This is the primary function controlling the RC receiver. It reads a P\+WM signal that the RC receiver receives from the RC controller. Based on the specific timing of the P\+WM, a drive mode (either manual or one of the autonomous algorithms on the Pi) is selected to control the vehicle. \end{DoxyCompactList}\item 
+void \hyperlink{_r_c__receiver_8cpp_a45897a7e81dfbed4ed1594172b3a0345}{R\+C\+\_\+receiver\+\_\+setup} ()
+\end{DoxyCompactItemize}
+\subsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+float \hyperlink{_r_c__receiver_8cpp_ae89cf3352ad4ab22690abcf61b19f58b}{S\+W1\+\_\+high\+\_\+time} = 0
+\item 
+volatile unsigned long \hyperlink{_r_c__receiver_8cpp_adbba37cb7bf8a5a766512e486c108683}{S\+W1\+\_\+time} = 0
+\item 
+short \hyperlink{_r_c__receiver_8cpp_aeb62968764f0d7b685f762aad1e27cd4}{S\+W1\+\_\+mode} = 0
+\item 
+float \hyperlink{_r_c__receiver_8cpp_a2c0e78b35f8993638c590ae5194b4645}{S\+W3\+\_\+high\+\_\+time} = 0
+\item 
+volatile unsigned long \hyperlink{_r_c__receiver_8cpp_aef6bf05d1f3f8f239a5b28f88f9f49d8}{S\+W3\+\_\+time} = 0
+\item 
+short \hyperlink{_r_c__receiver_8cpp_a0992b29ab0fba962ffbbffe091f0d745}{S\+W3\+\_\+mode} = 0
+\end{DoxyCompactItemize}
+
+
+\subsection{Function Documentation}
+\index{R\+C\+\_\+receiver.\+cpp@{R\+C\+\_\+receiver.\+cpp}!R\+C\+\_\+receiver\+\_\+setup@{R\+C\+\_\+receiver\+\_\+setup}}
+\index{R\+C\+\_\+receiver\+\_\+setup@{R\+C\+\_\+receiver\+\_\+setup}!R\+C\+\_\+receiver.\+cpp@{R\+C\+\_\+receiver.\+cpp}}
+\subsubsection[{\texorpdfstring{R\+C\+\_\+receiver\+\_\+setup()}{RC_receiver_setup()}}]{\setlength{\rightskip}{0pt plus 5cm}void R\+C\+\_\+receiver\+\_\+setup (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}\hypertarget{_r_c__receiver_8cpp_a45897a7e81dfbed4ed1594172b3a0345}{}\label{_r_c__receiver_8cpp_a45897a7e81dfbed4ed1594172b3a0345}
+\index{R\+C\+\_\+receiver.\+cpp@{R\+C\+\_\+receiver.\+cpp}!R\+C\+\_\+receiver\+\_\+\+S\+W1\+\_\+fn@{R\+C\+\_\+receiver\+\_\+\+S\+W1\+\_\+fn}}
+\index{R\+C\+\_\+receiver\+\_\+\+S\+W1\+\_\+fn@{R\+C\+\_\+receiver\+\_\+\+S\+W1\+\_\+fn}!R\+C\+\_\+receiver.\+cpp@{R\+C\+\_\+receiver.\+cpp}}
+\subsubsection[{\texorpdfstring{R\+C\+\_\+receiver\+\_\+\+S\+W1\+\_\+fn(short P\+W\+M\+\_\+\+P\+I\+N)}{RC_receiver_SW1_fn(short PWM_PIN)}}]{\setlength{\rightskip}{0pt plus 5cm}int16\+\_\+t R\+C\+\_\+receiver\+\_\+\+S\+W1\+\_\+fn (
+\begin{DoxyParamCaption}
+\item[{short}]{P\+W\+M\+\_\+\+P\+IN}
+\end{DoxyParamCaption}
+)}\hypertarget{_r_c__receiver_8cpp_a23c4334055a956a8aebf098e4b221b8e}{}\label{_r_c__receiver_8cpp_a23c4334055a956a8aebf098e4b221b8e}
+
+
+This is the primary function reading Switch 1 on the receiver. It reads a P\+WM signal that the RC receiver receives from the RC controller. Based on the specific timing of the P\+WM, a deadman mode (either deadman switch pressed or not pressed) is selected to send to the rest of the platform. 
+
+\begin{DoxyReturn}{Returns}
+the deadman mode of the semi-\/truck based on RC receiver signal 
+\end{DoxyReturn}
+\index{R\+C\+\_\+receiver.\+cpp@{R\+C\+\_\+receiver.\+cpp}!R\+C\+\_\+receiver\+\_\+\+S\+W3\+\_\+fn@{R\+C\+\_\+receiver\+\_\+\+S\+W3\+\_\+fn}}
+\index{R\+C\+\_\+receiver\+\_\+\+S\+W3\+\_\+fn@{R\+C\+\_\+receiver\+\_\+\+S\+W3\+\_\+fn}!R\+C\+\_\+receiver.\+cpp@{R\+C\+\_\+receiver.\+cpp}}
+\subsubsection[{\texorpdfstring{R\+C\+\_\+receiver\+\_\+\+S\+W3\+\_\+fn(short P\+W\+M\+\_\+\+P\+I\+N)}{RC_receiver_SW3_fn(short PWM_PIN)}}]{\setlength{\rightskip}{0pt plus 5cm}int16\+\_\+t R\+C\+\_\+receiver\+\_\+\+S\+W3\+\_\+fn (
+\begin{DoxyParamCaption}
+\item[{short}]{P\+W\+M\+\_\+\+P\+IN}
+\end{DoxyParamCaption}
+)}\hypertarget{_r_c__receiver_8cpp_a268ff21fe35dba113741705a7b281ec0}{}\label{_r_c__receiver_8cpp_a268ff21fe35dba113741705a7b281ec0}
+
+
+This is the primary function controlling the RC receiver. It reads a P\+WM signal that the RC receiver receives from the RC controller. Based on the specific timing of the P\+WM, a drive mode (either manual or one of the autonomous algorithms on the Pi) is selected to control the vehicle. 
+
+\begin{DoxyReturn}{Returns}
+the driving mode of the semi-\/truck based on RC receiver signal 
+\end{DoxyReturn}
+
+
+\subsection{Variable Documentation}
+\index{R\+C\+\_\+receiver.\+cpp@{R\+C\+\_\+receiver.\+cpp}!S\+W1\+\_\+high\+\_\+time@{S\+W1\+\_\+high\+\_\+time}}
+\index{S\+W1\+\_\+high\+\_\+time@{S\+W1\+\_\+high\+\_\+time}!R\+C\+\_\+receiver.\+cpp@{R\+C\+\_\+receiver.\+cpp}}
+\subsubsection[{\texorpdfstring{S\+W1\+\_\+high\+\_\+time}{SW1_high_time}}]{\setlength{\rightskip}{0pt plus 5cm}float S\+W1\+\_\+high\+\_\+time = 0}\hypertarget{_r_c__receiver_8cpp_ae89cf3352ad4ab22690abcf61b19f58b}{}\label{_r_c__receiver_8cpp_ae89cf3352ad4ab22690abcf61b19f58b}
+\index{R\+C\+\_\+receiver.\+cpp@{R\+C\+\_\+receiver.\+cpp}!S\+W1\+\_\+mode@{S\+W1\+\_\+mode}}
+\index{S\+W1\+\_\+mode@{S\+W1\+\_\+mode}!R\+C\+\_\+receiver.\+cpp@{R\+C\+\_\+receiver.\+cpp}}
+\subsubsection[{\texorpdfstring{S\+W1\+\_\+mode}{SW1_mode}}]{\setlength{\rightskip}{0pt plus 5cm}short S\+W1\+\_\+mode = 0}\hypertarget{_r_c__receiver_8cpp_aeb62968764f0d7b685f762aad1e27cd4}{}\label{_r_c__receiver_8cpp_aeb62968764f0d7b685f762aad1e27cd4}
+\index{R\+C\+\_\+receiver.\+cpp@{R\+C\+\_\+receiver.\+cpp}!S\+W1\+\_\+time@{S\+W1\+\_\+time}}
+\index{S\+W1\+\_\+time@{S\+W1\+\_\+time}!R\+C\+\_\+receiver.\+cpp@{R\+C\+\_\+receiver.\+cpp}}
+\subsubsection[{\texorpdfstring{S\+W1\+\_\+time}{SW1_time}}]{\setlength{\rightskip}{0pt plus 5cm}volatile unsigned long S\+W1\+\_\+time = 0}\hypertarget{_r_c__receiver_8cpp_adbba37cb7bf8a5a766512e486c108683}{}\label{_r_c__receiver_8cpp_adbba37cb7bf8a5a766512e486c108683}
+\index{R\+C\+\_\+receiver.\+cpp@{R\+C\+\_\+receiver.\+cpp}!S\+W3\+\_\+high\+\_\+time@{S\+W3\+\_\+high\+\_\+time}}
+\index{S\+W3\+\_\+high\+\_\+time@{S\+W3\+\_\+high\+\_\+time}!R\+C\+\_\+receiver.\+cpp@{R\+C\+\_\+receiver.\+cpp}}
+\subsubsection[{\texorpdfstring{S\+W3\+\_\+high\+\_\+time}{SW3_high_time}}]{\setlength{\rightskip}{0pt plus 5cm}float S\+W3\+\_\+high\+\_\+time = 0}\hypertarget{_r_c__receiver_8cpp_a2c0e78b35f8993638c590ae5194b4645}{}\label{_r_c__receiver_8cpp_a2c0e78b35f8993638c590ae5194b4645}
+\index{R\+C\+\_\+receiver.\+cpp@{R\+C\+\_\+receiver.\+cpp}!S\+W3\+\_\+mode@{S\+W3\+\_\+mode}}
+\index{S\+W3\+\_\+mode@{S\+W3\+\_\+mode}!R\+C\+\_\+receiver.\+cpp@{R\+C\+\_\+receiver.\+cpp}}
+\subsubsection[{\texorpdfstring{S\+W3\+\_\+mode}{SW3_mode}}]{\setlength{\rightskip}{0pt plus 5cm}short S\+W3\+\_\+mode = 0}\hypertarget{_r_c__receiver_8cpp_a0992b29ab0fba962ffbbffe091f0d745}{}\label{_r_c__receiver_8cpp_a0992b29ab0fba962ffbbffe091f0d745}
+\index{R\+C\+\_\+receiver.\+cpp@{R\+C\+\_\+receiver.\+cpp}!S\+W3\+\_\+time@{S\+W3\+\_\+time}}
+\index{S\+W3\+\_\+time@{S\+W3\+\_\+time}!R\+C\+\_\+receiver.\+cpp@{R\+C\+\_\+receiver.\+cpp}}
+\subsubsection[{\texorpdfstring{S\+W3\+\_\+time}{SW3_time}}]{\setlength{\rightskip}{0pt plus 5cm}volatile unsigned long S\+W3\+\_\+time = 0}\hypertarget{_r_c__receiver_8cpp_aef6bf05d1f3f8f239a5b28f88f9f49d8}{}\label{_r_c__receiver_8cpp_aef6bf05d1f3f8f239a5b28f88f9f49d8}

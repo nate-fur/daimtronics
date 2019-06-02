@@ -1,0 +1,75 @@
+\hypertarget{_r_c__receiver_8h}{}\section{daimtronics/teensy\+\_\+chibios/src/main/include/\+R\+C\+\_\+receiver.h File Reference}
+\label{_r_c__receiver_8h}\index{daimtronics/teensy\+\_\+chibios/src/main/include/\+R\+C\+\_\+receiver.\+h@{daimtronics/teensy\+\_\+chibios/src/main/include/\+R\+C\+\_\+receiver.\+h}}
+{\ttfamily \#include $<$stdint.\+h$>$}\\*
+Include dependency graph for R\+C\+\_\+receiver.\+h\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=207pt]{_r_c__receiver_8h__incl}
+\end{center}
+\end{figure}
+This graph shows which files directly or indirectly include this file\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=207pt]{_r_c__receiver_8h__dep__incl}
+\end{center}
+\end{figure}
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+int16\+\_\+t \hyperlink{_r_c__receiver_8h_a23c4334055a956a8aebf098e4b221b8e}{R\+C\+\_\+receiver\+\_\+\+S\+W1\+\_\+fn} (short P\+W\+M\+\_\+\+P\+IN)
+\begin{DoxyCompactList}\small\item\em This is the primary function reading Switch 1 on the receiver. It reads a P\+WM signal that the RC receiver receives from the RC controller. Based on the specific timing of the P\+WM, a deadman mode (either deadman switch pressed or not pressed) is selected to send to the rest of the platform. \end{DoxyCompactList}\item 
+int16\+\_\+t \hyperlink{_r_c__receiver_8h_a145bffdd8c1a4131d81c20e56cbb69dd}{R\+C\+\_\+receiver\+\_\+\+S\+W2\+\_\+fn} (short P\+W\+M\+\_\+\+P\+IN)
+\item 
+int16\+\_\+t \hyperlink{_r_c__receiver_8h_a268ff21fe35dba113741705a7b281ec0}{R\+C\+\_\+receiver\+\_\+\+S\+W3\+\_\+fn} (short P\+W\+M\+\_\+\+P\+IN)
+\begin{DoxyCompactList}\small\item\em This is the primary function controlling the RC receiver. It reads a P\+WM signal that the RC receiver receives from the RC controller. Based on the specific timing of the P\+WM, a drive mode (either manual or one of the autonomous algorithms on the Pi) is selected to control the vehicle. \end{DoxyCompactList}\item 
+void \hyperlink{_r_c__receiver_8h_a45897a7e81dfbed4ed1594172b3a0345}{R\+C\+\_\+receiver\+\_\+setup} ()
+\end{DoxyCompactItemize}
+
+
+\subsection{Function Documentation}
+\index{R\+C\+\_\+receiver.\+h@{R\+C\+\_\+receiver.\+h}!R\+C\+\_\+receiver\+\_\+setup@{R\+C\+\_\+receiver\+\_\+setup}}
+\index{R\+C\+\_\+receiver\+\_\+setup@{R\+C\+\_\+receiver\+\_\+setup}!R\+C\+\_\+receiver.\+h@{R\+C\+\_\+receiver.\+h}}
+\subsubsection[{\texorpdfstring{R\+C\+\_\+receiver\+\_\+setup()}{RC_receiver_setup()}}]{\setlength{\rightskip}{0pt plus 5cm}void R\+C\+\_\+receiver\+\_\+setup (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}\hypertarget{_r_c__receiver_8h_a45897a7e81dfbed4ed1594172b3a0345}{}\label{_r_c__receiver_8h_a45897a7e81dfbed4ed1594172b3a0345}
+\index{R\+C\+\_\+receiver.\+h@{R\+C\+\_\+receiver.\+h}!R\+C\+\_\+receiver\+\_\+\+S\+W1\+\_\+fn@{R\+C\+\_\+receiver\+\_\+\+S\+W1\+\_\+fn}}
+\index{R\+C\+\_\+receiver\+\_\+\+S\+W1\+\_\+fn@{R\+C\+\_\+receiver\+\_\+\+S\+W1\+\_\+fn}!R\+C\+\_\+receiver.\+h@{R\+C\+\_\+receiver.\+h}}
+\subsubsection[{\texorpdfstring{R\+C\+\_\+receiver\+\_\+\+S\+W1\+\_\+fn(short P\+W\+M\+\_\+\+P\+I\+N)}{RC_receiver_SW1_fn(short PWM_PIN)}}]{\setlength{\rightskip}{0pt plus 5cm}int16\+\_\+t R\+C\+\_\+receiver\+\_\+\+S\+W1\+\_\+fn (
+\begin{DoxyParamCaption}
+\item[{short}]{P\+W\+M\+\_\+\+P\+IN}
+\end{DoxyParamCaption}
+)}\hypertarget{_r_c__receiver_8h_a23c4334055a956a8aebf098e4b221b8e}{}\label{_r_c__receiver_8h_a23c4334055a956a8aebf098e4b221b8e}
+
+
+This is the primary function reading Switch 1 on the receiver. It reads a P\+WM signal that the RC receiver receives from the RC controller. Based on the specific timing of the P\+WM, a deadman mode (either deadman switch pressed or not pressed) is selected to send to the rest of the platform. 
+
+\begin{DoxyReturn}{Returns}
+the deadman mode of the semi-\/truck based on RC receiver signal 
+\end{DoxyReturn}
+\index{R\+C\+\_\+receiver.\+h@{R\+C\+\_\+receiver.\+h}!R\+C\+\_\+receiver\+\_\+\+S\+W2\+\_\+fn@{R\+C\+\_\+receiver\+\_\+\+S\+W2\+\_\+fn}}
+\index{R\+C\+\_\+receiver\+\_\+\+S\+W2\+\_\+fn@{R\+C\+\_\+receiver\+\_\+\+S\+W2\+\_\+fn}!R\+C\+\_\+receiver.\+h@{R\+C\+\_\+receiver.\+h}}
+\subsubsection[{\texorpdfstring{R\+C\+\_\+receiver\+\_\+\+S\+W2\+\_\+fn(short P\+W\+M\+\_\+\+P\+I\+N)}{RC_receiver_SW2_fn(short PWM_PIN)}}]{\setlength{\rightskip}{0pt plus 5cm}int16\+\_\+t R\+C\+\_\+receiver\+\_\+\+S\+W2\+\_\+fn (
+\begin{DoxyParamCaption}
+\item[{short}]{P\+W\+M\+\_\+\+P\+IN}
+\end{DoxyParamCaption}
+)}\hypertarget{_r_c__receiver_8h_a145bffdd8c1a4131d81c20e56cbb69dd}{}\label{_r_c__receiver_8h_a145bffdd8c1a4131d81c20e56cbb69dd}
+\index{R\+C\+\_\+receiver.\+h@{R\+C\+\_\+receiver.\+h}!R\+C\+\_\+receiver\+\_\+\+S\+W3\+\_\+fn@{R\+C\+\_\+receiver\+\_\+\+S\+W3\+\_\+fn}}
+\index{R\+C\+\_\+receiver\+\_\+\+S\+W3\+\_\+fn@{R\+C\+\_\+receiver\+\_\+\+S\+W3\+\_\+fn}!R\+C\+\_\+receiver.\+h@{R\+C\+\_\+receiver.\+h}}
+\subsubsection[{\texorpdfstring{R\+C\+\_\+receiver\+\_\+\+S\+W3\+\_\+fn(short P\+W\+M\+\_\+\+P\+I\+N)}{RC_receiver_SW3_fn(short PWM_PIN)}}]{\setlength{\rightskip}{0pt plus 5cm}int16\+\_\+t R\+C\+\_\+receiver\+\_\+\+S\+W3\+\_\+fn (
+\begin{DoxyParamCaption}
+\item[{short}]{P\+W\+M\+\_\+\+P\+IN}
+\end{DoxyParamCaption}
+)}\hypertarget{_r_c__receiver_8h_a268ff21fe35dba113741705a7b281ec0}{}\label{_r_c__receiver_8h_a268ff21fe35dba113741705a7b281ec0}
+
+
+This is the primary function controlling the RC receiver. It reads a P\+WM signal that the RC receiver receives from the RC controller. Based on the specific timing of the P\+WM, a drive mode (either manual or one of the autonomous algorithms on the Pi) is selected to control the vehicle. 
+
+\begin{DoxyReturn}{Returns}
+the driving mode of the semi-\/truck based on RC receiver signal 
+\end{DoxyReturn}

@@ -1,0 +1,91 @@
+\hypertarget{tof__lidar_8cpp}{}\section{daimtronics/teensy\+\_\+chibios/src/main/tof\+\_\+lidar.cpp File Reference}
+\label{tof__lidar_8cpp}\index{daimtronics/teensy\+\_\+chibios/src/main/tof\+\_\+lidar.\+cpp@{daimtronics/teensy\+\_\+chibios/src/main/tof\+\_\+lidar.\+cpp}}
+{\ttfamily \#include \char`\"{}include/tof\+\_\+lidar.\+h\char`\"{}}\\*
+Include dependency graph for tof\+\_\+lidar.\+cpp\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=187pt]{tof__lidar_8cpp__incl}
+\end{center}
+\end{figure}
+\subsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define \hyperlink{tof__lidar_8cpp_a5ae0a607449a24cde6acba0e7ad0918b}{T\+C\+A\+A\+D\+DR}~0x70
+\end{DoxyCompactItemize}
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \hyperlink{tof__lidar_8cpp_aa8d3539c1351069c65956d2dad78bb6c}{tcaselect} (uint8\+\_\+t i)
+\item 
+int16\+\_\+t \hyperlink{tof__lidar_8cpp_a8da0723270a6de519157b547f46a6f08}{tof\+\_\+loop\+\_\+fn} ()
+\begin{DoxyCompactList}\small\item\em This is the primary function controlling the ToF Lidar for reading distance measurements on the sensors. \end{DoxyCompactList}\item 
+void \hyperlink{tof__lidar_8cpp_affae18dfb6707b54116451926d19a0dd}{tof\+\_\+lidar\+\_\+setup} ()
+\begin{DoxyCompactList}\small\item\em Initializes the V\+L53\+L0X sensor. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+Adafruit\+\_\+\+V\+L53\+L0X \hyperlink{tof__lidar_8cpp_af30e34fae1b27cb7ca904da73d80e96d}{sensor1} = Adafruit\+\_\+\+V\+L53\+L0X()
+\begin{DoxyCompactList}\small\item\em A global variable that sets up the sensors to be used here. \end{DoxyCompactList}\item 
+Adafruit\+\_\+\+V\+L53\+L0X \hyperlink{tof__lidar_8cpp_a1badba6a58523865a7594f8c54a510ad}{sensor2} = Adafruit\+\_\+\+V\+L53\+L0X()
+\item 
+Adafruit\+\_\+\+V\+L53\+L0X \hyperlink{tof__lidar_8cpp_a7599a5939a08b1e8fcb1e471af8dcfa9}{sensor3} = Adafruit\+\_\+\+V\+L53\+L0X()
+\end{DoxyCompactItemize}
+
+
+\subsection{Macro Definition Documentation}
+\index{tof\+\_\+lidar.\+cpp@{tof\+\_\+lidar.\+cpp}!T\+C\+A\+A\+D\+DR@{T\+C\+A\+A\+D\+DR}}
+\index{T\+C\+A\+A\+D\+DR@{T\+C\+A\+A\+D\+DR}!tof\+\_\+lidar.\+cpp@{tof\+\_\+lidar.\+cpp}}
+\subsubsection[{\texorpdfstring{T\+C\+A\+A\+D\+DR}{TCAADDR}}]{\setlength{\rightskip}{0pt plus 5cm}\#define T\+C\+A\+A\+D\+DR~0x70}\hypertarget{tof__lidar_8cpp_a5ae0a607449a24cde6acba0e7ad0918b}{}\label{tof__lidar_8cpp_a5ae0a607449a24cde6acba0e7ad0918b}
+
+
+\subsection{Function Documentation}
+\index{tof\+\_\+lidar.\+cpp@{tof\+\_\+lidar.\+cpp}!tcaselect@{tcaselect}}
+\index{tcaselect@{tcaselect}!tof\+\_\+lidar.\+cpp@{tof\+\_\+lidar.\+cpp}}
+\subsubsection[{\texorpdfstring{tcaselect(uint8\+\_\+t i)}{tcaselect(uint8_t i)}}]{\setlength{\rightskip}{0pt plus 5cm}void tcaselect (
+\begin{DoxyParamCaption}
+\item[{uint8\+\_\+t}]{i}
+\end{DoxyParamCaption}
+)}\hypertarget{tof__lidar_8cpp_aa8d3539c1351069c65956d2dad78bb6c}{}\label{tof__lidar_8cpp_aa8d3539c1351069c65956d2dad78bb6c}
+\index{tof\+\_\+lidar.\+cpp@{tof\+\_\+lidar.\+cpp}!tof\+\_\+lidar\+\_\+setup@{tof\+\_\+lidar\+\_\+setup}}
+\index{tof\+\_\+lidar\+\_\+setup@{tof\+\_\+lidar\+\_\+setup}!tof\+\_\+lidar.\+cpp@{tof\+\_\+lidar.\+cpp}}
+\subsubsection[{\texorpdfstring{tof\+\_\+lidar\+\_\+setup()}{tof_lidar_setup()}}]{\setlength{\rightskip}{0pt plus 5cm}void tof\+\_\+lidar\+\_\+setup (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}\hypertarget{tof__lidar_8cpp_affae18dfb6707b54116451926d19a0dd}{}\label{tof__lidar_8cpp_affae18dfb6707b54116451926d19a0dd}
+
+
+Initializes the V\+L53\+L0X sensor. 
+
+\index{tof\+\_\+lidar.\+cpp@{tof\+\_\+lidar.\+cpp}!tof\+\_\+loop\+\_\+fn@{tof\+\_\+loop\+\_\+fn}}
+\index{tof\+\_\+loop\+\_\+fn@{tof\+\_\+loop\+\_\+fn}!tof\+\_\+lidar.\+cpp@{tof\+\_\+lidar.\+cpp}}
+\subsubsection[{\texorpdfstring{tof\+\_\+loop\+\_\+fn()}{tof_loop_fn()}}]{\setlength{\rightskip}{0pt plus 5cm}int16\+\_\+t tof\+\_\+loop\+\_\+fn (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}\hypertarget{tof__lidar_8cpp_a8da0723270a6de519157b547f46a6f08}{}\label{tof__lidar_8cpp_a8da0723270a6de519157b547f46a6f08}
+
+
+This is the primary function controlling the ToF Lidar for reading distance measurements on the sensors. 
+
+The Adafruit\+\_\+\+V\+L53\+L0X library does most of the work and the function here calls the measure.\+Range\+Milli\+Meter instruction and stores the distance here. \begin{DoxyReturn}{Returns}
+an integer representing distance the sensor detected in millimeters 
+\end{DoxyReturn}
+
+
+\subsection{Variable Documentation}
+\index{tof\+\_\+lidar.\+cpp@{tof\+\_\+lidar.\+cpp}!sensor1@{sensor1}}
+\index{sensor1@{sensor1}!tof\+\_\+lidar.\+cpp@{tof\+\_\+lidar.\+cpp}}
+\subsubsection[{\texorpdfstring{sensor1}{sensor1}}]{\setlength{\rightskip}{0pt plus 5cm}Adafruit\+\_\+\+V\+L53\+L0X sensor1 = Adafruit\+\_\+\+V\+L53\+L0X()}\hypertarget{tof__lidar_8cpp_af30e34fae1b27cb7ca904da73d80e96d}{}\label{tof__lidar_8cpp_af30e34fae1b27cb7ca904da73d80e96d}
+
+
+A global variable that sets up the sensors to be used here. 
+
+\index{tof\+\_\+lidar.\+cpp@{tof\+\_\+lidar.\+cpp}!sensor2@{sensor2}}
+\index{sensor2@{sensor2}!tof\+\_\+lidar.\+cpp@{tof\+\_\+lidar.\+cpp}}
+\subsubsection[{\texorpdfstring{sensor2}{sensor2}}]{\setlength{\rightskip}{0pt plus 5cm}Adafruit\+\_\+\+V\+L53\+L0X sensor2 = Adafruit\+\_\+\+V\+L53\+L0X()}\hypertarget{tof__lidar_8cpp_a1badba6a58523865a7594f8c54a510ad}{}\label{tof__lidar_8cpp_a1badba6a58523865a7594f8c54a510ad}
+\index{tof\+\_\+lidar.\+cpp@{tof\+\_\+lidar.\+cpp}!sensor3@{sensor3}}
+\index{sensor3@{sensor3}!tof\+\_\+lidar.\+cpp@{tof\+\_\+lidar.\+cpp}}
+\subsubsection[{\texorpdfstring{sensor3}{sensor3}}]{\setlength{\rightskip}{0pt plus 5cm}Adafruit\+\_\+\+V\+L53\+L0X sensor3 = Adafruit\+\_\+\+V\+L53\+L0X()}\hypertarget{tof__lidar_8cpp_a7599a5939a08b1e8fcb1e471af8dcfa9}{}\label{tof__lidar_8cpp_a7599a5939a08b1e8fcb1e471af8dcfa9}

@@ -1,0 +1,564 @@
+\indexentry{ros@{ros}|hyperpage}{9}
+\indexentry{ros\+::message\+\_\+operations@{ros\+::message\+\_\+operations}|hyperpage}{9}
+\indexentry{ros\+::message\+\_\+traits@{ros\+::message\+\_\+traits}|hyperpage}{9}
+\indexentry{ros\+::serialization@{ros\+::serialization}|hyperpage}{10}
+\indexentry{semi\+\_\+truck@{semi\+\_\+truck}|hyperpage}{10}
+\indexentry{semi\+\_\+truck@{semi\+\_\+truck}!Teensy\+\_\+\+Actuators@{Teensy\+\_\+\+Actuators}|hyperpage}{10}
+\indexentry{Teensy\+\_\+\+Actuators@{Teensy\+\_\+\+Actuators}!semi\+\_\+truck@{semi\+\_\+truck}|hyperpage}{10}
+\indexentry{semi\+\_\+truck@{semi\+\_\+truck}!Teensy\+\_\+\+Actuators\+Const\+Ptr@{Teensy\+\_\+\+Actuators\+Const\+Ptr}|hyperpage}{10}
+\indexentry{Teensy\+\_\+\+Actuators\+Const\+Ptr@{Teensy\+\_\+\+Actuators\+Const\+Ptr}!semi\+\_\+truck@{semi\+\_\+truck}|hyperpage}{10}
+\indexentry{semi\+\_\+truck@{semi\+\_\+truck}!Teensy\+\_\+\+Actuators\+Ptr@{Teensy\+\_\+\+Actuators\+Ptr}|hyperpage}{10}
+\indexentry{Teensy\+\_\+\+Actuators\+Ptr@{Teensy\+\_\+\+Actuators\+Ptr}!semi\+\_\+truck@{semi\+\_\+truck}|hyperpage}{10}
+\indexentry{semi\+\_\+truck@{semi\+\_\+truck}!Teensy\+\_\+\+Sensors@{Teensy\+\_\+\+Sensors}|hyperpage}{10}
+\indexentry{Teensy\+\_\+\+Sensors@{Teensy\+\_\+\+Sensors}!semi\+\_\+truck@{semi\+\_\+truck}|hyperpage}{10}
+\indexentry{semi\+\_\+truck@{semi\+\_\+truck}!Teensy\+\_\+\+Sensors\+Const\+Ptr@{Teensy\+\_\+\+Sensors\+Const\+Ptr}|hyperpage}{10}
+\indexentry{Teensy\+\_\+\+Sensors\+Const\+Ptr@{Teensy\+\_\+\+Sensors\+Const\+Ptr}!semi\+\_\+truck@{semi\+\_\+truck}|hyperpage}{10}
+\indexentry{semi\+\_\+truck@{semi\+\_\+truck}!Teensy\+\_\+\+Sensors\+Ptr@{Teensy\+\_\+\+Sensors\+Ptr}|hyperpage}{10}
+\indexentry{Teensy\+\_\+\+Sensors\+Ptr@{Teensy\+\_\+\+Sensors\+Ptr}!semi\+\_\+truck@{semi\+\_\+truck}|hyperpage}{10}
+\indexentry{semi\+\_\+truck@{semi\+\_\+truck}!operator$<$$<$@{operator$<$$<$}|hyperpage}{10}
+\indexentry{operator$<$$<$@{operator$<$$<$}!semi\+\_\+truck@{semi\+\_\+truck}|hyperpage}{10}
+\indexentry{semi\+\_\+truck@{semi\+\_\+truck}!operator$<$$<$@{operator$<$$<$}|hyperpage}{10}
+\indexentry{operator$<$$<$@{operator$<$$<$}!semi\+\_\+truck@{semi\+\_\+truck}|hyperpage}{10}
+\indexentry{actuator\+\_\+data\+\_\+t@{actuator\+\_\+data\+\_\+t}|hyperpage}{11}
+\indexentry{actuator\+\_\+data\+\_\+t@{actuator\+\_\+data\+\_\+t}!fifth\+\_\+output@{fifth\+\_\+output}|hyperpage}{11}
+\indexentry{fifth\+\_\+output@{fifth\+\_\+output}!actuator\+\_\+data\+\_\+t@{actuator\+\_\+data\+\_\+t}|hyperpage}{11}
+\indexentry{actuator\+\_\+data\+\_\+t@{actuator\+\_\+data\+\_\+t}!motor\+\_\+output@{motor\+\_\+output}|hyperpage}{11}
+\indexentry{motor\+\_\+output@{motor\+\_\+output}!actuator\+\_\+data\+\_\+t@{actuator\+\_\+data\+\_\+t}|hyperpage}{11}
+\indexentry{actuator\+\_\+data\+\_\+t@{actuator\+\_\+data\+\_\+t}!steer\+\_\+output@{steer\+\_\+output}|hyperpage}{11}
+\indexentry{steer\+\_\+output@{steer\+\_\+output}!actuator\+\_\+data\+\_\+t@{actuator\+\_\+data\+\_\+t}|hyperpage}{11}
+\indexentry{ros\+::message\+\_\+traits\+::\+Data\+Type$<$ \+::semi\+\_\+truck\+::\+Teensy\+\_\+\+Actuators\+\_\+$<$ Container\+Allocator $>$ $>$@{ros\+::message\+\_\+traits\+::\+Data\+Type$<$ \+::semi\+\_\+truck\+::\+Teensy\+\_\+\+Actuators\+\_\+$<$ Container\+Allocator $>$ $>$}|hyperpage}{11}
+\indexentry{ros\+::message\+\_\+traits\+::\+Data\+Type$<$ \+::semi\+\_\+truck\+::\+Teensy\+\_\+\+Actuators\+\_\+$<$ Container\+Allocator $>$ $>$@{ros\+::message\+\_\+traits\+::\+Data\+Type$<$ \+::semi\+\_\+truck\+::\+Teensy\+\_\+\+Actuators\+\_\+$<$ Container\+Allocator $>$ $>$}!value@{value}|hyperpage}{12}
+\indexentry{value@{value}!ros\+::message\+\_\+traits\+::\+Data\+Type$<$ \+::semi\+\_\+truck\+::\+Teensy\+\_\+\+Actuators\+\_\+$<$ Container\+Allocator $>$ $>$@{ros\+::message\+\_\+traits\+::\+Data\+Type$<$ \+::semi\+\_\+truck\+::\+Teensy\+\_\+\+Actuators\+\_\+$<$ Container\+Allocator $>$ $>$}|hyperpage}{12}
+\indexentry{ros\+::message\+\_\+traits\+::\+Data\+Type$<$ \+::semi\+\_\+truck\+::\+Teensy\+\_\+\+Actuators\+\_\+$<$ Container\+Allocator $>$ $>$@{ros\+::message\+\_\+traits\+::\+Data\+Type$<$ \+::semi\+\_\+truck\+::\+Teensy\+\_\+\+Actuators\+\_\+$<$ Container\+Allocator $>$ $>$}!value@{value}|hyperpage}{12}
+\indexentry{value@{value}!ros\+::message\+\_\+traits\+::\+Data\+Type$<$ \+::semi\+\_\+truck\+::\+Teensy\+\_\+\+Actuators\+\_\+$<$ Container\+Allocator $>$ $>$@{ros\+::message\+\_\+traits\+::\+Data\+Type$<$ \+::semi\+\_\+truck\+::\+Teensy\+\_\+\+Actuators\+\_\+$<$ Container\+Allocator $>$ $>$}|hyperpage}{12}
+\indexentry{ros\+::message\+\_\+traits\+::\+Data\+Type$<$ \+::semi\+\_\+truck\+::\+Teensy\+\_\+\+Sensors\+\_\+$<$ Container\+Allocator $>$ $>$@{ros\+::message\+\_\+traits\+::\+Data\+Type$<$ \+::semi\+\_\+truck\+::\+Teensy\+\_\+\+Sensors\+\_\+$<$ Container\+Allocator $>$ $>$}|hyperpage}{12}
+\indexentry{ros\+::message\+\_\+traits\+::\+Data\+Type$<$ \+::semi\+\_\+truck\+::\+Teensy\+\_\+\+Sensors\+\_\+$<$ Container\+Allocator $>$ $>$@{ros\+::message\+\_\+traits\+::\+Data\+Type$<$ \+::semi\+\_\+truck\+::\+Teensy\+\_\+\+Sensors\+\_\+$<$ Container\+Allocator $>$ $>$}!value@{value}|hyperpage}{12}
+\indexentry{value@{value}!ros\+::message\+\_\+traits\+::\+Data\+Type$<$ \+::semi\+\_\+truck\+::\+Teensy\+\_\+\+Sensors\+\_\+$<$ Container\+Allocator $>$ $>$@{ros\+::message\+\_\+traits\+::\+Data\+Type$<$ \+::semi\+\_\+truck\+::\+Teensy\+\_\+\+Sensors\+\_\+$<$ Container\+Allocator $>$ $>$}|hyperpage}{12}
+\indexentry{ros\+::message\+\_\+traits\+::\+Data\+Type$<$ \+::semi\+\_\+truck\+::\+Teensy\+\_\+\+Sensors\+\_\+$<$ Container\+Allocator $>$ $>$@{ros\+::message\+\_\+traits\+::\+Data\+Type$<$ \+::semi\+\_\+truck\+::\+Teensy\+\_\+\+Sensors\+\_\+$<$ Container\+Allocator $>$ $>$}!value@{value}|hyperpage}{12}
+\indexentry{value@{value}!ros\+::message\+\_\+traits\+::\+Data\+Type$<$ \+::semi\+\_\+truck\+::\+Teensy\+\_\+\+Sensors\+\_\+$<$ Container\+Allocator $>$ $>$@{ros\+::message\+\_\+traits\+::\+Data\+Type$<$ \+::semi\+\_\+truck\+::\+Teensy\+\_\+\+Sensors\+\_\+$<$ Container\+Allocator $>$ $>$}|hyperpage}{12}
+\indexentry{ros\+::message\+\_\+traits\+::\+Definition$<$ \+::semi\+\_\+truck\+::\+Teensy\+\_\+\+Actuators\+\_\+$<$ Container\+Allocator $>$ $>$@{ros\+::message\+\_\+traits\+::\+Definition$<$ \+::semi\+\_\+truck\+::\+Teensy\+\_\+\+Actuators\+\_\+$<$ Container\+Allocator $>$ $>$}|hyperpage}{12}
+\indexentry{ros\+::message\+\_\+traits\+::\+Definition$<$ \+::semi\+\_\+truck\+::\+Teensy\+\_\+\+Actuators\+\_\+$<$ Container\+Allocator $>$ $>$@{ros\+::message\+\_\+traits\+::\+Definition$<$ \+::semi\+\_\+truck\+::\+Teensy\+\_\+\+Actuators\+\_\+$<$ Container\+Allocator $>$ $>$}!value@{value}|hyperpage}{13}
+\indexentry{value@{value}!ros\+::message\+\_\+traits\+::\+Definition$<$ \+::semi\+\_\+truck\+::\+Teensy\+\_\+\+Actuators\+\_\+$<$ Container\+Allocator $>$ $>$@{ros\+::message\+\_\+traits\+::\+Definition$<$ \+::semi\+\_\+truck\+::\+Teensy\+\_\+\+Actuators\+\_\+$<$ Container\+Allocator $>$ $>$}|hyperpage}{13}
+\indexentry{ros\+::message\+\_\+traits\+::\+Definition$<$ \+::semi\+\_\+truck\+::\+Teensy\+\_\+\+Actuators\+\_\+$<$ Container\+Allocator $>$ $>$@{ros\+::message\+\_\+traits\+::\+Definition$<$ \+::semi\+\_\+truck\+::\+Teensy\+\_\+\+Actuators\+\_\+$<$ Container\+Allocator $>$ $>$}!value@{value}|hyperpage}{13}
+\indexentry{value@{value}!ros\+::message\+\_\+traits\+::\+Definition$<$ \+::semi\+\_\+truck\+::\+Teensy\+\_\+\+Actuators\+\_\+$<$ Container\+Allocator $>$ $>$@{ros\+::message\+\_\+traits\+::\+Definition$<$ \+::semi\+\_\+truck\+::\+Teensy\+\_\+\+Actuators\+\_\+$<$ Container\+Allocator $>$ $>$}|hyperpage}{13}
+\indexentry{ros\+::message\+\_\+traits\+::\+Definition$<$ \+::semi\+\_\+truck\+::\+Teensy\+\_\+\+Sensors\+\_\+$<$ Container\+Allocator $>$ $>$@{ros\+::message\+\_\+traits\+::\+Definition$<$ \+::semi\+\_\+truck\+::\+Teensy\+\_\+\+Sensors\+\_\+$<$ Container\+Allocator $>$ $>$}|hyperpage}{13}
+\indexentry{ros\+::message\+\_\+traits\+::\+Definition$<$ \+::semi\+\_\+truck\+::\+Teensy\+\_\+\+Sensors\+\_\+$<$ Container\+Allocator $>$ $>$@{ros\+::message\+\_\+traits\+::\+Definition$<$ \+::semi\+\_\+truck\+::\+Teensy\+\_\+\+Sensors\+\_\+$<$ Container\+Allocator $>$ $>$}!value@{value}|hyperpage}{13}
+\indexentry{value@{value}!ros\+::message\+\_\+traits\+::\+Definition$<$ \+::semi\+\_\+truck\+::\+Teensy\+\_\+\+Sensors\+\_\+$<$ Container\+Allocator $>$ $>$@{ros\+::message\+\_\+traits\+::\+Definition$<$ \+::semi\+\_\+truck\+::\+Teensy\+\_\+\+Sensors\+\_\+$<$ Container\+Allocator $>$ $>$}|hyperpage}{13}
+\indexentry{ros\+::message\+\_\+traits\+::\+Definition$<$ \+::semi\+\_\+truck\+::\+Teensy\+\_\+\+Sensors\+\_\+$<$ Container\+Allocator $>$ $>$@{ros\+::message\+\_\+traits\+::\+Definition$<$ \+::semi\+\_\+truck\+::\+Teensy\+\_\+\+Sensors\+\_\+$<$ Container\+Allocator $>$ $>$}!value@{value}|hyperpage}{13}
+\indexentry{value@{value}!ros\+::message\+\_\+traits\+::\+Definition$<$ \+::semi\+\_\+truck\+::\+Teensy\+\_\+\+Sensors\+\_\+$<$ Container\+Allocator $>$ $>$@{ros\+::message\+\_\+traits\+::\+Definition$<$ \+::semi\+\_\+truck\+::\+Teensy\+\_\+\+Sensors\+\_\+$<$ Container\+Allocator $>$ $>$}|hyperpage}{13}
+\indexentry{ros\+::message\+\_\+traits\+::\+Has\+Header$<$ \+::semi\+\_\+truck\+::\+Teensy\+\_\+\+Actuators\+\_\+$<$ Container\+Allocator $>$ $>$@{ros\+::message\+\_\+traits\+::\+Has\+Header$<$ \+::semi\+\_\+truck\+::\+Teensy\+\_\+\+Actuators\+\_\+$<$ Container\+Allocator $>$ $>$}|hyperpage}{14}
+\indexentry{ros\+::message\+\_\+traits\+::\+Has\+Header$<$ \+::semi\+\_\+truck\+::\+Teensy\+\_\+\+Actuators\+\_\+$<$ Container\+Allocator $>$ const  $>$@{ros\+::message\+\_\+traits\+::\+Has\+Header$<$ \+::semi\+\_\+truck\+::\+Teensy\+\_\+\+Actuators\+\_\+$<$ Container\+Allocator $>$ const  $>$}|hyperpage}{15}
+\indexentry{ros\+::message\+\_\+traits\+::\+Has\+Header$<$ \+::semi\+\_\+truck\+::\+Teensy\+\_\+\+Sensors\+\_\+$<$ Container\+Allocator $>$ $>$@{ros\+::message\+\_\+traits\+::\+Has\+Header$<$ \+::semi\+\_\+truck\+::\+Teensy\+\_\+\+Sensors\+\_\+$<$ Container\+Allocator $>$ $>$}|hyperpage}{16}
+\indexentry{ros\+::message\+\_\+traits\+::\+Has\+Header$<$ \+::semi\+\_\+truck\+::\+Teensy\+\_\+\+Sensors\+\_\+$<$ Container\+Allocator $>$ const  $>$@{ros\+::message\+\_\+traits\+::\+Has\+Header$<$ \+::semi\+\_\+truck\+::\+Teensy\+\_\+\+Sensors\+\_\+$<$ Container\+Allocator $>$ const  $>$}|hyperpage}{17}
+\indexentry{ros\+::message\+\_\+traits\+::\+Is\+Fixed\+Size$<$ \+::semi\+\_\+truck\+::\+Teensy\+\_\+\+Actuators\+\_\+$<$ Container\+Allocator $>$ $>$@{ros\+::message\+\_\+traits\+::\+Is\+Fixed\+Size$<$ \+::semi\+\_\+truck\+::\+Teensy\+\_\+\+Actuators\+\_\+$<$ Container\+Allocator $>$ $>$}|hyperpage}{18}
+\indexentry{ros\+::message\+\_\+traits\+::\+Is\+Fixed\+Size$<$ \+::semi\+\_\+truck\+::\+Teensy\+\_\+\+Actuators\+\_\+$<$ Container\+Allocator $>$ const  $>$@{ros\+::message\+\_\+traits\+::\+Is\+Fixed\+Size$<$ \+::semi\+\_\+truck\+::\+Teensy\+\_\+\+Actuators\+\_\+$<$ Container\+Allocator $>$ const  $>$}|hyperpage}{19}
+\indexentry{ros\+::message\+\_\+traits\+::\+Is\+Fixed\+Size$<$ \+::semi\+\_\+truck\+::\+Teensy\+\_\+\+Sensors\+\_\+$<$ Container\+Allocator $>$ $>$@{ros\+::message\+\_\+traits\+::\+Is\+Fixed\+Size$<$ \+::semi\+\_\+truck\+::\+Teensy\+\_\+\+Sensors\+\_\+$<$ Container\+Allocator $>$ $>$}|hyperpage}{20}
+\indexentry{ros\+::message\+\_\+traits\+::\+Is\+Fixed\+Size$<$ \+::semi\+\_\+truck\+::\+Teensy\+\_\+\+Sensors\+\_\+$<$ Container\+Allocator $>$ const  $>$@{ros\+::message\+\_\+traits\+::\+Is\+Fixed\+Size$<$ \+::semi\+\_\+truck\+::\+Teensy\+\_\+\+Sensors\+\_\+$<$ Container\+Allocator $>$ const  $>$}|hyperpage}{21}
+\indexentry{ros\+::message\+\_\+traits\+::\+Is\+Message$<$ \+::semi\+\_\+truck\+::\+Teensy\+\_\+\+Actuators\+\_\+$<$ Container\+Allocator $>$ $>$@{ros\+::message\+\_\+traits\+::\+Is\+Message$<$ \+::semi\+\_\+truck\+::\+Teensy\+\_\+\+Actuators\+\_\+$<$ Container\+Allocator $>$ $>$}|hyperpage}{22}
+\indexentry{ros\+::message\+\_\+traits\+::\+Is\+Message$<$ \+::semi\+\_\+truck\+::\+Teensy\+\_\+\+Actuators\+\_\+$<$ Container\+Allocator $>$ const  $>$@{ros\+::message\+\_\+traits\+::\+Is\+Message$<$ \+::semi\+\_\+truck\+::\+Teensy\+\_\+\+Actuators\+\_\+$<$ Container\+Allocator $>$ const  $>$}|hyperpage}{23}
+\indexentry{ros\+::message\+\_\+traits\+::\+Is\+Message$<$ \+::semi\+\_\+truck\+::\+Teensy\+\_\+\+Sensors\+\_\+$<$ Container\+Allocator $>$ $>$@{ros\+::message\+\_\+traits\+::\+Is\+Message$<$ \+::semi\+\_\+truck\+::\+Teensy\+\_\+\+Sensors\+\_\+$<$ Container\+Allocator $>$ $>$}|hyperpage}{24}
+\indexentry{ros\+::message\+\_\+traits\+::\+Is\+Message$<$ \+::semi\+\_\+truck\+::\+Teensy\+\_\+\+Sensors\+\_\+$<$ Container\+Allocator $>$ const  $>$@{ros\+::message\+\_\+traits\+::\+Is\+Message$<$ \+::semi\+\_\+truck\+::\+Teensy\+\_\+\+Sensors\+\_\+$<$ Container\+Allocator $>$ const  $>$}|hyperpage}{25}
+\indexentry{ros\+::message\+\_\+traits\+::\+M\+D5\+Sum$<$ \+::semi\+\_\+truck\+::\+Teensy\+\_\+\+Actuators\+\_\+$<$ Container\+Allocator $>$ $>$@{ros\+::message\+\_\+traits\+::\+M\+D5\+Sum$<$ \+::semi\+\_\+truck\+::\+Teensy\+\_\+\+Actuators\+\_\+$<$ Container\+Allocator $>$ $>$}|hyperpage}{26}
+\indexentry{ros\+::message\+\_\+traits\+::\+M\+D5\+Sum$<$ \+::semi\+\_\+truck\+::\+Teensy\+\_\+\+Actuators\+\_\+$<$ Container\+Allocator $>$ $>$@{ros\+::message\+\_\+traits\+::\+M\+D5\+Sum$<$ \+::semi\+\_\+truck\+::\+Teensy\+\_\+\+Actuators\+\_\+$<$ Container\+Allocator $>$ $>$}!value@{value}|hyperpage}{26}
+\indexentry{value@{value}!ros\+::message\+\_\+traits\+::\+M\+D5\+Sum$<$ \+::semi\+\_\+truck\+::\+Teensy\+\_\+\+Actuators\+\_\+$<$ Container\+Allocator $>$ $>$@{ros\+::message\+\_\+traits\+::\+M\+D5\+Sum$<$ \+::semi\+\_\+truck\+::\+Teensy\+\_\+\+Actuators\+\_\+$<$ Container\+Allocator $>$ $>$}|hyperpage}{26}
+\indexentry{ros\+::message\+\_\+traits\+::\+M\+D5\+Sum$<$ \+::semi\+\_\+truck\+::\+Teensy\+\_\+\+Actuators\+\_\+$<$ Container\+Allocator $>$ $>$@{ros\+::message\+\_\+traits\+::\+M\+D5\+Sum$<$ \+::semi\+\_\+truck\+::\+Teensy\+\_\+\+Actuators\+\_\+$<$ Container\+Allocator $>$ $>$}!value@{value}|hyperpage}{26}
+\indexentry{value@{value}!ros\+::message\+\_\+traits\+::\+M\+D5\+Sum$<$ \+::semi\+\_\+truck\+::\+Teensy\+\_\+\+Actuators\+\_\+$<$ Container\+Allocator $>$ $>$@{ros\+::message\+\_\+traits\+::\+M\+D5\+Sum$<$ \+::semi\+\_\+truck\+::\+Teensy\+\_\+\+Actuators\+\_\+$<$ Container\+Allocator $>$ $>$}|hyperpage}{26}
+\indexentry{ros\+::message\+\_\+traits\+::\+M\+D5\+Sum$<$ \+::semi\+\_\+truck\+::\+Teensy\+\_\+\+Actuators\+\_\+$<$ Container\+Allocator $>$ $>$@{ros\+::message\+\_\+traits\+::\+M\+D5\+Sum$<$ \+::semi\+\_\+truck\+::\+Teensy\+\_\+\+Actuators\+\_\+$<$ Container\+Allocator $>$ $>$}!static\+\_\+value1@{static\+\_\+value1}|hyperpage}{26}
+\indexentry{static\+\_\+value1@{static\+\_\+value1}!ros\+::message\+\_\+traits\+::\+M\+D5\+Sum$<$ \+::semi\+\_\+truck\+::\+Teensy\+\_\+\+Actuators\+\_\+$<$ Container\+Allocator $>$ $>$@{ros\+::message\+\_\+traits\+::\+M\+D5\+Sum$<$ \+::semi\+\_\+truck\+::\+Teensy\+\_\+\+Actuators\+\_\+$<$ Container\+Allocator $>$ $>$}|hyperpage}{26}
+\indexentry{ros\+::message\+\_\+traits\+::\+M\+D5\+Sum$<$ \+::semi\+\_\+truck\+::\+Teensy\+\_\+\+Actuators\+\_\+$<$ Container\+Allocator $>$ $>$@{ros\+::message\+\_\+traits\+::\+M\+D5\+Sum$<$ \+::semi\+\_\+truck\+::\+Teensy\+\_\+\+Actuators\+\_\+$<$ Container\+Allocator $>$ $>$}!static\+\_\+value2@{static\+\_\+value2}|hyperpage}{26}
+\indexentry{static\+\_\+value2@{static\+\_\+value2}!ros\+::message\+\_\+traits\+::\+M\+D5\+Sum$<$ \+::semi\+\_\+truck\+::\+Teensy\+\_\+\+Actuators\+\_\+$<$ Container\+Allocator $>$ $>$@{ros\+::message\+\_\+traits\+::\+M\+D5\+Sum$<$ \+::semi\+\_\+truck\+::\+Teensy\+\_\+\+Actuators\+\_\+$<$ Container\+Allocator $>$ $>$}|hyperpage}{26}
+\indexentry{ros\+::message\+\_\+traits\+::\+M\+D5\+Sum$<$ \+::semi\+\_\+truck\+::\+Teensy\+\_\+\+Sensors\+\_\+$<$ Container\+Allocator $>$ $>$@{ros\+::message\+\_\+traits\+::\+M\+D5\+Sum$<$ \+::semi\+\_\+truck\+::\+Teensy\+\_\+\+Sensors\+\_\+$<$ Container\+Allocator $>$ $>$}|hyperpage}{26}
+\indexentry{ros\+::message\+\_\+traits\+::\+M\+D5\+Sum$<$ \+::semi\+\_\+truck\+::\+Teensy\+\_\+\+Sensors\+\_\+$<$ Container\+Allocator $>$ $>$@{ros\+::message\+\_\+traits\+::\+M\+D5\+Sum$<$ \+::semi\+\_\+truck\+::\+Teensy\+\_\+\+Sensors\+\_\+$<$ Container\+Allocator $>$ $>$}!value@{value}|hyperpage}{27}
+\indexentry{value@{value}!ros\+::message\+\_\+traits\+::\+M\+D5\+Sum$<$ \+::semi\+\_\+truck\+::\+Teensy\+\_\+\+Sensors\+\_\+$<$ Container\+Allocator $>$ $>$@{ros\+::message\+\_\+traits\+::\+M\+D5\+Sum$<$ \+::semi\+\_\+truck\+::\+Teensy\+\_\+\+Sensors\+\_\+$<$ Container\+Allocator $>$ $>$}|hyperpage}{27}
+\indexentry{ros\+::message\+\_\+traits\+::\+M\+D5\+Sum$<$ \+::semi\+\_\+truck\+::\+Teensy\+\_\+\+Sensors\+\_\+$<$ Container\+Allocator $>$ $>$@{ros\+::message\+\_\+traits\+::\+M\+D5\+Sum$<$ \+::semi\+\_\+truck\+::\+Teensy\+\_\+\+Sensors\+\_\+$<$ Container\+Allocator $>$ $>$}!value@{value}|hyperpage}{27}
+\indexentry{value@{value}!ros\+::message\+\_\+traits\+::\+M\+D5\+Sum$<$ \+::semi\+\_\+truck\+::\+Teensy\+\_\+\+Sensors\+\_\+$<$ Container\+Allocator $>$ $>$@{ros\+::message\+\_\+traits\+::\+M\+D5\+Sum$<$ \+::semi\+\_\+truck\+::\+Teensy\+\_\+\+Sensors\+\_\+$<$ Container\+Allocator $>$ $>$}|hyperpage}{27}
+\indexentry{ros\+::message\+\_\+traits\+::\+M\+D5\+Sum$<$ \+::semi\+\_\+truck\+::\+Teensy\+\_\+\+Sensors\+\_\+$<$ Container\+Allocator $>$ $>$@{ros\+::message\+\_\+traits\+::\+M\+D5\+Sum$<$ \+::semi\+\_\+truck\+::\+Teensy\+\_\+\+Sensors\+\_\+$<$ Container\+Allocator $>$ $>$}!static\+\_\+value1@{static\+\_\+value1}|hyperpage}{27}
+\indexentry{static\+\_\+value1@{static\+\_\+value1}!ros\+::message\+\_\+traits\+::\+M\+D5\+Sum$<$ \+::semi\+\_\+truck\+::\+Teensy\+\_\+\+Sensors\+\_\+$<$ Container\+Allocator $>$ $>$@{ros\+::message\+\_\+traits\+::\+M\+D5\+Sum$<$ \+::semi\+\_\+truck\+::\+Teensy\+\_\+\+Sensors\+\_\+$<$ Container\+Allocator $>$ $>$}|hyperpage}{27}
+\indexentry{ros\+::message\+\_\+traits\+::\+M\+D5\+Sum$<$ \+::semi\+\_\+truck\+::\+Teensy\+\_\+\+Sensors\+\_\+$<$ Container\+Allocator $>$ $>$@{ros\+::message\+\_\+traits\+::\+M\+D5\+Sum$<$ \+::semi\+\_\+truck\+::\+Teensy\+\_\+\+Sensors\+\_\+$<$ Container\+Allocator $>$ $>$}!static\+\_\+value2@{static\+\_\+value2}|hyperpage}{27}
+\indexentry{static\+\_\+value2@{static\+\_\+value2}!ros\+::message\+\_\+traits\+::\+M\+D5\+Sum$<$ \+::semi\+\_\+truck\+::\+Teensy\+\_\+\+Sensors\+\_\+$<$ Container\+Allocator $>$ $>$@{ros\+::message\+\_\+traits\+::\+M\+D5\+Sum$<$ \+::semi\+\_\+truck\+::\+Teensy\+\_\+\+Sensors\+\_\+$<$ Container\+Allocator $>$ $>$}|hyperpage}{27}
+\indexentry{ros\+::message\+\_\+operations\+::\+Printer$<$ \+::semi\+\_\+truck\+::\+Teensy\+\_\+\+Actuators\+\_\+$<$ Container\+Allocator $>$ $>$@{ros\+::message\+\_\+operations\+::\+Printer$<$ \+::semi\+\_\+truck\+::\+Teensy\+\_\+\+Actuators\+\_\+$<$ Container\+Allocator $>$ $>$}|hyperpage}{27}
+\indexentry{ros\+::message\+\_\+operations\+::\+Printer$<$ \+::semi\+\_\+truck\+::\+Teensy\+\_\+\+Actuators\+\_\+$<$ Container\+Allocator $>$ $>$@{ros\+::message\+\_\+operations\+::\+Printer$<$ \+::semi\+\_\+truck\+::\+Teensy\+\_\+\+Actuators\+\_\+$<$ Container\+Allocator $>$ $>$}!stream@{stream}|hyperpage}{28}
+\indexentry{stream@{stream}!ros\+::message\+\_\+operations\+::\+Printer$<$ \+::semi\+\_\+truck\+::\+Teensy\+\_\+\+Actuators\+\_\+$<$ Container\+Allocator $>$ $>$@{ros\+::message\+\_\+operations\+::\+Printer$<$ \+::semi\+\_\+truck\+::\+Teensy\+\_\+\+Actuators\+\_\+$<$ Container\+Allocator $>$ $>$}|hyperpage}{28}
+\indexentry{ros\+::message\+\_\+operations\+::\+Printer$<$ \+::semi\+\_\+truck\+::\+Teensy\+\_\+\+Sensors\+\_\+$<$ Container\+Allocator $>$ $>$@{ros\+::message\+\_\+operations\+::\+Printer$<$ \+::semi\+\_\+truck\+::\+Teensy\+\_\+\+Sensors\+\_\+$<$ Container\+Allocator $>$ $>$}|hyperpage}{28}
+\indexentry{ros\+::message\+\_\+operations\+::\+Printer$<$ \+::semi\+\_\+truck\+::\+Teensy\+\_\+\+Sensors\+\_\+$<$ Container\+Allocator $>$ $>$@{ros\+::message\+\_\+operations\+::\+Printer$<$ \+::semi\+\_\+truck\+::\+Teensy\+\_\+\+Sensors\+\_\+$<$ Container\+Allocator $>$ $>$}!stream@{stream}|hyperpage}{28}
+\indexentry{stream@{stream}!ros\+::message\+\_\+operations\+::\+Printer$<$ \+::semi\+\_\+truck\+::\+Teensy\+\_\+\+Sensors\+\_\+$<$ Container\+Allocator $>$ $>$@{ros\+::message\+\_\+operations\+::\+Printer$<$ \+::semi\+\_\+truck\+::\+Teensy\+\_\+\+Sensors\+\_\+$<$ Container\+Allocator $>$ $>$}|hyperpage}{28}
+\indexentry{sensor\+\_\+data\+\_\+t@{sensor\+\_\+data\+\_\+t}|hyperpage}{28}
+\indexentry{sensor\+\_\+data\+\_\+t@{sensor\+\_\+data\+\_\+t}!imu\+\_\+angle@{imu\+\_\+angle}|hyperpage}{29}
+\indexentry{imu\+\_\+angle@{imu\+\_\+angle}!sensor\+\_\+data\+\_\+t@{sensor\+\_\+data\+\_\+t}|hyperpage}{29}
+\indexentry{sensor\+\_\+data\+\_\+t@{sensor\+\_\+data\+\_\+t}!left\+\_\+\+T\+OF@{left\+\_\+\+T\+OF}|hyperpage}{29}
+\indexentry{left\+\_\+\+T\+OF@{left\+\_\+\+T\+OF}!sensor\+\_\+data\+\_\+t@{sensor\+\_\+data\+\_\+t}|hyperpage}{29}
+\indexentry{sensor\+\_\+data\+\_\+t@{sensor\+\_\+data\+\_\+t}!rear\+\_\+\+T\+OF@{rear\+\_\+\+T\+OF}|hyperpage}{29}
+\indexentry{rear\+\_\+\+T\+OF@{rear\+\_\+\+T\+OF}!sensor\+\_\+data\+\_\+t@{sensor\+\_\+data\+\_\+t}|hyperpage}{29}
+\indexentry{sensor\+\_\+data\+\_\+t@{sensor\+\_\+data\+\_\+t}!right\+\_\+\+T\+OF@{right\+\_\+\+T\+OF}|hyperpage}{29}
+\indexentry{right\+\_\+\+T\+OF@{right\+\_\+\+T\+OF}!sensor\+\_\+data\+\_\+t@{sensor\+\_\+data\+\_\+t}|hyperpage}{29}
+\indexentry{sensor\+\_\+data\+\_\+t@{sensor\+\_\+data\+\_\+t}!wheel\+\_\+speed@{wheel\+\_\+speed}|hyperpage}{29}
+\indexentry{wheel\+\_\+speed@{wheel\+\_\+speed}!sensor\+\_\+data\+\_\+t@{sensor\+\_\+data\+\_\+t}|hyperpage}{29}
+\indexentry{ros\+::serialization\+::\+Serializer$<$ \+::semi\+\_\+truck\+::\+Teensy\+\_\+\+Actuators\+\_\+$<$ Container\+Allocator $>$ $>$@{ros\+::serialization\+::\+Serializer$<$ \+::semi\+\_\+truck\+::\+Teensy\+\_\+\+Actuators\+\_\+$<$ Container\+Allocator $>$ $>$}|hyperpage}{29}
+\indexentry{ros\+::serialization\+::\+Serializer$<$ \+::semi\+\_\+truck\+::\+Teensy\+\_\+\+Actuators\+\_\+$<$ Container\+Allocator $>$ $>$@{ros\+::serialization\+::\+Serializer$<$ \+::semi\+\_\+truck\+::\+Teensy\+\_\+\+Actuators\+\_\+$<$ Container\+Allocator $>$ $>$}!all\+In\+One@{all\+In\+One}|hyperpage}{29}
+\indexentry{all\+In\+One@{all\+In\+One}!ros\+::serialization\+::\+Serializer$<$ \+::semi\+\_\+truck\+::\+Teensy\+\_\+\+Actuators\+\_\+$<$ Container\+Allocator $>$ $>$@{ros\+::serialization\+::\+Serializer$<$ \+::semi\+\_\+truck\+::\+Teensy\+\_\+\+Actuators\+\_\+$<$ Container\+Allocator $>$ $>$}|hyperpage}{29}
+\indexentry{ros\+::serialization\+::\+Serializer$<$ \+::semi\+\_\+truck\+::\+Teensy\+\_\+\+Sensors\+\_\+$<$ Container\+Allocator $>$ $>$@{ros\+::serialization\+::\+Serializer$<$ \+::semi\+\_\+truck\+::\+Teensy\+\_\+\+Sensors\+\_\+$<$ Container\+Allocator $>$ $>$}|hyperpage}{29}
+\indexentry{ros\+::serialization\+::\+Serializer$<$ \+::semi\+\_\+truck\+::\+Teensy\+\_\+\+Sensors\+\_\+$<$ Container\+Allocator $>$ $>$@{ros\+::serialization\+::\+Serializer$<$ \+::semi\+\_\+truck\+::\+Teensy\+\_\+\+Sensors\+\_\+$<$ Container\+Allocator $>$ $>$}!all\+In\+One@{all\+In\+One}|hyperpage}{30}
+\indexentry{all\+In\+One@{all\+In\+One}!ros\+::serialization\+::\+Serializer$<$ \+::semi\+\_\+truck\+::\+Teensy\+\_\+\+Sensors\+\_\+$<$ Container\+Allocator $>$ $>$@{ros\+::serialization\+::\+Serializer$<$ \+::semi\+\_\+truck\+::\+Teensy\+\_\+\+Sensors\+\_\+$<$ Container\+Allocator $>$ $>$}|hyperpage}{30}
+\indexentry{system\+\_\+data\+\_\+t@{system\+\_\+data\+\_\+t}|hyperpage}{30}
+\indexentry{system\+\_\+data\+\_\+t@{system\+\_\+data\+\_\+t}!actuators@{actuators}|hyperpage}{31}
+\indexentry{actuators@{actuators}!system\+\_\+data\+\_\+t@{system\+\_\+data\+\_\+t}|hyperpage}{31}
+\indexentry{system\+\_\+data\+\_\+t@{system\+\_\+data\+\_\+t}!deadman@{deadman}|hyperpage}{31}
+\indexentry{deadman@{deadman}!system\+\_\+data\+\_\+t@{system\+\_\+data\+\_\+t}|hyperpage}{31}
+\indexentry{system\+\_\+data\+\_\+t@{system\+\_\+data\+\_\+t}!drive\+\_\+mode@{drive\+\_\+mode}|hyperpage}{31}
+\indexentry{drive\+\_\+mode@{drive\+\_\+mode}!system\+\_\+data\+\_\+t@{system\+\_\+data\+\_\+t}|hyperpage}{31}
+\indexentry{system\+\_\+data\+\_\+t@{system\+\_\+data\+\_\+t}!drive\+\_\+mode\+\_\+1@{drive\+\_\+mode\+\_\+1}|hyperpage}{31}
+\indexentry{drive\+\_\+mode\+\_\+1@{drive\+\_\+mode\+\_\+1}!system\+\_\+data\+\_\+t@{system\+\_\+data\+\_\+t}|hyperpage}{31}
+\indexentry{system\+\_\+data\+\_\+t@{system\+\_\+data\+\_\+t}!drive\+\_\+mode\+\_\+2@{drive\+\_\+mode\+\_\+2}|hyperpage}{31}
+\indexentry{drive\+\_\+mode\+\_\+2@{drive\+\_\+mode\+\_\+2}!system\+\_\+data\+\_\+t@{system\+\_\+data\+\_\+t}|hyperpage}{31}
+\indexentry{system\+\_\+data\+\_\+t@{system\+\_\+data\+\_\+t}!fifth\+\_\+output@{fifth\+\_\+output}|hyperpage}{31}
+\indexentry{fifth\+\_\+output@{fifth\+\_\+output}!system\+\_\+data\+\_\+t@{system\+\_\+data\+\_\+t}|hyperpage}{31}
+\indexentry{system\+\_\+data\+\_\+t@{system\+\_\+data\+\_\+t}!imu\+\_\+angle@{imu\+\_\+angle}|hyperpage}{31}
+\indexentry{imu\+\_\+angle@{imu\+\_\+angle}!system\+\_\+data\+\_\+t@{system\+\_\+data\+\_\+t}|hyperpage}{31}
+\indexentry{system\+\_\+data\+\_\+t@{system\+\_\+data\+\_\+t}!left\+\_\+\+T\+OF@{left\+\_\+\+T\+OF}|hyperpage}{31}
+\indexentry{left\+\_\+\+T\+OF@{left\+\_\+\+T\+OF}!system\+\_\+data\+\_\+t@{system\+\_\+data\+\_\+t}|hyperpage}{31}
+\indexentry{system\+\_\+data\+\_\+t@{system\+\_\+data\+\_\+t}!motor\+\_\+output@{motor\+\_\+output}|hyperpage}{31}
+\indexentry{motor\+\_\+output@{motor\+\_\+output}!system\+\_\+data\+\_\+t@{system\+\_\+data\+\_\+t}|hyperpage}{31}
+\indexentry{system\+\_\+data\+\_\+t@{system\+\_\+data\+\_\+t}!rear\+\_\+\+T\+OF@{rear\+\_\+\+T\+OF}|hyperpage}{31}
+\indexentry{rear\+\_\+\+T\+OF@{rear\+\_\+\+T\+OF}!system\+\_\+data\+\_\+t@{system\+\_\+data\+\_\+t}|hyperpage}{31}
+\indexentry{system\+\_\+data\+\_\+t@{system\+\_\+data\+\_\+t}!right\+\_\+\+T\+OF@{right\+\_\+\+T\+OF}|hyperpage}{31}
+\indexentry{right\+\_\+\+T\+OF@{right\+\_\+\+T\+OF}!system\+\_\+data\+\_\+t@{system\+\_\+data\+\_\+t}|hyperpage}{31}
+\indexentry{system\+\_\+data\+\_\+t@{system\+\_\+data\+\_\+t}!sensors@{sensors}|hyperpage}{31}
+\indexentry{sensors@{sensors}!system\+\_\+data\+\_\+t@{system\+\_\+data\+\_\+t}|hyperpage}{31}
+\indexentry{system\+\_\+data\+\_\+t@{system\+\_\+data\+\_\+t}!steer\+\_\+output@{steer\+\_\+output}|hyperpage}{31}
+\indexentry{steer\+\_\+output@{steer\+\_\+output}!system\+\_\+data\+\_\+t@{system\+\_\+data\+\_\+t}|hyperpage}{31}
+\indexentry{system\+\_\+data\+\_\+t@{system\+\_\+data\+\_\+t}!updated@{updated}|hyperpage}{31}
+\indexentry{updated@{updated}!system\+\_\+data\+\_\+t@{system\+\_\+data\+\_\+t}|hyperpage}{31}
+\indexentry{system\+\_\+data\+\_\+t@{system\+\_\+data\+\_\+t}!wheel\+\_\+speed@{wheel\+\_\+speed}|hyperpage}{31}
+\indexentry{wheel\+\_\+speed@{wheel\+\_\+speed}!system\+\_\+data\+\_\+t@{system\+\_\+data\+\_\+t}|hyperpage}{31}
+\indexentry{semi\+\_\+truck\+::\+Teensy\+\_\+\+Actuators\+\_\+$<$ Container\+Allocator $>$@{semi\+\_\+truck\+::\+Teensy\+\_\+\+Actuators\+\_\+$<$ Container\+Allocator $>$}|hyperpage}{31}
+\indexentry{semi\+\_\+truck\+::\+Teensy\+\_\+\+Actuators\+\_\+@{semi\+\_\+truck\+::\+Teensy\+\_\+\+Actuators\+\_\+}!\+\_\+fifth\+\_\+output\+\_\+type@{\+\_\+fifth\+\_\+output\+\_\+type}|hyperpage}{32}
+\indexentry{\+\_\+fifth\+\_\+output\+\_\+type@{\+\_\+fifth\+\_\+output\+\_\+type}!semi\+\_\+truck\+::\+Teensy\+\_\+\+Actuators\+\_\+@{semi\+\_\+truck\+::\+Teensy\+\_\+\+Actuators\+\_\+}|hyperpage}{32}
+\indexentry{semi\+\_\+truck\+::\+Teensy\+\_\+\+Actuators\+\_\+@{semi\+\_\+truck\+::\+Teensy\+\_\+\+Actuators\+\_\+}!\+\_\+motor\+\_\+output\+\_\+type@{\+\_\+motor\+\_\+output\+\_\+type}|hyperpage}{32}
+\indexentry{\+\_\+motor\+\_\+output\+\_\+type@{\+\_\+motor\+\_\+output\+\_\+type}!semi\+\_\+truck\+::\+Teensy\+\_\+\+Actuators\+\_\+@{semi\+\_\+truck\+::\+Teensy\+\_\+\+Actuators\+\_\+}|hyperpage}{32}
+\indexentry{semi\+\_\+truck\+::\+Teensy\+\_\+\+Actuators\+\_\+@{semi\+\_\+truck\+::\+Teensy\+\_\+\+Actuators\+\_\+}!\+\_\+steer\+\_\+output\+\_\+type@{\+\_\+steer\+\_\+output\+\_\+type}|hyperpage}{32}
+\indexentry{\+\_\+steer\+\_\+output\+\_\+type@{\+\_\+steer\+\_\+output\+\_\+type}!semi\+\_\+truck\+::\+Teensy\+\_\+\+Actuators\+\_\+@{semi\+\_\+truck\+::\+Teensy\+\_\+\+Actuators\+\_\+}|hyperpage}{32}
+\indexentry{semi\+\_\+truck\+::\+Teensy\+\_\+\+Actuators\+\_\+@{semi\+\_\+truck\+::\+Teensy\+\_\+\+Actuators\+\_\+}!Const\+Ptr@{Const\+Ptr}|hyperpage}{32}
+\indexentry{Const\+Ptr@{Const\+Ptr}!semi\+\_\+truck\+::\+Teensy\+\_\+\+Actuators\+\_\+@{semi\+\_\+truck\+::\+Teensy\+\_\+\+Actuators\+\_\+}|hyperpage}{32}
+\indexentry{semi\+\_\+truck\+::\+Teensy\+\_\+\+Actuators\+\_\+@{semi\+\_\+truck\+::\+Teensy\+\_\+\+Actuators\+\_\+}!Ptr@{Ptr}|hyperpage}{32}
+\indexentry{Ptr@{Ptr}!semi\+\_\+truck\+::\+Teensy\+\_\+\+Actuators\+\_\+@{semi\+\_\+truck\+::\+Teensy\+\_\+\+Actuators\+\_\+}|hyperpage}{32}
+\indexentry{semi\+\_\+truck\+::\+Teensy\+\_\+\+Actuators\+\_\+@{semi\+\_\+truck\+::\+Teensy\+\_\+\+Actuators\+\_\+}!Type@{Type}|hyperpage}{32}
+\indexentry{Type@{Type}!semi\+\_\+truck\+::\+Teensy\+\_\+\+Actuators\+\_\+@{semi\+\_\+truck\+::\+Teensy\+\_\+\+Actuators\+\_\+}|hyperpage}{32}
+\indexentry{semi\+\_\+truck\+::\+Teensy\+\_\+\+Actuators\+\_\+@{semi\+\_\+truck\+::\+Teensy\+\_\+\+Actuators\+\_\+}!Teensy\+\_\+\+Actuators\+\_\+@{Teensy\+\_\+\+Actuators\+\_\+}|hyperpage}{32}
+\indexentry{Teensy\+\_\+\+Actuators\+\_\+@{Teensy\+\_\+\+Actuators\+\_\+}!semi\+\_\+truck\+::\+Teensy\+\_\+\+Actuators\+\_\+@{semi\+\_\+truck\+::\+Teensy\+\_\+\+Actuators\+\_\+}|hyperpage}{32}
+\indexentry{semi\+\_\+truck\+::\+Teensy\+\_\+\+Actuators\+\_\+@{semi\+\_\+truck\+::\+Teensy\+\_\+\+Actuators\+\_\+}!Teensy\+\_\+\+Actuators\+\_\+@{Teensy\+\_\+\+Actuators\+\_\+}|hyperpage}{32}
+\indexentry{Teensy\+\_\+\+Actuators\+\_\+@{Teensy\+\_\+\+Actuators\+\_\+}!semi\+\_\+truck\+::\+Teensy\+\_\+\+Actuators\+\_\+@{semi\+\_\+truck\+::\+Teensy\+\_\+\+Actuators\+\_\+}|hyperpage}{32}
+\indexentry{semi\+\_\+truck\+::\+Teensy\+\_\+\+Actuators\+\_\+@{semi\+\_\+truck\+::\+Teensy\+\_\+\+Actuators\+\_\+}!fifth\+\_\+output@{fifth\+\_\+output}|hyperpage}{32}
+\indexentry{fifth\+\_\+output@{fifth\+\_\+output}!semi\+\_\+truck\+::\+Teensy\+\_\+\+Actuators\+\_\+@{semi\+\_\+truck\+::\+Teensy\+\_\+\+Actuators\+\_\+}|hyperpage}{32}
+\indexentry{semi\+\_\+truck\+::\+Teensy\+\_\+\+Actuators\+\_\+@{semi\+\_\+truck\+::\+Teensy\+\_\+\+Actuators\+\_\+}!motor\+\_\+output@{motor\+\_\+output}|hyperpage}{32}
+\indexentry{motor\+\_\+output@{motor\+\_\+output}!semi\+\_\+truck\+::\+Teensy\+\_\+\+Actuators\+\_\+@{semi\+\_\+truck\+::\+Teensy\+\_\+\+Actuators\+\_\+}|hyperpage}{32}
+\indexentry{semi\+\_\+truck\+::\+Teensy\+\_\+\+Actuators\+\_\+@{semi\+\_\+truck\+::\+Teensy\+\_\+\+Actuators\+\_\+}!steer\+\_\+output@{steer\+\_\+output}|hyperpage}{32}
+\indexentry{steer\+\_\+output@{steer\+\_\+output}!semi\+\_\+truck\+::\+Teensy\+\_\+\+Actuators\+\_\+@{semi\+\_\+truck\+::\+Teensy\+\_\+\+Actuators\+\_\+}|hyperpage}{32}
+\indexentry{semi\+\_\+truck\+::\+Teensy\+\_\+\+Sensors\+\_\+$<$ Container\+Allocator $>$@{semi\+\_\+truck\+::\+Teensy\+\_\+\+Sensors\+\_\+$<$ Container\+Allocator $>$}|hyperpage}{33}
+\indexentry{semi\+\_\+truck\+::\+Teensy\+\_\+\+Sensors\+\_\+@{semi\+\_\+truck\+::\+Teensy\+\_\+\+Sensors\+\_\+}!\+\_\+drive\+\_\+mode\+\_\+1\+\_\+type@{\+\_\+drive\+\_\+mode\+\_\+1\+\_\+type}|hyperpage}{33}
+\indexentry{\+\_\+drive\+\_\+mode\+\_\+1\+\_\+type@{\+\_\+drive\+\_\+mode\+\_\+1\+\_\+type}!semi\+\_\+truck\+::\+Teensy\+\_\+\+Sensors\+\_\+@{semi\+\_\+truck\+::\+Teensy\+\_\+\+Sensors\+\_\+}|hyperpage}{33}
+\indexentry{semi\+\_\+truck\+::\+Teensy\+\_\+\+Sensors\+\_\+@{semi\+\_\+truck\+::\+Teensy\+\_\+\+Sensors\+\_\+}!\+\_\+drive\+\_\+mode\+\_\+2\+\_\+type@{\+\_\+drive\+\_\+mode\+\_\+2\+\_\+type}|hyperpage}{33}
+\indexentry{\+\_\+drive\+\_\+mode\+\_\+2\+\_\+type@{\+\_\+drive\+\_\+mode\+\_\+2\+\_\+type}!semi\+\_\+truck\+::\+Teensy\+\_\+\+Sensors\+\_\+@{semi\+\_\+truck\+::\+Teensy\+\_\+\+Sensors\+\_\+}|hyperpage}{33}
+\indexentry{semi\+\_\+truck\+::\+Teensy\+\_\+\+Sensors\+\_\+@{semi\+\_\+truck\+::\+Teensy\+\_\+\+Sensors\+\_\+}!\+\_\+imu\+\_\+angle\+\_\+type@{\+\_\+imu\+\_\+angle\+\_\+type}|hyperpage}{33}
+\indexentry{\+\_\+imu\+\_\+angle\+\_\+type@{\+\_\+imu\+\_\+angle\+\_\+type}!semi\+\_\+truck\+::\+Teensy\+\_\+\+Sensors\+\_\+@{semi\+\_\+truck\+::\+Teensy\+\_\+\+Sensors\+\_\+}|hyperpage}{33}
+\indexentry{semi\+\_\+truck\+::\+Teensy\+\_\+\+Sensors\+\_\+@{semi\+\_\+truck\+::\+Teensy\+\_\+\+Sensors\+\_\+}!\+\_\+left\+\_\+\+T\+O\+F\+\_\+type@{\+\_\+left\+\_\+\+T\+O\+F\+\_\+type}|hyperpage}{33}
+\indexentry{\+\_\+left\+\_\+\+T\+O\+F\+\_\+type@{\+\_\+left\+\_\+\+T\+O\+F\+\_\+type}!semi\+\_\+truck\+::\+Teensy\+\_\+\+Sensors\+\_\+@{semi\+\_\+truck\+::\+Teensy\+\_\+\+Sensors\+\_\+}|hyperpage}{33}
+\indexentry{semi\+\_\+truck\+::\+Teensy\+\_\+\+Sensors\+\_\+@{semi\+\_\+truck\+::\+Teensy\+\_\+\+Sensors\+\_\+}!\+\_\+rear\+\_\+\+T\+O\+F\+\_\+type@{\+\_\+rear\+\_\+\+T\+O\+F\+\_\+type}|hyperpage}{33}
+\indexentry{\+\_\+rear\+\_\+\+T\+O\+F\+\_\+type@{\+\_\+rear\+\_\+\+T\+O\+F\+\_\+type}!semi\+\_\+truck\+::\+Teensy\+\_\+\+Sensors\+\_\+@{semi\+\_\+truck\+::\+Teensy\+\_\+\+Sensors\+\_\+}|hyperpage}{33}
+\indexentry{semi\+\_\+truck\+::\+Teensy\+\_\+\+Sensors\+\_\+@{semi\+\_\+truck\+::\+Teensy\+\_\+\+Sensors\+\_\+}!\+\_\+right\+\_\+\+T\+O\+F\+\_\+type@{\+\_\+right\+\_\+\+T\+O\+F\+\_\+type}|hyperpage}{34}
+\indexentry{\+\_\+right\+\_\+\+T\+O\+F\+\_\+type@{\+\_\+right\+\_\+\+T\+O\+F\+\_\+type}!semi\+\_\+truck\+::\+Teensy\+\_\+\+Sensors\+\_\+@{semi\+\_\+truck\+::\+Teensy\+\_\+\+Sensors\+\_\+}|hyperpage}{34}
+\indexentry{semi\+\_\+truck\+::\+Teensy\+\_\+\+Sensors\+\_\+@{semi\+\_\+truck\+::\+Teensy\+\_\+\+Sensors\+\_\+}!\+\_\+wheel\+\_\+speed\+\_\+type@{\+\_\+wheel\+\_\+speed\+\_\+type}|hyperpage}{34}
+\indexentry{\+\_\+wheel\+\_\+speed\+\_\+type@{\+\_\+wheel\+\_\+speed\+\_\+type}!semi\+\_\+truck\+::\+Teensy\+\_\+\+Sensors\+\_\+@{semi\+\_\+truck\+::\+Teensy\+\_\+\+Sensors\+\_\+}|hyperpage}{34}
+\indexentry{semi\+\_\+truck\+::\+Teensy\+\_\+\+Sensors\+\_\+@{semi\+\_\+truck\+::\+Teensy\+\_\+\+Sensors\+\_\+}!Const\+Ptr@{Const\+Ptr}|hyperpage}{34}
+\indexentry{Const\+Ptr@{Const\+Ptr}!semi\+\_\+truck\+::\+Teensy\+\_\+\+Sensors\+\_\+@{semi\+\_\+truck\+::\+Teensy\+\_\+\+Sensors\+\_\+}|hyperpage}{34}
+\indexentry{semi\+\_\+truck\+::\+Teensy\+\_\+\+Sensors\+\_\+@{semi\+\_\+truck\+::\+Teensy\+\_\+\+Sensors\+\_\+}!Ptr@{Ptr}|hyperpage}{34}
+\indexentry{Ptr@{Ptr}!semi\+\_\+truck\+::\+Teensy\+\_\+\+Sensors\+\_\+@{semi\+\_\+truck\+::\+Teensy\+\_\+\+Sensors\+\_\+}|hyperpage}{34}
+\indexentry{semi\+\_\+truck\+::\+Teensy\+\_\+\+Sensors\+\_\+@{semi\+\_\+truck\+::\+Teensy\+\_\+\+Sensors\+\_\+}!Type@{Type}|hyperpage}{34}
+\indexentry{Type@{Type}!semi\+\_\+truck\+::\+Teensy\+\_\+\+Sensors\+\_\+@{semi\+\_\+truck\+::\+Teensy\+\_\+\+Sensors\+\_\+}|hyperpage}{34}
+\indexentry{semi\+\_\+truck\+::\+Teensy\+\_\+\+Sensors\+\_\+@{semi\+\_\+truck\+::\+Teensy\+\_\+\+Sensors\+\_\+}!Teensy\+\_\+\+Sensors\+\_\+@{Teensy\+\_\+\+Sensors\+\_\+}|hyperpage}{34}
+\indexentry{Teensy\+\_\+\+Sensors\+\_\+@{Teensy\+\_\+\+Sensors\+\_\+}!semi\+\_\+truck\+::\+Teensy\+\_\+\+Sensors\+\_\+@{semi\+\_\+truck\+::\+Teensy\+\_\+\+Sensors\+\_\+}|hyperpage}{34}
+\indexentry{semi\+\_\+truck\+::\+Teensy\+\_\+\+Sensors\+\_\+@{semi\+\_\+truck\+::\+Teensy\+\_\+\+Sensors\+\_\+}!Teensy\+\_\+\+Sensors\+\_\+@{Teensy\+\_\+\+Sensors\+\_\+}|hyperpage}{34}
+\indexentry{Teensy\+\_\+\+Sensors\+\_\+@{Teensy\+\_\+\+Sensors\+\_\+}!semi\+\_\+truck\+::\+Teensy\+\_\+\+Sensors\+\_\+@{semi\+\_\+truck\+::\+Teensy\+\_\+\+Sensors\+\_\+}|hyperpage}{34}
+\indexentry{semi\+\_\+truck\+::\+Teensy\+\_\+\+Sensors\+\_\+@{semi\+\_\+truck\+::\+Teensy\+\_\+\+Sensors\+\_\+}!drive\+\_\+mode\+\_\+1@{drive\+\_\+mode\+\_\+1}|hyperpage}{34}
+\indexentry{drive\+\_\+mode\+\_\+1@{drive\+\_\+mode\+\_\+1}!semi\+\_\+truck\+::\+Teensy\+\_\+\+Sensors\+\_\+@{semi\+\_\+truck\+::\+Teensy\+\_\+\+Sensors\+\_\+}|hyperpage}{34}
+\indexentry{semi\+\_\+truck\+::\+Teensy\+\_\+\+Sensors\+\_\+@{semi\+\_\+truck\+::\+Teensy\+\_\+\+Sensors\+\_\+}!drive\+\_\+mode\+\_\+2@{drive\+\_\+mode\+\_\+2}|hyperpage}{34}
+\indexentry{drive\+\_\+mode\+\_\+2@{drive\+\_\+mode\+\_\+2}!semi\+\_\+truck\+::\+Teensy\+\_\+\+Sensors\+\_\+@{semi\+\_\+truck\+::\+Teensy\+\_\+\+Sensors\+\_\+}|hyperpage}{34}
+\indexentry{semi\+\_\+truck\+::\+Teensy\+\_\+\+Sensors\+\_\+@{semi\+\_\+truck\+::\+Teensy\+\_\+\+Sensors\+\_\+}!imu\+\_\+angle@{imu\+\_\+angle}|hyperpage}{34}
+\indexentry{imu\+\_\+angle@{imu\+\_\+angle}!semi\+\_\+truck\+::\+Teensy\+\_\+\+Sensors\+\_\+@{semi\+\_\+truck\+::\+Teensy\+\_\+\+Sensors\+\_\+}|hyperpage}{34}
+\indexentry{semi\+\_\+truck\+::\+Teensy\+\_\+\+Sensors\+\_\+@{semi\+\_\+truck\+::\+Teensy\+\_\+\+Sensors\+\_\+}!left\+\_\+\+T\+OF@{left\+\_\+\+T\+OF}|hyperpage}{34}
+\indexentry{left\+\_\+\+T\+OF@{left\+\_\+\+T\+OF}!semi\+\_\+truck\+::\+Teensy\+\_\+\+Sensors\+\_\+@{semi\+\_\+truck\+::\+Teensy\+\_\+\+Sensors\+\_\+}|hyperpage}{34}
+\indexentry{semi\+\_\+truck\+::\+Teensy\+\_\+\+Sensors\+\_\+@{semi\+\_\+truck\+::\+Teensy\+\_\+\+Sensors\+\_\+}!rear\+\_\+\+T\+OF@{rear\+\_\+\+T\+OF}|hyperpage}{34}
+\indexentry{rear\+\_\+\+T\+OF@{rear\+\_\+\+T\+OF}!semi\+\_\+truck\+::\+Teensy\+\_\+\+Sensors\+\_\+@{semi\+\_\+truck\+::\+Teensy\+\_\+\+Sensors\+\_\+}|hyperpage}{34}
+\indexentry{semi\+\_\+truck\+::\+Teensy\+\_\+\+Sensors\+\_\+@{semi\+\_\+truck\+::\+Teensy\+\_\+\+Sensors\+\_\+}!right\+\_\+\+T\+OF@{right\+\_\+\+T\+OF}|hyperpage}{34}
+\indexentry{right\+\_\+\+T\+OF@{right\+\_\+\+T\+OF}!semi\+\_\+truck\+::\+Teensy\+\_\+\+Sensors\+\_\+@{semi\+\_\+truck\+::\+Teensy\+\_\+\+Sensors\+\_\+}|hyperpage}{34}
+\indexentry{semi\+\_\+truck\+::\+Teensy\+\_\+\+Sensors\+\_\+@{semi\+\_\+truck\+::\+Teensy\+\_\+\+Sensors\+\_\+}!wheel\+\_\+speed@{wheel\+\_\+speed}|hyperpage}{34}
+\indexentry{wheel\+\_\+speed@{wheel\+\_\+speed}!semi\+\_\+truck\+::\+Teensy\+\_\+\+Sensors\+\_\+@{semi\+\_\+truck\+::\+Teensy\+\_\+\+Sensors\+\_\+}|hyperpage}{34}
+\indexentry{daimtronics/semi\+\_\+catkin\+\_\+ws/src/\+C\+Make\+Lists.\+txt@{daimtronics/semi\+\_\+catkin\+\_\+ws/src/\+C\+Make\+Lists.\+txt}|hyperpage}{35}
+\indexentry{C\+Make\+Lists.\+txt@{C\+Make\+Lists.\+txt}!cmake\+\_\+minimum\+\_\+required@{cmake\+\_\+minimum\+\_\+required}|hyperpage}{35}
+\indexentry{cmake\+\_\+minimum\+\_\+required@{cmake\+\_\+minimum\+\_\+required}!C\+Make\+Lists.\+txt@{C\+Make\+Lists.\+txt}|hyperpage}{35}
+\indexentry{C\+Make\+Lists.\+txt@{C\+Make\+Lists.\+txt}!execute\+\_\+process@{execute\+\_\+process}|hyperpage}{35}
+\indexentry{execute\+\_\+process@{execute\+\_\+process}!C\+Make\+Lists.\+txt@{C\+Make\+Lists.\+txt}|hyperpage}{35}
+\indexentry{C\+Make\+Lists.\+txt@{C\+Make\+Lists.\+txt}!\+\_\+cmd\+\_\+str@{\+\_\+cmd\+\_\+str}|hyperpage}{35}
+\indexentry{\+\_\+cmd\+\_\+str@{\+\_\+cmd\+\_\+str}!C\+Make\+Lists.\+txt@{C\+Make\+Lists.\+txt}|hyperpage}{35}
+\indexentry{daimtronics/semi\+\_\+catkin\+\_\+ws/src/semi\+\_\+truck/\+C\+Make\+Lists.\+txt@{daimtronics/semi\+\_\+catkin\+\_\+ws/src/semi\+\_\+truck/\+C\+Make\+Lists.\+txt}|hyperpage}{36}
+\indexentry{daimtronics/semi\+\_\+catkin\+\_\+ws/src/semi\+\_\+truck/include/system\+\_\+data.\+h@{daimtronics/semi\+\_\+catkin\+\_\+ws/src/semi\+\_\+truck/include/system\+\_\+data.\+h}|hyperpage}{36}
+\indexentry{daimtronics/teensy\+\_\+chibios/src/main/include/system\+\_\+data.\+h@{daimtronics/teensy\+\_\+chibios/src/main/include/system\+\_\+data.\+h}|hyperpage}{36}
+\indexentry{teensy\+\_\+chibios/src/main/include/system\+\_\+data.\+h@{teensy\+\_\+chibios/src/main/include/system\+\_\+data.\+h}!actuator\+\_\+data\+\_\+t@{actuator\+\_\+data\+\_\+t}|hyperpage}{37}
+\indexentry{actuator\+\_\+data\+\_\+t@{actuator\+\_\+data\+\_\+t}!teensy\+\_\+chibios/src/main/include/system\+\_\+data.\+h@{teensy\+\_\+chibios/src/main/include/system\+\_\+data.\+h}|hyperpage}{37}
+\indexentry{teensy\+\_\+chibios/src/main/include/system\+\_\+data.\+h@{teensy\+\_\+chibios/src/main/include/system\+\_\+data.\+h}!sensor\+\_\+data\+\_\+t@{sensor\+\_\+data\+\_\+t}|hyperpage}{37}
+\indexentry{sensor\+\_\+data\+\_\+t@{sensor\+\_\+data\+\_\+t}!teensy\+\_\+chibios/src/main/include/system\+\_\+data.\+h@{teensy\+\_\+chibios/src/main/include/system\+\_\+data.\+h}|hyperpage}{37}
+\indexentry{teensy\+\_\+chibios/src/main/include/system\+\_\+data.\+h@{teensy\+\_\+chibios/src/main/include/system\+\_\+data.\+h}!system\+\_\+data\+\_\+t@{system\+\_\+data\+\_\+t}|hyperpage}{37}
+\indexentry{system\+\_\+data\+\_\+t@{system\+\_\+data\+\_\+t}!teensy\+\_\+chibios/src/main/include/system\+\_\+data.\+h@{teensy\+\_\+chibios/src/main/include/system\+\_\+data.\+h}|hyperpage}{37}
+\indexentry{daimtronics/semi\+\_\+catkin\+\_\+ws/src/semi\+\_\+truck/include/\+Teensy\+\_\+\+Actuators.\+h@{daimtronics/semi\+\_\+catkin\+\_\+ws/src/semi\+\_\+truck/include/\+Teensy\+\_\+\+Actuators.\+h}|hyperpage}{37}
+\indexentry{daimtronics/semi\+\_\+catkin\+\_\+ws/src/semi\+\_\+truck/include/\+Teensy\+\_\+\+Sensors.\+h@{daimtronics/semi\+\_\+catkin\+\_\+ws/src/semi\+\_\+truck/include/\+Teensy\+\_\+\+Sensors.\+h}|hyperpage}{39}
+\indexentry{daimtronics/semi\+\_\+catkin\+\_\+ws/src/semi\+\_\+truck/msg/\+Teensy\+\_\+\+Actuators.\+msg@{daimtronics/semi\+\_\+catkin\+\_\+ws/src/semi\+\_\+truck/msg/\+Teensy\+\_\+\+Actuators.\+msg}|hyperpage}{41}
+\indexentry{daimtronics/semi\+\_\+catkin\+\_\+ws/src/semi\+\_\+truck/msg/\+Teensy\+\_\+\+Sensors.\+msg@{daimtronics/semi\+\_\+catkin\+\_\+ws/src/semi\+\_\+truck/msg/\+Teensy\+\_\+\+Sensors.\+msg}|hyperpage}{41}
+\indexentry{daimtronics/semi\+\_\+catkin\+\_\+ws/src/semi\+\_\+truck/package.\+xml@{daimtronics/semi\+\_\+catkin\+\_\+ws/src/semi\+\_\+truck/package.\+xml}|hyperpage}{41}
+\indexentry{daimtronics/semi\+\_\+catkin\+\_\+ws/src/semi\+\_\+truck/src/pi\+\_\+comm\+\_\+node.\+cpp@{daimtronics/semi\+\_\+catkin\+\_\+ws/src/semi\+\_\+truck/src/pi\+\_\+comm\+\_\+node.\+cpp}|hyperpage}{41}
+\indexentry{pi\+\_\+comm\+\_\+node.\+cpp@{pi\+\_\+comm\+\_\+node.\+cpp}!B\+A\+U\+D\+R\+A\+TE@{B\+A\+U\+D\+R\+A\+TE}|hyperpage}{42}
+\indexentry{B\+A\+U\+D\+R\+A\+TE@{B\+A\+U\+D\+R\+A\+TE}!pi\+\_\+comm\+\_\+node.\+cpp@{pi\+\_\+comm\+\_\+node.\+cpp}|hyperpage}{42}
+\indexentry{pi\+\_\+comm\+\_\+node.\+cpp@{pi\+\_\+comm\+\_\+node.\+cpp}!L\+O\+O\+P\+\_\+\+F\+R\+E\+Q\+U\+E\+N\+CY@{L\+O\+O\+P\+\_\+\+F\+R\+E\+Q\+U\+E\+N\+CY}|hyperpage}{42}
+\indexentry{L\+O\+O\+P\+\_\+\+F\+R\+E\+Q\+U\+E\+N\+CY@{L\+O\+O\+P\+\_\+\+F\+R\+E\+Q\+U\+E\+N\+CY}!pi\+\_\+comm\+\_\+node.\+cpp@{pi\+\_\+comm\+\_\+node.\+cpp}|hyperpage}{42}
+\indexentry{pi\+\_\+comm\+\_\+node.\+cpp@{pi\+\_\+comm\+\_\+node.\+cpp}!R\+E\+L\+A\+Y\+\_\+\+P\+I\+N\+\_\+1@{R\+E\+L\+A\+Y\+\_\+\+P\+I\+N\+\_\+1}|hyperpage}{42}
+\indexentry{R\+E\+L\+A\+Y\+\_\+\+P\+I\+N\+\_\+1@{R\+E\+L\+A\+Y\+\_\+\+P\+I\+N\+\_\+1}!pi\+\_\+comm\+\_\+node.\+cpp@{pi\+\_\+comm\+\_\+node.\+cpp}|hyperpage}{42}
+\indexentry{pi\+\_\+comm\+\_\+node.\+cpp@{pi\+\_\+comm\+\_\+node.\+cpp}!R\+E\+L\+A\+Y\+\_\+\+P\+I\+N\+\_\+2@{R\+E\+L\+A\+Y\+\_\+\+P\+I\+N\+\_\+2}|hyperpage}{42}
+\indexentry{R\+E\+L\+A\+Y\+\_\+\+P\+I\+N\+\_\+2@{R\+E\+L\+A\+Y\+\_\+\+P\+I\+N\+\_\+2}!pi\+\_\+comm\+\_\+node.\+cpp@{pi\+\_\+comm\+\_\+node.\+cpp}|hyperpage}{42}
+\indexentry{pi\+\_\+comm\+\_\+node.\+cpp@{pi\+\_\+comm\+\_\+node.\+cpp}!S\+E\+N\+S\+O\+R\+\_\+\+D\+A\+T\+A\+\_\+\+S\+I\+ZE@{S\+E\+N\+S\+O\+R\+\_\+\+D\+A\+T\+A\+\_\+\+S\+I\+ZE}|hyperpage}{42}
+\indexentry{S\+E\+N\+S\+O\+R\+\_\+\+D\+A\+T\+A\+\_\+\+S\+I\+ZE@{S\+E\+N\+S\+O\+R\+\_\+\+D\+A\+T\+A\+\_\+\+S\+I\+ZE}!pi\+\_\+comm\+\_\+node.\+cpp@{pi\+\_\+comm\+\_\+node.\+cpp}|hyperpage}{42}
+\indexentry{pi\+\_\+comm\+\_\+node.\+cpp@{pi\+\_\+comm\+\_\+node.\+cpp}!S\+E\+N\+S\+O\+R\+\_\+\+D\+A\+T\+A\+\_\+\+S\+I\+Z\+E\+\_\+\+W\+\_\+\+S\+Y\+NC@{S\+E\+N\+S\+O\+R\+\_\+\+D\+A\+T\+A\+\_\+\+S\+I\+Z\+E\+\_\+\+W\+\_\+\+S\+Y\+NC}|hyperpage}{42}
+\indexentry{S\+E\+N\+S\+O\+R\+\_\+\+D\+A\+T\+A\+\_\+\+S\+I\+Z\+E\+\_\+\+W\+\_\+\+S\+Y\+NC@{S\+E\+N\+S\+O\+R\+\_\+\+D\+A\+T\+A\+\_\+\+S\+I\+Z\+E\+\_\+\+W\+\_\+\+S\+Y\+NC}!pi\+\_\+comm\+\_\+node.\+cpp@{pi\+\_\+comm\+\_\+node.\+cpp}|hyperpage}{42}
+\indexentry{pi\+\_\+comm\+\_\+node.\+cpp@{pi\+\_\+comm\+\_\+node.\+cpp}!S\+H\+O\+R\+T\+\_\+\+S\+I\+ZE@{S\+H\+O\+R\+T\+\_\+\+S\+I\+ZE}|hyperpage}{42}
+\indexentry{S\+H\+O\+R\+T\+\_\+\+S\+I\+ZE@{S\+H\+O\+R\+T\+\_\+\+S\+I\+ZE}!pi\+\_\+comm\+\_\+node.\+cpp@{pi\+\_\+comm\+\_\+node.\+cpp}|hyperpage}{42}
+\indexentry{pi\+\_\+comm\+\_\+node.\+cpp@{pi\+\_\+comm\+\_\+node.\+cpp}!S\+Y\+N\+C\+\_\+\+V\+A\+L\+UE@{S\+Y\+N\+C\+\_\+\+V\+A\+L\+UE}|hyperpage}{42}
+\indexentry{S\+Y\+N\+C\+\_\+\+V\+A\+L\+UE@{S\+Y\+N\+C\+\_\+\+V\+A\+L\+UE}!pi\+\_\+comm\+\_\+node.\+cpp@{pi\+\_\+comm\+\_\+node.\+cpp}|hyperpage}{42}
+\indexentry{pi\+\_\+comm\+\_\+node.\+cpp@{pi\+\_\+comm\+\_\+node.\+cpp}!U\+A\+RT@{U\+A\+RT}|hyperpage}{42}
+\indexentry{U\+A\+RT@{U\+A\+RT}!pi\+\_\+comm\+\_\+node.\+cpp@{pi\+\_\+comm\+\_\+node.\+cpp}|hyperpage}{42}
+\indexentry{pi\+\_\+comm\+\_\+node.\+cpp@{pi\+\_\+comm\+\_\+node.\+cpp}!actuator\+\_\+cb@{actuator\+\_\+cb}|hyperpage}{42}
+\indexentry{actuator\+\_\+cb@{actuator\+\_\+cb}!pi\+\_\+comm\+\_\+node.\+cpp@{pi\+\_\+comm\+\_\+node.\+cpp}|hyperpage}{42}
+\indexentry{pi\+\_\+comm\+\_\+node.\+cpp@{pi\+\_\+comm\+\_\+node.\+cpp}!main@{main}|hyperpage}{43}
+\indexentry{main@{main}!pi\+\_\+comm\+\_\+node.\+cpp@{pi\+\_\+comm\+\_\+node.\+cpp}|hyperpage}{43}
+\indexentry{pi\+\_\+comm\+\_\+node.\+cpp@{pi\+\_\+comm\+\_\+node.\+cpp}!pi\+\_\+sync@{pi\+\_\+sync}|hyperpage}{43}
+\indexentry{pi\+\_\+sync@{pi\+\_\+sync}!pi\+\_\+comm\+\_\+node.\+cpp@{pi\+\_\+comm\+\_\+node.\+cpp}|hyperpage}{43}
+\indexentry{pi\+\_\+comm\+\_\+node.\+cpp@{pi\+\_\+comm\+\_\+node.\+cpp}!print\+\_\+actuators@{print\+\_\+actuators}|hyperpage}{43}
+\indexentry{print\+\_\+actuators@{print\+\_\+actuators}!pi\+\_\+comm\+\_\+node.\+cpp@{pi\+\_\+comm\+\_\+node.\+cpp}|hyperpage}{43}
+\indexentry{pi\+\_\+comm\+\_\+node.\+cpp@{pi\+\_\+comm\+\_\+node.\+cpp}!print\+\_\+sensors@{print\+\_\+sensors}|hyperpage}{43}
+\indexentry{print\+\_\+sensors@{print\+\_\+sensors}!pi\+\_\+comm\+\_\+node.\+cpp@{pi\+\_\+comm\+\_\+node.\+cpp}|hyperpage}{43}
+\indexentry{pi\+\_\+comm\+\_\+node.\+cpp@{pi\+\_\+comm\+\_\+node.\+cpp}!read\+\_\+from\+\_\+teensy@{read\+\_\+from\+\_\+teensy}|hyperpage}{43}
+\indexentry{read\+\_\+from\+\_\+teensy@{read\+\_\+from\+\_\+teensy}!pi\+\_\+comm\+\_\+node.\+cpp@{pi\+\_\+comm\+\_\+node.\+cpp}|hyperpage}{43}
+\indexentry{pi\+\_\+comm\+\_\+node.\+cpp@{pi\+\_\+comm\+\_\+node.\+cpp}!read\+\_\+sensor\+\_\+msg@{read\+\_\+sensor\+\_\+msg}|hyperpage}{43}
+\indexentry{read\+\_\+sensor\+\_\+msg@{read\+\_\+sensor\+\_\+msg}!pi\+\_\+comm\+\_\+node.\+cpp@{pi\+\_\+comm\+\_\+node.\+cpp}|hyperpage}{43}
+\indexentry{pi\+\_\+comm\+\_\+node.\+cpp@{pi\+\_\+comm\+\_\+node.\+cpp}!write\+\_\+actuator\+\_\+msg@{write\+\_\+actuator\+\_\+msg}|hyperpage}{44}
+\indexentry{write\+\_\+actuator\+\_\+msg@{write\+\_\+actuator\+\_\+msg}!pi\+\_\+comm\+\_\+node.\+cpp@{pi\+\_\+comm\+\_\+node.\+cpp}|hyperpage}{44}
+\indexentry{pi\+\_\+comm\+\_\+node.\+cpp@{pi\+\_\+comm\+\_\+node.\+cpp}!write\+\_\+to\+\_\+teensy@{write\+\_\+to\+\_\+teensy}|hyperpage}{44}
+\indexentry{write\+\_\+to\+\_\+teensy@{write\+\_\+to\+\_\+teensy}!pi\+\_\+comm\+\_\+node.\+cpp@{pi\+\_\+comm\+\_\+node.\+cpp}|hyperpage}{44}
+\indexentry{daimtronics/semi\+\_\+catkin\+\_\+ws/src/semi\+\_\+truck/src/pi\+\_\+comm\+\_\+node.\+h@{daimtronics/semi\+\_\+catkin\+\_\+ws/src/semi\+\_\+truck/src/pi\+\_\+comm\+\_\+node.\+h}|hyperpage}{44}
+\indexentry{pi\+\_\+comm\+\_\+node.\+h@{pi\+\_\+comm\+\_\+node.\+h}!actuator\+\_\+cb@{actuator\+\_\+cb}|hyperpage}{45}
+\indexentry{actuator\+\_\+cb@{actuator\+\_\+cb}!pi\+\_\+comm\+\_\+node.\+h@{pi\+\_\+comm\+\_\+node.\+h}|hyperpage}{45}
+\indexentry{pi\+\_\+comm\+\_\+node.\+h@{pi\+\_\+comm\+\_\+node.\+h}!pi\+\_\+sync@{pi\+\_\+sync}|hyperpage}{46}
+\indexentry{pi\+\_\+sync@{pi\+\_\+sync}!pi\+\_\+comm\+\_\+node.\+h@{pi\+\_\+comm\+\_\+node.\+h}|hyperpage}{46}
+\indexentry{pi\+\_\+comm\+\_\+node.\+h@{pi\+\_\+comm\+\_\+node.\+h}!print\+\_\+actuators@{print\+\_\+actuators}|hyperpage}{46}
+\indexentry{print\+\_\+actuators@{print\+\_\+actuators}!pi\+\_\+comm\+\_\+node.\+h@{pi\+\_\+comm\+\_\+node.\+h}|hyperpage}{46}
+\indexentry{pi\+\_\+comm\+\_\+node.\+h@{pi\+\_\+comm\+\_\+node.\+h}!print\+\_\+sensors@{print\+\_\+sensors}|hyperpage}{46}
+\indexentry{print\+\_\+sensors@{print\+\_\+sensors}!pi\+\_\+comm\+\_\+node.\+h@{pi\+\_\+comm\+\_\+node.\+h}|hyperpage}{46}
+\indexentry{pi\+\_\+comm\+\_\+node.\+h@{pi\+\_\+comm\+\_\+node.\+h}!read\+\_\+from\+\_\+teensy@{read\+\_\+from\+\_\+teensy}|hyperpage}{46}
+\indexentry{read\+\_\+from\+\_\+teensy@{read\+\_\+from\+\_\+teensy}!pi\+\_\+comm\+\_\+node.\+h@{pi\+\_\+comm\+\_\+node.\+h}|hyperpage}{46}
+\indexentry{pi\+\_\+comm\+\_\+node.\+h@{pi\+\_\+comm\+\_\+node.\+h}!read\+\_\+sensor\+\_\+msg@{read\+\_\+sensor\+\_\+msg}|hyperpage}{46}
+\indexentry{read\+\_\+sensor\+\_\+msg@{read\+\_\+sensor\+\_\+msg}!pi\+\_\+comm\+\_\+node.\+h@{pi\+\_\+comm\+\_\+node.\+h}|hyperpage}{46}
+\indexentry{pi\+\_\+comm\+\_\+node.\+h@{pi\+\_\+comm\+\_\+node.\+h}!sensor\+\_\+cb@{sensor\+\_\+cb}|hyperpage}{46}
+\indexentry{sensor\+\_\+cb@{sensor\+\_\+cb}!pi\+\_\+comm\+\_\+node.\+h@{pi\+\_\+comm\+\_\+node.\+h}|hyperpage}{46}
+\indexentry{pi\+\_\+comm\+\_\+node.\+h@{pi\+\_\+comm\+\_\+node.\+h}!update\+\_\+sensors@{update\+\_\+sensors}|hyperpage}{47}
+\indexentry{update\+\_\+sensors@{update\+\_\+sensors}!pi\+\_\+comm\+\_\+node.\+h@{pi\+\_\+comm\+\_\+node.\+h}|hyperpage}{47}
+\indexentry{pi\+\_\+comm\+\_\+node.\+h@{pi\+\_\+comm\+\_\+node.\+h}!write\+\_\+sensor\+\_\+msg@{write\+\_\+sensor\+\_\+msg}|hyperpage}{47}
+\indexentry{write\+\_\+sensor\+\_\+msg@{write\+\_\+sensor\+\_\+msg}!pi\+\_\+comm\+\_\+node.\+h@{pi\+\_\+comm\+\_\+node.\+h}|hyperpage}{47}
+\indexentry{pi\+\_\+comm\+\_\+node.\+h@{pi\+\_\+comm\+\_\+node.\+h}!write\+\_\+to\+\_\+teensy@{write\+\_\+to\+\_\+teensy}|hyperpage}{47}
+\indexentry{write\+\_\+to\+\_\+teensy@{write\+\_\+to\+\_\+teensy}!pi\+\_\+comm\+\_\+node.\+h@{pi\+\_\+comm\+\_\+node.\+h}|hyperpage}{47}
+\indexentry{daimtronics/semi\+\_\+catkin\+\_\+ws/src/semi\+\_\+truck/src/semi\+\_\+truck\+\_\+api.\+cpp@{daimtronics/semi\+\_\+catkin\+\_\+ws/src/semi\+\_\+truck/src/semi\+\_\+truck\+\_\+api.\+cpp}|hyperpage}{47}
+\indexentry{semi\+\_\+truck\+\_\+api.\+cpp@{semi\+\_\+truck\+\_\+api.\+cpp}!get\+\_\+imu\+\_\+angle@{get\+\_\+imu\+\_\+angle}|hyperpage}{48}
+\indexentry{get\+\_\+imu\+\_\+angle@{get\+\_\+imu\+\_\+angle}!semi\+\_\+truck\+\_\+api.\+cpp@{semi\+\_\+truck\+\_\+api.\+cpp}|hyperpage}{48}
+\indexentry{semi\+\_\+truck\+\_\+api.\+cpp@{semi\+\_\+truck\+\_\+api.\+cpp}!get\+\_\+left\+\_\+\+T\+OF@{get\+\_\+left\+\_\+\+T\+OF}|hyperpage}{48}
+\indexentry{get\+\_\+left\+\_\+\+T\+OF@{get\+\_\+left\+\_\+\+T\+OF}!semi\+\_\+truck\+\_\+api.\+cpp@{semi\+\_\+truck\+\_\+api.\+cpp}|hyperpage}{48}
+\indexentry{semi\+\_\+truck\+\_\+api.\+cpp@{semi\+\_\+truck\+\_\+api.\+cpp}!get\+\_\+rear\+\_\+\+T\+OF@{get\+\_\+rear\+\_\+\+T\+OF}|hyperpage}{48}
+\indexentry{get\+\_\+rear\+\_\+\+T\+OF@{get\+\_\+rear\+\_\+\+T\+OF}!semi\+\_\+truck\+\_\+api.\+cpp@{semi\+\_\+truck\+\_\+api.\+cpp}|hyperpage}{48}
+\indexentry{semi\+\_\+truck\+\_\+api.\+cpp@{semi\+\_\+truck\+\_\+api.\+cpp}!get\+\_\+right\+\_\+\+T\+OF@{get\+\_\+right\+\_\+\+T\+OF}|hyperpage}{48}
+\indexentry{get\+\_\+right\+\_\+\+T\+OF@{get\+\_\+right\+\_\+\+T\+OF}!semi\+\_\+truck\+\_\+api.\+cpp@{semi\+\_\+truck\+\_\+api.\+cpp}|hyperpage}{48}
+\indexentry{semi\+\_\+truck\+\_\+api.\+cpp@{semi\+\_\+truck\+\_\+api.\+cpp}!get\+\_\+wheel\+\_\+speed@{get\+\_\+wheel\+\_\+speed}|hyperpage}{48}
+\indexentry{get\+\_\+wheel\+\_\+speed@{get\+\_\+wheel\+\_\+speed}!semi\+\_\+truck\+\_\+api.\+cpp@{semi\+\_\+truck\+\_\+api.\+cpp}|hyperpage}{48}
+\indexentry{semi\+\_\+truck\+\_\+api.\+cpp@{semi\+\_\+truck\+\_\+api.\+cpp}!set\+\_\+fifth\+\_\+output@{set\+\_\+fifth\+\_\+output}|hyperpage}{49}
+\indexentry{set\+\_\+fifth\+\_\+output@{set\+\_\+fifth\+\_\+output}!semi\+\_\+truck\+\_\+api.\+cpp@{semi\+\_\+truck\+\_\+api.\+cpp}|hyperpage}{49}
+\indexentry{semi\+\_\+truck\+\_\+api.\+cpp@{semi\+\_\+truck\+\_\+api.\+cpp}!set\+\_\+motor\+\_\+output@{set\+\_\+motor\+\_\+output}|hyperpage}{49}
+\indexentry{set\+\_\+motor\+\_\+output@{set\+\_\+motor\+\_\+output}!semi\+\_\+truck\+\_\+api.\+cpp@{semi\+\_\+truck\+\_\+api.\+cpp}|hyperpage}{49}
+\indexentry{semi\+\_\+truck\+\_\+api.\+cpp@{semi\+\_\+truck\+\_\+api.\+cpp}!set\+\_\+steer\+\_\+output@{set\+\_\+steer\+\_\+output}|hyperpage}{49}
+\indexentry{set\+\_\+steer\+\_\+output@{set\+\_\+steer\+\_\+output}!semi\+\_\+truck\+\_\+api.\+cpp@{semi\+\_\+truck\+\_\+api.\+cpp}|hyperpage}{49}
+\indexentry{daimtronics/semi\+\_\+catkin\+\_\+ws/src/semi\+\_\+truck/src/semi\+\_\+truck\+\_\+api.\+h@{daimtronics/semi\+\_\+catkin\+\_\+ws/src/semi\+\_\+truck/src/semi\+\_\+truck\+\_\+api.\+h}|hyperpage}{49}
+\indexentry{semi\+\_\+truck\+\_\+api.\+h@{semi\+\_\+truck\+\_\+api.\+h}!get\+\_\+imu\+\_\+angle@{get\+\_\+imu\+\_\+angle}|hyperpage}{51}
+\indexentry{get\+\_\+imu\+\_\+angle@{get\+\_\+imu\+\_\+angle}!semi\+\_\+truck\+\_\+api.\+h@{semi\+\_\+truck\+\_\+api.\+h}|hyperpage}{51}
+\indexentry{semi\+\_\+truck\+\_\+api.\+h@{semi\+\_\+truck\+\_\+api.\+h}!get\+\_\+left\+\_\+\+T\+OF@{get\+\_\+left\+\_\+\+T\+OF}|hyperpage}{51}
+\indexentry{get\+\_\+left\+\_\+\+T\+OF@{get\+\_\+left\+\_\+\+T\+OF}!semi\+\_\+truck\+\_\+api.\+h@{semi\+\_\+truck\+\_\+api.\+h}|hyperpage}{51}
+\indexentry{semi\+\_\+truck\+\_\+api.\+h@{semi\+\_\+truck\+\_\+api.\+h}!get\+\_\+rear\+\_\+\+T\+OF@{get\+\_\+rear\+\_\+\+T\+OF}|hyperpage}{51}
+\indexentry{get\+\_\+rear\+\_\+\+T\+OF@{get\+\_\+rear\+\_\+\+T\+OF}!semi\+\_\+truck\+\_\+api.\+h@{semi\+\_\+truck\+\_\+api.\+h}|hyperpage}{51}
+\indexentry{semi\+\_\+truck\+\_\+api.\+h@{semi\+\_\+truck\+\_\+api.\+h}!get\+\_\+right\+\_\+\+T\+OF@{get\+\_\+right\+\_\+\+T\+OF}|hyperpage}{51}
+\indexentry{get\+\_\+right\+\_\+\+T\+OF@{get\+\_\+right\+\_\+\+T\+OF}!semi\+\_\+truck\+\_\+api.\+h@{semi\+\_\+truck\+\_\+api.\+h}|hyperpage}{51}
+\indexentry{semi\+\_\+truck\+\_\+api.\+h@{semi\+\_\+truck\+\_\+api.\+h}!get\+\_\+wheel\+\_\+speed@{get\+\_\+wheel\+\_\+speed}|hyperpage}{51}
+\indexentry{get\+\_\+wheel\+\_\+speed@{get\+\_\+wheel\+\_\+speed}!semi\+\_\+truck\+\_\+api.\+h@{semi\+\_\+truck\+\_\+api.\+h}|hyperpage}{51}
+\indexentry{semi\+\_\+truck\+\_\+api.\+h@{semi\+\_\+truck\+\_\+api.\+h}!set\+\_\+fifth\+\_\+output@{set\+\_\+fifth\+\_\+output}|hyperpage}{51}
+\indexentry{set\+\_\+fifth\+\_\+output@{set\+\_\+fifth\+\_\+output}!semi\+\_\+truck\+\_\+api.\+h@{semi\+\_\+truck\+\_\+api.\+h}|hyperpage}{51}
+\indexentry{semi\+\_\+truck\+\_\+api.\+h@{semi\+\_\+truck\+\_\+api.\+h}!set\+\_\+motor\+\_\+output@{set\+\_\+motor\+\_\+output}|hyperpage}{52}
+\indexentry{set\+\_\+motor\+\_\+output@{set\+\_\+motor\+\_\+output}!semi\+\_\+truck\+\_\+api.\+h@{semi\+\_\+truck\+\_\+api.\+h}|hyperpage}{52}
+\indexentry{semi\+\_\+truck\+\_\+api.\+h@{semi\+\_\+truck\+\_\+api.\+h}!set\+\_\+steer\+\_\+output@{set\+\_\+steer\+\_\+output}|hyperpage}{52}
+\indexentry{set\+\_\+steer\+\_\+output@{set\+\_\+steer\+\_\+output}!semi\+\_\+truck\+\_\+api.\+h@{semi\+\_\+truck\+\_\+api.\+h}|hyperpage}{52}
+\indexentry{daimtronics/semi\+\_\+catkin\+\_\+ws/src/semi\+\_\+truck/src/truck\+\_\+template\+\_\+node.\+cpp@{daimtronics/semi\+\_\+catkin\+\_\+ws/src/semi\+\_\+truck/src/truck\+\_\+template\+\_\+node.\+cpp}|hyperpage}{52}
+\indexentry{truck\+\_\+template\+\_\+node.\+cpp@{truck\+\_\+template\+\_\+node.\+cpp}!lidar\+\_\+lite\+\_\+cb@{lidar\+\_\+lite\+\_\+cb}|hyperpage}{53}
+\indexentry{lidar\+\_\+lite\+\_\+cb@{lidar\+\_\+lite\+\_\+cb}!truck\+\_\+template\+\_\+node.\+cpp@{truck\+\_\+template\+\_\+node.\+cpp}|hyperpage}{53}
+\indexentry{truck\+\_\+template\+\_\+node.\+cpp@{truck\+\_\+template\+\_\+node.\+cpp}!main@{main}|hyperpage}{53}
+\indexentry{main@{main}!truck\+\_\+template\+\_\+node.\+cpp@{truck\+\_\+template\+\_\+node.\+cpp}|hyperpage}{53}
+\indexentry{truck\+\_\+template\+\_\+node.\+cpp@{truck\+\_\+template\+\_\+node.\+cpp}!rplidar\+\_\+cb@{rplidar\+\_\+cb}|hyperpage}{53}
+\indexentry{rplidar\+\_\+cb@{rplidar\+\_\+cb}!truck\+\_\+template\+\_\+node.\+cpp@{truck\+\_\+template\+\_\+node.\+cpp}|hyperpage}{53}
+\indexentry{truck\+\_\+template\+\_\+node.\+cpp@{truck\+\_\+template\+\_\+node.\+cpp}!teensy\+\_\+sensors\+\_\+cb@{teensy\+\_\+sensors\+\_\+cb}|hyperpage}{53}
+\indexentry{teensy\+\_\+sensors\+\_\+cb@{teensy\+\_\+sensors\+\_\+cb}!truck\+\_\+template\+\_\+node.\+cpp@{truck\+\_\+template\+\_\+node.\+cpp}|hyperpage}{53}
+\indexentry{daimtronics/teensy\+\_\+chibios/src/.\+D\+S\+\_\+\+Store@{daimtronics/teensy\+\_\+chibios/src/.\+D\+S\+\_\+\+Store}|hyperpage}{53}
+\indexentry{daimtronics/teensy\+\_\+chibios/src/main/fifth\+\_\+wheel.\+cpp@{daimtronics/teensy\+\_\+chibios/src/main/fifth\+\_\+wheel.\+cpp}|hyperpage}{53}
+\indexentry{fifth\+\_\+wheel.\+cpp@{fifth\+\_\+wheel.\+cpp}!L\+O\+C\+K\+E\+D\+\_\+\+A\+N\+G\+LE@{L\+O\+C\+K\+E\+D\+\_\+\+A\+N\+G\+LE}|hyperpage}{54}
+\indexentry{L\+O\+C\+K\+E\+D\+\_\+\+A\+N\+G\+LE@{L\+O\+C\+K\+E\+D\+\_\+\+A\+N\+G\+LE}!fifth\+\_\+wheel.\+cpp@{fifth\+\_\+wheel.\+cpp}|hyperpage}{54}
+\indexentry{fifth\+\_\+wheel.\+cpp@{fifth\+\_\+wheel.\+cpp}!U\+N\+L\+O\+C\+K\+E\+D\+\_\+\+A\+N\+G\+LE@{U\+N\+L\+O\+C\+K\+E\+D\+\_\+\+A\+N\+G\+LE}|hyperpage}{54}
+\indexentry{U\+N\+L\+O\+C\+K\+E\+D\+\_\+\+A\+N\+G\+LE@{U\+N\+L\+O\+C\+K\+E\+D\+\_\+\+A\+N\+G\+LE}!fifth\+\_\+wheel.\+cpp@{fifth\+\_\+wheel.\+cpp}|hyperpage}{54}
+\indexentry{fifth\+\_\+wheel.\+cpp@{fifth\+\_\+wheel.\+cpp}!fifth\+\_\+wheel\+\_\+loop\+\_\+fn@{fifth\+\_\+wheel\+\_\+loop\+\_\+fn}|hyperpage}{54}
+\indexentry{fifth\+\_\+wheel\+\_\+loop\+\_\+fn@{fifth\+\_\+wheel\+\_\+loop\+\_\+fn}!fifth\+\_\+wheel.\+cpp@{fifth\+\_\+wheel.\+cpp}|hyperpage}{54}
+\indexentry{fifth\+\_\+wheel.\+cpp@{fifth\+\_\+wheel.\+cpp}!fifth\+\_\+wheel\+\_\+setup@{fifth\+\_\+wheel\+\_\+setup}|hyperpage}{54}
+\indexentry{fifth\+\_\+wheel\+\_\+setup@{fifth\+\_\+wheel\+\_\+setup}!fifth\+\_\+wheel.\+cpp@{fifth\+\_\+wheel.\+cpp}|hyperpage}{54}
+\indexentry{daimtronics/teensy\+\_\+chibios/src/main/hall\+\_\+sensor.\+cpp@{daimtronics/teensy\+\_\+chibios/src/main/hall\+\_\+sensor.\+cpp}|hyperpage}{55}
+\indexentry{hall\+\_\+sensor.\+cpp@{hall\+\_\+sensor.\+cpp}!hall\+\_\+sensor\+\_\+loop\+\_\+fn@{hall\+\_\+sensor\+\_\+loop\+\_\+fn}|hyperpage}{56}
+\indexentry{hall\+\_\+sensor\+\_\+loop\+\_\+fn@{hall\+\_\+sensor\+\_\+loop\+\_\+fn}!hall\+\_\+sensor.\+cpp@{hall\+\_\+sensor.\+cpp}|hyperpage}{56}
+\indexentry{hall\+\_\+sensor.\+cpp@{hall\+\_\+sensor.\+cpp}!hall\+\_\+sensor\+\_\+setup@{hall\+\_\+sensor\+\_\+setup}|hyperpage}{56}
+\indexentry{hall\+\_\+sensor\+\_\+setup@{hall\+\_\+sensor\+\_\+setup}!hall\+\_\+sensor.\+cpp@{hall\+\_\+sensor.\+cpp}|hyperpage}{56}
+\indexentry{hall\+\_\+sensor.\+cpp@{hall\+\_\+sensor.\+cpp}!ticks@{ticks}|hyperpage}{56}
+\indexentry{ticks@{ticks}!hall\+\_\+sensor.\+cpp@{hall\+\_\+sensor.\+cpp}|hyperpage}{56}
+\indexentry{daimtronics/teensy\+\_\+chibios/src/main/imu.\+cpp@{daimtronics/teensy\+\_\+chibios/src/main/imu.\+cpp}|hyperpage}{56}
+\indexentry{imu.\+cpp@{imu.\+cpp}!imu\+\_\+loop\+\_\+fn@{imu\+\_\+loop\+\_\+fn}|hyperpage}{57}
+\indexentry{imu\+\_\+loop\+\_\+fn@{imu\+\_\+loop\+\_\+fn}!imu.\+cpp@{imu.\+cpp}|hyperpage}{57}
+\indexentry{imu.\+cpp@{imu.\+cpp}!imu\+\_\+setup@{imu\+\_\+setup}|hyperpage}{57}
+\indexentry{imu\+\_\+setup@{imu\+\_\+setup}!imu.\+cpp@{imu.\+cpp}|hyperpage}{57}
+\indexentry{imu.\+cpp@{imu.\+cpp}!print\+\_\+imu\+\_\+data@{print\+\_\+imu\+\_\+data}|hyperpage}{57}
+\indexentry{print\+\_\+imu\+\_\+data@{print\+\_\+imu\+\_\+data}!imu.\+cpp@{imu.\+cpp}|hyperpage}{57}
+\indexentry{imu.\+cpp@{imu.\+cpp}!bno@{bno}|hyperpage}{57}
+\indexentry{bno@{bno}!imu.\+cpp@{imu.\+cpp}|hyperpage}{57}
+\indexentry{daimtronics/teensy\+\_\+chibios/src/main/include/fifth\+\_\+wheel.\+h@{daimtronics/teensy\+\_\+chibios/src/main/include/fifth\+\_\+wheel.\+h}|hyperpage}{58}
+\indexentry{fifth\+\_\+wheel.\+h@{fifth\+\_\+wheel.\+h}!L\+O\+C\+K\+ED@{L\+O\+C\+K\+ED}|hyperpage}{59}
+\indexentry{L\+O\+C\+K\+ED@{L\+O\+C\+K\+ED}!fifth\+\_\+wheel.\+h@{fifth\+\_\+wheel.\+h}|hyperpage}{59}
+\indexentry{fifth\+\_\+wheel.\+h@{fifth\+\_\+wheel.\+h}!U\+N\+L\+O\+C\+K\+ED@{U\+N\+L\+O\+C\+K\+ED}|hyperpage}{59}
+\indexentry{U\+N\+L\+O\+C\+K\+ED@{U\+N\+L\+O\+C\+K\+ED}!fifth\+\_\+wheel.\+h@{fifth\+\_\+wheel.\+h}|hyperpage}{59}
+\indexentry{fifth\+\_\+wheel.\+h@{fifth\+\_\+wheel.\+h}!fifth\+\_\+wheel\+\_\+loop\+\_\+fn@{fifth\+\_\+wheel\+\_\+loop\+\_\+fn}|hyperpage}{59}
+\indexentry{fifth\+\_\+wheel\+\_\+loop\+\_\+fn@{fifth\+\_\+wheel\+\_\+loop\+\_\+fn}!fifth\+\_\+wheel.\+h@{fifth\+\_\+wheel.\+h}|hyperpage}{59}
+\indexentry{fifth\+\_\+wheel.\+h@{fifth\+\_\+wheel.\+h}!fifth\+\_\+wheel\+\_\+setup@{fifth\+\_\+wheel\+\_\+setup}|hyperpage}{59}
+\indexentry{fifth\+\_\+wheel\+\_\+setup@{fifth\+\_\+wheel\+\_\+setup}!fifth\+\_\+wheel.\+h@{fifth\+\_\+wheel.\+h}|hyperpage}{59}
+\indexentry{daimtronics/teensy\+\_\+chibios/src/main/include/hall\+\_\+sensor.\+h@{daimtronics/teensy\+\_\+chibios/src/main/include/hall\+\_\+sensor.\+h}|hyperpage}{59}
+\indexentry{hall\+\_\+sensor.\+h@{hall\+\_\+sensor.\+h}!hall\+\_\+sensor\+\_\+loop\+\_\+fn@{hall\+\_\+sensor\+\_\+loop\+\_\+fn}|hyperpage}{60}
+\indexentry{hall\+\_\+sensor\+\_\+loop\+\_\+fn@{hall\+\_\+sensor\+\_\+loop\+\_\+fn}!hall\+\_\+sensor.\+h@{hall\+\_\+sensor.\+h}|hyperpage}{60}
+\indexentry{hall\+\_\+sensor.\+h@{hall\+\_\+sensor.\+h}!hall\+\_\+sensor\+\_\+setup@{hall\+\_\+sensor\+\_\+setup}|hyperpage}{60}
+\indexentry{hall\+\_\+sensor\+\_\+setup@{hall\+\_\+sensor\+\_\+setup}!hall\+\_\+sensor.\+h@{hall\+\_\+sensor.\+h}|hyperpage}{60}
+\indexentry{daimtronics/teensy\+\_\+chibios/src/main/include/imu.\+h@{daimtronics/teensy\+\_\+chibios/src/main/include/imu.\+h}|hyperpage}{61}
+\indexentry{imu.\+h@{imu.\+h}!imu\+\_\+loop\+\_\+fn@{imu\+\_\+loop\+\_\+fn}|hyperpage}{62}
+\indexentry{imu\+\_\+loop\+\_\+fn@{imu\+\_\+loop\+\_\+fn}!imu.\+h@{imu.\+h}|hyperpage}{62}
+\indexentry{imu.\+h@{imu.\+h}!imu\+\_\+setup@{imu\+\_\+setup}|hyperpage}{62}
+\indexentry{imu\+\_\+setup@{imu\+\_\+setup}!imu.\+h@{imu.\+h}|hyperpage}{62}
+\indexentry{imu.\+h@{imu.\+h}!print\+\_\+imu\+\_\+data@{print\+\_\+imu\+\_\+data}|hyperpage}{62}
+\indexentry{print\+\_\+imu\+\_\+data@{print\+\_\+imu\+\_\+data}!imu.\+h@{imu.\+h}|hyperpage}{62}
+\indexentry{daimtronics/teensy\+\_\+chibios/src/main/include/motor\+\_\+driver.\+h@{daimtronics/teensy\+\_\+chibios/src/main/include/motor\+\_\+driver.\+h}|hyperpage}{62}
+\indexentry{motor\+\_\+driver.\+h@{motor\+\_\+driver.\+h}!motor\+\_\+driver\+\_\+loop\+\_\+fn@{motor\+\_\+driver\+\_\+loop\+\_\+fn}|hyperpage}{63}
+\indexentry{motor\+\_\+driver\+\_\+loop\+\_\+fn@{motor\+\_\+driver\+\_\+loop\+\_\+fn}!motor\+\_\+driver.\+h@{motor\+\_\+driver.\+h}|hyperpage}{63}
+\indexentry{motor\+\_\+driver.\+h@{motor\+\_\+driver.\+h}!motor\+\_\+driver\+\_\+setup@{motor\+\_\+driver\+\_\+setup}|hyperpage}{63}
+\indexentry{motor\+\_\+driver\+\_\+setup@{motor\+\_\+driver\+\_\+setup}!motor\+\_\+driver.\+h@{motor\+\_\+driver.\+h}|hyperpage}{63}
+\indexentry{motor\+\_\+driver.\+h@{motor\+\_\+driver.\+h}!scale\+\_\+output@{scale\+\_\+output}|hyperpage}{64}
+\indexentry{scale\+\_\+output@{scale\+\_\+output}!motor\+\_\+driver.\+h@{motor\+\_\+driver.\+h}|hyperpage}{64}
+\indexentry{motor\+\_\+driver.\+h@{motor\+\_\+driver.\+h}!stop\+\_\+motor@{stop\+\_\+motor}|hyperpage}{64}
+\indexentry{stop\+\_\+motor@{stop\+\_\+motor}!motor\+\_\+driver.\+h@{motor\+\_\+driver.\+h}|hyperpage}{64}
+\indexentry{daimtronics/teensy\+\_\+chibios/src/main/include/range\+\_\+finder.\+h@{daimtronics/teensy\+\_\+chibios/src/main/include/range\+\_\+finder.\+h}|hyperpage}{64}
+\indexentry{range\+\_\+finder.\+h@{range\+\_\+finder.\+h}!range\+\_\+finder\+\_\+loop\+\_\+fn@{range\+\_\+finder\+\_\+loop\+\_\+fn}|hyperpage}{65}
+\indexentry{range\+\_\+finder\+\_\+loop\+\_\+fn@{range\+\_\+finder\+\_\+loop\+\_\+fn}!range\+\_\+finder.\+h@{range\+\_\+finder.\+h}|hyperpage}{65}
+\indexentry{range\+\_\+finder.\+h@{range\+\_\+finder.\+h}!range\+\_\+finder\+\_\+ping@{range\+\_\+finder\+\_\+ping}|hyperpage}{65}
+\indexentry{range\+\_\+finder\+\_\+ping@{range\+\_\+finder\+\_\+ping}!range\+\_\+finder.\+h@{range\+\_\+finder.\+h}|hyperpage}{65}
+\indexentry{range\+\_\+finder.\+h@{range\+\_\+finder.\+h}!range\+\_\+finder\+\_\+setup@{range\+\_\+finder\+\_\+setup}|hyperpage}{66}
+\indexentry{range\+\_\+finder\+\_\+setup@{range\+\_\+finder\+\_\+setup}!range\+\_\+finder.\+h@{range\+\_\+finder.\+h}|hyperpage}{66}
+\indexentry{daimtronics/teensy\+\_\+chibios/src/main/include/\+R\+C\+\_\+receiver.\+h@{daimtronics/teensy\+\_\+chibios/src/main/include/\+R\+C\+\_\+receiver.\+h}|hyperpage}{66}
+\indexentry{R\+C\+\_\+receiver.\+h@{R\+C\+\_\+receiver.\+h}!R\+C\+\_\+receiver\+\_\+setup@{R\+C\+\_\+receiver\+\_\+setup}|hyperpage}{67}
+\indexentry{R\+C\+\_\+receiver\+\_\+setup@{R\+C\+\_\+receiver\+\_\+setup}!R\+C\+\_\+receiver.\+h@{R\+C\+\_\+receiver.\+h}|hyperpage}{67}
+\indexentry{R\+C\+\_\+receiver.\+h@{R\+C\+\_\+receiver.\+h}!R\+C\+\_\+receiver\+\_\+\+S\+W1\+\_\+fn@{R\+C\+\_\+receiver\+\_\+\+S\+W1\+\_\+fn}|hyperpage}{67}
+\indexentry{R\+C\+\_\+receiver\+\_\+\+S\+W1\+\_\+fn@{R\+C\+\_\+receiver\+\_\+\+S\+W1\+\_\+fn}!R\+C\+\_\+receiver.\+h@{R\+C\+\_\+receiver.\+h}|hyperpage}{67}
+\indexentry{R\+C\+\_\+receiver.\+h@{R\+C\+\_\+receiver.\+h}!R\+C\+\_\+receiver\+\_\+\+S\+W2\+\_\+fn@{R\+C\+\_\+receiver\+\_\+\+S\+W2\+\_\+fn}|hyperpage}{67}
+\indexentry{R\+C\+\_\+receiver\+\_\+\+S\+W2\+\_\+fn@{R\+C\+\_\+receiver\+\_\+\+S\+W2\+\_\+fn}!R\+C\+\_\+receiver.\+h@{R\+C\+\_\+receiver.\+h}|hyperpage}{67}
+\indexentry{R\+C\+\_\+receiver.\+h@{R\+C\+\_\+receiver.\+h}!R\+C\+\_\+receiver\+\_\+\+S\+W3\+\_\+fn@{R\+C\+\_\+receiver\+\_\+\+S\+W3\+\_\+fn}|hyperpage}{67}
+\indexentry{R\+C\+\_\+receiver\+\_\+\+S\+W3\+\_\+fn@{R\+C\+\_\+receiver\+\_\+\+S\+W3\+\_\+fn}!R\+C\+\_\+receiver.\+h@{R\+C\+\_\+receiver.\+h}|hyperpage}{67}
+\indexentry{daimtronics/teensy\+\_\+chibios/src/main/include/steer\+\_\+servo.\+h@{daimtronics/teensy\+\_\+chibios/src/main/include/steer\+\_\+servo.\+h}|hyperpage}{67}
+\indexentry{steer\+\_\+servo.\+h@{steer\+\_\+servo.\+h}!steer\+\_\+servo\+\_\+loop\+\_\+fn@{steer\+\_\+servo\+\_\+loop\+\_\+fn}|hyperpage}{68}
+\indexentry{steer\+\_\+servo\+\_\+loop\+\_\+fn@{steer\+\_\+servo\+\_\+loop\+\_\+fn}!steer\+\_\+servo.\+h@{steer\+\_\+servo.\+h}|hyperpage}{68}
+\indexentry{steer\+\_\+servo.\+h@{steer\+\_\+servo.\+h}!steer\+\_\+servo\+\_\+setup@{steer\+\_\+servo\+\_\+setup}|hyperpage}{68}
+\indexentry{steer\+\_\+servo\+\_\+setup@{steer\+\_\+servo\+\_\+setup}!steer\+\_\+servo.\+h@{steer\+\_\+servo.\+h}|hyperpage}{68}
+\indexentry{daimtronics/teensy\+\_\+chibios/src/main/include/tca\+\_\+selector.\+h@{daimtronics/teensy\+\_\+chibios/src/main/include/tca\+\_\+selector.\+h}|hyperpage}{69}
+\indexentry{tca\+\_\+selector.\+h@{tca\+\_\+selector.\+h}!tcaselect@{tcaselect}|hyperpage}{69}
+\indexentry{tcaselect@{tcaselect}!tca\+\_\+selector.\+h@{tca\+\_\+selector.\+h}|hyperpage}{69}
+\indexentry{daimtronics/teensy\+\_\+chibios/src/main/include/teensy\+\_\+serial.\+h@{daimtronics/teensy\+\_\+chibios/src/main/include/teensy\+\_\+serial.\+h}|hyperpage}{69}
+\indexentry{teensy\+\_\+serial.\+h@{teensy\+\_\+serial.\+h}!H\+W\+S\+E\+R\+I\+AL@{H\+W\+S\+E\+R\+I\+AL}|hyperpage}{70}
+\indexentry{H\+W\+S\+E\+R\+I\+AL@{H\+W\+S\+E\+R\+I\+AL}!teensy\+\_\+serial.\+h@{teensy\+\_\+serial.\+h}|hyperpage}{70}
+\indexentry{teensy\+\_\+serial.\+h@{teensy\+\_\+serial.\+h}!clear\+\_\+buffer@{clear\+\_\+buffer}|hyperpage}{70}
+\indexentry{clear\+\_\+buffer@{clear\+\_\+buffer}!teensy\+\_\+serial.\+h@{teensy\+\_\+serial.\+h}|hyperpage}{70}
+\indexentry{teensy\+\_\+serial.\+h@{teensy\+\_\+serial.\+h}!print\+\_\+actuator\+\_\+msg@{print\+\_\+actuator\+\_\+msg}|hyperpage}{70}
+\indexentry{print\+\_\+actuator\+\_\+msg@{print\+\_\+actuator\+\_\+msg}!teensy\+\_\+serial.\+h@{teensy\+\_\+serial.\+h}|hyperpage}{70}
+\indexentry{teensy\+\_\+serial.\+h@{teensy\+\_\+serial.\+h}!print\+\_\+sensor\+\_\+msg@{print\+\_\+sensor\+\_\+msg}|hyperpage}{71}
+\indexentry{print\+\_\+sensor\+\_\+msg@{print\+\_\+sensor\+\_\+msg}!teensy\+\_\+serial.\+h@{teensy\+\_\+serial.\+h}|hyperpage}{71}
+\indexentry{teensy\+\_\+serial.\+h@{teensy\+\_\+serial.\+h}!read\+\_\+from\+\_\+pi@{read\+\_\+from\+\_\+pi}|hyperpage}{71}
+\indexentry{read\+\_\+from\+\_\+pi@{read\+\_\+from\+\_\+pi}!teensy\+\_\+serial.\+h@{teensy\+\_\+serial.\+h}|hyperpage}{71}
+\indexentry{teensy\+\_\+serial.\+h@{teensy\+\_\+serial.\+h}!set\+\_\+sensor\+\_\+msg@{set\+\_\+sensor\+\_\+msg}|hyperpage}{71}
+\indexentry{set\+\_\+sensor\+\_\+msg@{set\+\_\+sensor\+\_\+msg}!teensy\+\_\+serial.\+h@{teensy\+\_\+serial.\+h}|hyperpage}{71}
+\indexentry{teensy\+\_\+serial.\+h@{teensy\+\_\+serial.\+h}!teensy\+\_\+serial\+\_\+loop\+\_\+fn@{teensy\+\_\+serial\+\_\+loop\+\_\+fn}|hyperpage}{71}
+\indexentry{teensy\+\_\+serial\+\_\+loop\+\_\+fn@{teensy\+\_\+serial\+\_\+loop\+\_\+fn}!teensy\+\_\+serial.\+h@{teensy\+\_\+serial.\+h}|hyperpage}{71}
+\indexentry{teensy\+\_\+serial.\+h@{teensy\+\_\+serial.\+h}!teensy\+\_\+serial\+\_\+setup@{teensy\+\_\+serial\+\_\+setup}|hyperpage}{71}
+\indexentry{teensy\+\_\+serial\+\_\+setup@{teensy\+\_\+serial\+\_\+setup}!teensy\+\_\+serial.\+h@{teensy\+\_\+serial.\+h}|hyperpage}{71}
+\indexentry{teensy\+\_\+serial.\+h@{teensy\+\_\+serial.\+h}!teensy\+\_\+sync@{teensy\+\_\+sync}|hyperpage}{71}
+\indexentry{teensy\+\_\+sync@{teensy\+\_\+sync}!teensy\+\_\+serial.\+h@{teensy\+\_\+serial.\+h}|hyperpage}{71}
+\indexentry{daimtronics/teensy\+\_\+chibios/src/main/include/tof\+\_\+lidar.\+h@{daimtronics/teensy\+\_\+chibios/src/main/include/tof\+\_\+lidar.\+h}|hyperpage}{71}
+\indexentry{tof\+\_\+lidar.\+h@{tof\+\_\+lidar.\+h}!tof\+\_\+lidar\+\_\+setup@{tof\+\_\+lidar\+\_\+setup}|hyperpage}{72}
+\indexentry{tof\+\_\+lidar\+\_\+setup@{tof\+\_\+lidar\+\_\+setup}!tof\+\_\+lidar.\+h@{tof\+\_\+lidar.\+h}|hyperpage}{72}
+\indexentry{tof\+\_\+lidar.\+h@{tof\+\_\+lidar.\+h}!tof\+\_\+loop\+\_\+fn@{tof\+\_\+loop\+\_\+fn}|hyperpage}{72}
+\indexentry{tof\+\_\+loop\+\_\+fn@{tof\+\_\+loop\+\_\+fn}!tof\+\_\+lidar.\+h@{tof\+\_\+lidar.\+h}|hyperpage}{72}
+\indexentry{daimtronics/teensy\+\_\+chibios/src/main/include/wheel\+\_\+speed.\+h@{daimtronics/teensy\+\_\+chibios/src/main/include/wheel\+\_\+speed.\+h}|hyperpage}{73}
+\indexentry{wheel\+\_\+speed.\+h@{wheel\+\_\+speed.\+h}!wheel\+\_\+speed\+\_\+loop\+\_\+fn@{wheel\+\_\+speed\+\_\+loop\+\_\+fn}|hyperpage}{73}
+\indexentry{wheel\+\_\+speed\+\_\+loop\+\_\+fn@{wheel\+\_\+speed\+\_\+loop\+\_\+fn}!wheel\+\_\+speed.\+h@{wheel\+\_\+speed.\+h}|hyperpage}{73}
+\indexentry{wheel\+\_\+speed.\+h@{wheel\+\_\+speed.\+h}!wheel\+\_\+speed\+\_\+setup@{wheel\+\_\+speed\+\_\+setup}|hyperpage}{74}
+\indexentry{wheel\+\_\+speed\+\_\+setup@{wheel\+\_\+speed\+\_\+setup}!wheel\+\_\+speed.\+h@{wheel\+\_\+speed.\+h}|hyperpage}{74}
+\indexentry{daimtronics/teensy\+\_\+chibios/src/main/main.\+ino@{daimtronics/teensy\+\_\+chibios/src/main/main.\+ino}|hyperpage}{74}
+\indexentry{daimtronics/teensy\+\_\+chibios/src/main/motor\+\_\+driver.\+cpp@{daimtronics/teensy\+\_\+chibios/src/main/motor\+\_\+driver.\+cpp}|hyperpage}{74}
+\indexentry{motor\+\_\+driver.\+cpp@{motor\+\_\+driver.\+cpp}!F\+O\+R\+W\+A\+R\+DS@{F\+O\+R\+W\+A\+R\+DS}|hyperpage}{75}
+\indexentry{F\+O\+R\+W\+A\+R\+DS@{F\+O\+R\+W\+A\+R\+DS}!motor\+\_\+driver.\+cpp@{motor\+\_\+driver.\+cpp}|hyperpage}{75}
+\indexentry{motor\+\_\+driver.\+cpp@{motor\+\_\+driver.\+cpp}!F\+U\+L\+L\+\_\+\+F\+O\+R\+W\+A\+RD@{F\+U\+L\+L\+\_\+\+F\+O\+R\+W\+A\+RD}|hyperpage}{75}
+\indexentry{F\+U\+L\+L\+\_\+\+F\+O\+R\+W\+A\+RD@{F\+U\+L\+L\+\_\+\+F\+O\+R\+W\+A\+RD}!motor\+\_\+driver.\+cpp@{motor\+\_\+driver.\+cpp}|hyperpage}{75}
+\indexentry{motor\+\_\+driver.\+cpp@{motor\+\_\+driver.\+cpp}!F\+U\+L\+L\+\_\+\+R\+E\+V\+E\+R\+SE@{F\+U\+L\+L\+\_\+\+R\+E\+V\+E\+R\+SE}|hyperpage}{75}
+\indexentry{F\+U\+L\+L\+\_\+\+R\+E\+V\+E\+R\+SE@{F\+U\+L\+L\+\_\+\+R\+E\+V\+E\+R\+SE}!motor\+\_\+driver.\+cpp@{motor\+\_\+driver.\+cpp}|hyperpage}{75}
+\indexentry{motor\+\_\+driver.\+cpp@{motor\+\_\+driver.\+cpp}!I\+N\+I\+T\+\_\+\+V\+A\+L\+UE@{I\+N\+I\+T\+\_\+\+V\+A\+L\+UE}|hyperpage}{75}
+\indexentry{I\+N\+I\+T\+\_\+\+V\+A\+L\+UE@{I\+N\+I\+T\+\_\+\+V\+A\+L\+UE}!motor\+\_\+driver.\+cpp@{motor\+\_\+driver.\+cpp}|hyperpage}{75}
+\indexentry{motor\+\_\+driver.\+cpp@{motor\+\_\+driver.\+cpp}!KI@{KI}|hyperpage}{75}
+\indexentry{KI@{KI}!motor\+\_\+driver.\+cpp@{motor\+\_\+driver.\+cpp}|hyperpage}{75}
+\indexentry{motor\+\_\+driver.\+cpp@{motor\+\_\+driver.\+cpp}!KP@{KP}|hyperpage}{75}
+\indexentry{KP@{KP}!motor\+\_\+driver.\+cpp@{motor\+\_\+driver.\+cpp}|hyperpage}{75}
+\indexentry{motor\+\_\+driver.\+cpp@{motor\+\_\+driver.\+cpp}!M\+A\+X\+\_\+\+T\+I\+M\+E\+\_\+\+S\+T\+EP@{M\+A\+X\+\_\+\+T\+I\+M\+E\+\_\+\+S\+T\+EP}|hyperpage}{75}
+\indexentry{M\+A\+X\+\_\+\+T\+I\+M\+E\+\_\+\+S\+T\+EP@{M\+A\+X\+\_\+\+T\+I\+M\+E\+\_\+\+S\+T\+EP}!motor\+\_\+driver.\+cpp@{motor\+\_\+driver.\+cpp}|hyperpage}{75}
+\indexentry{motor\+\_\+driver.\+cpp@{motor\+\_\+driver.\+cpp}!M\+O\+T\+O\+R\+\_\+\+R\+A\+N\+GE@{M\+O\+T\+O\+R\+\_\+\+R\+A\+N\+GE}|hyperpage}{75}
+\indexentry{M\+O\+T\+O\+R\+\_\+\+R\+A\+N\+GE@{M\+O\+T\+O\+R\+\_\+\+R\+A\+N\+GE}!motor\+\_\+driver.\+cpp@{motor\+\_\+driver.\+cpp}|hyperpage}{75}
+\indexentry{motor\+\_\+driver.\+cpp@{motor\+\_\+driver.\+cpp}!M\+O\+T\+O\+R\+\_\+\+S\+T\+OP@{M\+O\+T\+O\+R\+\_\+\+S\+T\+OP}|hyperpage}{75}
+\indexentry{M\+O\+T\+O\+R\+\_\+\+S\+T\+OP@{M\+O\+T\+O\+R\+\_\+\+S\+T\+OP}!motor\+\_\+driver.\+cpp@{motor\+\_\+driver.\+cpp}|hyperpage}{75}
+\indexentry{motor\+\_\+driver.\+cpp@{motor\+\_\+driver.\+cpp}!S\+A\+T\+\_\+\+E\+R\+R\+OR@{S\+A\+T\+\_\+\+E\+R\+R\+OR}|hyperpage}{75}
+\indexentry{S\+A\+T\+\_\+\+E\+R\+R\+OR@{S\+A\+T\+\_\+\+E\+R\+R\+OR}!motor\+\_\+driver.\+cpp@{motor\+\_\+driver.\+cpp}|hyperpage}{75}
+\indexentry{motor\+\_\+driver.\+cpp@{motor\+\_\+driver.\+cpp}!W\+H\+E\+E\+L\+\_\+\+S\+P\+E\+E\+D\+\_\+\+R\+A\+N\+GE@{W\+H\+E\+E\+L\+\_\+\+S\+P\+E\+E\+D\+\_\+\+R\+A\+N\+GE}|hyperpage}{75}
+\indexentry{W\+H\+E\+E\+L\+\_\+\+S\+P\+E\+E\+D\+\_\+\+R\+A\+N\+GE@{W\+H\+E\+E\+L\+\_\+\+S\+P\+E\+E\+D\+\_\+\+R\+A\+N\+GE}!motor\+\_\+driver.\+cpp@{motor\+\_\+driver.\+cpp}|hyperpage}{75}
+\indexentry{motor\+\_\+driver.\+cpp@{motor\+\_\+driver.\+cpp}!W\+H\+E\+E\+L\+\_\+\+S\+P\+E\+E\+D\+\_\+\+S\+T\+OP@{W\+H\+E\+E\+L\+\_\+\+S\+P\+E\+E\+D\+\_\+\+S\+T\+OP}|hyperpage}{75}
+\indexentry{W\+H\+E\+E\+L\+\_\+\+S\+P\+E\+E\+D\+\_\+\+S\+T\+OP@{W\+H\+E\+E\+L\+\_\+\+S\+P\+E\+E\+D\+\_\+\+S\+T\+OP}!motor\+\_\+driver.\+cpp@{motor\+\_\+driver.\+cpp}|hyperpage}{75}
+\indexentry{motor\+\_\+driver.\+cpp@{motor\+\_\+driver.\+cpp}!motor\+\_\+driver\+\_\+loop\+\_\+fn@{motor\+\_\+driver\+\_\+loop\+\_\+fn}|hyperpage}{75}
+\indexentry{motor\+\_\+driver\+\_\+loop\+\_\+fn@{motor\+\_\+driver\+\_\+loop\+\_\+fn}!motor\+\_\+driver.\+cpp@{motor\+\_\+driver.\+cpp}|hyperpage}{75}
+\indexentry{motor\+\_\+driver.\+cpp@{motor\+\_\+driver.\+cpp}!motor\+\_\+driver\+\_\+setup@{motor\+\_\+driver\+\_\+setup}|hyperpage}{76}
+\indexentry{motor\+\_\+driver\+\_\+setup@{motor\+\_\+driver\+\_\+setup}!motor\+\_\+driver.\+cpp@{motor\+\_\+driver.\+cpp}|hyperpage}{76}
+\indexentry{motor\+\_\+driver.\+cpp@{motor\+\_\+driver.\+cpp}!scale\+\_\+output@{scale\+\_\+output}|hyperpage}{76}
+\indexentry{scale\+\_\+output@{scale\+\_\+output}!motor\+\_\+driver.\+cpp@{motor\+\_\+driver.\+cpp}|hyperpage}{76}
+\indexentry{motor\+\_\+driver.\+cpp@{motor\+\_\+driver.\+cpp}!stop\+\_\+motor@{stop\+\_\+motor}|hyperpage}{76}
+\indexentry{stop\+\_\+motor@{stop\+\_\+motor}!motor\+\_\+driver.\+cpp@{motor\+\_\+driver.\+cpp}|hyperpage}{76}
+\indexentry{daimtronics/teensy\+\_\+chibios/src/main/range\+\_\+finder.\+cpp@{daimtronics/teensy\+\_\+chibios/src/main/range\+\_\+finder.\+cpp}|hyperpage}{76}
+\indexentry{range\+\_\+finder.\+cpp@{range\+\_\+finder.\+cpp}!range\+\_\+finder\+\_\+loop\+\_\+fn@{range\+\_\+finder\+\_\+loop\+\_\+fn}|hyperpage}{77}
+\indexentry{range\+\_\+finder\+\_\+loop\+\_\+fn@{range\+\_\+finder\+\_\+loop\+\_\+fn}!range\+\_\+finder.\+cpp@{range\+\_\+finder.\+cpp}|hyperpage}{77}
+\indexentry{range\+\_\+finder.\+cpp@{range\+\_\+finder.\+cpp}!range\+\_\+finder\+\_\+ping@{range\+\_\+finder\+\_\+ping}|hyperpage}{77}
+\indexentry{range\+\_\+finder\+\_\+ping@{range\+\_\+finder\+\_\+ping}!range\+\_\+finder.\+cpp@{range\+\_\+finder.\+cpp}|hyperpage}{77}
+\indexentry{range\+\_\+finder.\+cpp@{range\+\_\+finder.\+cpp}!range\+\_\+finder\+\_\+setup@{range\+\_\+finder\+\_\+setup}|hyperpage}{78}
+\indexentry{range\+\_\+finder\+\_\+setup@{range\+\_\+finder\+\_\+setup}!range\+\_\+finder.\+cpp@{range\+\_\+finder.\+cpp}|hyperpage}{78}
+\indexentry{range\+\_\+finder.\+cpp@{range\+\_\+finder.\+cpp}!distance@{distance}|hyperpage}{78}
+\indexentry{distance@{distance}!range\+\_\+finder.\+cpp@{range\+\_\+finder.\+cpp}|hyperpage}{78}
+\indexentry{range\+\_\+finder.\+cpp@{range\+\_\+finder.\+cpp}!high\+\_\+time@{high\+\_\+time}|hyperpage}{78}
+\indexentry{high\+\_\+time@{high\+\_\+time}!range\+\_\+finder.\+cpp@{range\+\_\+finder.\+cpp}|hyperpage}{78}
+\indexentry{range\+\_\+finder.\+cpp@{range\+\_\+finder.\+cpp}!time@{time}|hyperpage}{78}
+\indexentry{time@{time}!range\+\_\+finder.\+cpp@{range\+\_\+finder.\+cpp}|hyperpage}{78}
+\indexentry{range\+\_\+finder.\+cpp@{range\+\_\+finder.\+cpp}!val@{val}|hyperpage}{78}
+\indexentry{val@{val}!range\+\_\+finder.\+cpp@{range\+\_\+finder.\+cpp}|hyperpage}{78}
+\indexentry{daimtronics/teensy\+\_\+chibios/src/main/\+R\+C\+\_\+receiver.\+cpp@{daimtronics/teensy\+\_\+chibios/src/main/\+R\+C\+\_\+receiver.\+cpp}|hyperpage}{78}
+\indexentry{R\+C\+\_\+receiver.\+cpp@{R\+C\+\_\+receiver.\+cpp}!R\+C\+\_\+receiver\+\_\+setup@{R\+C\+\_\+receiver\+\_\+setup}|hyperpage}{79}
+\indexentry{R\+C\+\_\+receiver\+\_\+setup@{R\+C\+\_\+receiver\+\_\+setup}!R\+C\+\_\+receiver.\+cpp@{R\+C\+\_\+receiver.\+cpp}|hyperpage}{79}
+\indexentry{R\+C\+\_\+receiver.\+cpp@{R\+C\+\_\+receiver.\+cpp}!R\+C\+\_\+receiver\+\_\+\+S\+W1\+\_\+fn@{R\+C\+\_\+receiver\+\_\+\+S\+W1\+\_\+fn}|hyperpage}{79}
+\indexentry{R\+C\+\_\+receiver\+\_\+\+S\+W1\+\_\+fn@{R\+C\+\_\+receiver\+\_\+\+S\+W1\+\_\+fn}!R\+C\+\_\+receiver.\+cpp@{R\+C\+\_\+receiver.\+cpp}|hyperpage}{79}
+\indexentry{R\+C\+\_\+receiver.\+cpp@{R\+C\+\_\+receiver.\+cpp}!R\+C\+\_\+receiver\+\_\+\+S\+W3\+\_\+fn@{R\+C\+\_\+receiver\+\_\+\+S\+W3\+\_\+fn}|hyperpage}{79}
+\indexentry{R\+C\+\_\+receiver\+\_\+\+S\+W3\+\_\+fn@{R\+C\+\_\+receiver\+\_\+\+S\+W3\+\_\+fn}!R\+C\+\_\+receiver.\+cpp@{R\+C\+\_\+receiver.\+cpp}|hyperpage}{79}
+\indexentry{R\+C\+\_\+receiver.\+cpp@{R\+C\+\_\+receiver.\+cpp}!S\+W1\+\_\+high\+\_\+time@{S\+W1\+\_\+high\+\_\+time}|hyperpage}{79}
+\indexentry{S\+W1\+\_\+high\+\_\+time@{S\+W1\+\_\+high\+\_\+time}!R\+C\+\_\+receiver.\+cpp@{R\+C\+\_\+receiver.\+cpp}|hyperpage}{79}
+\indexentry{R\+C\+\_\+receiver.\+cpp@{R\+C\+\_\+receiver.\+cpp}!S\+W1\+\_\+mode@{S\+W1\+\_\+mode}|hyperpage}{79}
+\indexentry{S\+W1\+\_\+mode@{S\+W1\+\_\+mode}!R\+C\+\_\+receiver.\+cpp@{R\+C\+\_\+receiver.\+cpp}|hyperpage}{79}
+\indexentry{R\+C\+\_\+receiver.\+cpp@{R\+C\+\_\+receiver.\+cpp}!S\+W1\+\_\+time@{S\+W1\+\_\+time}|hyperpage}{79}
+\indexentry{S\+W1\+\_\+time@{S\+W1\+\_\+time}!R\+C\+\_\+receiver.\+cpp@{R\+C\+\_\+receiver.\+cpp}|hyperpage}{79}
+\indexentry{R\+C\+\_\+receiver.\+cpp@{R\+C\+\_\+receiver.\+cpp}!S\+W3\+\_\+high\+\_\+time@{S\+W3\+\_\+high\+\_\+time}|hyperpage}{79}
+\indexentry{S\+W3\+\_\+high\+\_\+time@{S\+W3\+\_\+high\+\_\+time}!R\+C\+\_\+receiver.\+cpp@{R\+C\+\_\+receiver.\+cpp}|hyperpage}{79}
+\indexentry{R\+C\+\_\+receiver.\+cpp@{R\+C\+\_\+receiver.\+cpp}!S\+W3\+\_\+mode@{S\+W3\+\_\+mode}|hyperpage}{79}
+\indexentry{S\+W3\+\_\+mode@{S\+W3\+\_\+mode}!R\+C\+\_\+receiver.\+cpp@{R\+C\+\_\+receiver.\+cpp}|hyperpage}{79}
+\indexentry{R\+C\+\_\+receiver.\+cpp@{R\+C\+\_\+receiver.\+cpp}!S\+W3\+\_\+time@{S\+W3\+\_\+time}|hyperpage}{79}
+\indexentry{S\+W3\+\_\+time@{S\+W3\+\_\+time}!R\+C\+\_\+receiver.\+cpp@{R\+C\+\_\+receiver.\+cpp}|hyperpage}{79}
+\indexentry{daimtronics/teensy\+\_\+chibios/src/main/steer\+\_\+servo.\+cpp@{daimtronics/teensy\+\_\+chibios/src/main/steer\+\_\+servo.\+cpp}|hyperpage}{80}
+\indexentry{steer\+\_\+servo.\+cpp@{steer\+\_\+servo.\+cpp}!M\+A\+X\+\_\+\+A\+N\+G\+LE@{M\+A\+X\+\_\+\+A\+N\+G\+LE}|hyperpage}{80}
+\indexentry{M\+A\+X\+\_\+\+A\+N\+G\+LE@{M\+A\+X\+\_\+\+A\+N\+G\+LE}!steer\+\_\+servo.\+cpp@{steer\+\_\+servo.\+cpp}|hyperpage}{80}
+\indexentry{steer\+\_\+servo.\+cpp@{steer\+\_\+servo.\+cpp}!M\+I\+N\+\_\+\+A\+N\+G\+LE@{M\+I\+N\+\_\+\+A\+N\+G\+LE}|hyperpage}{80}
+\indexentry{M\+I\+N\+\_\+\+A\+N\+G\+LE@{M\+I\+N\+\_\+\+A\+N\+G\+LE}!steer\+\_\+servo.\+cpp@{steer\+\_\+servo.\+cpp}|hyperpage}{80}
+\indexentry{steer\+\_\+servo.\+cpp@{steer\+\_\+servo.\+cpp}!S\+T\+R\+A\+I\+G\+HT@{S\+T\+R\+A\+I\+G\+HT}|hyperpage}{80}
+\indexentry{S\+T\+R\+A\+I\+G\+HT@{S\+T\+R\+A\+I\+G\+HT}!steer\+\_\+servo.\+cpp@{steer\+\_\+servo.\+cpp}|hyperpage}{80}
+\indexentry{steer\+\_\+servo.\+cpp@{steer\+\_\+servo.\+cpp}!steer\+\_\+servo\+\_\+loop\+\_\+fn@{steer\+\_\+servo\+\_\+loop\+\_\+fn}|hyperpage}{80}
+\indexentry{steer\+\_\+servo\+\_\+loop\+\_\+fn@{steer\+\_\+servo\+\_\+loop\+\_\+fn}!steer\+\_\+servo.\+cpp@{steer\+\_\+servo.\+cpp}|hyperpage}{80}
+\indexentry{steer\+\_\+servo.\+cpp@{steer\+\_\+servo.\+cpp}!steer\+\_\+servo\+\_\+setup@{steer\+\_\+servo\+\_\+setup}|hyperpage}{81}
+\indexentry{steer\+\_\+servo\+\_\+setup@{steer\+\_\+servo\+\_\+setup}!steer\+\_\+servo.\+cpp@{steer\+\_\+servo.\+cpp}|hyperpage}{81}
+\indexentry{daimtronics/teensy\+\_\+chibios/src/main/tca\+\_\+selector.\+cpp@{daimtronics/teensy\+\_\+chibios/src/main/tca\+\_\+selector.\+cpp}|hyperpage}{81}
+\indexentry{tca\+\_\+selector.\+cpp@{tca\+\_\+selector.\+cpp}!T\+C\+A\+A\+D\+DR@{T\+C\+A\+A\+D\+DR}|hyperpage}{82}
+\indexentry{T\+C\+A\+A\+D\+DR@{T\+C\+A\+A\+D\+DR}!tca\+\_\+selector.\+cpp@{tca\+\_\+selector.\+cpp}|hyperpage}{82}
+\indexentry{tca\+\_\+selector.\+cpp@{tca\+\_\+selector.\+cpp}!tcaselect@{tcaselect}|hyperpage}{82}
+\indexentry{tcaselect@{tcaselect}!tca\+\_\+selector.\+cpp@{tca\+\_\+selector.\+cpp}|hyperpage}{82}
+\indexentry{daimtronics/teensy\+\_\+chibios/src/main/teensy\+\_\+serial.\+cpp@{daimtronics/teensy\+\_\+chibios/src/main/teensy\+\_\+serial.\+cpp}|hyperpage}{82}
+\indexentry{teensy\+\_\+serial.\+cpp@{teensy\+\_\+serial.\+cpp}!A\+C\+T\+\_\+\+D\+A\+T\+A\+\_\+\+S\+I\+ZE@{A\+C\+T\+\_\+\+D\+A\+T\+A\+\_\+\+S\+I\+ZE}|hyperpage}{83}
+\indexentry{A\+C\+T\+\_\+\+D\+A\+T\+A\+\_\+\+S\+I\+ZE@{A\+C\+T\+\_\+\+D\+A\+T\+A\+\_\+\+S\+I\+ZE}!teensy\+\_\+serial.\+cpp@{teensy\+\_\+serial.\+cpp}|hyperpage}{83}
+\indexentry{teensy\+\_\+serial.\+cpp@{teensy\+\_\+serial.\+cpp}!A\+C\+T\+\_\+\+D\+A\+T\+A\+\_\+\+S\+I\+Z\+E\+\_\+\+W\+\_\+\+S\+Y\+NC@{A\+C\+T\+\_\+\+D\+A\+T\+A\+\_\+\+S\+I\+Z\+E\+\_\+\+W\+\_\+\+S\+Y\+NC}|hyperpage}{83}
+\indexentry{A\+C\+T\+\_\+\+D\+A\+T\+A\+\_\+\+S\+I\+Z\+E\+\_\+\+W\+\_\+\+S\+Y\+NC@{A\+C\+T\+\_\+\+D\+A\+T\+A\+\_\+\+S\+I\+Z\+E\+\_\+\+W\+\_\+\+S\+Y\+NC}!teensy\+\_\+serial.\+cpp@{teensy\+\_\+serial.\+cpp}|hyperpage}{83}
+\indexentry{teensy\+\_\+serial.\+cpp@{teensy\+\_\+serial.\+cpp}!R\+E\+A\+D\+\_\+\+C\+Y\+C\+L\+ES@{R\+E\+A\+D\+\_\+\+C\+Y\+C\+L\+ES}|hyperpage}{83}
+\indexentry{R\+E\+A\+D\+\_\+\+C\+Y\+C\+L\+ES@{R\+E\+A\+D\+\_\+\+C\+Y\+C\+L\+ES}!teensy\+\_\+serial.\+cpp@{teensy\+\_\+serial.\+cpp}|hyperpage}{83}
+\indexentry{teensy\+\_\+serial.\+cpp@{teensy\+\_\+serial.\+cpp}!S\+H\+O\+R\+T\+\_\+\+S\+I\+ZE@{S\+H\+O\+R\+T\+\_\+\+S\+I\+ZE}|hyperpage}{83}
+\indexentry{S\+H\+O\+R\+T\+\_\+\+S\+I\+ZE@{S\+H\+O\+R\+T\+\_\+\+S\+I\+ZE}!teensy\+\_\+serial.\+cpp@{teensy\+\_\+serial.\+cpp}|hyperpage}{83}
+\indexentry{teensy\+\_\+serial.\+cpp@{teensy\+\_\+serial.\+cpp}!S\+Y\+N\+C\+\_\+\+V\+A\+L\+UE@{S\+Y\+N\+C\+\_\+\+V\+A\+L\+UE}|hyperpage}{83}
+\indexentry{S\+Y\+N\+C\+\_\+\+V\+A\+L\+UE@{S\+Y\+N\+C\+\_\+\+V\+A\+L\+UE}!teensy\+\_\+serial.\+cpp@{teensy\+\_\+serial.\+cpp}|hyperpage}{83}
+\indexentry{teensy\+\_\+serial.\+cpp@{teensy\+\_\+serial.\+cpp}!clear\+\_\+buffer@{clear\+\_\+buffer}|hyperpage}{83}
+\indexentry{clear\+\_\+buffer@{clear\+\_\+buffer}!teensy\+\_\+serial.\+cpp@{teensy\+\_\+serial.\+cpp}|hyperpage}{83}
+\indexentry{teensy\+\_\+serial.\+cpp@{teensy\+\_\+serial.\+cpp}!print\+\_\+actuator\+\_\+msg@{print\+\_\+actuator\+\_\+msg}|hyperpage}{83}
+\indexentry{print\+\_\+actuator\+\_\+msg@{print\+\_\+actuator\+\_\+msg}!teensy\+\_\+serial.\+cpp@{teensy\+\_\+serial.\+cpp}|hyperpage}{83}
+\indexentry{teensy\+\_\+serial.\+cpp@{teensy\+\_\+serial.\+cpp}!print\+\_\+sensor\+\_\+msg@{print\+\_\+sensor\+\_\+msg}|hyperpage}{83}
+\indexentry{print\+\_\+sensor\+\_\+msg@{print\+\_\+sensor\+\_\+msg}!teensy\+\_\+serial.\+cpp@{teensy\+\_\+serial.\+cpp}|hyperpage}{83}
+\indexentry{teensy\+\_\+serial.\+cpp@{teensy\+\_\+serial.\+cpp}!read\+\_\+from\+\_\+pi@{read\+\_\+from\+\_\+pi}|hyperpage}{83}
+\indexentry{read\+\_\+from\+\_\+pi@{read\+\_\+from\+\_\+pi}!teensy\+\_\+serial.\+cpp@{teensy\+\_\+serial.\+cpp}|hyperpage}{83}
+\indexentry{teensy\+\_\+serial.\+cpp@{teensy\+\_\+serial.\+cpp}!teensy\+\_\+serial\+\_\+loop\+\_\+fn@{teensy\+\_\+serial\+\_\+loop\+\_\+fn}|hyperpage}{83}
+\indexentry{teensy\+\_\+serial\+\_\+loop\+\_\+fn@{teensy\+\_\+serial\+\_\+loop\+\_\+fn}!teensy\+\_\+serial.\+cpp@{teensy\+\_\+serial.\+cpp}|hyperpage}{83}
+\indexentry{teensy\+\_\+serial.\+cpp@{teensy\+\_\+serial.\+cpp}!teensy\+\_\+serial\+\_\+setup@{teensy\+\_\+serial\+\_\+setup}|hyperpage}{84}
+\indexentry{teensy\+\_\+serial\+\_\+setup@{teensy\+\_\+serial\+\_\+setup}!teensy\+\_\+serial.\+cpp@{teensy\+\_\+serial.\+cpp}|hyperpage}{84}
+\indexentry{teensy\+\_\+serial.\+cpp@{teensy\+\_\+serial.\+cpp}!teensy\+\_\+sync@{teensy\+\_\+sync}|hyperpage}{84}
+\indexentry{teensy\+\_\+sync@{teensy\+\_\+sync}!teensy\+\_\+serial.\+cpp@{teensy\+\_\+serial.\+cpp}|hyperpage}{84}
+\indexentry{daimtronics/teensy\+\_\+chibios/src/main/tof\+\_\+lidar.\+cpp@{daimtronics/teensy\+\_\+chibios/src/main/tof\+\_\+lidar.\+cpp}|hyperpage}{84}
+\indexentry{tof\+\_\+lidar.\+cpp@{tof\+\_\+lidar.\+cpp}!T\+C\+A\+A\+D\+DR@{T\+C\+A\+A\+D\+DR}|hyperpage}{85}
+\indexentry{T\+C\+A\+A\+D\+DR@{T\+C\+A\+A\+D\+DR}!tof\+\_\+lidar.\+cpp@{tof\+\_\+lidar.\+cpp}|hyperpage}{85}
+\indexentry{tof\+\_\+lidar.\+cpp@{tof\+\_\+lidar.\+cpp}!tcaselect@{tcaselect}|hyperpage}{85}
+\indexentry{tcaselect@{tcaselect}!tof\+\_\+lidar.\+cpp@{tof\+\_\+lidar.\+cpp}|hyperpage}{85}
+\indexentry{tof\+\_\+lidar.\+cpp@{tof\+\_\+lidar.\+cpp}!tof\+\_\+lidar\+\_\+setup@{tof\+\_\+lidar\+\_\+setup}|hyperpage}{85}
+\indexentry{tof\+\_\+lidar\+\_\+setup@{tof\+\_\+lidar\+\_\+setup}!tof\+\_\+lidar.\+cpp@{tof\+\_\+lidar.\+cpp}|hyperpage}{85}
+\indexentry{tof\+\_\+lidar.\+cpp@{tof\+\_\+lidar.\+cpp}!tof\+\_\+loop\+\_\+fn@{tof\+\_\+loop\+\_\+fn}|hyperpage}{85}
+\indexentry{tof\+\_\+loop\+\_\+fn@{tof\+\_\+loop\+\_\+fn}!tof\+\_\+lidar.\+cpp@{tof\+\_\+lidar.\+cpp}|hyperpage}{85}
+\indexentry{tof\+\_\+lidar.\+cpp@{tof\+\_\+lidar.\+cpp}!sensor1@{sensor1}|hyperpage}{85}
+\indexentry{sensor1@{sensor1}!tof\+\_\+lidar.\+cpp@{tof\+\_\+lidar.\+cpp}|hyperpage}{85}
+\indexentry{tof\+\_\+lidar.\+cpp@{tof\+\_\+lidar.\+cpp}!sensor2@{sensor2}|hyperpage}{85}
+\indexentry{sensor2@{sensor2}!tof\+\_\+lidar.\+cpp@{tof\+\_\+lidar.\+cpp}|hyperpage}{85}
+\indexentry{tof\+\_\+lidar.\+cpp@{tof\+\_\+lidar.\+cpp}!sensor3@{sensor3}|hyperpage}{86}
+\indexentry{sensor3@{sensor3}!tof\+\_\+lidar.\+cpp@{tof\+\_\+lidar.\+cpp}|hyperpage}{86}
+\indexentry{daimtronics/teensy\+\_\+chibios/src/main/wheel\+\_\+speed.\+cpp@{daimtronics/teensy\+\_\+chibios/src/main/wheel\+\_\+speed.\+cpp}|hyperpage}{86}
+\indexentry{wheel\+\_\+speed.\+cpp@{wheel\+\_\+speed.\+cpp}!M\+A\+X\+\_\+\+C\+H\+A\+N\+GE@{M\+A\+X\+\_\+\+C\+H\+A\+N\+GE}|hyperpage}{87}
+\indexentry{M\+A\+X\+\_\+\+C\+H\+A\+N\+GE@{M\+A\+X\+\_\+\+C\+H\+A\+N\+GE}!wheel\+\_\+speed.\+cpp@{wheel\+\_\+speed.\+cpp}|hyperpage}{87}
+\indexentry{wheel\+\_\+speed.\+cpp@{wheel\+\_\+speed.\+cpp}!S\+C\+A\+LE@{S\+C\+A\+LE}|hyperpage}{87}
+\indexentry{S\+C\+A\+LE@{S\+C\+A\+LE}!wheel\+\_\+speed.\+cpp@{wheel\+\_\+speed.\+cpp}|hyperpage}{87}
+\indexentry{wheel\+\_\+speed.\+cpp@{wheel\+\_\+speed.\+cpp}!wheel\+\_\+speed\+\_\+loop\+\_\+fn@{wheel\+\_\+speed\+\_\+loop\+\_\+fn}|hyperpage}{87}
+\indexentry{wheel\+\_\+speed\+\_\+loop\+\_\+fn@{wheel\+\_\+speed\+\_\+loop\+\_\+fn}!wheel\+\_\+speed.\+cpp@{wheel\+\_\+speed.\+cpp}|hyperpage}{87}
+\indexentry{wheel\+\_\+speed.\+cpp@{wheel\+\_\+speed.\+cpp}!wheel\+\_\+speed\+\_\+setup@{wheel\+\_\+speed\+\_\+setup}|hyperpage}{87}
+\indexentry{wheel\+\_\+speed\+\_\+setup@{wheel\+\_\+speed\+\_\+setup}!wheel\+\_\+speed.\+cpp@{wheel\+\_\+speed.\+cpp}|hyperpage}{87}
+\indexentry{wheel\+\_\+speed.\+cpp@{wheel\+\_\+speed.\+cpp}!prev\+\_\+ticks@{prev\+\_\+ticks}|hyperpage}{87}
+\indexentry{prev\+\_\+ticks@{prev\+\_\+ticks}!wheel\+\_\+speed.\+cpp@{wheel\+\_\+speed.\+cpp}|hyperpage}{87}
+\indexentry{wheel\+\_\+speed.\+cpp@{wheel\+\_\+speed.\+cpp}!prev\+\_\+time@{prev\+\_\+time}|hyperpage}{87}
+\indexentry{prev\+\_\+time@{prev\+\_\+time}!wheel\+\_\+speed.\+cpp@{wheel\+\_\+speed.\+cpp}|hyperpage}{87}
+\indexentry{wheel\+\_\+speed.\+cpp@{wheel\+\_\+speed.\+cpp}!speed@{speed}|hyperpage}{87}
+\indexentry{speed@{speed}!wheel\+\_\+speed.\+cpp@{wheel\+\_\+speed.\+cpp}|hyperpage}{87}

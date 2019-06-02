@@ -1,0 +1,241 @@
+\hypertarget{pi__comm__node_8cpp}{}\section{daimtronics/semi\+\_\+catkin\+\_\+ws/src/semi\+\_\+truck/src/pi\+\_\+comm\+\_\+node.cpp File Reference}
+\label{pi__comm__node_8cpp}\index{daimtronics/semi\+\_\+catkin\+\_\+ws/src/semi\+\_\+truck/src/pi\+\_\+comm\+\_\+node.\+cpp@{daimtronics/semi\+\_\+catkin\+\_\+ws/src/semi\+\_\+truck/src/pi\+\_\+comm\+\_\+node.\+cpp}}
+{\ttfamily \#include \char`\"{}pi\+\_\+comm\+\_\+node.\+h\char`\"{}}\\*
+{\ttfamily \#include \char`\"{}system\+\_\+data.\+h\char`\"{}}\\*
+{\ttfamily \#include \char`\"{}semi\+\_\+truck/\+Teensy\+\_\+\+Sensors.\+h\char`\"{}}\\*
+{\ttfamily \#include \char`\"{}semi\+\_\+truck/\+Teensy\+\_\+\+Actuators.\+h\char`\"{}}\\*
+{\ttfamily \#include $<$wiring\+Serial.\+h$>$}\\*
+{\ttfamily \#include $<$wiring\+Pi.\+h$>$}\\*
+{\ttfamily \#include $<$stdio.\+h$>$}\\*
+{\ttfamily \#include $<$unistd.\+h$>$}\\*
+{\ttfamily \#include $<$ros/ros.\+h$>$}\\*
+{\ttfamily \#include $<$sensor\+\_\+msgs/\+Laser\+Scan.\+h$>$}\\*
+Include dependency graph for pi\+\_\+comm\+\_\+node.\+cpp\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{pi__comm__node_8cpp__incl}
+\end{center}
+\end{figure}
+\subsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define \hyperlink{pi__comm__node_8cpp_adeb5281b5f526ce88376cb4b4b36572e}{S\+H\+O\+R\+T\+\_\+\+S\+I\+ZE}~2
+\item 
+\#define \hyperlink{pi__comm__node_8cpp_a86a25f62b3f5ba49be747ef1990fe00b}{R\+E\+L\+A\+Y\+\_\+\+P\+I\+N\+\_\+1}~7
+\item 
+\#define \hyperlink{pi__comm__node_8cpp_afabf4690ae765da1178317f69b6de417}{R\+E\+L\+A\+Y\+\_\+\+P\+I\+N\+\_\+2}~0
+\item 
+\#define \hyperlink{pi__comm__node_8cpp_a7e041c16acda3d982a2c6c1d0ab78fd7}{S\+Y\+N\+C\+\_\+\+V\+A\+L\+UE}~-\/32000
+\item 
+\#define \hyperlink{pi__comm__node_8cpp_a70beb8afe59e7dcd578884cdbc0e231b}{S\+E\+N\+S\+O\+R\+\_\+\+D\+A\+T\+A\+\_\+\+S\+I\+Z\+E\+\_\+\+W\+\_\+\+S\+Y\+NC}~14
+\item 
+\#define \hyperlink{pi__comm__node_8cpp_a148c44e2e5bb295e12c94b137e9717a7}{S\+E\+N\+S\+O\+R\+\_\+\+D\+A\+T\+A\+\_\+\+S\+I\+ZE}~12
+\item 
+\#define \hyperlink{pi__comm__node_8cpp_af7cb12b462b4594bd759d1b4e241ec4c}{U\+A\+RT}~\char`\"{}/dev/tty\+S0\char`\"{}
+\item 
+\#define \hyperlink{pi__comm__node_8cpp_a734bbab06e1a9fd2e5522db0221ff6e3}{B\+A\+U\+D\+R\+A\+TE}~9600
+\item 
+\#define \hyperlink{pi__comm__node_8cpp_aa77ad76fb0e0966b273db92f13af4429}{L\+O\+O\+P\+\_\+\+F\+R\+E\+Q\+U\+E\+N\+CY}~20
+\end{DoxyCompactItemize}
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+int \hyperlink{pi__comm__node_8cpp_a3c04138a5bfe5d72780bb7e82a18e627}{main} (int argc, char $\ast$$\ast$argv)
+\begin{DoxyCompactList}\small\item\em The main function for the R\+OS node to communicate with the Teensy over U\+A\+RT. It receives sensor data from the Teensy and publishes this data to the teensy\+\_\+sensor\+\_\+data topic. It also subscribes to the teensy\+\_\+actuator\+\_\+data topic and writes the values it gets to the Teensy over U\+A\+RT. \end{DoxyCompactList}\item 
+void \hyperlink{pi__comm__node_8cpp_a1c868413212badac680da7f573eb6be4}{pi\+\_\+sync} ()
+\begin{DoxyCompactList}\small\item\em Called before reading sensor data from the Teensy. It will read the buffer until it encounters the S\+Y\+N\+C\+\_\+\+V\+A\+L\+UE that has been defined. Once this happens, the next set of bytes are the set of sensor values. \end{DoxyCompactList}\item 
+short \hyperlink{pi__comm__node_8cpp_a41b126a0cd4632cb40a651336b009cf5}{read\+\_\+sensor\+\_\+msg} (int serial, char num\+\_\+bytes)
+\begin{DoxyCompactList}\small\item\em Reads a single value from the U\+A\+RT communication buffer. \end{DoxyCompactList}\item 
+void \hyperlink{pi__comm__node_8cpp_a0c5cd860a6d8f747aea77d78d2e8bb7c}{read\+\_\+from\+\_\+teensy} (int serial, \hyperlink{namespacesemi__truck_a8ffe15bf9a1e739c2242ac6d6feaa67f}{semi\+\_\+truck\+::\+Teensy\+\_\+\+Sensors} \&sensors)
+\begin{DoxyCompactList}\small\item\em Reads an entire set of Teensy sensor data by calling read\+\_\+sensor\+\_\+msg on each sensor data in the U\+A\+RT message. \end{DoxyCompactList}\item 
+void \hyperlink{pi__comm__node_8cpp_a0cdc366bcb9df6f3489878319738c3cd}{write\+\_\+actuator\+\_\+msg} (int serial, short actuator\+\_\+val, char num\+\_\+bytes)
+\begin{DoxyCompactList}\small\item\em Writes a single actuator value to the Teensy. \end{DoxyCompactList}\item 
+void \hyperlink{pi__comm__node_8cpp_af969dff0aa66a4e3c813f09b452050cc}{write\+\_\+to\+\_\+teensy} (int serial, const \hyperlink{namespacesemi__truck_ab8254dd176d8fef1f1381fb4e7e5e869}{semi\+\_\+truck\+::\+Teensy\+\_\+\+Actuators} \&actuators)
+\begin{DoxyCompactList}\small\item\em Writes an entire set of actuator data to the Teensy via U\+A\+RT. \end{DoxyCompactList}\item 
+void \hyperlink{pi__comm__node_8cpp_a25959d1c80ccb8a385982b0cec8750fb}{print\+\_\+sensors} (const \hyperlink{namespacesemi__truck_a8ffe15bf9a1e739c2242ac6d6feaa67f}{semi\+\_\+truck\+::\+Teensy\+\_\+\+Sensors} \&sensors)
+\begin{DoxyCompactList}\small\item\em A function useful for debugging serial communication. Prints the entire set of sensor data to the console. \end{DoxyCompactList}\item 
+void \hyperlink{pi__comm__node_8cpp_ae1e75fea7e23242bb9d5d43771a2765a}{print\+\_\+actuators} (const \hyperlink{namespacesemi__truck_ab8254dd176d8fef1f1381fb4e7e5e869}{semi\+\_\+truck\+::\+Teensy\+\_\+\+Actuators} \&actuators)
+\begin{DoxyCompactList}\small\item\em A function useful for debugging serial communication. Prints the entire set of actuator data to the console. \end{DoxyCompactList}\item 
+void \hyperlink{pi__comm__node_8cpp_a12284c231750c1247c39d646e6c26f80}{actuator\+\_\+cb} (const \hyperlink{namespacesemi__truck_ab8254dd176d8fef1f1381fb4e7e5e869}{semi\+\_\+truck\+::\+Teensy\+\_\+\+Actuators} \&msg)
+\begin{DoxyCompactList}\small\item\em The callback function the the subscriber to the teensy\+\_\+actuator\+\_\+data topic. This function will run every time R\+O\+S\+::spin\+Once is called. It reads the set of data from the topic and immediately writes these values to the Teensy via U\+A\+RT. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Macro Definition Documentation}
+\index{pi\+\_\+comm\+\_\+node.\+cpp@{pi\+\_\+comm\+\_\+node.\+cpp}!B\+A\+U\+D\+R\+A\+TE@{B\+A\+U\+D\+R\+A\+TE}}
+\index{B\+A\+U\+D\+R\+A\+TE@{B\+A\+U\+D\+R\+A\+TE}!pi\+\_\+comm\+\_\+node.\+cpp@{pi\+\_\+comm\+\_\+node.\+cpp}}
+\subsubsection[{\texorpdfstring{B\+A\+U\+D\+R\+A\+TE}{BAUDRATE}}]{\setlength{\rightskip}{0pt plus 5cm}\#define B\+A\+U\+D\+R\+A\+TE~9600}\hypertarget{pi__comm__node_8cpp_a734bbab06e1a9fd2e5522db0221ff6e3}{}\label{pi__comm__node_8cpp_a734bbab06e1a9fd2e5522db0221ff6e3}
+\index{pi\+\_\+comm\+\_\+node.\+cpp@{pi\+\_\+comm\+\_\+node.\+cpp}!L\+O\+O\+P\+\_\+\+F\+R\+E\+Q\+U\+E\+N\+CY@{L\+O\+O\+P\+\_\+\+F\+R\+E\+Q\+U\+E\+N\+CY}}
+\index{L\+O\+O\+P\+\_\+\+F\+R\+E\+Q\+U\+E\+N\+CY@{L\+O\+O\+P\+\_\+\+F\+R\+E\+Q\+U\+E\+N\+CY}!pi\+\_\+comm\+\_\+node.\+cpp@{pi\+\_\+comm\+\_\+node.\+cpp}}
+\subsubsection[{\texorpdfstring{L\+O\+O\+P\+\_\+\+F\+R\+E\+Q\+U\+E\+N\+CY}{LOOP_FREQUENCY}}]{\setlength{\rightskip}{0pt plus 5cm}\#define L\+O\+O\+P\+\_\+\+F\+R\+E\+Q\+U\+E\+N\+CY~20}\hypertarget{pi__comm__node_8cpp_aa77ad76fb0e0966b273db92f13af4429}{}\label{pi__comm__node_8cpp_aa77ad76fb0e0966b273db92f13af4429}
+\index{pi\+\_\+comm\+\_\+node.\+cpp@{pi\+\_\+comm\+\_\+node.\+cpp}!R\+E\+L\+A\+Y\+\_\+\+P\+I\+N\+\_\+1@{R\+E\+L\+A\+Y\+\_\+\+P\+I\+N\+\_\+1}}
+\index{R\+E\+L\+A\+Y\+\_\+\+P\+I\+N\+\_\+1@{R\+E\+L\+A\+Y\+\_\+\+P\+I\+N\+\_\+1}!pi\+\_\+comm\+\_\+node.\+cpp@{pi\+\_\+comm\+\_\+node.\+cpp}}
+\subsubsection[{\texorpdfstring{R\+E\+L\+A\+Y\+\_\+\+P\+I\+N\+\_\+1}{RELAY_PIN_1}}]{\setlength{\rightskip}{0pt plus 5cm}\#define R\+E\+L\+A\+Y\+\_\+\+P\+I\+N\+\_\+1~7}\hypertarget{pi__comm__node_8cpp_a86a25f62b3f5ba49be747ef1990fe00b}{}\label{pi__comm__node_8cpp_a86a25f62b3f5ba49be747ef1990fe00b}
+\index{pi\+\_\+comm\+\_\+node.\+cpp@{pi\+\_\+comm\+\_\+node.\+cpp}!R\+E\+L\+A\+Y\+\_\+\+P\+I\+N\+\_\+2@{R\+E\+L\+A\+Y\+\_\+\+P\+I\+N\+\_\+2}}
+\index{R\+E\+L\+A\+Y\+\_\+\+P\+I\+N\+\_\+2@{R\+E\+L\+A\+Y\+\_\+\+P\+I\+N\+\_\+2}!pi\+\_\+comm\+\_\+node.\+cpp@{pi\+\_\+comm\+\_\+node.\+cpp}}
+\subsubsection[{\texorpdfstring{R\+E\+L\+A\+Y\+\_\+\+P\+I\+N\+\_\+2}{RELAY_PIN_2}}]{\setlength{\rightskip}{0pt plus 5cm}\#define R\+E\+L\+A\+Y\+\_\+\+P\+I\+N\+\_\+2~0}\hypertarget{pi__comm__node_8cpp_afabf4690ae765da1178317f69b6de417}{}\label{pi__comm__node_8cpp_afabf4690ae765da1178317f69b6de417}
+\index{pi\+\_\+comm\+\_\+node.\+cpp@{pi\+\_\+comm\+\_\+node.\+cpp}!S\+E\+N\+S\+O\+R\+\_\+\+D\+A\+T\+A\+\_\+\+S\+I\+ZE@{S\+E\+N\+S\+O\+R\+\_\+\+D\+A\+T\+A\+\_\+\+S\+I\+ZE}}
+\index{S\+E\+N\+S\+O\+R\+\_\+\+D\+A\+T\+A\+\_\+\+S\+I\+ZE@{S\+E\+N\+S\+O\+R\+\_\+\+D\+A\+T\+A\+\_\+\+S\+I\+ZE}!pi\+\_\+comm\+\_\+node.\+cpp@{pi\+\_\+comm\+\_\+node.\+cpp}}
+\subsubsection[{\texorpdfstring{S\+E\+N\+S\+O\+R\+\_\+\+D\+A\+T\+A\+\_\+\+S\+I\+ZE}{SENSOR_DATA_SIZE}}]{\setlength{\rightskip}{0pt plus 5cm}\#define S\+E\+N\+S\+O\+R\+\_\+\+D\+A\+T\+A\+\_\+\+S\+I\+ZE~12}\hypertarget{pi__comm__node_8cpp_a148c44e2e5bb295e12c94b137e9717a7}{}\label{pi__comm__node_8cpp_a148c44e2e5bb295e12c94b137e9717a7}
+\index{pi\+\_\+comm\+\_\+node.\+cpp@{pi\+\_\+comm\+\_\+node.\+cpp}!S\+E\+N\+S\+O\+R\+\_\+\+D\+A\+T\+A\+\_\+\+S\+I\+Z\+E\+\_\+\+W\+\_\+\+S\+Y\+NC@{S\+E\+N\+S\+O\+R\+\_\+\+D\+A\+T\+A\+\_\+\+S\+I\+Z\+E\+\_\+\+W\+\_\+\+S\+Y\+NC}}
+\index{S\+E\+N\+S\+O\+R\+\_\+\+D\+A\+T\+A\+\_\+\+S\+I\+Z\+E\+\_\+\+W\+\_\+\+S\+Y\+NC@{S\+E\+N\+S\+O\+R\+\_\+\+D\+A\+T\+A\+\_\+\+S\+I\+Z\+E\+\_\+\+W\+\_\+\+S\+Y\+NC}!pi\+\_\+comm\+\_\+node.\+cpp@{pi\+\_\+comm\+\_\+node.\+cpp}}
+\subsubsection[{\texorpdfstring{S\+E\+N\+S\+O\+R\+\_\+\+D\+A\+T\+A\+\_\+\+S\+I\+Z\+E\+\_\+\+W\+\_\+\+S\+Y\+NC}{SENSOR_DATA_SIZE_W_SYNC}}]{\setlength{\rightskip}{0pt plus 5cm}\#define S\+E\+N\+S\+O\+R\+\_\+\+D\+A\+T\+A\+\_\+\+S\+I\+Z\+E\+\_\+\+W\+\_\+\+S\+Y\+NC~14}\hypertarget{pi__comm__node_8cpp_a70beb8afe59e7dcd578884cdbc0e231b}{}\label{pi__comm__node_8cpp_a70beb8afe59e7dcd578884cdbc0e231b}
+\index{pi\+\_\+comm\+\_\+node.\+cpp@{pi\+\_\+comm\+\_\+node.\+cpp}!S\+H\+O\+R\+T\+\_\+\+S\+I\+ZE@{S\+H\+O\+R\+T\+\_\+\+S\+I\+ZE}}
+\index{S\+H\+O\+R\+T\+\_\+\+S\+I\+ZE@{S\+H\+O\+R\+T\+\_\+\+S\+I\+ZE}!pi\+\_\+comm\+\_\+node.\+cpp@{pi\+\_\+comm\+\_\+node.\+cpp}}
+\subsubsection[{\texorpdfstring{S\+H\+O\+R\+T\+\_\+\+S\+I\+ZE}{SHORT_SIZE}}]{\setlength{\rightskip}{0pt plus 5cm}\#define S\+H\+O\+R\+T\+\_\+\+S\+I\+ZE~2}\hypertarget{pi__comm__node_8cpp_adeb5281b5f526ce88376cb4b4b36572e}{}\label{pi__comm__node_8cpp_adeb5281b5f526ce88376cb4b4b36572e}
+\index{pi\+\_\+comm\+\_\+node.\+cpp@{pi\+\_\+comm\+\_\+node.\+cpp}!S\+Y\+N\+C\+\_\+\+V\+A\+L\+UE@{S\+Y\+N\+C\+\_\+\+V\+A\+L\+UE}}
+\index{S\+Y\+N\+C\+\_\+\+V\+A\+L\+UE@{S\+Y\+N\+C\+\_\+\+V\+A\+L\+UE}!pi\+\_\+comm\+\_\+node.\+cpp@{pi\+\_\+comm\+\_\+node.\+cpp}}
+\subsubsection[{\texorpdfstring{S\+Y\+N\+C\+\_\+\+V\+A\+L\+UE}{SYNC_VALUE}}]{\setlength{\rightskip}{0pt plus 5cm}\#define S\+Y\+N\+C\+\_\+\+V\+A\+L\+UE~-\/32000}\hypertarget{pi__comm__node_8cpp_a7e041c16acda3d982a2c6c1d0ab78fd7}{}\label{pi__comm__node_8cpp_a7e041c16acda3d982a2c6c1d0ab78fd7}
+\index{pi\+\_\+comm\+\_\+node.\+cpp@{pi\+\_\+comm\+\_\+node.\+cpp}!U\+A\+RT@{U\+A\+RT}}
+\index{U\+A\+RT@{U\+A\+RT}!pi\+\_\+comm\+\_\+node.\+cpp@{pi\+\_\+comm\+\_\+node.\+cpp}}
+\subsubsection[{\texorpdfstring{U\+A\+RT}{UART}}]{\setlength{\rightskip}{0pt plus 5cm}\#define U\+A\+RT~\char`\"{}/dev/tty\+S0\char`\"{}}\hypertarget{pi__comm__node_8cpp_af7cb12b462b4594bd759d1b4e241ec4c}{}\label{pi__comm__node_8cpp_af7cb12b462b4594bd759d1b4e241ec4c}
+
+
+\subsection{Function Documentation}
+\index{pi\+\_\+comm\+\_\+node.\+cpp@{pi\+\_\+comm\+\_\+node.\+cpp}!actuator\+\_\+cb@{actuator\+\_\+cb}}
+\index{actuator\+\_\+cb@{actuator\+\_\+cb}!pi\+\_\+comm\+\_\+node.\+cpp@{pi\+\_\+comm\+\_\+node.\+cpp}}
+\subsubsection[{\texorpdfstring{actuator\+\_\+cb(const semi\+\_\+truck\+::\+Teensy\+\_\+\+Actuators \&msg)}{actuator_cb(const semi_truck::Teensy_Actuators &msg)}}]{\setlength{\rightskip}{0pt plus 5cm}void actuator\+\_\+cb (
+\begin{DoxyParamCaption}
+\item[{const {\bf semi\+\_\+truck\+::\+Teensy\+\_\+\+Actuators} \&}]{msg}
+\end{DoxyParamCaption}
+)}\hypertarget{pi__comm__node_8cpp_a12284c231750c1247c39d646e6c26f80}{}\label{pi__comm__node_8cpp_a12284c231750c1247c39d646e6c26f80}
+
+
+The callback function the the subscriber to the teensy\+\_\+actuator\+\_\+data topic. This function will run every time R\+O\+S\+::spin\+Once is called. It reads the set of data from the topic and immediately writes these values to the Teensy via U\+A\+RT. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em msg} & A set of actuator data that has come from the actuator topic and needs to be written to the Teensy. \\
+\hline
+\end{DoxyParams}
+\index{pi\+\_\+comm\+\_\+node.\+cpp@{pi\+\_\+comm\+\_\+node.\+cpp}!main@{main}}
+\index{main@{main}!pi\+\_\+comm\+\_\+node.\+cpp@{pi\+\_\+comm\+\_\+node.\+cpp}}
+\subsubsection[{\texorpdfstring{main(int argc, char $\ast$$\ast$argv)}{main(int argc, char **argv)}}]{\setlength{\rightskip}{0pt plus 5cm}int main (
+\begin{DoxyParamCaption}
+\item[{int}]{argc, }
+\item[{char $\ast$$\ast$}]{argv}
+\end{DoxyParamCaption}
+)}\hypertarget{pi__comm__node_8cpp_a3c04138a5bfe5d72780bb7e82a18e627}{}\label{pi__comm__node_8cpp_a3c04138a5bfe5d72780bb7e82a18e627}
+
+
+The main function for the R\+OS node to communicate with the Teensy over U\+A\+RT. It receives sensor data from the Teensy and publishes this data to the teensy\+\_\+sensor\+\_\+data topic. It also subscribes to the teensy\+\_\+actuator\+\_\+data topic and writes the values it gets to the Teensy over U\+A\+RT. 
+
+\index{pi\+\_\+comm\+\_\+node.\+cpp@{pi\+\_\+comm\+\_\+node.\+cpp}!pi\+\_\+sync@{pi\+\_\+sync}}
+\index{pi\+\_\+sync@{pi\+\_\+sync}!pi\+\_\+comm\+\_\+node.\+cpp@{pi\+\_\+comm\+\_\+node.\+cpp}}
+\subsubsection[{\texorpdfstring{pi\+\_\+sync()}{pi_sync()}}]{\setlength{\rightskip}{0pt plus 5cm}void pi\+\_\+sync (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}\hypertarget{pi__comm__node_8cpp_a1c868413212badac680da7f573eb6be4}{}\label{pi__comm__node_8cpp_a1c868413212badac680da7f573eb6be4}
+
+
+Called before reading sensor data from the Teensy. It will read the buffer until it encounters the S\+Y\+N\+C\+\_\+\+V\+A\+L\+UE that has been defined. Once this happens, the next set of bytes are the set of sensor values. 
+
+\index{pi\+\_\+comm\+\_\+node.\+cpp@{pi\+\_\+comm\+\_\+node.\+cpp}!print\+\_\+actuators@{print\+\_\+actuators}}
+\index{print\+\_\+actuators@{print\+\_\+actuators}!pi\+\_\+comm\+\_\+node.\+cpp@{pi\+\_\+comm\+\_\+node.\+cpp}}
+\subsubsection[{\texorpdfstring{print\+\_\+actuators(const semi\+\_\+truck\+::\+Teensy\+\_\+\+Actuators \&actuators)}{print_actuators(const semi_truck::Teensy_Actuators &actuators)}}]{\setlength{\rightskip}{0pt plus 5cm}void print\+\_\+actuators (
+\begin{DoxyParamCaption}
+\item[{const {\bf semi\+\_\+truck\+::\+Teensy\+\_\+\+Actuators} \&}]{actuators}
+\end{DoxyParamCaption}
+)}\hypertarget{pi__comm__node_8cpp_ae1e75fea7e23242bb9d5d43771a2765a}{}\label{pi__comm__node_8cpp_ae1e75fea7e23242bb9d5d43771a2765a}
+
+
+A function useful for debugging serial communication. Prints the entire set of actuator data to the console. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em actuators} & The object that holds all of the actuator data \\
+\hline
+\end{DoxyParams}
+\index{pi\+\_\+comm\+\_\+node.\+cpp@{pi\+\_\+comm\+\_\+node.\+cpp}!print\+\_\+sensors@{print\+\_\+sensors}}
+\index{print\+\_\+sensors@{print\+\_\+sensors}!pi\+\_\+comm\+\_\+node.\+cpp@{pi\+\_\+comm\+\_\+node.\+cpp}}
+\subsubsection[{\texorpdfstring{print\+\_\+sensors(const semi\+\_\+truck\+::\+Teensy\+\_\+\+Sensors \&sensors)}{print_sensors(const semi_truck::Teensy_Sensors &sensors)}}]{\setlength{\rightskip}{0pt plus 5cm}void print\+\_\+sensors (
+\begin{DoxyParamCaption}
+\item[{const {\bf semi\+\_\+truck\+::\+Teensy\+\_\+\+Sensors} \&}]{sensors}
+\end{DoxyParamCaption}
+)}\hypertarget{pi__comm__node_8cpp_a25959d1c80ccb8a385982b0cec8750fb}{}\label{pi__comm__node_8cpp_a25959d1c80ccb8a385982b0cec8750fb}
+
+
+A function useful for debugging serial communication. Prints the entire set of sensor data to the console. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em sensors} & The object that holds all of the sensor data \\
+\hline
+\end{DoxyParams}
+\index{pi\+\_\+comm\+\_\+node.\+cpp@{pi\+\_\+comm\+\_\+node.\+cpp}!read\+\_\+from\+\_\+teensy@{read\+\_\+from\+\_\+teensy}}
+\index{read\+\_\+from\+\_\+teensy@{read\+\_\+from\+\_\+teensy}!pi\+\_\+comm\+\_\+node.\+cpp@{pi\+\_\+comm\+\_\+node.\+cpp}}
+\subsubsection[{\texorpdfstring{read\+\_\+from\+\_\+teensy(int serial, semi\+\_\+truck\+::\+Teensy\+\_\+\+Sensors \&sensors)}{read_from_teensy(int serial, semi_truck::Teensy_Sensors &sensors)}}]{\setlength{\rightskip}{0pt plus 5cm}void read\+\_\+from\+\_\+teensy (
+\begin{DoxyParamCaption}
+\item[{int}]{serial, }
+\item[{{\bf semi\+\_\+truck\+::\+Teensy\+\_\+\+Sensors} \&}]{sensors}
+\end{DoxyParamCaption}
+)}\hypertarget{pi__comm__node_8cpp_a0c5cd860a6d8f747aea77d78d2e8bb7c}{}\label{pi__comm__node_8cpp_a0c5cd860a6d8f747aea77d78d2e8bb7c}
+
+
+Reads an entire set of Teensy sensor data by calling read\+\_\+sensor\+\_\+msg on each sensor data in the U\+A\+RT message. 
+
+\index{pi\+\_\+comm\+\_\+node.\+cpp@{pi\+\_\+comm\+\_\+node.\+cpp}!read\+\_\+sensor\+\_\+msg@{read\+\_\+sensor\+\_\+msg}}
+\index{read\+\_\+sensor\+\_\+msg@{read\+\_\+sensor\+\_\+msg}!pi\+\_\+comm\+\_\+node.\+cpp@{pi\+\_\+comm\+\_\+node.\+cpp}}
+\subsubsection[{\texorpdfstring{read\+\_\+sensor\+\_\+msg(int serial, char num\+\_\+bytes)}{read_sensor_msg(int serial, char num_bytes)}}]{\setlength{\rightskip}{0pt plus 5cm}short read\+\_\+sensor\+\_\+msg (
+\begin{DoxyParamCaption}
+\item[{int}]{serial, }
+\item[{char}]{num\+\_\+bytes}
+\end{DoxyParamCaption}
+)}\hypertarget{pi__comm__node_8cpp_a41b126a0cd4632cb40a651336b009cf5}{}\label{pi__comm__node_8cpp_a41b126a0cd4632cb40a651336b009cf5}
+
+
+Reads a single value from the U\+A\+RT communication buffer. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em serial} & The serial file descriptor to read from \\
+\hline
+{\em num\+\_\+bytes} & The number of bytes to read from \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The value of the bytes that have been read 
+\end{DoxyReturn}
+\index{pi\+\_\+comm\+\_\+node.\+cpp@{pi\+\_\+comm\+\_\+node.\+cpp}!write\+\_\+actuator\+\_\+msg@{write\+\_\+actuator\+\_\+msg}}
+\index{write\+\_\+actuator\+\_\+msg@{write\+\_\+actuator\+\_\+msg}!pi\+\_\+comm\+\_\+node.\+cpp@{pi\+\_\+comm\+\_\+node.\+cpp}}
+\subsubsection[{\texorpdfstring{write\+\_\+actuator\+\_\+msg(int serial, short actuator\+\_\+val, char num\+\_\+bytes)}{write_actuator_msg(int serial, short actuator_val, char num_bytes)}}]{\setlength{\rightskip}{0pt plus 5cm}void write\+\_\+actuator\+\_\+msg (
+\begin{DoxyParamCaption}
+\item[{int}]{serial, }
+\item[{short}]{actuator\+\_\+val, }
+\item[{char}]{num\+\_\+bytes}
+\end{DoxyParamCaption}
+)}\hypertarget{pi__comm__node_8cpp_a0cdc366bcb9df6f3489878319738c3cd}{}\label{pi__comm__node_8cpp_a0cdc366bcb9df6f3489878319738c3cd}
+
+
+Writes a single actuator value to the Teensy. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em serial} & The serial file descriptor to write to \\
+\hline
+{\em actuator\+\_\+val} & The value that is written through U\+A\+RT to the Teensy \\
+\hline
+{\em num\+\_\+bytes} & Number of bytes to write to the U\+A\+RT \\
+\hline
+\end{DoxyParams}
+\index{pi\+\_\+comm\+\_\+node.\+cpp@{pi\+\_\+comm\+\_\+node.\+cpp}!write\+\_\+to\+\_\+teensy@{write\+\_\+to\+\_\+teensy}}
+\index{write\+\_\+to\+\_\+teensy@{write\+\_\+to\+\_\+teensy}!pi\+\_\+comm\+\_\+node.\+cpp@{pi\+\_\+comm\+\_\+node.\+cpp}}
+\subsubsection[{\texorpdfstring{write\+\_\+to\+\_\+teensy(int serial, const semi\+\_\+truck\+::\+Teensy\+\_\+\+Actuators \&actuators)}{write_to_teensy(int serial, const semi_truck::Teensy_Actuators &actuators)}}]{\setlength{\rightskip}{0pt plus 5cm}void write\+\_\+to\+\_\+teensy (
+\begin{DoxyParamCaption}
+\item[{int}]{serial, }
+\item[{const {\bf semi\+\_\+truck\+::\+Teensy\+\_\+\+Actuators} \&}]{actuators}
+\end{DoxyParamCaption}
+)}\hypertarget{pi__comm__node_8cpp_af969dff0aa66a4e3c813f09b452050cc}{}\label{pi__comm__node_8cpp_af969dff0aa66a4e3c813f09b452050cc}
+
+
+Writes an entire set of actuator data to the Teensy via U\+A\+RT. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em serial} & The serial file descriptor to write to \\
+\hline
+{\em actuators} & The object that holds all of the actuator data \\
+\hline
+\end{DoxyParams}

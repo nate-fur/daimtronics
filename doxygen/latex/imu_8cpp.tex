@@ -1,0 +1,74 @@
+\hypertarget{imu_8cpp}{}\section{daimtronics/teensy\+\_\+chibios/src/main/imu.cpp File Reference}
+\label{imu_8cpp}\index{daimtronics/teensy\+\_\+chibios/src/main/imu.\+cpp@{daimtronics/teensy\+\_\+chibios/src/main/imu.\+cpp}}
+{\ttfamily \#include \char`\"{}include/imu.\+h\char`\"{}}\\*
+Include dependency graph for imu.\+cpp\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{imu_8cpp__incl}
+\end{center}
+\end{figure}
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+int16\+\_\+t \hyperlink{imu_8cpp_adc798e70ad6db427bf0636201422ad30}{imu\+\_\+loop\+\_\+fn} ()
+\begin{DoxyCompactList}\small\item\em The primary function for the I\+MU that reads and returns heading data of the B\+N\+O055.\+The Adafruit\+\_\+\+B\+N\+O055 library does most of the work here. This function simply sets up a sets up an \char`\"{}event\char`\"{} variable to hold the I\+MU data. \end{DoxyCompactList}\item 
+void \hyperlink{imu_8cpp_a1cf1c284c0587a36f6bed92f744a46a0}{imu\+\_\+setup} ()
+\begin{DoxyCompactList}\small\item\em Initializes the B\+N\+O055 sensor. \end{DoxyCompactList}\item 
+void \hyperlink{imu_8cpp_af2f32ad6a4e0d52e94d91a744a9c30aa}{print\+\_\+imu\+\_\+data} (sensors\+\_\+event\+\_\+t $\ast$event)
+\begin{DoxyCompactList}\small\item\em A debugging function used to print out I\+MU orientation to the U\+SB serial device (usually the Arduino Serial Monitor). \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+Adafruit\+\_\+\+B\+N\+O055 \hyperlink{imu_8cpp_a3365697089795e31b8ff89e70ff042ca}{bno} = Adafruit\+\_\+\+B\+N\+O055(55)
+\begin{DoxyCompactList}\small\item\em A global variable, for the only Adafruit\+\_\+\+B\+N\+O055 object in the system. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Function Documentation}
+\index{imu.\+cpp@{imu.\+cpp}!imu\+\_\+loop\+\_\+fn@{imu\+\_\+loop\+\_\+fn}}
+\index{imu\+\_\+loop\+\_\+fn@{imu\+\_\+loop\+\_\+fn}!imu.\+cpp@{imu.\+cpp}}
+\subsubsection[{\texorpdfstring{imu\+\_\+loop\+\_\+fn()}{imu_loop_fn()}}]{\setlength{\rightskip}{0pt plus 5cm}int16\+\_\+t imu\+\_\+loop\+\_\+fn (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}\hypertarget{imu_8cpp_adc798e70ad6db427bf0636201422ad30}{}\label{imu_8cpp_adc798e70ad6db427bf0636201422ad30}
+
+
+The primary function for the I\+MU that reads and returns heading data of the B\+N\+O055.\+The Adafruit\+\_\+\+B\+N\+O055 library does most of the work here. This function simply sets up a sets up an \char`\"{}event\char`\"{} variable to hold the I\+MU data. 
+
+\begin{DoxyReturn}{Returns}
+an integer representing the heading angle in degrees 
+\end{DoxyReturn}
+\index{imu.\+cpp@{imu.\+cpp}!imu\+\_\+setup@{imu\+\_\+setup}}
+\index{imu\+\_\+setup@{imu\+\_\+setup}!imu.\+cpp@{imu.\+cpp}}
+\subsubsection[{\texorpdfstring{imu\+\_\+setup()}{imu_setup()}}]{\setlength{\rightskip}{0pt plus 5cm}void imu\+\_\+setup (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}\hypertarget{imu_8cpp_a1cf1c284c0587a36f6bed92f744a46a0}{}\label{imu_8cpp_a1cf1c284c0587a36f6bed92f744a46a0}
+
+
+Initializes the B\+N\+O055 sensor. 
+
+\index{imu.\+cpp@{imu.\+cpp}!print\+\_\+imu\+\_\+data@{print\+\_\+imu\+\_\+data}}
+\index{print\+\_\+imu\+\_\+data@{print\+\_\+imu\+\_\+data}!imu.\+cpp@{imu.\+cpp}}
+\subsubsection[{\texorpdfstring{print\+\_\+imu\+\_\+data(sensors\+\_\+event\+\_\+t $\ast$event)}{print_imu_data(sensors_event_t *event)}}]{\setlength{\rightskip}{0pt plus 5cm}void print\+\_\+imu\+\_\+data (
+\begin{DoxyParamCaption}
+\item[{sensors\+\_\+event\+\_\+t $\ast$}]{event}
+\end{DoxyParamCaption}
+)}\hypertarget{imu_8cpp_af2f32ad6a4e0d52e94d91a744a9c30aa}{}\label{imu_8cpp_af2f32ad6a4e0d52e94d91a744a9c30aa}
+
+
+A debugging function used to print out I\+MU orientation to the U\+SB serial device (usually the Arduino Serial Monitor). 
+
+
+
+\subsection{Variable Documentation}
+\index{imu.\+cpp@{imu.\+cpp}!bno@{bno}}
+\index{bno@{bno}!imu.\+cpp@{imu.\+cpp}}
+\subsubsection[{\texorpdfstring{bno}{bno}}]{\setlength{\rightskip}{0pt plus 5cm}Adafruit\+\_\+\+B\+N\+O055 bno = Adafruit\+\_\+\+B\+N\+O055(55)}\hypertarget{imu_8cpp_a3365697089795e31b8ff89e70ff042ca}{}\label{imu_8cpp_a3365697089795e31b8ff89e70ff042ca}
+
+
+A global variable, for the only Adafruit\+\_\+\+B\+N\+O055 object in the system. 
+

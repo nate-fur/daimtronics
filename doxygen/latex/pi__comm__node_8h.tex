@@ -1,0 +1,181 @@
+\hypertarget{pi__comm__node_8h}{}\section{daimtronics/semi\+\_\+catkin\+\_\+ws/src/semi\+\_\+truck/src/pi\+\_\+comm\+\_\+node.h File Reference}
+\label{pi__comm__node_8h}\index{daimtronics/semi\+\_\+catkin\+\_\+ws/src/semi\+\_\+truck/src/pi\+\_\+comm\+\_\+node.\+h@{daimtronics/semi\+\_\+catkin\+\_\+ws/src/semi\+\_\+truck/src/pi\+\_\+comm\+\_\+node.\+h}}
+{\ttfamily \#include \char`\"{}semi\+\_\+truck/\+Teensy\+\_\+\+Sensors.\+h\char`\"{}}\\*
+{\ttfamily \#include \char`\"{}semi\+\_\+truck/\+Teensy\+\_\+\+Actuators.\+h\char`\"{}}\\*
+Include dependency graph for pi\+\_\+comm\+\_\+node.\+h\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{pi__comm__node_8h__incl}
+\end{center}
+\end{figure}
+This graph shows which files directly or indirectly include this file\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=202pt]{pi__comm__node_8h__dep__incl}
+\end{center}
+\end{figure}
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+short \hyperlink{pi__comm__node_8h_a41b126a0cd4632cb40a651336b009cf5}{read\+\_\+sensor\+\_\+msg} (int serial, char num\+\_\+bytes)
+\begin{DoxyCompactList}\small\item\em Reads a single value from the U\+A\+RT communication buffer. \end{DoxyCompactList}\item 
+void \hyperlink{pi__comm__node_8h_a0c5cd860a6d8f747aea77d78d2e8bb7c}{read\+\_\+from\+\_\+teensy} (int serial, \hyperlink{namespacesemi__truck_a8ffe15bf9a1e739c2242ac6d6feaa67f}{semi\+\_\+truck\+::\+Teensy\+\_\+\+Sensors} \&sensors)
+\begin{DoxyCompactList}\small\item\em Reads an entire set of Teensy sensor data by calling read\+\_\+sensor\+\_\+msg on each sensor data in the U\+A\+RT message. \end{DoxyCompactList}\item 
+void \hyperlink{pi__comm__node_8h_ab7163db1bba4dc09fdd91cf80de4eefc}{write\+\_\+sensor\+\_\+msg} (int serial, short sensor\+\_\+val, char num\+\_\+bytes)
+\item 
+void \hyperlink{pi__comm__node_8h_af969dff0aa66a4e3c813f09b452050cc}{write\+\_\+to\+\_\+teensy} (int serial, const \hyperlink{namespacesemi__truck_ab8254dd176d8fef1f1381fb4e7e5e869}{semi\+\_\+truck\+::\+Teensy\+\_\+\+Actuators} \&actuators)
+\begin{DoxyCompactList}\small\item\em Writes an entire set of actuator data to the Teensy via U\+A\+RT. \end{DoxyCompactList}\item 
+void \hyperlink{pi__comm__node_8h_af5ff714d028d70416196bba7c64c5da7}{update\+\_\+sensors} (\hyperlink{namespacesemi__truck_a8ffe15bf9a1e739c2242ac6d6feaa67f}{semi\+\_\+truck\+::\+Teensy\+\_\+\+Sensors} \&sensors)
+\item 
+void \hyperlink{pi__comm__node_8h_a1c868413212badac680da7f573eb6be4}{pi\+\_\+sync} ()
+\begin{DoxyCompactList}\small\item\em Called before reading sensor data from the Teensy. It will read the buffer until it encounters the S\+Y\+N\+C\+\_\+\+V\+A\+L\+UE that has been defined. Once this happens, the next set of bytes are the set of sensor values. \end{DoxyCompactList}\item 
+void \hyperlink{pi__comm__node_8h_a25959d1c80ccb8a385982b0cec8750fb}{print\+\_\+sensors} (const \hyperlink{namespacesemi__truck_a8ffe15bf9a1e739c2242ac6d6feaa67f}{semi\+\_\+truck\+::\+Teensy\+\_\+\+Sensors} \&sensors)
+\begin{DoxyCompactList}\small\item\em A function useful for debugging serial communication. Prints the entire set of sensor data to the console. \end{DoxyCompactList}\item 
+void \hyperlink{pi__comm__node_8h_ae1e75fea7e23242bb9d5d43771a2765a}{print\+\_\+actuators} (const \hyperlink{namespacesemi__truck_ab8254dd176d8fef1f1381fb4e7e5e869}{semi\+\_\+truck\+::\+Teensy\+\_\+\+Actuators} \&actuators)
+\begin{DoxyCompactList}\small\item\em A function useful for debugging serial communication. Prints the entire set of actuator data to the console. \end{DoxyCompactList}\item 
+void \hyperlink{pi__comm__node_8h_a6f2420fd51a76bb6a8a5e5970a7a6f27}{sensor\+\_\+cb} (const \hyperlink{namespacesemi__truck_a8ffe15bf9a1e739c2242ac6d6feaa67f}{semi\+\_\+truck\+::\+Teensy\+\_\+\+Sensors} \&msg)
+\item 
+void \hyperlink{pi__comm__node_8h_a12284c231750c1247c39d646e6c26f80}{actuator\+\_\+cb} (const \hyperlink{namespacesemi__truck_ab8254dd176d8fef1f1381fb4e7e5e869}{semi\+\_\+truck\+::\+Teensy\+\_\+\+Actuators} \&msg)
+\begin{DoxyCompactList}\small\item\em The callback function the the subscriber to the teensy\+\_\+actuator\+\_\+data topic. This function will run every time R\+O\+S\+::spin\+Once is called. It reads the set of data from the topic and immediately writes these values to the Teensy via U\+A\+RT. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Function Documentation}
+\index{pi\+\_\+comm\+\_\+node.\+h@{pi\+\_\+comm\+\_\+node.\+h}!actuator\+\_\+cb@{actuator\+\_\+cb}}
+\index{actuator\+\_\+cb@{actuator\+\_\+cb}!pi\+\_\+comm\+\_\+node.\+h@{pi\+\_\+comm\+\_\+node.\+h}}
+\subsubsection[{\texorpdfstring{actuator\+\_\+cb(const semi\+\_\+truck\+::\+Teensy\+\_\+\+Actuators \&msg)}{actuator_cb(const semi_truck::Teensy_Actuators &msg)}}]{\setlength{\rightskip}{0pt plus 5cm}void actuator\+\_\+cb (
+\begin{DoxyParamCaption}
+\item[{const {\bf semi\+\_\+truck\+::\+Teensy\+\_\+\+Actuators} \&}]{msg}
+\end{DoxyParamCaption}
+)}\hypertarget{pi__comm__node_8h_a12284c231750c1247c39d646e6c26f80}{}\label{pi__comm__node_8h_a12284c231750c1247c39d646e6c26f80}
+
+
+The callback function the the subscriber to the teensy\+\_\+actuator\+\_\+data topic. This function will run every time R\+O\+S\+::spin\+Once is called. It reads the set of data from the topic and immediately writes these values to the Teensy via U\+A\+RT. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em msg} & A set of actuator data that has come from the actuator topic and needs to be written to the Teensy. \\
+\hline
+\end{DoxyParams}
+\index{pi\+\_\+comm\+\_\+node.\+h@{pi\+\_\+comm\+\_\+node.\+h}!pi\+\_\+sync@{pi\+\_\+sync}}
+\index{pi\+\_\+sync@{pi\+\_\+sync}!pi\+\_\+comm\+\_\+node.\+h@{pi\+\_\+comm\+\_\+node.\+h}}
+\subsubsection[{\texorpdfstring{pi\+\_\+sync()}{pi_sync()}}]{\setlength{\rightskip}{0pt plus 5cm}void pi\+\_\+sync (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}\hypertarget{pi__comm__node_8h_a1c868413212badac680da7f573eb6be4}{}\label{pi__comm__node_8h_a1c868413212badac680da7f573eb6be4}
+
+
+Called before reading sensor data from the Teensy. It will read the buffer until it encounters the S\+Y\+N\+C\+\_\+\+V\+A\+L\+UE that has been defined. Once this happens, the next set of bytes are the set of sensor values. 
+
+\index{pi\+\_\+comm\+\_\+node.\+h@{pi\+\_\+comm\+\_\+node.\+h}!print\+\_\+actuators@{print\+\_\+actuators}}
+\index{print\+\_\+actuators@{print\+\_\+actuators}!pi\+\_\+comm\+\_\+node.\+h@{pi\+\_\+comm\+\_\+node.\+h}}
+\subsubsection[{\texorpdfstring{print\+\_\+actuators(const semi\+\_\+truck\+::\+Teensy\+\_\+\+Actuators \&actuators)}{print_actuators(const semi_truck::Teensy_Actuators &actuators)}}]{\setlength{\rightskip}{0pt plus 5cm}void print\+\_\+actuators (
+\begin{DoxyParamCaption}
+\item[{const {\bf semi\+\_\+truck\+::\+Teensy\+\_\+\+Actuators} \&}]{actuators}
+\end{DoxyParamCaption}
+)}\hypertarget{pi__comm__node_8h_ae1e75fea7e23242bb9d5d43771a2765a}{}\label{pi__comm__node_8h_ae1e75fea7e23242bb9d5d43771a2765a}
+
+
+A function useful for debugging serial communication. Prints the entire set of actuator data to the console. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em actuators} & The object that holds all of the actuator data \\
+\hline
+\end{DoxyParams}
+\index{pi\+\_\+comm\+\_\+node.\+h@{pi\+\_\+comm\+\_\+node.\+h}!print\+\_\+sensors@{print\+\_\+sensors}}
+\index{print\+\_\+sensors@{print\+\_\+sensors}!pi\+\_\+comm\+\_\+node.\+h@{pi\+\_\+comm\+\_\+node.\+h}}
+\subsubsection[{\texorpdfstring{print\+\_\+sensors(const semi\+\_\+truck\+::\+Teensy\+\_\+\+Sensors \&sensors)}{print_sensors(const semi_truck::Teensy_Sensors &sensors)}}]{\setlength{\rightskip}{0pt plus 5cm}void print\+\_\+sensors (
+\begin{DoxyParamCaption}
+\item[{const {\bf semi\+\_\+truck\+::\+Teensy\+\_\+\+Sensors} \&}]{sensors}
+\end{DoxyParamCaption}
+)}\hypertarget{pi__comm__node_8h_a25959d1c80ccb8a385982b0cec8750fb}{}\label{pi__comm__node_8h_a25959d1c80ccb8a385982b0cec8750fb}
+
+
+A function useful for debugging serial communication. Prints the entire set of sensor data to the console. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em sensors} & The object that holds all of the sensor data \\
+\hline
+\end{DoxyParams}
+\index{pi\+\_\+comm\+\_\+node.\+h@{pi\+\_\+comm\+\_\+node.\+h}!read\+\_\+from\+\_\+teensy@{read\+\_\+from\+\_\+teensy}}
+\index{read\+\_\+from\+\_\+teensy@{read\+\_\+from\+\_\+teensy}!pi\+\_\+comm\+\_\+node.\+h@{pi\+\_\+comm\+\_\+node.\+h}}
+\subsubsection[{\texorpdfstring{read\+\_\+from\+\_\+teensy(int serial, semi\+\_\+truck\+::\+Teensy\+\_\+\+Sensors \&sensors)}{read_from_teensy(int serial, semi_truck::Teensy_Sensors &sensors)}}]{\setlength{\rightskip}{0pt plus 5cm}void read\+\_\+from\+\_\+teensy (
+\begin{DoxyParamCaption}
+\item[{int}]{serial, }
+\item[{{\bf semi\+\_\+truck\+::\+Teensy\+\_\+\+Sensors} \&}]{sensors}
+\end{DoxyParamCaption}
+)}\hypertarget{pi__comm__node_8h_a0c5cd860a6d8f747aea77d78d2e8bb7c}{}\label{pi__comm__node_8h_a0c5cd860a6d8f747aea77d78d2e8bb7c}
+
+
+Reads an entire set of Teensy sensor data by calling read\+\_\+sensor\+\_\+msg on each sensor data in the U\+A\+RT message. 
+
+\index{pi\+\_\+comm\+\_\+node.\+h@{pi\+\_\+comm\+\_\+node.\+h}!read\+\_\+sensor\+\_\+msg@{read\+\_\+sensor\+\_\+msg}}
+\index{read\+\_\+sensor\+\_\+msg@{read\+\_\+sensor\+\_\+msg}!pi\+\_\+comm\+\_\+node.\+h@{pi\+\_\+comm\+\_\+node.\+h}}
+\subsubsection[{\texorpdfstring{read\+\_\+sensor\+\_\+msg(int serial, char num\+\_\+bytes)}{read_sensor_msg(int serial, char num_bytes)}}]{\setlength{\rightskip}{0pt plus 5cm}short read\+\_\+sensor\+\_\+msg (
+\begin{DoxyParamCaption}
+\item[{int}]{serial, }
+\item[{char}]{num\+\_\+bytes}
+\end{DoxyParamCaption}
+)}\hypertarget{pi__comm__node_8h_a41b126a0cd4632cb40a651336b009cf5}{}\label{pi__comm__node_8h_a41b126a0cd4632cb40a651336b009cf5}
+
+
+Reads a single value from the U\+A\+RT communication buffer. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em serial} & The serial file descriptor to read from \\
+\hline
+{\em num\+\_\+bytes} & The number of bytes to read from \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The value of the bytes that have been read 
+\end{DoxyReturn}
+\index{pi\+\_\+comm\+\_\+node.\+h@{pi\+\_\+comm\+\_\+node.\+h}!sensor\+\_\+cb@{sensor\+\_\+cb}}
+\index{sensor\+\_\+cb@{sensor\+\_\+cb}!pi\+\_\+comm\+\_\+node.\+h@{pi\+\_\+comm\+\_\+node.\+h}}
+\subsubsection[{\texorpdfstring{sensor\+\_\+cb(const semi\+\_\+truck\+::\+Teensy\+\_\+\+Sensors \&msg)}{sensor_cb(const semi_truck::Teensy_Sensors &msg)}}]{\setlength{\rightskip}{0pt plus 5cm}void sensor\+\_\+cb (
+\begin{DoxyParamCaption}
+\item[{const {\bf semi\+\_\+truck\+::\+Teensy\+\_\+\+Sensors} \&}]{msg}
+\end{DoxyParamCaption}
+)}\hypertarget{pi__comm__node_8h_a6f2420fd51a76bb6a8a5e5970a7a6f27}{}\label{pi__comm__node_8h_a6f2420fd51a76bb6a8a5e5970a7a6f27}
+\index{pi\+\_\+comm\+\_\+node.\+h@{pi\+\_\+comm\+\_\+node.\+h}!update\+\_\+sensors@{update\+\_\+sensors}}
+\index{update\+\_\+sensors@{update\+\_\+sensors}!pi\+\_\+comm\+\_\+node.\+h@{pi\+\_\+comm\+\_\+node.\+h}}
+\subsubsection[{\texorpdfstring{update\+\_\+sensors(semi\+\_\+truck\+::\+Teensy\+\_\+\+Sensors \&sensors)}{update_sensors(semi_truck::Teensy_Sensors &sensors)}}]{\setlength{\rightskip}{0pt plus 5cm}void update\+\_\+sensors (
+\begin{DoxyParamCaption}
+\item[{{\bf semi\+\_\+truck\+::\+Teensy\+\_\+\+Sensors} \&}]{sensors}
+\end{DoxyParamCaption}
+)}\hypertarget{pi__comm__node_8h_af5ff714d028d70416196bba7c64c5da7}{}\label{pi__comm__node_8h_af5ff714d028d70416196bba7c64c5da7}
+\index{pi\+\_\+comm\+\_\+node.\+h@{pi\+\_\+comm\+\_\+node.\+h}!write\+\_\+sensor\+\_\+msg@{write\+\_\+sensor\+\_\+msg}}
+\index{write\+\_\+sensor\+\_\+msg@{write\+\_\+sensor\+\_\+msg}!pi\+\_\+comm\+\_\+node.\+h@{pi\+\_\+comm\+\_\+node.\+h}}
+\subsubsection[{\texorpdfstring{write\+\_\+sensor\+\_\+msg(int serial, short sensor\+\_\+val, char num\+\_\+bytes)}{write_sensor_msg(int serial, short sensor_val, char num_bytes)}}]{\setlength{\rightskip}{0pt plus 5cm}void write\+\_\+sensor\+\_\+msg (
+\begin{DoxyParamCaption}
+\item[{int}]{serial, }
+\item[{short}]{sensor\+\_\+val, }
+\item[{char}]{num\+\_\+bytes}
+\end{DoxyParamCaption}
+)}\hypertarget{pi__comm__node_8h_ab7163db1bba4dc09fdd91cf80de4eefc}{}\label{pi__comm__node_8h_ab7163db1bba4dc09fdd91cf80de4eefc}
+\index{pi\+\_\+comm\+\_\+node.\+h@{pi\+\_\+comm\+\_\+node.\+h}!write\+\_\+to\+\_\+teensy@{write\+\_\+to\+\_\+teensy}}
+\index{write\+\_\+to\+\_\+teensy@{write\+\_\+to\+\_\+teensy}!pi\+\_\+comm\+\_\+node.\+h@{pi\+\_\+comm\+\_\+node.\+h}}
+\subsubsection[{\texorpdfstring{write\+\_\+to\+\_\+teensy(int serial, const semi\+\_\+truck\+::\+Teensy\+\_\+\+Actuators \&actuators)}{write_to_teensy(int serial, const semi_truck::Teensy_Actuators &actuators)}}]{\setlength{\rightskip}{0pt plus 5cm}void write\+\_\+to\+\_\+teensy (
+\begin{DoxyParamCaption}
+\item[{int}]{serial, }
+\item[{const {\bf semi\+\_\+truck\+::\+Teensy\+\_\+\+Actuators} \&}]{actuators}
+\end{DoxyParamCaption}
+)}\hypertarget{pi__comm__node_8h_af969dff0aa66a4e3c813f09b452050cc}{}\label{pi__comm__node_8h_af969dff0aa66a4e3c813f09b452050cc}
+
+
+Writes an entire set of actuator data to the Teensy via U\+A\+RT. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em serial} & The serial file descriptor to write to \\
+\hline
+{\em actuators} & The object that holds all of the actuator data \\
+\hline
+\end{DoxyParams}

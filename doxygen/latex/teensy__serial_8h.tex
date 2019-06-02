@@ -1,0 +1,130 @@
+\hypertarget{teensy__serial_8h}{}\section{daimtronics/teensy\+\_\+chibios/src/main/include/teensy\+\_\+serial.h File Reference}
+\label{teensy__serial_8h}\index{daimtronics/teensy\+\_\+chibios/src/main/include/teensy\+\_\+serial.\+h@{daimtronics/teensy\+\_\+chibios/src/main/include/teensy\+\_\+serial.\+h}}
+{\ttfamily \#include \char`\"{}system\+\_\+data.\+h\char`\"{}}\\*
+Include dependency graph for teensy\+\_\+serial.\+h\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=207pt]{teensy__serial_8h__incl}
+\end{center}
+\end{figure}
+This graph shows which files directly or indirectly include this file\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=207pt]{teensy__serial_8h__dep__incl}
+\end{center}
+\end{figure}
+\subsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define \hyperlink{teensy__serial_8h_a924f79ef9f937a6e975d67000b3d9f78}{H\+W\+S\+E\+R\+I\+AL}~Serial1
+\end{DoxyCompactItemize}
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \hyperlink{teensy__serial_8h_a5198c7ed3e8b7d83f716ad97132d2915}{teensy\+\_\+serial\+\_\+loop\+\_\+fn} (\hyperlink{structsystem__data__t}{system\+\_\+data\+\_\+t} $\ast$system\+\_\+data)
+\begin{DoxyCompactList}\small\item\em The primary function for communicating between the Teensy and the Pi over the Serial U\+A\+RT port. \end{DoxyCompactList}\item 
+void \hyperlink{teensy__serial_8h_a952a1a0005cee5d60f13a52784bf7db8}{teensy\+\_\+serial\+\_\+setup} ()
+\begin{DoxyCompactList}\small\item\em Sets up the serial communication for the teensy to output data to both the Pi (through U\+A\+RT) and a PC console (through U\+SB). \end{DoxyCompactList}\item 
+void \hyperlink{teensy__serial_8h_a08eb6f422c6e07956faa921fe5e08d32}{set\+\_\+sensor\+\_\+msg} (int user\+\_\+input, \hyperlink{structsensor__data__t}{sensor\+\_\+data\+\_\+t} $\ast$data\+\_\+ptr)
+\item 
+void \hyperlink{teensy__serial_8h_a590e2eede53b5d9cebedc9da754a0889}{teensy\+\_\+sync} ()
+\begin{DoxyCompactList}\small\item\em Ensures that the data being read from the Pi is synced. It clears the serial buffer up until it reads the designated S\+Y\+N\+C\+\_\+\+V\+A\+L\+UE. \end{DoxyCompactList}\item 
+void \hyperlink{teensy__serial_8h_afa847549e9dc6e4f49f651623bc456dc}{clear\+\_\+buffer} ()
+\begin{DoxyCompactList}\small\item\em Clears the serial buffer from all of its data. This is used primarily when the Teensy is restarted, and the Pi has been sending data that the Teensy does not need to process. \end{DoxyCompactList}\item 
+void \hyperlink{teensy__serial_8h_a093b10f31f2586089f07d332d0906693}{read\+\_\+from\+\_\+pi} (\hyperlink{structactuator__data__t}{actuator\+\_\+data\+\_\+t} $\ast$actuators\+\_\+ptr)
+\item 
+void \hyperlink{teensy__serial_8h_afa1a50f26f7aafb7c5a52705687c81ab}{print\+\_\+sensor\+\_\+msg} (\hyperlink{structsensor__data__t}{sensor\+\_\+data\+\_\+t} $\ast$sensors\+\_\+ptr)
+\item 
+void \hyperlink{teensy__serial_8h_a98e95c445e77a27b381f3aea2d41902c}{print\+\_\+actuator\+\_\+msg} (\hyperlink{structactuator__data__t}{actuator\+\_\+data\+\_\+t} $\ast$actuators\+\_\+ptr)
+\end{DoxyCompactItemize}
+
+
+\subsection{Macro Definition Documentation}
+\index{teensy\+\_\+serial.\+h@{teensy\+\_\+serial.\+h}!H\+W\+S\+E\+R\+I\+AL@{H\+W\+S\+E\+R\+I\+AL}}
+\index{H\+W\+S\+E\+R\+I\+AL@{H\+W\+S\+E\+R\+I\+AL}!teensy\+\_\+serial.\+h@{teensy\+\_\+serial.\+h}}
+\subsubsection[{\texorpdfstring{H\+W\+S\+E\+R\+I\+AL}{HWSERIAL}}]{\setlength{\rightskip}{0pt plus 5cm}\#define H\+W\+S\+E\+R\+I\+AL~Serial1}\hypertarget{teensy__serial_8h_a924f79ef9f937a6e975d67000b3d9f78}{}\label{teensy__serial_8h_a924f79ef9f937a6e975d67000b3d9f78}
+
+
+\subsection{Function Documentation}
+\index{teensy\+\_\+serial.\+h@{teensy\+\_\+serial.\+h}!clear\+\_\+buffer@{clear\+\_\+buffer}}
+\index{clear\+\_\+buffer@{clear\+\_\+buffer}!teensy\+\_\+serial.\+h@{teensy\+\_\+serial.\+h}}
+\subsubsection[{\texorpdfstring{clear\+\_\+buffer()}{clear_buffer()}}]{\setlength{\rightskip}{0pt plus 5cm}void clear\+\_\+buffer (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}\hypertarget{teensy__serial_8h_afa847549e9dc6e4f49f651623bc456dc}{}\label{teensy__serial_8h_afa847549e9dc6e4f49f651623bc456dc}
+
+
+Clears the serial buffer from all of its data. This is used primarily when the Teensy is restarted, and the Pi has been sending data that the Teensy does not need to process. 
+
+\index{teensy\+\_\+serial.\+h@{teensy\+\_\+serial.\+h}!print\+\_\+actuator\+\_\+msg@{print\+\_\+actuator\+\_\+msg}}
+\index{print\+\_\+actuator\+\_\+msg@{print\+\_\+actuator\+\_\+msg}!teensy\+\_\+serial.\+h@{teensy\+\_\+serial.\+h}}
+\subsubsection[{\texorpdfstring{print\+\_\+actuator\+\_\+msg(actuator\+\_\+data\+\_\+t $\ast$actuators\+\_\+ptr)}{print_actuator_msg(actuator_data_t *actuators_ptr)}}]{\setlength{\rightskip}{0pt plus 5cm}void print\+\_\+actuator\+\_\+msg (
+\begin{DoxyParamCaption}
+\item[{{\bf actuator\+\_\+data\+\_\+t} $\ast$}]{actuators\+\_\+ptr}
+\end{DoxyParamCaption}
+)}\hypertarget{teensy__serial_8h_a98e95c445e77a27b381f3aea2d41902c}{}\label{teensy__serial_8h_a98e95c445e77a27b381f3aea2d41902c}
+\index{teensy\+\_\+serial.\+h@{teensy\+\_\+serial.\+h}!print\+\_\+sensor\+\_\+msg@{print\+\_\+sensor\+\_\+msg}}
+\index{print\+\_\+sensor\+\_\+msg@{print\+\_\+sensor\+\_\+msg}!teensy\+\_\+serial.\+h@{teensy\+\_\+serial.\+h}}
+\subsubsection[{\texorpdfstring{print\+\_\+sensor\+\_\+msg(sensor\+\_\+data\+\_\+t $\ast$sensors\+\_\+ptr)}{print_sensor_msg(sensor_data_t *sensors_ptr)}}]{\setlength{\rightskip}{0pt plus 5cm}void print\+\_\+sensor\+\_\+msg (
+\begin{DoxyParamCaption}
+\item[{{\bf sensor\+\_\+data\+\_\+t} $\ast$}]{sensors\+\_\+ptr}
+\end{DoxyParamCaption}
+)}\hypertarget{teensy__serial_8h_afa1a50f26f7aafb7c5a52705687c81ab}{}\label{teensy__serial_8h_afa1a50f26f7aafb7c5a52705687c81ab}
+\index{teensy\+\_\+serial.\+h@{teensy\+\_\+serial.\+h}!read\+\_\+from\+\_\+pi@{read\+\_\+from\+\_\+pi}}
+\index{read\+\_\+from\+\_\+pi@{read\+\_\+from\+\_\+pi}!teensy\+\_\+serial.\+h@{teensy\+\_\+serial.\+h}}
+\subsubsection[{\texorpdfstring{read\+\_\+from\+\_\+pi(actuator\+\_\+data\+\_\+t $\ast$actuators\+\_\+ptr)}{read_from_pi(actuator_data_t *actuators_ptr)}}]{\setlength{\rightskip}{0pt plus 5cm}void read\+\_\+from\+\_\+pi (
+\begin{DoxyParamCaption}
+\item[{{\bf actuator\+\_\+data\+\_\+t} $\ast$}]{actuators\+\_\+ptr}
+\end{DoxyParamCaption}
+)}\hypertarget{teensy__serial_8h_a093b10f31f2586089f07d332d0906693}{}\label{teensy__serial_8h_a093b10f31f2586089f07d332d0906693}
+\index{teensy\+\_\+serial.\+h@{teensy\+\_\+serial.\+h}!set\+\_\+sensor\+\_\+msg@{set\+\_\+sensor\+\_\+msg}}
+\index{set\+\_\+sensor\+\_\+msg@{set\+\_\+sensor\+\_\+msg}!teensy\+\_\+serial.\+h@{teensy\+\_\+serial.\+h}}
+\subsubsection[{\texorpdfstring{set\+\_\+sensor\+\_\+msg(int user\+\_\+input, sensor\+\_\+data\+\_\+t $\ast$data\+\_\+ptr)}{set_sensor_msg(int user_input, sensor_data_t *data_ptr)}}]{\setlength{\rightskip}{0pt plus 5cm}void set\+\_\+sensor\+\_\+msg (
+\begin{DoxyParamCaption}
+\item[{int}]{user\+\_\+input, }
+\item[{{\bf sensor\+\_\+data\+\_\+t} $\ast$}]{data\+\_\+ptr}
+\end{DoxyParamCaption}
+)}\hypertarget{teensy__serial_8h_a08eb6f422c6e07956faa921fe5e08d32}{}\label{teensy__serial_8h_a08eb6f422c6e07956faa921fe5e08d32}
+\index{teensy\+\_\+serial.\+h@{teensy\+\_\+serial.\+h}!teensy\+\_\+serial\+\_\+loop\+\_\+fn@{teensy\+\_\+serial\+\_\+loop\+\_\+fn}}
+\index{teensy\+\_\+serial\+\_\+loop\+\_\+fn@{teensy\+\_\+serial\+\_\+loop\+\_\+fn}!teensy\+\_\+serial.\+h@{teensy\+\_\+serial.\+h}}
+\subsubsection[{\texorpdfstring{teensy\+\_\+serial\+\_\+loop\+\_\+fn(system\+\_\+data\+\_\+t $\ast$system\+\_\+data)}{teensy_serial_loop_fn(system_data_t *system_data)}}]{\setlength{\rightskip}{0pt plus 5cm}void teensy\+\_\+serial\+\_\+loop\+\_\+fn (
+\begin{DoxyParamCaption}
+\item[{{\bf system\+\_\+data\+\_\+t} $\ast$}]{system\+\_\+data}
+\end{DoxyParamCaption}
+)}\hypertarget{teensy__serial_8h_a5198c7ed3e8b7d83f716ad97132d2915}{}\label{teensy__serial_8h_a5198c7ed3e8b7d83f716ad97132d2915}
+
+
+The primary function for communicating between the Teensy and the Pi over the Serial U\+A\+RT port. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em system\+\_\+data} & a pointer to the system data that is declared statically in \hyperlink{main_8ino}{main.\+ino}. \\
+\hline
+\end{DoxyParams}
+\index{teensy\+\_\+serial.\+h@{teensy\+\_\+serial.\+h}!teensy\+\_\+serial\+\_\+setup@{teensy\+\_\+serial\+\_\+setup}}
+\index{teensy\+\_\+serial\+\_\+setup@{teensy\+\_\+serial\+\_\+setup}!teensy\+\_\+serial.\+h@{teensy\+\_\+serial.\+h}}
+\subsubsection[{\texorpdfstring{teensy\+\_\+serial\+\_\+setup()}{teensy_serial_setup()}}]{\setlength{\rightskip}{0pt plus 5cm}void teensy\+\_\+serial\+\_\+setup (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}\hypertarget{teensy__serial_8h_a952a1a0005cee5d60f13a52784bf7db8}{}\label{teensy__serial_8h_a952a1a0005cee5d60f13a52784bf7db8}
+
+
+Sets up the serial communication for the teensy to output data to both the Pi (through U\+A\+RT) and a PC console (through U\+SB). 
+
+\index{teensy\+\_\+serial.\+h@{teensy\+\_\+serial.\+h}!teensy\+\_\+sync@{teensy\+\_\+sync}}
+\index{teensy\+\_\+sync@{teensy\+\_\+sync}!teensy\+\_\+serial.\+h@{teensy\+\_\+serial.\+h}}
+\subsubsection[{\texorpdfstring{teensy\+\_\+sync()}{teensy_sync()}}]{\setlength{\rightskip}{0pt plus 5cm}void teensy\+\_\+sync (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}\hypertarget{teensy__serial_8h_a590e2eede53b5d9cebedc9da754a0889}{}\label{teensy__serial_8h_a590e2eede53b5d9cebedc9da754a0889}
+
+
+Ensures that the data being read from the Pi is synced. It clears the serial buffer up until it reads the designated S\+Y\+N\+C\+\_\+\+V\+A\+L\+UE. 
+

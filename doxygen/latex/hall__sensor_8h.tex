@@ -1,0 +1,66 @@
+\hypertarget{hall__sensor_8h}{}\section{daimtronics/teensy\+\_\+chibios/src/main/include/hall\+\_\+sensor.h File Reference}
+\label{hall__sensor_8h}\index{daimtronics/teensy\+\_\+chibios/src/main/include/hall\+\_\+sensor.\+h@{daimtronics/teensy\+\_\+chibios/src/main/include/hall\+\_\+sensor.\+h}}
+{\ttfamily \#include $<$stdint.\+h$>$}\\*
+Include dependency graph for hall\+\_\+sensor.\+h\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=207pt]{hall__sensor_8h__incl}
+\end{center}
+\end{figure}
+This graph shows which files directly or indirectly include this file\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=207pt]{hall__sensor_8h__dep__incl}
+\end{center}
+\end{figure}
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+int16\+\_\+t \hyperlink{hall__sensor_8h_ac5350eff4f7be4591be4804922422dea}{hall\+\_\+sensor\+\_\+loop\+\_\+fn} (short Phase\+B\+\_\+pin, short Phase\+C\+\_\+pin)
+\begin{DoxyCompactList}\small\item\em This is the primary function controlling the wheel speed sensor. It reads a Hall sensor that is built into the Tekin R8 Motor. This is a three phased motor (PhaseA, PhaseB, PhaseC). Each phase is offset 120 degrees from each other. Ticks will be incremented if the motor rotates forwards one full revolution, and decremented if it rotates backwards one revolution. \end{DoxyCompactList}\item 
+void \hyperlink{hall__sensor_8h_a333d70b162bb762c6233815470f40d97}{hall\+\_\+sensor\+\_\+setup} (short Phase\+A\+\_\+pin, short Phase\+B\+\_\+pin, short Phase\+C\+\_\+pin)
+\begin{DoxyCompactList}\small\item\em Set up the wheel speed task to read high or low values from the three pins attached to the Hall sensor (one for each phase). \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Function Documentation}
+\index{hall\+\_\+sensor.\+h@{hall\+\_\+sensor.\+h}!hall\+\_\+sensor\+\_\+loop\+\_\+fn@{hall\+\_\+sensor\+\_\+loop\+\_\+fn}}
+\index{hall\+\_\+sensor\+\_\+loop\+\_\+fn@{hall\+\_\+sensor\+\_\+loop\+\_\+fn}!hall\+\_\+sensor.\+h@{hall\+\_\+sensor.\+h}}
+\subsubsection[{\texorpdfstring{hall\+\_\+sensor\+\_\+loop\+\_\+fn(short Phase\+B\+\_\+pin, short Phase\+C\+\_\+pin)}{hall_sensor_loop_fn(short PhaseB_pin, short PhaseC_pin)}}]{\setlength{\rightskip}{0pt plus 5cm}int16\+\_\+t hall\+\_\+sensor\+\_\+loop\+\_\+fn (
+\begin{DoxyParamCaption}
+\item[{short}]{Phase\+B\+\_\+pin, }
+\item[{short}]{Phase\+C\+\_\+pin}
+\end{DoxyParamCaption}
+)}\hypertarget{hall__sensor_8h_ac5350eff4f7be4591be4804922422dea}{}\label{hall__sensor_8h_ac5350eff4f7be4591be4804922422dea}
+
+
+This is the primary function controlling the wheel speed sensor. It reads a Hall sensor that is built into the Tekin R8 Motor. This is a three phased motor (PhaseA, PhaseB, PhaseC). Each phase is offset 120 degrees from each other. Ticks will be incremented if the motor rotates forwards one full revolution, and decremented if it rotates backwards one revolution. 
+
+\begin{DoxyReturn}{Returns}
+the current number of ticks that the sensor reads. 
+\end{DoxyReturn}
+\index{hall\+\_\+sensor.\+h@{hall\+\_\+sensor.\+h}!hall\+\_\+sensor\+\_\+setup@{hall\+\_\+sensor\+\_\+setup}}
+\index{hall\+\_\+sensor\+\_\+setup@{hall\+\_\+sensor\+\_\+setup}!hall\+\_\+sensor.\+h@{hall\+\_\+sensor.\+h}}
+\subsubsection[{\texorpdfstring{hall\+\_\+sensor\+\_\+setup(short Phase\+A\+\_\+pin, short Phase\+B\+\_\+pin, short Phase\+C\+\_\+pin)}{hall_sensor_setup(short PhaseA_pin, short PhaseB_pin, short PhaseC_pin)}}]{\setlength{\rightskip}{0pt plus 5cm}void hall\+\_\+sensor\+\_\+setup (
+\begin{DoxyParamCaption}
+\item[{short}]{Phase\+A\+\_\+pin, }
+\item[{short}]{Phase\+B\+\_\+pin, }
+\item[{short}]{Phase\+C\+\_\+pin}
+\end{DoxyParamCaption}
+)}\hypertarget{hall__sensor_8h_a333d70b162bb762c6233815470f40d97}{}\label{hall__sensor_8h_a333d70b162bb762c6233815470f40d97}
+
+
+Set up the wheel speed task to read high or low values from the three pins attached to the Hall sensor (one for each phase). 
+
+
+\begin{DoxyParams}{Parameters}
+{\em Phase\+A\+\_\+pin} & An interrupt is triggered every time the Teensy read a leading edge for this phase. \\
+\hline
+{\em Phase\+B\+\_\+pin} & If this pin is high when the interrupt is triggered, the truck is going in reverse. \\
+\hline
+{\em Phase\+C\+\_\+pin} & If this pin is high when the interrupt is triggered, the truck is going forwards. \\
+\hline
+\end{DoxyParams}

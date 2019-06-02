@@ -1,0 +1,55 @@
+\hypertarget{wheel__speed_8h}{}\section{daimtronics/teensy\+\_\+chibios/src/main/include/wheel\+\_\+speed.h File Reference}
+\label{wheel__speed_8h}\index{daimtronics/teensy\+\_\+chibios/src/main/include/wheel\+\_\+speed.\+h@{daimtronics/teensy\+\_\+chibios/src/main/include/wheel\+\_\+speed.\+h}}
+{\ttfamily \#include $<$stdint.\+h$>$}\\*
+Include dependency graph for wheel\+\_\+speed.\+h\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=207pt]{wheel__speed_8h__incl}
+\end{center}
+\end{figure}
+This graph shows which files directly or indirectly include this file\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=207pt]{wheel__speed_8h__dep__incl}
+\end{center}
+\end{figure}
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+int16\+\_\+t \hyperlink{wheel__speed_8h_aaf904a24c79c820f20d1d8630716de27}{wheel\+\_\+speed\+\_\+loop\+\_\+fn} (int16\+\_\+t \hyperlink{hall__sensor_8cpp_a4f9943e6ab43adfb6975aeb73911151b}{ticks})
+\begin{DoxyCompactList}\small\item\em This function reads the motor ticks that have been determined by the hall sensor and converts this value into a speed for the truck. \end{DoxyCompactList}\item 
+void \hyperlink{wheel__speed_8h_a775811fa62067b4ae0f44234b4c68548}{wheel\+\_\+speed\+\_\+setup} ()
+\end{DoxyCompactItemize}
+
+
+\subsection{Function Documentation}
+\index{wheel\+\_\+speed.\+h@{wheel\+\_\+speed.\+h}!wheel\+\_\+speed\+\_\+loop\+\_\+fn@{wheel\+\_\+speed\+\_\+loop\+\_\+fn}}
+\index{wheel\+\_\+speed\+\_\+loop\+\_\+fn@{wheel\+\_\+speed\+\_\+loop\+\_\+fn}!wheel\+\_\+speed.\+h@{wheel\+\_\+speed.\+h}}
+\subsubsection[{\texorpdfstring{wheel\+\_\+speed\+\_\+loop\+\_\+fn(int16\+\_\+t ticks)}{wheel_speed_loop_fn(int16_t ticks)}}]{\setlength{\rightskip}{0pt plus 5cm}int16\+\_\+t wheel\+\_\+speed\+\_\+loop\+\_\+fn (
+\begin{DoxyParamCaption}
+\item[{int16\+\_\+t}]{ticks}
+\end{DoxyParamCaption}
+)}\hypertarget{wheel__speed_8h_aaf904a24c79c820f20d1d8630716de27}{}\label{wheel__speed_8h_aaf904a24c79c820f20d1d8630716de27}
+
+
+This function reads the motor ticks that have been determined by the hall sensor and converts this value into a speed for the truck. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em ticks} & The number of ticks that is kept track of by the hall\+\_\+sensor task. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+the speed of the truck 
+\end{DoxyReturn}
+\index{wheel\+\_\+speed.\+h@{wheel\+\_\+speed.\+h}!wheel\+\_\+speed\+\_\+setup@{wheel\+\_\+speed\+\_\+setup}}
+\index{wheel\+\_\+speed\+\_\+setup@{wheel\+\_\+speed\+\_\+setup}!wheel\+\_\+speed.\+h@{wheel\+\_\+speed.\+h}}
+\subsubsection[{\texorpdfstring{wheel\+\_\+speed\+\_\+setup()}{wheel_speed_setup()}}]{\setlength{\rightskip}{0pt plus 5cm}void wheel\+\_\+speed\+\_\+setup (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}\hypertarget{wheel__speed_8h_a775811fa62067b4ae0f44234b4c68548}{}\label{wheel__speed_8h_a775811fa62067b4ae0f44234b4c68548}

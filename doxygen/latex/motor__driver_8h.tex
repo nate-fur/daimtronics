@@ -1,0 +1,106 @@
+\hypertarget{motor__driver_8h}{}\section{daimtronics/teensy\+\_\+chibios/src/main/include/motor\+\_\+driver.h File Reference}
+\label{motor__driver_8h}\index{daimtronics/teensy\+\_\+chibios/src/main/include/motor\+\_\+driver.\+h@{daimtronics/teensy\+\_\+chibios/src/main/include/motor\+\_\+driver.\+h}}
+{\ttfamily \#include $<$stdint.\+h$>$}\\*
+Include dependency graph for motor\+\_\+driver.\+h\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=207pt]{motor__driver_8h__incl}
+\end{center}
+\end{figure}
+This graph shows which files directly or indirectly include this file\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=207pt]{motor__driver_8h__dep__incl}
+\end{center}
+\end{figure}
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \hyperlink{motor__driver_8h_a47f1b6dfc5a8fd9aac0efb348be5fb21}{motor\+\_\+driver\+\_\+loop\+\_\+fn} (int16\+\_\+t motor\+\_\+output)
+\begin{DoxyCompactList}\small\item\em This is the primary function controlling the motor. It reads the motor output value from the system data and controls the motor with this value. \end{DoxyCompactList}\item 
+int16\+\_\+t \hyperlink{motor__driver_8h_af8b67084d01c0aae1b2a7ef168956555}{scale\+\_\+output} (int16\+\_\+t motor\+\_\+output)
+\begin{DoxyCompactList}\small\item\em Scales a value coming from the pi between -\/100 and 100 to between 0 and 180 for what the Servo library requires. \end{DoxyCompactList}\item 
+void \hyperlink{motor__driver_8h_a736a79afc1c9cc88f7cc3de60f676b3e}{motor\+\_\+driver\+\_\+setup} (short motor\+\_\+pin)
+\begin{DoxyCompactList}\small\item\em Set up the motor driver task to write to the pin attached to the motor, and to be in the locked position. It also outputs a value corresponding to zero torque. \end{DoxyCompactList}\item 
+int16\+\_\+t \hyperlink{motor__driver_8h_ada070d71dced9dccaf66288fb47b1ac0}{stop\+\_\+motor} (int16\+\_\+t wheel\+\_\+speed, int16\+\_\+t time\+\_\+step)
+\begin{DoxyCompactList}\small\item\em Runs a control loop to stop the motor based on the reported wheel speed, and returns a value to be output to the motor. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Function Documentation}
+\index{motor\+\_\+driver.\+h@{motor\+\_\+driver.\+h}!motor\+\_\+driver\+\_\+loop\+\_\+fn@{motor\+\_\+driver\+\_\+loop\+\_\+fn}}
+\index{motor\+\_\+driver\+\_\+loop\+\_\+fn@{motor\+\_\+driver\+\_\+loop\+\_\+fn}!motor\+\_\+driver.\+h@{motor\+\_\+driver.\+h}}
+\subsubsection[{\texorpdfstring{motor\+\_\+driver\+\_\+loop\+\_\+fn(int16\+\_\+t motor\+\_\+output)}{motor_driver_loop_fn(int16_t motor_output)}}]{\setlength{\rightskip}{0pt plus 5cm}void motor\+\_\+driver\+\_\+loop\+\_\+fn (
+\begin{DoxyParamCaption}
+\item[{int16\+\_\+t}]{motor\+\_\+output}
+\end{DoxyParamCaption}
+)}\hypertarget{motor__driver_8h_a47f1b6dfc5a8fd9aac0efb348be5fb21}{}\label{motor__driver_8h_a47f1b6dfc5a8fd9aac0efb348be5fb21}
+
+
+This is the primary function controlling the motor. It reads the motor output value from the system data and controls the motor with this value. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em motor\+\_\+output} & the output to the motor \\
+\hline
+\end{DoxyParams}
+\index{motor\+\_\+driver.\+h@{motor\+\_\+driver.\+h}!motor\+\_\+driver\+\_\+setup@{motor\+\_\+driver\+\_\+setup}}
+\index{motor\+\_\+driver\+\_\+setup@{motor\+\_\+driver\+\_\+setup}!motor\+\_\+driver.\+h@{motor\+\_\+driver.\+h}}
+\subsubsection[{\texorpdfstring{motor\+\_\+driver\+\_\+setup(short motor\+\_\+pin)}{motor_driver_setup(short motor_pin)}}]{\setlength{\rightskip}{0pt plus 5cm}void motor\+\_\+driver\+\_\+setup (
+\begin{DoxyParamCaption}
+\item[{short}]{motor\+\_\+pin}
+\end{DoxyParamCaption}
+)}\hypertarget{motor__driver_8h_a736a79afc1c9cc88f7cc3de60f676b3e}{}\label{motor__driver_8h_a736a79afc1c9cc88f7cc3de60f676b3e}
+
+
+Set up the motor driver task to write to the pin attached to the motor, and to be in the locked position. It also outputs a value corresponding to zero torque. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em motor\+\_\+pin} & The pin sends a P\+WM signal to the motor. \\
+\hline
+\end{DoxyParams}
+\index{motor\+\_\+driver.\+h@{motor\+\_\+driver.\+h}!scale\+\_\+output@{scale\+\_\+output}}
+\index{scale\+\_\+output@{scale\+\_\+output}!motor\+\_\+driver.\+h@{motor\+\_\+driver.\+h}}
+\subsubsection[{\texorpdfstring{scale\+\_\+output(int16\+\_\+t motor\+\_\+output)}{scale_output(int16_t motor_output)}}]{\setlength{\rightskip}{0pt plus 5cm}int16\+\_\+t scale\+\_\+output (
+\begin{DoxyParamCaption}
+\item[{int16\+\_\+t}]{motor\+\_\+output}
+\end{DoxyParamCaption}
+)}\hypertarget{motor__driver_8h_af8b67084d01c0aae1b2a7ef168956555}{}\label{motor__driver_8h_af8b67084d01c0aae1b2a7ef168956555}
+
+
+Scales a value coming from the pi between -\/100 and 100 to between 0 and 180 for what the Servo library requires. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em motor\+\_\+output} & An input value, ideally between -\/100 and 100 (although it will be limited to -\/100 or 100 if outside this range \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+a value to output to the motor between 0 and 180 
+\end{DoxyReturn}
+\index{motor\+\_\+driver.\+h@{motor\+\_\+driver.\+h}!stop\+\_\+motor@{stop\+\_\+motor}}
+\index{stop\+\_\+motor@{stop\+\_\+motor}!motor\+\_\+driver.\+h@{motor\+\_\+driver.\+h}}
+\subsubsection[{\texorpdfstring{stop\+\_\+motor(int16\+\_\+t wheel\+\_\+speed, int16\+\_\+t time\+\_\+step)}{stop_motor(int16_t wheel_speed, int16_t time_step)}}]{\setlength{\rightskip}{0pt plus 5cm}int16\+\_\+t stop\+\_\+motor (
+\begin{DoxyParamCaption}
+\item[{int16\+\_\+t}]{wheel\+\_\+speed, }
+\item[{int16\+\_\+t}]{time\+\_\+step}
+\end{DoxyParamCaption}
+)}\hypertarget{motor__driver_8h_ada070d71dced9dccaf66288fb47b1ac0}{}\label{motor__driver_8h_ada070d71dced9dccaf66288fb47b1ac0}
+
+
+Runs a control loop to stop the motor based on the reported wheel speed, and returns a value to be output to the motor. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em wheel\+\_\+speed} & speed of the truck read by the wheel speed sensor \\
+\hline
+{\em time\+\_\+step} & number of millis since the last time this task ran; used in integral control \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+the output to the motor 
+\end{DoxyReturn}

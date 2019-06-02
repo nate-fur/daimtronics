@@ -1,0 +1,54 @@
+\hypertarget{tof__lidar_8h}{}\section{daimtronics/teensy\+\_\+chibios/src/main/include/tof\+\_\+lidar.h File Reference}
+\label{tof__lidar_8h}\index{daimtronics/teensy\+\_\+chibios/src/main/include/tof\+\_\+lidar.\+h@{daimtronics/teensy\+\_\+chibios/src/main/include/tof\+\_\+lidar.\+h}}
+{\ttfamily \#include $<$Adafruit\+\_\+\+V\+L53\+L0\+X.\+h$>$}\\*
+Include dependency graph for tof\+\_\+lidar.\+h\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=207pt]{tof__lidar_8h__incl}
+\end{center}
+\end{figure}
+This graph shows which files directly or indirectly include this file\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=207pt]{tof__lidar_8h__dep__incl}
+\end{center}
+\end{figure}
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+int16\+\_\+t \hyperlink{tof__lidar_8h_a8da0723270a6de519157b547f46a6f08}{tof\+\_\+loop\+\_\+fn} ()
+\begin{DoxyCompactList}\small\item\em This is the primary function controlling the ToF Lidar for reading distance measurements on the sensors. \end{DoxyCompactList}\item 
+void \hyperlink{tof__lidar_8h_affae18dfb6707b54116451926d19a0dd}{tof\+\_\+lidar\+\_\+setup} ()
+\begin{DoxyCompactList}\small\item\em Initializes the V\+L53\+L0X sensor. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Function Documentation}
+\index{tof\+\_\+lidar.\+h@{tof\+\_\+lidar.\+h}!tof\+\_\+lidar\+\_\+setup@{tof\+\_\+lidar\+\_\+setup}}
+\index{tof\+\_\+lidar\+\_\+setup@{tof\+\_\+lidar\+\_\+setup}!tof\+\_\+lidar.\+h@{tof\+\_\+lidar.\+h}}
+\subsubsection[{\texorpdfstring{tof\+\_\+lidar\+\_\+setup()}{tof_lidar_setup()}}]{\setlength{\rightskip}{0pt plus 5cm}void tof\+\_\+lidar\+\_\+setup (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}\hypertarget{tof__lidar_8h_affae18dfb6707b54116451926d19a0dd}{}\label{tof__lidar_8h_affae18dfb6707b54116451926d19a0dd}
+
+
+Initializes the V\+L53\+L0X sensor. 
+
+\index{tof\+\_\+lidar.\+h@{tof\+\_\+lidar.\+h}!tof\+\_\+loop\+\_\+fn@{tof\+\_\+loop\+\_\+fn}}
+\index{tof\+\_\+loop\+\_\+fn@{tof\+\_\+loop\+\_\+fn}!tof\+\_\+lidar.\+h@{tof\+\_\+lidar.\+h}}
+\subsubsection[{\texorpdfstring{tof\+\_\+loop\+\_\+fn()}{tof_loop_fn()}}]{\setlength{\rightskip}{0pt plus 5cm}int16\+\_\+t tof\+\_\+loop\+\_\+fn (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}\hypertarget{tof__lidar_8h_a8da0723270a6de519157b547f46a6f08}{}\label{tof__lidar_8h_a8da0723270a6de519157b547f46a6f08}
+
+
+This is the primary function controlling the ToF Lidar for reading distance measurements on the sensors. 
+
+The Adafruit\+\_\+\+V\+L53\+L0X library does most of the work and the function here calls the measure.\+Range\+Milli\+Meter instruction and stores the distance here. \begin{DoxyReturn}{Returns}
+an integer representing distance the sensor detected in millimeters 
+\end{DoxyReturn}

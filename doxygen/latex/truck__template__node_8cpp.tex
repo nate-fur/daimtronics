@@ -1,0 +1,59 @@
+\hypertarget{truck__template__node_8cpp}{}\section{daimtronics/semi\+\_\+catkin\+\_\+ws/src/semi\+\_\+truck/src/truck\+\_\+template\+\_\+node.cpp File Reference}
+\label{truck__template__node_8cpp}\index{daimtronics/semi\+\_\+catkin\+\_\+ws/src/semi\+\_\+truck/src/truck\+\_\+template\+\_\+node.\+cpp@{daimtronics/semi\+\_\+catkin\+\_\+ws/src/semi\+\_\+truck/src/truck\+\_\+template\+\_\+node.\+cpp}}
+{\ttfamily \#include \char`\"{}system\+\_\+data.\+h\char`\"{}}\\*
+{\ttfamily \#include \char`\"{}semi\+\_\+truck\+\_\+api.\+h\char`\"{}}\\*
+{\ttfamily \#include $<$stdio.\+h$>$}\\*
+{\ttfamily \#include $<$unistd.\+h$>$}\\*
+{\ttfamily \#include $<$ros/ros.\+h$>$}\\*
+{\ttfamily \#include $<$sensor\+\_\+msgs/\+Laser\+Scan.\+h$>$}\\*
+Include dependency graph for truck\+\_\+template\+\_\+node.\+cpp\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{truck__template__node_8cpp__incl}
+\end{center}
+\end{figure}
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \hyperlink{truck__template__node_8cpp_a8363f404c01d2a0626c10227fead51b5}{rplidar\+\_\+cb} (const sensor\+\_\+msgs\+::\+Laser\+Scan \&msg)
+\item 
+void \hyperlink{truck__template__node_8cpp_a8bc7378aaa9388d86ae7011d19657a02}{lidar\+\_\+lite\+\_\+cb} (const sensor\+\_\+msgs\+::\+Laser\+Scan \&msg)
+\item 
+void \hyperlink{truck__template__node_8cpp_acdc6ceefbb71e717b2ec560026e81433}{teensy\+\_\+sensors\+\_\+cb} (const \hyperlink{namespacesemi__truck_a8ffe15bf9a1e739c2242ac6d6feaa67f}{semi\+\_\+truck\+::\+Teensy\+\_\+\+Sensors} \&msg)
+\item 
+int \hyperlink{truck__template__node_8cpp_a3c04138a5bfe5d72780bb7e82a18e627}{main} (int argc, char $\ast$$\ast$argv)
+\end{DoxyCompactItemize}
+
+
+\subsection{Function Documentation}
+\index{truck\+\_\+template\+\_\+node.\+cpp@{truck\+\_\+template\+\_\+node.\+cpp}!lidar\+\_\+lite\+\_\+cb@{lidar\+\_\+lite\+\_\+cb}}
+\index{lidar\+\_\+lite\+\_\+cb@{lidar\+\_\+lite\+\_\+cb}!truck\+\_\+template\+\_\+node.\+cpp@{truck\+\_\+template\+\_\+node.\+cpp}}
+\subsubsection[{\texorpdfstring{lidar\+\_\+lite\+\_\+cb(const sensor\+\_\+msgs\+::\+Laser\+Scan \&msg)}{lidar_lite_cb(const sensor_msgs::LaserScan &msg)}}]{\setlength{\rightskip}{0pt plus 5cm}void lidar\+\_\+lite\+\_\+cb (
+\begin{DoxyParamCaption}
+\item[{const sensor\+\_\+msgs\+::\+Laser\+Scan \&}]{msg}
+\end{DoxyParamCaption}
+)}\hypertarget{truck__template__node_8cpp_a8bc7378aaa9388d86ae7011d19657a02}{}\label{truck__template__node_8cpp_a8bc7378aaa9388d86ae7011d19657a02}
+\index{truck\+\_\+template\+\_\+node.\+cpp@{truck\+\_\+template\+\_\+node.\+cpp}!main@{main}}
+\index{main@{main}!truck\+\_\+template\+\_\+node.\+cpp@{truck\+\_\+template\+\_\+node.\+cpp}}
+\subsubsection[{\texorpdfstring{main(int argc, char $\ast$$\ast$argv)}{main(int argc, char **argv)}}]{\setlength{\rightskip}{0pt plus 5cm}int main (
+\begin{DoxyParamCaption}
+\item[{int}]{argc, }
+\item[{char $\ast$$\ast$}]{argv}
+\end{DoxyParamCaption}
+)}\hypertarget{truck__template__node_8cpp_a3c04138a5bfe5d72780bb7e82a18e627}{}\label{truck__template__node_8cpp_a3c04138a5bfe5d72780bb7e82a18e627}
+\index{truck\+\_\+template\+\_\+node.\+cpp@{truck\+\_\+template\+\_\+node.\+cpp}!rplidar\+\_\+cb@{rplidar\+\_\+cb}}
+\index{rplidar\+\_\+cb@{rplidar\+\_\+cb}!truck\+\_\+template\+\_\+node.\+cpp@{truck\+\_\+template\+\_\+node.\+cpp}}
+\subsubsection[{\texorpdfstring{rplidar\+\_\+cb(const sensor\+\_\+msgs\+::\+Laser\+Scan \&msg)}{rplidar_cb(const sensor_msgs::LaserScan &msg)}}]{\setlength{\rightskip}{0pt plus 5cm}void rplidar\+\_\+cb (
+\begin{DoxyParamCaption}
+\item[{const sensor\+\_\+msgs\+::\+Laser\+Scan \&}]{msg}
+\end{DoxyParamCaption}
+)}\hypertarget{truck__template__node_8cpp_a8363f404c01d2a0626c10227fead51b5}{}\label{truck__template__node_8cpp_a8363f404c01d2a0626c10227fead51b5}
+\index{truck\+\_\+template\+\_\+node.\+cpp@{truck\+\_\+template\+\_\+node.\+cpp}!teensy\+\_\+sensors\+\_\+cb@{teensy\+\_\+sensors\+\_\+cb}}
+\index{teensy\+\_\+sensors\+\_\+cb@{teensy\+\_\+sensors\+\_\+cb}!truck\+\_\+template\+\_\+node.\+cpp@{truck\+\_\+template\+\_\+node.\+cpp}}
+\subsubsection[{\texorpdfstring{teensy\+\_\+sensors\+\_\+cb(const semi\+\_\+truck\+::\+Teensy\+\_\+\+Sensors \&msg)}{teensy_sensors_cb(const semi_truck::Teensy_Sensors &msg)}}]{\setlength{\rightskip}{0pt plus 5cm}void teensy\+\_\+sensors\+\_\+cb (
+\begin{DoxyParamCaption}
+\item[{const {\bf semi\+\_\+truck\+::\+Teensy\+\_\+\+Sensors} \&}]{msg}
+\end{DoxyParamCaption}
+)}\hypertarget{truck__template__node_8cpp_acdc6ceefbb71e717b2ec560026e81433}{}\label{truck__template__node_8cpp_acdc6ceefbb71e717b2ec560026e81433}

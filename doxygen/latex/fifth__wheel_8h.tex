@@ -1,0 +1,75 @@
+\hypertarget{fifth__wheel_8h}{}\section{daimtronics/teensy\+\_\+chibios/src/main/include/fifth\+\_\+wheel.h File Reference}
+\label{fifth__wheel_8h}\index{daimtronics/teensy\+\_\+chibios/src/main/include/fifth\+\_\+wheel.\+h@{daimtronics/teensy\+\_\+chibios/src/main/include/fifth\+\_\+wheel.\+h}}
+{\ttfamily \#include $<$stdint.\+h$>$}\\*
+Include dependency graph for fifth\+\_\+wheel.\+h\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=207pt]{fifth__wheel_8h__incl}
+\end{center}
+\end{figure}
+This graph shows which files directly or indirectly include this file\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=207pt]{fifth__wheel_8h__dep__incl}
+\end{center}
+\end{figure}
+\subsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define \hyperlink{fifth__wheel_8h_a00de8f7e0b615f88335573ba3909583d}{L\+O\+C\+K\+ED}~1
+\item 
+\#define \hyperlink{fifth__wheel_8h_af0591d953a49374b660c9de8964825fe}{U\+N\+L\+O\+C\+K\+ED}~0
+\end{DoxyCompactItemize}
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \hyperlink{fifth__wheel_8h_a14e7d99820fbf318dab31a2240485c4a}{fifth\+\_\+wheel\+\_\+loop\+\_\+fn} (int16\+\_\+t fifth\+\_\+output)
+\item 
+void \hyperlink{fifth__wheel_8h_a36146210c84097f03d4f940d28560ddb}{fifth\+\_\+wheel\+\_\+setup} (short fifth\+\_\+wheel\+\_\+pin)
+\begin{DoxyCompactList}\small\item\em Set up the fifth wheel task to write to the pin attached to the fifth wheel, and to be in the locked position. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Macro Definition Documentation}
+\index{fifth\+\_\+wheel.\+h@{fifth\+\_\+wheel.\+h}!L\+O\+C\+K\+ED@{L\+O\+C\+K\+ED}}
+\index{L\+O\+C\+K\+ED@{L\+O\+C\+K\+ED}!fifth\+\_\+wheel.\+h@{fifth\+\_\+wheel.\+h}}
+\subsubsection[{\texorpdfstring{L\+O\+C\+K\+ED}{LOCKED}}]{\setlength{\rightskip}{0pt plus 5cm}\#define L\+O\+C\+K\+ED~1}\hypertarget{fifth__wheel_8h_a00de8f7e0b615f88335573ba3909583d}{}\label{fifth__wheel_8h_a00de8f7e0b615f88335573ba3909583d}
+\index{fifth\+\_\+wheel.\+h@{fifth\+\_\+wheel.\+h}!U\+N\+L\+O\+C\+K\+ED@{U\+N\+L\+O\+C\+K\+ED}}
+\index{U\+N\+L\+O\+C\+K\+ED@{U\+N\+L\+O\+C\+K\+ED}!fifth\+\_\+wheel.\+h@{fifth\+\_\+wheel.\+h}}
+\subsubsection[{\texorpdfstring{U\+N\+L\+O\+C\+K\+ED}{UNLOCKED}}]{\setlength{\rightskip}{0pt plus 5cm}\#define U\+N\+L\+O\+C\+K\+ED~0}\hypertarget{fifth__wheel_8h_af0591d953a49374b660c9de8964825fe}{}\label{fifth__wheel_8h_af0591d953a49374b660c9de8964825fe}
+
+
+\subsection{Function Documentation}
+\index{fifth\+\_\+wheel.\+h@{fifth\+\_\+wheel.\+h}!fifth\+\_\+wheel\+\_\+loop\+\_\+fn@{fifth\+\_\+wheel\+\_\+loop\+\_\+fn}}
+\index{fifth\+\_\+wheel\+\_\+loop\+\_\+fn@{fifth\+\_\+wheel\+\_\+loop\+\_\+fn}!fifth\+\_\+wheel.\+h@{fifth\+\_\+wheel.\+h}}
+\subsubsection[{\texorpdfstring{fifth\+\_\+wheel\+\_\+loop\+\_\+fn(int16\+\_\+t fifth\+\_\+output)}{fifth_wheel_loop_fn(int16_t fifth_output)}}]{\setlength{\rightskip}{0pt plus 5cm}void fifth\+\_\+wheel\+\_\+loop\+\_\+fn (
+\begin{DoxyParamCaption}
+\item[{int16\+\_\+t}]{fifth\+\_\+output}
+\end{DoxyParamCaption}
+)}\hypertarget{fifth__wheel_8h_a14e7d99820fbf318dab31a2240485c4a}{}\label{fifth__wheel_8h_a14e7d99820fbf318dab31a2240485c4a}
+The is the primary function controlling the fifth wheel. It reads the fifth\+\_\+output value form the system data and writes to the Servo for actuating between the two different angles.
+
+
+\begin{DoxyParams}{Parameters}
+{\em fifth\+\_\+output} & the output to the fifth wheel, which will be one of two values, either locked or unlocked \\
+\hline
+\end{DoxyParams}
+\index{fifth\+\_\+wheel.\+h@{fifth\+\_\+wheel.\+h}!fifth\+\_\+wheel\+\_\+setup@{fifth\+\_\+wheel\+\_\+setup}}
+\index{fifth\+\_\+wheel\+\_\+setup@{fifth\+\_\+wheel\+\_\+setup}!fifth\+\_\+wheel.\+h@{fifth\+\_\+wheel.\+h}}
+\subsubsection[{\texorpdfstring{fifth\+\_\+wheel\+\_\+setup(short fifth\+\_\+wheel\+\_\+pin)}{fifth_wheel_setup(short fifth_wheel_pin)}}]{\setlength{\rightskip}{0pt plus 5cm}void fifth\+\_\+wheel\+\_\+setup (
+\begin{DoxyParamCaption}
+\item[{short}]{fifth\+\_\+wheel\+\_\+pin}
+\end{DoxyParamCaption}
+)}\hypertarget{fifth__wheel_8h_a36146210c84097f03d4f940d28560ddb}{}\label{fifth__wheel_8h_a36146210c84097f03d4f940d28560ddb}
+
+
+Set up the fifth wheel task to write to the pin attached to the fifth wheel, and to be in the locked position. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em fifth\+\_\+wheel\+\_\+pin} & The pin that signals a P\+WM to the fifth wheel servo. \\
+\hline
+\end{DoxyParams}

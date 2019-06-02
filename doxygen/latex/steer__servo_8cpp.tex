@@ -1,0 +1,74 @@
+\hypertarget{steer__servo_8cpp}{}\section{daimtronics/teensy\+\_\+chibios/src/main/steer\+\_\+servo.cpp File Reference}
+\label{steer__servo_8cpp}\index{daimtronics/teensy\+\_\+chibios/src/main/steer\+\_\+servo.\+cpp@{daimtronics/teensy\+\_\+chibios/src/main/steer\+\_\+servo.\+cpp}}
+{\ttfamily \#include \char`\"{}include/steer\+\_\+servo.\+h\char`\"{}}\\*
+{\ttfamily \#include $<$Arduino.\+h$>$}\\*
+{\ttfamily \#include $<$Servo.\+h$>$}\\*
+Include dependency graph for steer\+\_\+servo.\+cpp\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=334pt]{steer__servo_8cpp__incl}
+\end{center}
+\end{figure}
+\subsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define \hyperlink{steer__servo_8cpp_ae5284d1a5b3e5a009614298e3e7730bc}{S\+T\+R\+A\+I\+G\+HT}~90
+\item 
+\#define \hyperlink{steer__servo_8cpp_af5cc136dbc86df89de56c3aa421c12ee}{M\+I\+N\+\_\+\+A\+N\+G\+LE}~1400
+\item 
+\#define \hyperlink{steer__servo_8cpp_af3c82099d63a2d91d68bd62d954059c7}{M\+A\+X\+\_\+\+A\+N\+G\+LE}~1800
+\end{DoxyCompactItemize}
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \hyperlink{steer__servo_8cpp_ac304df1bb15fec18f465baf0d06c211d}{steer\+\_\+servo\+\_\+loop\+\_\+fn} (int16\+\_\+t steer\+\_\+output)
+\item 
+void \hyperlink{steer__servo_8cpp_a7895a4804a7e53cae6366bb60d312e44}{steer\+\_\+servo\+\_\+setup} (short servo\+\_\+pin)
+\begin{DoxyCompactList}\small\item\em Set up the steer servo task to write to the pin attached to the servo controlling angle of the trucks\textquotesingle{}s front axis. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Macro Definition Documentation}
+\index{steer\+\_\+servo.\+cpp@{steer\+\_\+servo.\+cpp}!M\+A\+X\+\_\+\+A\+N\+G\+LE@{M\+A\+X\+\_\+\+A\+N\+G\+LE}}
+\index{M\+A\+X\+\_\+\+A\+N\+G\+LE@{M\+A\+X\+\_\+\+A\+N\+G\+LE}!steer\+\_\+servo.\+cpp@{steer\+\_\+servo.\+cpp}}
+\subsubsection[{\texorpdfstring{M\+A\+X\+\_\+\+A\+N\+G\+LE}{MAX_ANGLE}}]{\setlength{\rightskip}{0pt plus 5cm}\#define M\+A\+X\+\_\+\+A\+N\+G\+LE~1800}\hypertarget{steer__servo_8cpp_af3c82099d63a2d91d68bd62d954059c7}{}\label{steer__servo_8cpp_af3c82099d63a2d91d68bd62d954059c7}
+\index{steer\+\_\+servo.\+cpp@{steer\+\_\+servo.\+cpp}!M\+I\+N\+\_\+\+A\+N\+G\+LE@{M\+I\+N\+\_\+\+A\+N\+G\+LE}}
+\index{M\+I\+N\+\_\+\+A\+N\+G\+LE@{M\+I\+N\+\_\+\+A\+N\+G\+LE}!steer\+\_\+servo.\+cpp@{steer\+\_\+servo.\+cpp}}
+\subsubsection[{\texorpdfstring{M\+I\+N\+\_\+\+A\+N\+G\+LE}{MIN_ANGLE}}]{\setlength{\rightskip}{0pt plus 5cm}\#define M\+I\+N\+\_\+\+A\+N\+G\+LE~1400}\hypertarget{steer__servo_8cpp_af5cc136dbc86df89de56c3aa421c12ee}{}\label{steer__servo_8cpp_af5cc136dbc86df89de56c3aa421c12ee}
+\index{steer\+\_\+servo.\+cpp@{steer\+\_\+servo.\+cpp}!S\+T\+R\+A\+I\+G\+HT@{S\+T\+R\+A\+I\+G\+HT}}
+\index{S\+T\+R\+A\+I\+G\+HT@{S\+T\+R\+A\+I\+G\+HT}!steer\+\_\+servo.\+cpp@{steer\+\_\+servo.\+cpp}}
+\subsubsection[{\texorpdfstring{S\+T\+R\+A\+I\+G\+HT}{STRAIGHT}}]{\setlength{\rightskip}{0pt plus 5cm}\#define S\+T\+R\+A\+I\+G\+HT~90}\hypertarget{steer__servo_8cpp_ae5284d1a5b3e5a009614298e3e7730bc}{}\label{steer__servo_8cpp_ae5284d1a5b3e5a009614298e3e7730bc}
+
+
+\subsection{Function Documentation}
+\index{steer\+\_\+servo.\+cpp@{steer\+\_\+servo.\+cpp}!steer\+\_\+servo\+\_\+loop\+\_\+fn@{steer\+\_\+servo\+\_\+loop\+\_\+fn}}
+\index{steer\+\_\+servo\+\_\+loop\+\_\+fn@{steer\+\_\+servo\+\_\+loop\+\_\+fn}!steer\+\_\+servo.\+cpp@{steer\+\_\+servo.\+cpp}}
+\subsubsection[{\texorpdfstring{steer\+\_\+servo\+\_\+loop\+\_\+fn(int16\+\_\+t steer\+\_\+output)}{steer_servo_loop_fn(int16_t steer_output)}}]{\setlength{\rightskip}{0pt plus 5cm}void steer\+\_\+servo\+\_\+loop\+\_\+fn (
+\begin{DoxyParamCaption}
+\item[{int16\+\_\+t}]{steer\+\_\+output}
+\end{DoxyParamCaption}
+)}\hypertarget{steer__servo_8cpp_ac304df1bb15fec18f465baf0d06c211d}{}\label{steer__servo_8cpp_ac304df1bb15fec18f465baf0d06c211d}
+The is the primary function controlling the steering servo wheel. It reads a value form the system data and controls the steering servo based on what the system data contains.
+
+
+\begin{DoxyParams}{Parameters}
+{\em steer\+\_\+output} & the output to the steering servo that controls angle \\
+\hline
+\end{DoxyParams}
+\index{steer\+\_\+servo.\+cpp@{steer\+\_\+servo.\+cpp}!steer\+\_\+servo\+\_\+setup@{steer\+\_\+servo\+\_\+setup}}
+\index{steer\+\_\+servo\+\_\+setup@{steer\+\_\+servo\+\_\+setup}!steer\+\_\+servo.\+cpp@{steer\+\_\+servo.\+cpp}}
+\subsubsection[{\texorpdfstring{steer\+\_\+servo\+\_\+setup(short servo\+\_\+pin)}{steer_servo_setup(short servo_pin)}}]{\setlength{\rightskip}{0pt plus 5cm}void steer\+\_\+servo\+\_\+setup (
+\begin{DoxyParamCaption}
+\item[{short}]{servo\+\_\+pin}
+\end{DoxyParamCaption}
+)}\hypertarget{steer__servo_8cpp_a7895a4804a7e53cae6366bb60d312e44}{}\label{steer__servo_8cpp_a7895a4804a7e53cae6366bb60d312e44}
+
+
+Set up the steer servo task to write to the pin attached to the servo controlling angle of the trucks\textquotesingle{}s front axis. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em servo\+\_\+pin} & The pin that signals a P\+WM to the steering servo. \\
+\hline
+\end{DoxyParams}
