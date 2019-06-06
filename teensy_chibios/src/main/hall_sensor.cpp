@@ -60,14 +60,13 @@ int16_t hall_sensor_loop_fn(short PhaseB_pin, short PhaseC_pin) {
  * @brief Set up the wheel speed task to read high or low values from the three
  * pins attached to the Hall sensor (one for each phase).
  *
- * @param PhaseA_pin An interrupt is triggered every time the Teensy read a
+ * @param PhaseA_pin An interrupt is triggered every time the Teensy reads a
  * leading edge for this phase.
  * @param PhaseB_pin If this pin is high when the interrupt is triggered, the
  * truck is going in reverse.
  * @param PhaseC_pin If this pin is high when the interrupt is triggered, the
  * truck is going forwards.
  */
-
 void hall_sensor_setup(short PhaseA_pin, short PhaseB_pin, short PhaseC_pin) {
     pinMode(PhaseA_pin, INPUT);
     pinMode(PhaseB_pin, INPUT);

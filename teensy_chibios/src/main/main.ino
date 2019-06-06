@@ -180,10 +180,10 @@ static THD_FUNCTION(left_tof_thread, arg) {
     int16_t dist_mm;
 
     while (true) {
-        dist_mm = tof_loop_fn();
+        dist_mm = tof_left_loop_fn();
 
         chMtxLock(&sysMtx);
-        system_data.sensors.rear_TOF = dist_mm;
+        system_data.sensors.left_TOF = dist_mm;
         system_data.updated = true;
         chMtxUnlock(&sysMtx);
 
@@ -206,10 +206,10 @@ static THD_FUNCTION(right_tof_thread, arg) {
     int16_t dist_mm;
 
     while (true) {
-        dist_mm = tof_loop_fn();
+        dist_mm = tof_right_loop_fn();
 
         chMtxLock(&sysMtx);
-        system_data.sensors.rear_TOF = dist_mm;
+        system_data.sensors.right_TOF = dist_mm;
         system_data.updated = true;
         chMtxUnlock(&sysMtx);
 
