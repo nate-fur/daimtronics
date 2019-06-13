@@ -31,14 +31,14 @@ static bool sens2_initialized = false;
  * @return an integer representing distance the sensor detected in millimeters
  */
 int16_t tof_left_loop_fn(){
-    VL53L0X_RangingMeasurementData_t measure;
+    VL53L0X_RangingMeasurementData_t measure_left;
     int16_t dist;
 
     if (sens1_initialized) {
         //Serial.print("Reading a measurement... ");
-        sensor1.rangingTest(&measure, false); // pass in 'true' to get debug data
-        if (measure.RangeStatus != 4) {  // phase failures have incorrect data
-            dist = measure.RangeMilliMeter;
+        sensor1.rangingTest(&measure_left, false); // pass in 'true' to get debug data
+        if (measure_left.RangeStatus != 4) {  // phase failures have incorrect data
+            dist = measure_left.RangeMilliMeter;
             //Serial.print("Distance (mm): "); Serial.println(dist);
         } else {
             //Serial.println(" out of range ");
@@ -59,14 +59,14 @@ int16_t tof_left_loop_fn(){
  * @return an integer representing distance the sensor detected in millimeters
  */
 int16_t tof_right_loop_fn(){
-    VL53L0X_RangingMeasurementData_t measure;
+    VL53L0X_RangingMeasurementData_t measure_right;
     int16_t dist;
 
     if (sens2_initialized) {
         //Serial.print("Reading a measurement... ");
-        sensor1.rangingTest(&measure, false); // pass in 'true' to get debug data
-        if (measure.RangeStatus != 4) {  // phase failures have incorrect data
-            dist = measure.RangeMilliMeter;
+        sensor1.rangingTest(&measure_right, false); // pass in 'true' to get debug data
+        if (measure_right.RangeStatus != 4) {  // phase failures have incorrect data
+            dist = measure_right.RangeMilliMeter;
             //Serial.print("Distance (mm): "); Serial.println(dist);
         } else {
             //Serial.println(" out of range ");
@@ -79,21 +79,21 @@ int16_t tof_right_loop_fn(){
 }
 
 /**
- * @brief Initializes the VL53L0X sensor.
+ * @brief Initializes the VL53L0X sensors.
  *
  */
 void tof_lidar_setup() {
     Serial.println("Adafruit VL53L0X 1 test");
     Wire.begin();
 
-    if (!sensor1.begin()) {
+    if (!sensor1.begin(0x29, false, &Wire1)) {
         Serial.println(F("Failed to boot left VL53L0X"));
         //while(1);
     }
     else {
         sens1_initialized = true;
     }
-    if (!sensor2.begin()) {
+    if (!sensor2.begin(0x29, false, &Wire2)) {
         Serial.println(F("Failed to boot right VL53L0X"));
         //while(1);
     }
